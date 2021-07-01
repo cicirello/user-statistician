@@ -90,7 +90,15 @@ query($owner: String!, $endCursor: String) {
 
 class Statistician :
 
-    __slots__ = []
+    __slots__ = [
+        '_pastYearData',
+        '_contributionYears',
+        '_followers',
+        '_issues',
+        '_pullRequests',
+        '_repositoriesContributedTo',
+        '_watching'
+        ]
 
     def __init__(self) :
         self.queryBasicUserStats()
@@ -98,6 +106,16 @@ class Statistician :
 
     def queryBasicUserStats(self) :
         result = json.loads(self.executeQuery(basicStatsQuery))
+        if "data" in result :
+            self._pastYearData = result["data"]["user"]["contributionsCollection"]
+            self._contributionYears = self._pastYearData["contributionYears"]
+            del self._pastYearData["contributionYears"]
+            self._followers = result["data"]["user"]["followers"]["totalCount"]
+            self._issues = result["data"]["user"]["issues"]["totalCount"]
+            self._pullRequests = result["data"]["user"]["pullRequests"]["totalCount"]
+            self._pastYearData["repositoriesContributedTo"] = result["data"]["user"]["repositoriesContributedTo"]["totalCount"]
+            self._repositoriesContributedTo = result["data"]["user"]["topRepositories"]["totalCount"]
+            self._watching = result["data"]["user"]["watching"]["totalCount"]
         print(result)
 
     def queryAdditionalRepoStats(self) :
