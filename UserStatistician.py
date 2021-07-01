@@ -97,7 +97,7 @@ class Statistician :
         '_issues',
         '_pullRequests',
         '_repositoriesContributedTo',
-        '_watching',
+        '_watchingMyOwn',
         '_ownedRepositories'
         ]
 
@@ -116,7 +116,7 @@ class Statistician :
             self._pullRequests = result["data"]["user"]["pullRequests"]["totalCount"]
             self._pastYearData["repositoriesContributedTo"] = result["data"]["user"]["repositoriesContributedTo"]["totalCount"]
             self._repositoriesContributedTo = result["data"]["user"]["topRepositories"]["totalCount"]
-            self._watching = result["data"]["user"]["watching"]["totalCount"]
+            self._watchingMyOwn = result["data"]["user"]["watching"]["totalCount"]
         else :
             pass # FOR NOW
             # ERROR: do something here for an error
@@ -132,6 +132,10 @@ class Statistician :
             result = list(map(lambda x : x["data"]["user"]["repositories"], result))
             self._ownedRepositories = result[0]["totalCount"]
             self._repositoriesContributedTo -= self._ownedRepositories
+            for page in result :
+                for repo in page["nodes"] :
+                    pass # for now
+                    # PROCESS REPO HERE
             print(result)
         else :
             pass # FOR NOW
