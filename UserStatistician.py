@@ -93,13 +93,15 @@ class Statistician :
 
     def __init__(self) :
         self.queryBasicUserStats()
+        self.queryAdditionalRepoStats()
 
     def queryBasicUserStats(self) :
         result = self.executeQuery(basicStatsQuery)
         print(result)
 
     def queryAdditionalRepoStats(self) :
-        self.executeQuery(additionalRepoStatsQuery, True)
+        result = self.executeQuery(additionalRepoStatsQuery, True)
+        print(result)
 
     def queryPriorYearStats(self) :
         pass
