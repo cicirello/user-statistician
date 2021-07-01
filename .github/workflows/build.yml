@@ -1,0 +1,42 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Run Python unit tests
+      run: python3 -u -m unittest tests/tests.py
+
+    - name: Verify that the Docker image for the action builds
+      run: docker build . --file Dockerfile
+
+    - name: Integration test
+      id: integration
+      uses: ./
+      with:
+        input-one: something
+        input-two: true
+
+    - name: Output the outputs of the integration test of the action
+      run: |
+        echo "output-one = ${{ steps.integration.outputs.output-one }}"
+        echo "output-two = ${{ steps.integration.outputs.output-two }}"
+
+    - name: Verify integration test results
+      run: python3 -u -m unittest tests/integration.py
