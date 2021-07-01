@@ -3,5 +3,5 @@ FROM cicirello/pyaction-lite:latest
 # FROM ghcr.io/cicirello/pyaction-lite:latest
 # FROM ghcr.io/cicirello/pyaction:latest
 
-COPY entrypoint.py /entrypoint.py
-ENTRYPOINT ["/entrypoint.py"]
+COPY UserStatistician.py /UserStatistician.py
+ENTRYPOINT ["/UserStatistician.py"]
