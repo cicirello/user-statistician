@@ -39,6 +39,7 @@ class TestSomething(unittest.TestCase) :
         print("PRs", stats._pullRequests)
         print("Contributed To", stats._repositoriesContributedTo)
         print("Watching", stats._watching)
+        print("Owns", stats._ownedRepositories)
 
     def test_anothertestcase(self) :
         pass
