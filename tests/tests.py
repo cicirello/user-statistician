@@ -38,7 +38,7 @@ class TestSomething(unittest.TestCase) :
         print("Issues", stats._issues)
         print("PRs", stats._pullRequests)
         print("Contributed To", stats._repositoriesContributedTo)
-        print("Watching", stats._watching)
+        print("Watching My Own", stats._watchingMyOwn)
         print("Owns", stats._ownedRepositories)
 
     def test_anothertestcase(self) :
