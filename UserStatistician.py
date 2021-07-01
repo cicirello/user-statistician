@@ -26,6 +26,7 @@
 # SOFTWARE.
 #
 
+import json
 import sys
 import subprocess
 
@@ -96,11 +97,11 @@ class Statistician :
         self.queryAdditionalRepoStats()
 
     def queryBasicUserStats(self) :
-        result = self.executeQuery(basicStatsQuery)
+        result = json.loads(self.executeQuery(basicStatsQuery))
         print(result)
 
     def queryAdditionalRepoStats(self) :
-        result = self.executeQuery(additionalRepoStatsQuery, True)
+        result = json.loads(self.executeQuery(additionalRepoStatsQuery, True))
         print(result)
 
     def queryPriorYearStats(self) :
