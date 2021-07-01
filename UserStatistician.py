@@ -118,6 +118,7 @@ class Statistician :
             self._repositoriesContributedTo = result["data"]["user"]["topRepositories"]["totalCount"]
             self._watching = result["data"]["user"]["watching"]["totalCount"]
         else :
+            pass # FOR NOW
             # ERROR: do something here for an error
 
     def queryAdditionalRepoStats(self) :
@@ -133,6 +134,7 @@ class Statistician :
             self._repositoriesContributedTo -= self._ownedRepositories
             print(result)
         else :
+            pass # FOR NOW
             # ERROR: do something here for an error
 
     def queryPriorYearStats(self) :
