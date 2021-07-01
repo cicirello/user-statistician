@@ -67,7 +67,7 @@ query($owner: String!) {
 additionalRepoStatsQuery = """
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
-    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
+    repositories(first: 10, after: $endCursor, ownerAffiliations: OWNER) {
       totalCount
       nodes {
         stargazerCount 
