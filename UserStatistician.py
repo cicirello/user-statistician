@@ -102,6 +102,11 @@ class Statistician :
 
     def queryAdditionalRepoStats(self) :
         result = self.executeQuery(additionalRepoStatsQuery, True)
+        numPages = result.count('{"data"')
+        if (numPages > 1) :
+            result = result.replace('}{"data"', '},{"data"')
+        result = "[" + result + "]"
+        result = json.loads(result)
         print(result)
 
     def queryPriorYearStats(self) :
