@@ -101,7 +101,7 @@ class Statistician :
         print(result)
 
     def queryAdditionalRepoStats(self) :
-        result = json.loads(self.executeQuery(additionalRepoStatsQuery, True))
+        result = self.executeQuery(additionalRepoStatsQuery, True)
         print(result)
 
     def queryPriorYearStats(self) :
