@@ -219,7 +219,10 @@ if __name__ == "__main__" :
     print("Archived repos", stats._archivedCount)
     print("Forks of others repos", stats._forkCount)
 
-    
+    # Fake example outputs
+    output1 = "Hello"
+    output2 = "World"
+
     # This is how you produce outputs.
     # Make sure corresponds to output variable names in action.yml
     print("::set-output name=output-one::" + output1)
