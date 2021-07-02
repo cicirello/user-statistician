@@ -101,13 +101,20 @@ class Statistician :
         '_ownedRepositories',
         '_stargazers',
         '_forksOfMyRepos',
-        '_watchers'
+        '_watchers',
+        '_publicNonForksCount',
+        '_privateCount',
+        '_archivedCount',
+        '_forkCount'
         ]
 
     def __init__(self) :
         self._stargazers = 0
         self._forksOfMyRepos = 0
         self._watchers = 0
+        self._privateCount = 0
+        self._archivedCount = 0
+        self._forkCount = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
         self.queryAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
 
@@ -139,11 +146,15 @@ class Statistician :
             result = json.loads(result)
             result = list(map(lambda x : x["data"]["user"]["repositories"], result))
             self._ownedRepositories = result[0]["totalCount"]
+            # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned
             self._repositoriesContributedTo -= self._ownedRepositories
+            # initialize before iterating over repos
+            self._publicNonForksCount = self._ownedRepositories
             for page in result :
                 for repo in page["nodes"] :
                     self.processRepoStats(repo)
             self._watchers -= self._watchingMyOwn
+            
             print(result)
         else :
             pass # FOR NOW
@@ -155,6 +166,14 @@ class Statistician :
             self._watchers += repo["watchers"]["totalCount"]
             if not repo["isFork"] :
                 self._forksOfMyRepos += repo["forkCount"]
+        else :
+            self._privateCount += 1
+        if repo["isFork"] :
+            self._forkCount += 1
+        if repo["isArchived"] :
+            self._archivedCount += 1
+        if repo["isFork"] or repo["isPrivate"]:
+            self._publicNonForksCount -= 1
                 
         # AFTER IMPLEMTENTING AND TESTING: Edit query to get 100 at a time
 
@@ -195,11 +214,12 @@ if __name__ == "__main__" :
     print("Starred by", stats._stargazers)
     print("Forked by", stats._forksOfMyRepos)
     print("Watched by", stats._watchers)
+    print("Public non-forks", stats._publicNonForksCount)
+    print("Private repos", stats._privateCount)
+    print("Archived repos", stats._archivedCount)
+    print("Forks of others repos", stats._forkCount)
 
-    # Fake example outputs
-    output1 = "Hello"
-    output2 = "World"
-
+    
     # This is how you produce outputs.
     # Make sure corresponds to output variable names in action.yml
     print("::set-output name=output-one::" + output1)
