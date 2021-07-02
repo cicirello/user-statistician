@@ -89,7 +89,7 @@ query($owner: String!, $endCursor: String) {
 """
 
 oneYearContribTemplate = """
-year{year}: contributionsCollection(from: "{year}-01-01T00:00:00.001Z") {
+year{0}: contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {
   totalCommitContributions 
   totalPullRequestReviewContributions
   restrictedContributionsCount 
@@ -185,7 +185,7 @@ class Statistician :
     def createPriorYearStatsQuery(self, yearList) :
         query = "query($owner: String!) {\n  user(login: $owner) {\n"
         for y in yearList :
-            query += oneYearContribTemplate.format(year=y)
+            query += oneYearContribTemplate.format(y)
         query += "  }\n}\n"
         return query
     
