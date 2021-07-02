@@ -101,7 +101,10 @@ class Statistician :
         '_pullRequests',
         '_repositoriesContributedTo',
         '_watchingMyOwn',
-        '_ownedRepositories'
+        '_ownedRepositories',
+        '_stargazers',
+        '_forksOfMyRepos',
+        '_watchers'
         ]
 
     def __init__(self, includeArchived=True, includeForks=False, includePrivateRepos=False) :
@@ -143,12 +146,19 @@ class Statistician :
             for page in result :
                 for repo in page["nodes"] :
                     self.processRepoStats(repo)
+            self._watchers -= self._watchingMyOwn
             print(result)
         else :
             pass # FOR NOW
             # ERROR: do something here for an error
 
     def processRepoStats(self, repo) :
+        if not repo["isPrivate"] :
+            self._stargazers += repo["stargazerCount"]
+            self._watchers += repo["watchers"]["totalCount"]
+            if not repo["isFork"] :
+                self._forksOfMyRepos += repo["forkCount"]
+                
         # AFTER IMPLEMTENTING AND TESTING: Edit query to get 100 at a time
         if repo["isPrivate"] and not self._includePrivateRepos :
             pass
@@ -193,6 +203,9 @@ if __name__ == "__main__" :
     print("Contributed To", stats._repositoriesContributedTo)
     print("Watching My Own", stats._watchingMyOwn)
     print("Owns", stats._ownedRepositories)
+    print("Starred by", self._stargazers)
+    print("Forked by", self._forksOfMyRepos)
+    print("Watched by", self._watchers)
 
     # Fake example outputs
     output1 = "Hello"
