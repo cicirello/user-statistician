@@ -124,7 +124,7 @@ class Statistician :
         self._forkCount = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
         self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
-        self.parsePriorYearStats(self.createPriorYearStatsQuery(self._contributionYears))
+        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
 
     def parseBasicUserStats(self, queryResults) :
         result = json.loads(queryResults)
