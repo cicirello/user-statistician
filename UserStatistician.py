@@ -203,9 +203,9 @@ if __name__ == "__main__" :
     print("Contributed To", stats._repositoriesContributedTo)
     print("Watching My Own", stats._watchingMyOwn)
     print("Owns", stats._ownedRepositories)
-    print("Starred by", self._stargazers)
-    print("Forked by", self._forksOfMyRepos)
-    print("Watched by", self._watchers)
+    print("Starred by", stats._stargazers)
+    print("Forked by", stats._forksOfMyRepos)
+    print("Watched by", stats._watchers)
 
     # Fake example outputs
     output1 = "Hello"
