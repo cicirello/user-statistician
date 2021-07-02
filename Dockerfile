@@ -1,4 +1,4 @@
-FROM python:3.9.6
+FROM python:3.9.6-slim
 
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
 
