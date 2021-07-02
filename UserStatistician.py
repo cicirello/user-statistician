@@ -189,7 +189,13 @@ class Statistician :
         return query
     
     def parsePriorYearStats(self, queryResults) :
-        print(queryResults)
+        result = json.loads(queryResults)
+        if "data" in result :
+            result = result["data"]["user"]
+            print(result)
+        else :
+            pass # FOR NOW
+            # ERROR: do something here for an error
 
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
