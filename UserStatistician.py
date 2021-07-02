@@ -182,7 +182,7 @@ if __name__ == "__main__" :
     input1 = sys.argv[1]
     input2 = sys.argv[2]
 
-    stats = UserStats.Statistician()
+    stats = Statistician()
     print("Prior Year", stats._pastYearData)
     print("Contrib Years", stats._contributionYears)
     print("Followers", stats._followers)
