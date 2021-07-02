@@ -67,7 +67,7 @@ query($owner: String!) {
 additionalRepoStatsQuery = """
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
-    repositories(first: 10, after: $endCursor, ownerAffiliations: OWNER) {
+    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
       totalCount
       nodes {
         stargazerCount 
@@ -116,7 +116,7 @@ class Statistician :
         self._archivedCount = 0
         self._forkCount = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
-        self.queryAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
+        self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
 
     def parseBasicUserStats(self, queryResults) :
         result = json.loads(queryResults)
@@ -136,7 +136,7 @@ class Statistician :
             pass # FOR NOW
             # ERROR: do something here for an error
 
-    def queryAdditionalRepoStats(self, queryResults) :
+    def parseAdditionalRepoStats(self, queryResults) :
         result = queryResults
         numPages = result.count('{"data"')
         if numPages >= 1 :
@@ -154,8 +154,6 @@ class Statistician :
                 for repo in page["nodes"] :
                     self.processRepoStats(repo)
             self._watchers -= self._watchingMyOwn
-            
-            print(result)
         else :
             pass # FOR NOW
             # ERROR: do something here for an error
