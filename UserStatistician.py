@@ -88,6 +88,14 @@ query($owner: String!, $endCursor: String) {
 }
 """
 
+oneYearContribTemplate = """
+year{year}: contributionsCollection(from: "{year}-01-01T00:00:00.001Z") {
+  totalCommitContributions 
+  totalPullRequestReviewContributions
+  restrictedContributionsCount 
+}
+"""
+
 class Statistician :
 
     __slots__ = [
@@ -117,6 +125,7 @@ class Statistician :
         self._forkCount = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
         self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
+        self.parsePriorYearStats(self.createPriorYearStatsQuery(self._contributionYears))
 
     def parseBasicUserStats(self, queryResults) :
         result = json.loads(queryResults)
@@ -172,11 +181,16 @@ class Statistician :
             self._archivedCount += 1
         if repo["isFork"] or repo["isPrivate"]:
             self._publicNonForksCount -= 1
-                
-        # AFTER IMPLEMTENTING AND TESTING: Edit query to get 100 at a time
 
-    def queryPriorYearStats(self) :
-        pass
+    def createPriorYearStatsQuery(self, yearList) :
+        query = "query($owner: String!) {\n  user(login: $owner) {\n"
+        for y in yearList :
+            query += oneYearContribTemplate.format(year=y)
+        query += "  }\n}\n"
+        return query
+    
+    def parsePriorYearStats(self, queryResults) :
+        print(queryResults)
 
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
