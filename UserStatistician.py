@@ -57,7 +57,7 @@ query($owner: String!) {
     repositoriesContributedTo {
       totalCount
     }
-    watching(ownerAffiliations: OWNER) {
+    watching(ownerAffiliations: OWNER, privacy: PUBLIC) {
       totalCount
     }              
   }
@@ -108,11 +108,11 @@ class Statistician :
         self._includeArchived = includeArchived
         self._includeForks = includeForks
         self._includePrivateRepos = includePrivateRepos
-        self.queryBasicUserStats()
-        self.queryAdditionalRepoStats()
+        self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
+        self.queryAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
 
-    def queryBasicUserStats(self) :
-        result = json.loads(self.executeQuery(basicStatsQuery))
+    def parseBasicUserStats(self, queryResults) :
+        result = json.loads(queryResults)
         if "data" in result :
             self._pastYearData = result["data"]["user"]["contributionsCollection"]
             self._contributionYears = self._pastYearData["contributionYears"]
@@ -121,14 +121,16 @@ class Statistician :
             self._issues = result["data"]["user"]["issues"]["totalCount"]
             self._pullRequests = result["data"]["user"]["pullRequests"]["totalCount"]
             self._pastYearData["repositoriesContributedTo"] = result["data"]["user"]["repositoriesContributedTo"]["totalCount"]
+            # Initialize this with count of all repos contributed to, and later subtract owned repos
             self._repositoriesContributedTo = result["data"]["user"]["topRepositories"]["totalCount"]
+            # Number of owned repos that user is watching to remove later from watchers count
             self._watchingMyOwn = result["data"]["user"]["watching"]["totalCount"]
         else :
             pass # FOR NOW
             # ERROR: do something here for an error
 
-    def queryAdditionalRepoStats(self) :
-        result = self.executeQuery(additionalRepoStatsQuery, True)
+    def queryAdditionalRepoStats(self, queryResults) :
+        result = queryResults
         numPages = result.count('{"data"')
         if numPages >= 1 :
             if (numPages > 1) :
