@@ -91,9 +91,6 @@ query($owner: String!, $endCursor: String) {
 class Statistician :
 
     __slots__ = [
-        '_includeArchived',
-        '_includeForks',
-        '_includePrivateRepos',
         '_pastYearData',
         '_contributionYears',
         '_followers',
@@ -107,10 +104,10 @@ class Statistician :
         '_watchers'
         ]
 
-    def __init__(self, includeArchived=True, includeForks=False, includePrivateRepos=False) :
-        self._includeArchived = includeArchived
-        self._includeForks = includeForks
-        self._includePrivateRepos = includePrivateRepos
+    def __init__(self) :
+        self._stargazers = 0
+        self._forksOfMyRepos = 0
+        self._watchers = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
         self.queryAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
 
@@ -160,14 +157,6 @@ class Statistician :
                 self._forksOfMyRepos += repo["forkCount"]
                 
         # AFTER IMPLEMTENTING AND TESTING: Edit query to get 100 at a time
-        if repo["isPrivate"] and not self._includePrivateRepos :
-            pass
-        elif repo["isFork"] and not self._includeForks :
-            pass
-        elif repo["isArchived"] and not self._includeArchived :
-            pass
-        else :
-            pass
 
     def queryPriorYearStats(self) :
         pass
