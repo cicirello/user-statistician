@@ -136,7 +136,7 @@ class Statistician :
         query = "query($owner: String!) {\n  user(login: $owner) {\n"
         for y in yearList :
             query += oneYearContribTemplate.format(y)
-        query += "\n  }\n}\n"
+        query += "  }\n}\n"
         print(query)
         return query
     
