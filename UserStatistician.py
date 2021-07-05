@@ -78,7 +78,6 @@ query($owner: String!, $endCursor: String) {
         watchers {
           totalCount
         }
-        viewerSubscription
       }
       pageInfo {
         hasNextPage
@@ -133,8 +132,7 @@ class Statistician :
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
-        print(repoStats)
-
+        
         # Initialize this with count of all repos contributed to, and later subtract owned repos
         repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
         # This is the count of owned repos, including all public, but may or may not include all private.
@@ -160,8 +158,12 @@ class Statistician :
 
         # Number of owned repos that user is watching to remove later from watchers count
         watchingMyOwn = basicStats["data"]["user"]["watching"]["totalCount"]
-        watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        watchers -= watchingMyOwn
+        watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
+        watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        # Don't filter our watching of my own for now. See comment that follows for explanation.
+        #    watchers -= watchingMyOwn
+        # Note: watchers includes forks of repos because of adjustment for owners repos.
+        # Need an additional query of some sort to filter our watching of owner's forks of other's repos.
 
         # Count of private repos (which is not accurate since depends on token used to authenticate query,
         # however, all those here are included in count of owned repos.
@@ -180,7 +182,7 @@ class Statistician :
             "public" : (publicNonForksCount, publicAll),
             "starredBy" : (stargazers, stargazersAll),
             "forkedBy" : (forksOfMyRepos, forksOfMyReposAll),
-            "watchedBy" : (watchers, "???"),
+            "watchedBy" : (watchersNonForks, watchers),
             "archived" : (publicNonForksArchivedCount, publicArchivedCount)
             }
 
