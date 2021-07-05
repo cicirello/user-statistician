@@ -133,7 +133,7 @@ class Statistician :
             }
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
-        query = "query($owner: String!) {\n  user(login: $owner) {"
+        query = "query($owner: String!) {\n  user(login: $owner) {\n"
         for y in yearList :
             query += oneYearContribTemplate.format(y)
         query += "\n  }\n}\n"
