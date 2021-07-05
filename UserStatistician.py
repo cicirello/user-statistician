@@ -46,7 +46,7 @@ class Statistician :
         watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql")
         self.parseStats(
             self.executeQuery(basicStatsQuery),
-            self.executeQuery(additionalRepoStatsQuery, True)
+            self.executeQuery(additionalRepoStatsQuery, True),
             self.executeQuery(watchingAdjustmentQuery, True)
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
