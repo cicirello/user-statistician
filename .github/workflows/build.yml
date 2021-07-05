@@ -22,8 +22,7 @@ jobs:
 
     - name: Run Python unit tests
       run: |
-        cd src
-        #python3 -u -m unittest ../tests/tests.py
+        python3 -u -m unittest tests/tests.py
       env:
        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
@@ -45,5 +44,4 @@ jobs:
 
     - name: Verify integration test results
       run: |
-        cd src
-        python3 -u -m unittest ../tests/integration.py
+        python3 -u -m unittest tests/integration.py
