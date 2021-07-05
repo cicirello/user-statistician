@@ -21,7 +21,9 @@ jobs:
         python-version: '3.8'
 
     - name: Run Python unit tests
-      run: python3 -u -m unittest tests/tests.py
+      run: |
+        cd src
+        python3 -u -m unittest ../tests/tests.py
       env:
        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
@@ -42,4 +44,6 @@ jobs:
         echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
 
     - name: Verify integration test results
-      run: python3 -u -m unittest tests/integration.py
+      run: |
+        cd src
+        python3 -u -m unittest ../tests/integration.py
