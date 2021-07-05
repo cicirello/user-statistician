@@ -24,7 +24,7 @@
 # SOFTWARE.
 # 
 name: 'user-statistician'
-description: 'Generates a visual summary of a GitHub user's activity'
+description: "Generates a visual summary of a GitHub user's activity"
 branding: 
   icon: 'book-open'
   color: 'green'
