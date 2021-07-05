@@ -73,6 +73,7 @@ class Statistician :
                 return file.read()
         except IOError:
             print("Error: Failed to open query file:", queryFilePath)
+            print("::set-output name=exit-code::1")
             exit(1 if failOnError else 0)
 
     def parseStats(self, basicStats, repoStats, watchingStats) :
@@ -210,9 +211,13 @@ class Statistician :
             if "errors" in result :
                 print("GitHub api Query failed with error:")
                 print(result["errors"])
+                print("::set-output name=exit-code::2")
+                code = 2
             else :
                 print("Something unexpected occurred during GitHub API query.")
-            exit(1 if failOnError else 0)
+                print("::set-output name=exit-code::3")
+                code = 3
+            exit(code if failOnError else 0)
         elif needsPagination :
             if (numPages > 1) :
                 result = result.replace('}{"data"', '},{"data"')
@@ -240,11 +245,5 @@ if __name__ == "__main__" :
     print("Followers", stats._followers)
     print("Repos", stats._repo)
     
-    # Fake example outputs
-    output1 = "Hello"
-    output2 = "World"
-
-    # This is how you produce outputs.
-    # Make sure corresponds to output variable names in action.yml
-    print("::set-output name=output-one::" + output1)
-    print("::set-output name=output-two::" + output2)
+    print("::set-output name=exit-code::0")
+    
