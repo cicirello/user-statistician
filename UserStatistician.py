@@ -30,7 +30,7 @@ import json
 import sys
 import subprocess
 
-basicStatsQuery = """
+basicStatsQueryDISABLE = """
 query($owner: String!) {
   user(login: $owner) {
     contributionsCollection {
@@ -105,7 +105,7 @@ class Statistician :
         ]
 
     def __init__(self) :
-        basicStatsQuery = loadQuery("/queries/basicstats.graphql")
+        basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
