@@ -31,6 +31,9 @@ import sys
 import subprocess
 
 class Statistician :
+    """The Statistician class executes GitHub GraphQl queries,
+    and parses the query results.
+    """
 
     __slots__ = [
         '_contributionYears',
@@ -40,6 +43,10 @@ class Statistician :
         ]
 
     def __init__(self) :
+        """The initializer executes the queries and parses the results.
+        Upon completion of the intitializer, the user statistics will
+        be available.
+        """
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
@@ -52,14 +59,29 @@ class Statistician :
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
 
     def loadQuery(self, queryFilepath, failOnError=True) :
+        """Loads a graphql query.
+
+        Keyword arguments:
+        queryFilepath - The file with path of the query.
+        failOnError - If True, the workflow will fail if there is an error loading the
+            query; and if False, this action will quietly exit with no error code. In
+            either case, an error message will be logged to the console.
+        """
         try :
             with open(queryFilepath, 'r') as file:
                 return file.read()
         except IOError:
-            print("Failed to open query file:", queryFilePath)
+            print("Error: Failed to open query file:", queryFilePath)
             exit(1 if failOnError else 0)
 
     def parseStats(self, basicStats, repoStats, watchingStats) :
+        """Parses the user statistics.
+
+        Keyword arguments:
+        basicStats - The results of the basic stats query.
+        repoStats - The results of the repo stats query.
+        watchingStats - The results of the query of repositories the user is watching.
+        """
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
         
@@ -134,6 +156,12 @@ class Statistician :
             }
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
+        """Generates the query for prior year stats.
+
+        Keyword arguments:
+        yearList - a list of the years when the user had contributions, obtained by one of the other queries.
+        oneYearContribTemplate - a string template of the part of a query for one year
+        """
         query = "query($owner: String!) {\n  user(login: $owner) {\n"
         for y in yearList :
             query += oneYearContribTemplate.format(y)
@@ -141,12 +169,26 @@ class Statistician :
         return query
     
     def parsePriorYearStats(self, queryResults) :
+        """Parses one year of commits, PR reviews, and restricted contributions.
+
+        Keyword arguments:
+        queryResults - The results of the query.
+        """
         queryResults = queryResults["data"]["user"]
         self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items())
         self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
         self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
     def executeQuery(self, query, needsPagination=False, failOnError=True) :
+        """Executes a GitHub GraphQl query using the GitHub CLI (gh).
+
+        Keyword arguments:
+        query - The query as a string.
+        needsPagination - Pass True to enable pagination of query results.
+        failOnError - If True, the workflow will fail if there is an error executing the
+            query; and if False, this action will quietly exit with no error code. In
+            either case, an error message will be logged to the console.
+        """
         arguments = [
             'gh', 'api', 'graphql',
             '-F', 'owner={owner}',
