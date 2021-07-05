@@ -116,9 +116,48 @@ class Statistician :
         ]
 
     def __init__(self) :
-        self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
-        self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
-        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
+        self.parseStats(
+            self.executeQuery(basicStatsQuery),
+            self.executeQuery(additionalRepoStatsQuery, True)
+            )
+        #self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
+        #self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
+        #self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
+
+    def parseStats(self, basicStats, repoStats) :
+        self._pastYearData = basicStats["data"]["user"]["contributionsCollection"]
+        self._contributionYears = self._pastYearData["contributionYears"]
+        del self._pastYearData["contributionYears"]
+        self._followers = basicStats["data"]["user"]["followers"]["totalCount"]
+        self._issues = basicStats["data"]["user"]["issues"]["totalCount"]
+        self._pullRequests = basicStats["data"]["user"]["pullRequests"]["totalCount"]
+        self._pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
+        # Initialize this with count of all repos contributed to, and later subtract owned repos
+        self._repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
+        # Number of owned repos that user is watching to remove later from watchers count
+        self._watchingMyOwn = basicStats["data"]["user"]["watching"]["totalCount"]
+
+
+        repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
+        self._ownedRepositories = repoStats[0]["totalCount"]
+        # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned
+        self._repositoriesContributedTo -= self._ownedRepositories
+        
+        
+        self._stargazers = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        self._forksOfMyRepos = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        self._watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        self._watchers -= self._watchingMyOwn
+        
+        self._privateCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"])
+        self._archivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"])
+        self._forkCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isFork"])
+
+        self._publicNonForksCount = self._ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+ 
+
+    def isResultsValid(self, queryResult) :
+        pass
 
     def parseBasicUserStats(self, queryResults) :
         result = json.loads(queryResults)
@@ -199,7 +238,13 @@ class Statistician :
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
-        return result
+        # PUT IN SOME ERROR CHECKING HERE
+        if needsPagination :
+            numPages = result.count('{"data"')
+            if (numPages > 1) :
+                result = result.replace('}{"data"', '},{"data"')
+            result = "[" + result + "]"
+        return json.loads(result)
     
 
 if __name__ == "__main__" :
