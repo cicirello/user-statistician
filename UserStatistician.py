@@ -137,7 +137,6 @@ class Statistician :
         for y in yearList :
             query += oneYearContribTemplate.format(y)
         query += "  }\n}\n"
-        print(query)
         return query
     
     def parsePriorYearStats(self, queryResults) :
