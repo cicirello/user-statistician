@@ -26,6 +26,8 @@
 
 import unittest
 
+import sys
+sys.path.insert(0,'src')
 import Statistician as UserStats
 
 class TestSomething(unittest.TestCase) :
