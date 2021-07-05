@@ -11,5 +11,6 @@ RUN true \
     && rm -rf /var/lib/apt/lists/* \
     && true
 
+COPY queries /queries
 COPY UserStatistician.py /UserStatistician.py
 ENTRYPOINT ["/UserStatistician.py"]

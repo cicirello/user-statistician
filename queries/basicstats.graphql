@@ -1,0 +1,31 @@
+query($owner: String!) {
+  user(login: $owner) {
+    contributionsCollection {
+      totalCommitContributions 
+      totalIssueContributions 
+      totalPullRequestContributions
+      totalPullRequestReviewContributions
+      totalRepositoryContributions
+      restrictedContributionsCount
+      contributionYears
+    }
+    followers {
+      totalCount
+    }
+    issues {
+      totalCount
+    }
+    pullRequests {
+      totalCount
+    }
+    topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
+      totalCount
+    }
+    repositoriesContributedTo {
+      totalCount
+    }
+    watching(ownerAffiliations: OWNER, privacy: PUBLIC) {
+      totalCount
+    }              
+  }
+}

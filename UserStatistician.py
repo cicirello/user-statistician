@@ -105,11 +105,20 @@ class Statistician :
         ]
 
     def __init__(self) :
+        basicStatsQuery = loadQuery("/queries/basicstats.graphql")
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
+
+    def loadQuery(self, queryFilepath, failOnError=True) :
+        try :
+            with open(queryFilepath, 'r') as file:
+                return file.read()
+        except IOError:
+            print("Failed to open query file:", queryFilePath)
+            exit(1 if failOnError else 0)
 
     def parseStats(self, basicStats, repoStats) :
         # Extract most recent year data from query results
