@@ -194,8 +194,9 @@ class Statistician :
         return query
     
     def parsePriorYearStats(self, queryResults) :
+        # reorganize for simplicity
         queryResults = queryResults["data"]["user"]
-        print(result)
+        print(queryResults)
         
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
