@@ -232,7 +232,7 @@ class Statistician :
         user itneraction.
         """
         result = subprocess.run(
-            "gh", "config", "set", "prompt", "disabled",
+            ["gh", "config", "set", "prompt", "disabled"],
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
