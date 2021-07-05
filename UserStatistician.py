@@ -67,7 +67,7 @@ query($owner: String!) {
 additionalRepoStatsQuery = """
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
-    repositories(first: 10, after: $endCursor, ownerAffiliations: OWNER) {
+    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
       totalCount
       nodes {
         stargazerCount 
@@ -78,6 +78,7 @@ query($owner: String!, $endCursor: String) {
         watchers {
           totalCount
         }
+        viewerSubscription
       }
       pageInfo {
         hasNextPage
@@ -132,6 +133,7 @@ class Statistician :
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
+        print(repoStats)
 
         # Initialize this with count of all repos contributed to, and later subtract owned repos
         repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
