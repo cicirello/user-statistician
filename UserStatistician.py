@@ -30,13 +30,6 @@ import json
 import sys
 import subprocess
 
-oneYearContribTemplateDISABLE = """
-  year{0}: contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {{
-    totalCommitContributions 
-    totalPullRequestReviewContributions
-    restrictedContributionsCount 
-  }}"""
-
 class Statistician :
 
     __slots__ = [
@@ -50,7 +43,6 @@ class Statistician :
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
-        print(oneYearContribTemplate)
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
@@ -145,6 +137,7 @@ class Statistician :
         for y in yearList :
             query += oneYearContribTemplate.format(y)
         query += "\n  }\n}\n"
+        print(query)
         return query
     
     def parsePriorYearStats(self, queryResults) :
