@@ -199,7 +199,7 @@ class Statistician :
         self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
         self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
-    def executeQuery(self, query, needsPagination=False) :
+    def executeQuery(self, query, needsPagination=False, failOnError=True) :
         arguments = [
             'gh', 'api', 'graphql',
             '-F', 'owner={owner}',
@@ -213,9 +213,17 @@ class Statistician :
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
-        # PUT IN SOME ERROR CHECKING HERE
-        if needsPagination :
-            numPages = result.count('{"data"')
+        numPages = result.count('{"data"')
+        if numPages == 0 :
+            # Check if any error details
+            result = json.loads(result)
+            if "errors" in result :
+                print("GitHub api Query failed with error:")
+                print(result["errors"])
+            else :
+                print("Something unexpected occurred during GitHub API query.")
+            exit(1 if failOnError else 0)
+        elif needsPagination :
             if (numPages > 1) :
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
