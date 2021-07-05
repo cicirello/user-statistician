@@ -195,9 +195,9 @@ class Statistician :
     
     def parsePriorYearStats(self, queryResults) :
         queryResults = queryResults["data"]["user"]
-        self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items()))
-        self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items()))
-        self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items()))
+        self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items())
+        self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
+        self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
