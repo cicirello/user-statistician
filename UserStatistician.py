@@ -231,8 +231,12 @@ class Statistician :
         that generates a prompt, so we don't accidentally leave a workflow waiting for
         user itneraction.
         """
-        result = subprocess.run("gh", "config", "set", "prompt", "disabled")
-        print(result)
+        result = subprocess.run(
+            "gh", "config", "set", "prompt", "disabled",
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            )
+        print("RESULT:", result)
 
 if __name__ == "__main__" :
     # Rename these variables to something meaningful
