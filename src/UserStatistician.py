@@ -28,12 +28,15 @@
 
 from Statistician import Statistician
 import sys
+import os
 
 if __name__ == "__main__" :
     # Rename these variables to something meaningful
     input1 = sys.argv[1]
     input2 = sys.argv[2]
-
+    
+    os.chdir("octicons")
+    
     stats = Statistician()
     print("Contributions", stats._contrib)
     print("Contrib Years", stats._contributionYears)
