@@ -235,7 +235,7 @@ class Statistician :
             "gh", "config", "set", "prompt", "disabled",
             stdout=subprocess.PIPE,
             universal_newlines=True
-            )
+            ).stdout.strip()
         print("RESULT:", result)
 
 if __name__ == "__main__" :
