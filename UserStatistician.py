@@ -105,17 +105,13 @@ class Statistician :
         stargazersAll = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
         forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
 
-        # Number of owned repos that user is watching to remove later from watchers count
+        # Compute number of watchers excluding cases where user is watching their own repos.
         watchingMyOwnNonForks = sum(1 for page in watchingStats for repo in page["nodes"] if not repo["isFork"])
         watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
         watchers -= watchingStats[0]["totalCount"]
         watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
         watchersNonForks -= watchingMyOwnNonForks
-        # Don't filter our watching of my own for now. See comment that follows for explanation.
-        #    watchers -= watchingMyOwn
-        # Note: watchers includes forks of repos because of adjustment for owners repos.
-        # Need an additional query of some sort to filter our watching of owner's forks of other's repos.
-
+        
         # Count of private repos (which is not accurate since depends on token used to authenticate query,
         # however, all those here are included in count of owned repos.
         privateCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"])
