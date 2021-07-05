@@ -39,8 +39,7 @@ jobs:
 
     - name: Output the outputs of the integration test of the action
       run: |
-        echo "output-one = ${{ steps.integration.outputs.output-one }}"
-        echo "output-two = ${{ steps.integration.outputs.output-two }}"
+        echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
 
     - name: Verify integration test results
       run: python3 -u -m unittest tests/integration.py
