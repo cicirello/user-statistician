@@ -98,21 +98,10 @@ oneYearContribTemplate = """
 class Statistician :
 
     __slots__ = [
-        '_pastYearData',
         '_contributionYears',
         '_followers',
-        '_issues',
-        '_pullRequests',
-        '_repositoriesContributedTo',
-        '_watchingMyOwn',
-        '_ownedRepositories',
-        '_stargazers',
-        '_forksOfMyRepos',
-        '_watchers',
-        '_publicNonForksCount',
-        '_privateCount',
-        '_archivedCount',
-        '_forkCount'
+        '_contrib',
+        '_repo'
         ]
 
     def __init__(self) :
@@ -124,60 +113,77 @@ class Statistician :
 
     def parseStats(self, basicStats, repoStats) :
         # Extract most recent year data from query results
-        self._pastYearData = basicStats["data"]["user"]["contributionsCollection"]
-
+        pastYearData = basicStats["data"]["user"]["contributionsCollection"]
+        
         # Extract repositories contributes to (pwned by others) in past year
-        self._pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
+        pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
         # Extract list of contribution years
         self._contributionYears = self._pastYearData["contributionYears"]
         # Just reoganizing data for clarity
-        del self._pastYearData["contributionYears"]
+        del pastYearData["contributionYears"]
 
         # Extract followed count
         self._followers = basicStats["data"]["user"]["followers"]["totalCount"]
 
         # Extract all time counts of issues and pull requests
-        self._issues = basicStats["data"]["user"]["issues"]["totalCount"]
-        self._pullRequests = basicStats["data"]["user"]["pullRequests"]["totalCount"]
-        
+        issues = basicStats["data"]["user"]["issues"]["totalCount"]
+        pullRequests = basicStats["data"]["user"]["pullRequests"]["totalCount"]
+
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
 
         # Initialize this with count of all repos contributed to, and later subtract owned repos
-        self._repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
+        repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
         # This is the count of owned repos, including all public, but may or may not include all private.
         # These, however, are all included in topRepositories.
-        self._ownedRepositories = repoStats[0]["totalCount"]
+        ownedRepositories = repoStats[0]["totalCount"]
         # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned
-        self._repositoriesContributedTo -= self._ownedRepositories
+        repositoriesContributedTo -= ownedRepositories
+
+        self._contrib = {
+            "commits" : (pastYearData["totalCommitContributions"], 0),
+            "issues" : (pastYearData["totalIssueContributions"], issues),
+            "prs" : (pastYearData["totalPullRequestContributions"], pullRequests),
+            "pr-reviews" : (pastYearData["totalPullRequestReviewContributions"], 0),
+            "contribTo" : (pastYearData["repositoriesContributedTo"], repositoriesContributedTo),
+            "private" : (pastYearData["restrictedContributionsCount"], 0)
+            }
 
         # Count stargazers, forks of my repos, and watchers excluding me
-        self._stargazers = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        self._forksOfMyRepos = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        stargazers = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        forksOfMyRepos = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        stargazersAll = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
+        forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
 
         # Number of owned repos that user is watching to remove later from watchers count
-        self._watchingMyOwn = basicStats["data"]["user"]["watching"]["totalCount"]
-        self._watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        self._watchers -= self._watchingMyOwn
+        watchingMyOwn = basicStats["data"]["user"]["watching"]["totalCount"]
+        watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        watchers -= watchingMyOwn
 
-        # Count of private repos (which is not accurate since depends on token used to authenticate query
-        self._privateCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"])
+        # Count of private repos (which is not accurate since depends on token used to authenticate query,
+        # however, all those here are included in count of owned repos.
+        privateCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"])
 
-        # Counts of archived repos and num repos that are forks of others
-        self._archivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"])
-        self._forkCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isFork"])
+        publicAll = ownedRepositories - privateCount
 
+        # Counts of archived repos
+        publicNonForksArchivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"] and not repo["isFork"])
+        publicArchivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
+        
         # Count of public non forks owned by user
-        self._publicNonForksCount = self._ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
- 
+        publicNonForksCount = self._ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+
+        self._repo = {
+            "public" : (publicNonForksCount, publicAll),
+            "starredBy" : (stargazers, stargazersAll),
+            "forkedBy" : (forksOfMyRepos, forksOfMyReposAll),
+            "watchedBy" : (watchers, "???"),
+            "archived" : (publicNonForksArchivedCount, publicArchivedCount)
+            }
 
     def isResultsValid(self, queryResult) :
         pass
-
-    
-    
-    
 
     def createPriorYearStatsQuery(self, yearList) :
         query = "query($owner: String!) {\n  user(login: $owner) {"
@@ -224,22 +230,11 @@ if __name__ == "__main__" :
     input2 = sys.argv[2]
 
     stats = Statistician()
-    print("Prior Year", stats._pastYearData)
+    print("Contributions", stats._contrib)
     print("Contrib Years", stats._contributionYears)
     print("Followers", stats._followers)
-    print("Issues", stats._issues)
-    print("PRs", stats._pullRequests)
-    print("Contributed To", stats._repositoriesContributedTo)
-    print("Watching My Own", stats._watchingMyOwn)
-    print("Owns", stats._ownedRepositories)
-    print("Starred by", stats._stargazers)
-    print("Forked by", stats._forksOfMyRepos)
-    print("Watched by", stats._watchers)
-    print("Public non-forks", stats._publicNonForksCount)
-    print("Private repos", stats._privateCount)
-    print("Archived repos", stats._archivedCount)
-    print("Forks of others repos", stats._forkCount)
-
+    print("Repos", stats._repo)
+    
     # Fake example outputs
     output1 = "Hello"
     output2 = "World"
