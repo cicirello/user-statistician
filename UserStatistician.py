@@ -43,9 +43,11 @@ class Statistician :
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
+        watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql")
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
+            self.executeQuery(watchingAdjustmentQuery, True)
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
 
@@ -57,7 +59,7 @@ class Statistician :
             print("Failed to open query file:", queryFilePath)
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats) :
+    def parseStats(self, basicStats, repoStats, watchingStats) :
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
         
@@ -78,6 +80,7 @@ class Statistician :
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
+        watchingStats = list(map(lambda x : x["data"]["user"]["watching"], watchingStats))
         
         # Initialize this with count of all repos contributed to, and later subtract owned repos
         repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
@@ -103,9 +106,11 @@ class Statistician :
         forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
 
         # Number of owned repos that user is watching to remove later from watchers count
-        watchingMyOwn = basicStats["data"]["user"]["watching"]["totalCount"]
+        watchingMyOwnNonForks = sum(1 for page in watchingStats for repo in page["nodes"] if not repo["isFork"])
         watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
+        watchers -= watchingStats[0]["totalCount"]
         watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+        watchersNonForks -= watchingMyOwnNonForks
         # Don't filter our watching of my own for now. See comment that follows for explanation.
         #    watchers -= watchingMyOwn
         # Note: watchers includes forks of repos because of adjustment for owners repos.

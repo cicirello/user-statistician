@@ -24,8 +24,5 @@ query($owner: String!) {
     repositoriesContributedTo {
       totalCount
     }
-    watching(ownerAffiliations: OWNER, privacy: PUBLIC) {
-      totalCount
-    }              
   }
 }
