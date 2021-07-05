@@ -119,7 +119,7 @@ class Statistician :
         pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
         # Extract list of contribution years
-        self._contributionYears = self._pastYearData["contributionYears"]
+        self._contributionYears = pastYearData["contributionYears"]
         # Just reoganizing data for clarity
         del pastYearData["contributionYears"]
 
