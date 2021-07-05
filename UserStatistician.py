@@ -67,7 +67,7 @@ query($owner: String!) {
 additionalRepoStatsQuery = """
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
-    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
+    repositories(first: 10, after: $endCursor, ownerAffiliations: OWNER) {
       totalCount
       nodes {
         stargazerCount 
@@ -116,12 +116,6 @@ class Statistician :
         ]
 
     def __init__(self) :
-        self._stargazers = 0
-        self._forksOfMyRepos = 0
-        self._watchers = 0
-        self._privateCount = 0
-        self._archivedCount = 0
-        self._forkCount = 0
         self.parseBasicUserStats(self.executeQuery(basicStatsQuery))
         self.parseAdditionalRepoStats(self.executeQuery(additionalRepoStatsQuery, True))
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
@@ -156,30 +150,24 @@ class Statistician :
             self._ownedRepositories = result[0]["totalCount"]
             # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned
             self._repositoriesContributedTo -= self._ownedRepositories
-            # initialize before iterating over repos
-            self._publicNonForksCount = self._ownedRepositories
-            for page in result :
-                for repo in page["nodes"] :
-                    self.processRepoStats(repo)
+            
+            
+            self._stargazers = sum(repo["stargazerCount"] for page in result for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            self._forksOfMyRepos = sum(repo["forkCount"] for page in result for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            self._watchers = sum(repo["watchers"]["totalCount"] for page in result for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
             self._watchers -= self._watchingMyOwn
+            
+            self._privateCount = sum(1 for page in result for repo in page["nodes"] if repo["isPrivate"])
+            self._archivedCount = sum(1 for page in result for repo in page["nodes"] if repo["isArchived"])
+            self._forkCount = sum(1 for page in result for repo in page["nodes"] if repo["isFork"])
+
+            self._publicNonForksCount = self._ownedRepositories - sum(1 for page in result for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+        
         else :
             pass # FOR NOW
             # ERROR: do something here for an error
 
-    def processRepoStats(self, repo) :
-        if not repo["isPrivate"] :
-            self._stargazers += repo["stargazerCount"]
-            self._watchers += repo["watchers"]["totalCount"]
-            if not repo["isFork"] :
-                self._forksOfMyRepos += repo["forkCount"]
-        else :
-            self._privateCount += 1
-        if repo["isFork"] :
-            self._forkCount += 1
-        if repo["isArchived"] :
-            self._archivedCount += 1
-        if repo["isFork"] or repo["isPrivate"]:
-            self._publicNonForksCount -= 1
+    
 
     def createPriorYearStatsQuery(self, yearList) :
         query = "query($owner: String!) {\n  user(login: $owner) {"
