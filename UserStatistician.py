@@ -30,7 +30,7 @@ import json
 import sys
 import subprocess
 
-oneYearContribTemplate = """
+oneYearContribTemplateDISABLE = """
   year{0}: contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {{
     totalCommitContributions 
     totalPullRequestReviewContributions
@@ -49,11 +49,13 @@ class Statistician :
     def __init__(self) :
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
+        oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
+        print(oneYearContribTemplate)
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
             )
-        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
+        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
 
     def loadQuery(self, queryFilepath, failOnError=True) :
         try :
@@ -138,7 +140,7 @@ class Statistician :
             "archived" : [publicNonForksArchivedCount, publicArchivedCount]
             }
 
-    def createPriorYearStatsQuery(self, yearList) :
+    def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
         query = "query($owner: String!) {\n  user(login: $owner) {"
         for y in yearList :
             query += oneYearContribTemplate.format(y)
