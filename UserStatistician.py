@@ -142,12 +142,12 @@ class Statistician :
         repositoriesContributedTo -= ownedRepositories
 
         self._contrib = {
-            "commits" : (pastYearData["totalCommitContributions"], 0),
-            "issues" : (pastYearData["totalIssueContributions"], issues),
-            "prs" : (pastYearData["totalPullRequestContributions"], pullRequests),
-            "pr-reviews" : (pastYearData["totalPullRequestReviewContributions"], 0),
-            "contribTo" : (pastYearData["repositoriesContributedTo"], repositoriesContributedTo),
-            "private" : (pastYearData["restrictedContributionsCount"], 0)
+            "commits" : [pastYearData["totalCommitContributions"], 0],
+            "issues" : [pastYearData["totalIssueContributions"], issues],
+            "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
+            "pr-reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            "contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
+            "private" : [pastYearData["restrictedContributionsCount"], 0]
             }
 
         # Count stargazers, forks of my repos, and watchers excluding me
@@ -179,11 +179,11 @@ class Statistician :
         publicNonForksCount = ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
 
         self._repo = {
-            "public" : (publicNonForksCount, publicAll),
-            "starredBy" : (stargazers, stargazersAll),
-            "forkedBy" : (forksOfMyRepos, forksOfMyReposAll),
-            "watchedBy" : (watchersNonForks, watchers),
-            "archived" : (publicNonForksArchivedCount, publicArchivedCount)
+            "public" : [publicNonForksCount, publicAll],
+            "starredBy" : [stargazers, stargazersAll],
+            "forkedBy" : [forksOfMyRepos, forksOfMyReposAll],
+            "watchedBy" : [watchersNonForks, watchers],
+            "archived" : [publicNonForksArchivedCount, publicArchivedCount]
             }
 
     def createPriorYearStatsQuery(self, yearList) :
@@ -194,9 +194,10 @@ class Statistician :
         return query
     
     def parsePriorYearStats(self, queryResults) :
-        # reorganize for simplicity
         queryResults = queryResults["data"]["user"]
-        print(queryResults)
+        self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items()))
+        self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items()))
+        self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items()))
         
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
