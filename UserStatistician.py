@@ -109,7 +109,7 @@ class Statistician :
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
             )
-        #self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
+        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears)))
 
     def parseStats(self, basicStats, repoStats) :
         # Extract most recent year data from query results
@@ -186,9 +186,6 @@ class Statistician :
             "archived" : (publicNonForksArchivedCount, publicArchivedCount)
             }
 
-    def isResultsValid(self, queryResult) :
-        pass
-
     def createPriorYearStatsQuery(self, yearList) :
         query = "query($owner: String!) {\n  user(login: $owner) {"
         for y in yearList :
@@ -197,14 +194,9 @@ class Statistician :
         return query
     
     def parsePriorYearStats(self, queryResults) :
-        result = json.loads(queryResults)
-        if "data" in result :
-            result = result["data"]["user"]
-            print(result)
-        else :
-            pass # FOR NOW
-            # ERROR: do something here for an error
-
+        queryResults = queryResults["data"]["user"]
+        print(result)
+        
     def executeQuery(self, query, needsPagination=False) :
         arguments = [
             'gh', 'api', 'graphql',
