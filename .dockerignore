@@ -1,4 +1,3 @@
 *
 !Dockerfile
-!UserStatistician.py
-!queries
+!src

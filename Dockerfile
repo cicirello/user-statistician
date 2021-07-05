@@ -6,8 +6,7 @@
 FROM ghcr.io/cicirello/pyaction:4
 
 # Copy the GraphQl queries and python source into the container.
-COPY queries /queries
-COPY UserStatistician.py /UserStatistician.py
+COPY src /
 
 # Set the entrypoint.
 ENTRYPOINT ["/UserStatistician.py"]

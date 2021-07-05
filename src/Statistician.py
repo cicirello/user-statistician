@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 #
 # user-statistician: Github action for generating a user stats card
 # 
@@ -27,7 +26,6 @@
 #
 
 import json
-import sys
 import subprocess
 
 class Statistician :
@@ -236,17 +234,4 @@ class Statistician :
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
-
-if __name__ == "__main__" :
-    # Rename these variables to something meaningful
-    input1 = sys.argv[1]
-    input2 = sys.argv[2]
-
-    stats = Statistician()
-    print("Contributions", stats._contrib)
-    print("Contrib Years", stats._contributionYears)
-    print("Followers", stats._followers)
-    print("Repos", stats._repo)
-    
-    print("::set-output name=exit-code::0")
     
