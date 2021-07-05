@@ -30,64 +30,6 @@ import json
 import sys
 import subprocess
 
-basicStatsQueryDISABLE = """
-query($owner: String!) {
-  user(login: $owner) {
-    contributionsCollection {
-      totalCommitContributions 
-      totalIssueContributions 
-      totalPullRequestContributions
-      totalPullRequestReviewContributions
-      totalRepositoryContributions
-      restrictedContributionsCount
-      contributionYears
-    }
-    followers {
-      totalCount
-    }
-    issues {
-      totalCount
-    }
-    pullRequests {
-      totalCount
-    }
-    topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
-      totalCount
-    }
-    repositoriesContributedTo {
-      totalCount
-    }
-    watching(ownerAffiliations: OWNER, privacy: PUBLIC) {
-      totalCount
-    }              
-  }
-}
-"""
-
-additionalRepoStatsQuery = """
-query($owner: String!, $endCursor: String) {
-  user(login: $owner) {
-    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
-      totalCount
-      nodes {
-        stargazerCount 
-        forkCount
-        isArchived
-        isFork
-        isPrivate
-        watchers {
-          totalCount
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }              
-  }
-}
-"""
-
 oneYearContribTemplate = """
   year{0}: contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {{
     totalCommitContributions 
@@ -106,6 +48,7 @@ class Statistician :
 
     def __init__(self) :
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
+        additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
         self.parseStats(
             self.executeQuery(basicStatsQuery),
             self.executeQuery(additionalRepoStatsQuery, True)
