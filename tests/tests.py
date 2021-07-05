@@ -26,7 +26,7 @@
 
 import unittest
 
-import UserStatistician as UserStats
+import Statistician as UserStats
 
 class TestSomething(unittest.TestCase) :
 
