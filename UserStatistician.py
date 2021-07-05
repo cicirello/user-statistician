@@ -47,6 +47,7 @@ class Statistician :
         Upon completion of the intitializer, the user statistics will
         be available.
         """
+        self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
@@ -217,7 +218,16 @@ class Statistician :
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
         return json.loads(result)
-    
+
+    def ghDisableInteractivePrompts(self) :
+        """Disable gh's interactive prompts. This is probably unnecessary,
+        as all of our testing so far, the queries run fine and don't produce any
+        prompts. Disabling as a precaution in case some unexpected condition occurs
+        that generates a prompt, so we don't accidentally leave a workflow waiting for
+        user itneraction.
+        """
+        result = subprocess.run("gh", "config", "set", "prompt", "disabled")
+        print(result)
 
 if __name__ == "__main__" :
     # Rename these variables to something meaningful
