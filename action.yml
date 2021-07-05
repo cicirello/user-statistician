@@ -15,10 +15,8 @@ inputs:
     required: false
     default: 'default value goes here'
 outputs:
-  output-one:
-    description: 'Description of output-one'
-  output-two:
-    description: 'Description of output-two'	
+  exit-code:
+    description: '0 if successful or non-zero if unsuccessful'
 runs:
   using: 'docker'
   image: 'Dockerfile'
