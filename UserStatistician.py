@@ -172,7 +172,7 @@ class Statistician :
         publicArchivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
         
         # Count of public non forks owned by user
-        publicNonForksCount = self._ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+        publicNonForksCount = ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
 
         self._repo = {
             "public" : (publicNonForksCount, publicAll),
