@@ -35,7 +35,7 @@ jobs:
       id: integration
       uses: ./
       with:
-        colors: dark
+        colors: light
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
