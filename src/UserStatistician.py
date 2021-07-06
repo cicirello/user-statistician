@@ -28,6 +28,7 @@
 
 from Statistician import Statistician
 from Colors import colorMapping
+from StatsImageGenerator import StatsImageGenerator
 import sys
 import os
 
@@ -61,6 +62,11 @@ if __name__ == "__main__" :
     failOnError = sys.argv[6].strip().lower() == "true"
     
     stats = Statistician(failOnError)
+    generator = StatsImageGenerator(stats, colors)
+    image = generator.generateImage(includeTitle, customTitle)
+    print("Image")
+    print(image)
+    
     print("Contributions", stats._contrib)
     print("Contrib Years", stats._contributionYears)
     print("Followers", stats._followers)
