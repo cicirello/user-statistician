@@ -33,7 +33,7 @@ jobs:
       id: integration
       uses: ./
       with:
-        fail-on-error: True
+        colors: dark
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
