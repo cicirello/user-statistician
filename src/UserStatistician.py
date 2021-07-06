@@ -63,7 +63,7 @@ if __name__ == "__main__" :
     
     stats = Statistician(failOnError)
     generator = StatsImageGenerator(stats, colors)
-    image = generator.generateImage(includeTitle, customTitle)
+    image = generator.generateImage(includeTitle, customTitle, exclude)
     print("Image")
     print(image)
     
