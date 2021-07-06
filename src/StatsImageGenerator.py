@@ -146,7 +146,7 @@ class StatsImageGenerator :
             self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
                 headerRow[0],
                 headerRow[1],
-                headerRow[2])
+                headerRow[2]))
             offset = 25
             for k in keys :
                 self._rows.append(StatsImageGenerator.tableEntryTemplate.format(
