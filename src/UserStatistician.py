@@ -61,6 +61,11 @@ def writeImageToFile(filename, image, failOnError) :
         exit(4 if failOnError else 0)
 
 def executeCommand(arguments) :
+    """Execute a subprocess and return result.
+
+    Keyword arguments:
+    arguments - The arguments for the command.
+    """
     result = subprocess.run(
         arguments,
         stdout=subprocess.PIPE,
