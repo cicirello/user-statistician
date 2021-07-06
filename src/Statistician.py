@@ -42,20 +42,30 @@ class Statistician :
         '_name'
         ]
 
-    def __init__(self) :
+    def __init__(self, fail=True) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
+
+        Keyword arguments:
+        fail - If True, the workflow will fail if there are errors.
         """
         self.ghDisableInteractivePrompts()
-        basicStatsQuery = self.loadQuery("/queries/basicstats.graphql")
-        additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql")
-        oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql")
-        watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql")
+        basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
+                                         fail)
+        additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
+                                                  fail)
+        oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
+                                                fail)
+        watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql",
+                                                 fail)
         self.parseStats(
-            self.executeQuery(basicStatsQuery),
-            self.executeQuery(additionalRepoStatsQuery, True),
-            self.executeQuery(watchingAdjustmentQuery, True)
+            self.executeQuery(basicStatsQuery,
+                              failOnError=fail),
+            self.executeQuery(additionalRepoStatsQuery,
+                              needsPagination=True),
+            self.executeQuery(watchingAdjustmentQuery,
+                              needsPagination=True)
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
 
