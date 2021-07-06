@@ -31,6 +31,7 @@ from Colors import colorMapping
 from StatsImageGenerator import StatsImageGenerator
 import sys
 import os
+import subprocess
 
 def writeImageToFile(filename, image, failOnError) :
     """Writes the image to a file, creating any
@@ -58,6 +59,38 @@ def writeImageToFile(filename, image, failOnError) :
         print("Error: An error occurred while writing the image to a file.")
         print("::set-output name=exit-code::4")
         exit(4 if failOnError else 0)
+
+def executeCommand(arguments) :
+    result = subprocess.run(
+        arguments,
+        stdout=subprocess.PIPE,
+        universal_newlines=True
+        ).stdout.strip()
+    return result
+
+def commitAndPush(filename, name, login) :
+    """Commits and pushes the image.
+
+    Keyword arguments:
+    filename - The path to the image.
+    name - The user's name.
+    login - The user's login id.
+    """
+    # Make sure this isn't being run during a pull-request.
+    result = executCommand(["git", "symbolic-ref", "-q", "HEAD"])
+    if result == "0" :
+        # Check if the image changed
+        result = executeCommand(["git", "diff", "--exit-code", filename])
+        if result == "1" :
+            # Commit and push
+            executeCommand(["git", "config", "--global", "user.name", name])
+            executeCommand(["git", "config", "--global",
+                            "user.email", login + '@users.noreply.github.com'])
+            executeCommand(["git", "add", filename])
+            executeCommand(["git", "commit", "-m",
+                            "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)"])
+            executeCommand(["git", "push"])
+
 
 if __name__ == "__main__" :
 
