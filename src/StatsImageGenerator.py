@@ -30,8 +30,8 @@ from StatLabels import statLabels
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
-    headerTemplate = '<svg width="400" height="{0}" viewBox="0 0 400 {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="1" y="1" stroke-width="2" rx="5" width="398" height="{0}" stroke="{1}" fill="{2}" />'
+    headerTemplate = '<svg width="425" height="{0}" viewBox="0 0 425 {0}" xmlns="http://www.w3.org/2000/svg">'
+    backgroundTemplate = '<rect x="1" y="1" stroke-width="2" rx="5" width="423" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="35" font-size="16px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -45,8 +45,8 @@ class StatsImageGenerator :
 </g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
-<text x="210" y="12.5">{1}</text>
-<text x="300" y="12.5">{2}</text>
+<text x="220" y="12.5">{1}</text>
+<text x="320" y="12.5">{2}</text>
 </g>"""
     
     __slots__ = [
@@ -82,6 +82,16 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
+        nonCategorized = {"followers" : self._stats._followers }
+        self.insertGroup(
+            nonCategorized,
+            None,
+            self.filterKeys(
+                nonCategorized,
+                exclude,
+                ["followers"]
+                )
+            )
         self.insertGroup(
             self._stats._repo,
             ["Repositories", "Non-Forks", "All"],
@@ -125,7 +135,7 @@ class StatsImageGenerator :
             if customTitle != None :
                 title = customTitle
             else :
-                title = "{0}'s Activity".format(self._stats._name)
+                title = "{0}'s Statistics".format(self._stats._name)
             self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
             self._height += 35
 
@@ -137,17 +147,20 @@ class StatsImageGenerator :
 
         Keyword arguments:
         data - A dictionary with the data.
-        headerRow - A list with the header row text.
+        headerRow - A list with the header row text. Pass None for no table header.
         keys - A list of keys in the order they should appear.
         """
         if len(keys) > 0 :
             self._height += 20
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
-            self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
-                headerRow[0],
-                headerRow[1],
-                headerRow[2]))
-            offset = 25
+            if headerRow != None :
+                self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
+                    headerRow[0],
+                    headerRow[1],
+                    headerRow[2]))
+                offset = 25
+            else :
+                offset = 0
             for k in keys :
                 self._rows.append(StatsImageGenerator.tableEntryTemplate.format(
                     str(offset),
