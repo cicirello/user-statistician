@@ -24,7 +24,7 @@ jobs:
       run: |
         python3 -u -m unittest tests/tests.py
       env:
-       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Verify that the Docker image for the action builds
       run: docker build . --file Dockerfile
@@ -35,7 +35,7 @@ jobs:
       with:
         fail-on-error: True
       env:
-       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Output the outputs of the integration test of the action
       run: |
