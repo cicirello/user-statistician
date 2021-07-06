@@ -60,8 +60,6 @@ if __name__ == "__main__" :
 
     failOnError = sys.argv[6].strip().lower() == "true"
     
-    os.chdir("octicons")
-    
     stats = Statistician(failOnError)
     print("Contributions", stats._contrib)
     print("Contrib Years", stats._contributionYears)
