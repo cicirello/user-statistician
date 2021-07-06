@@ -40,11 +40,64 @@ executedQueryResults = [
     """{'data': {'user': {'year2021': {'totalCommitContributions': 1850, 'totalPullRequestReviewContributions': 223, 'restrictedContributionsCount': 105}, 'year2020': {'totalCommitContributions': 1845, 'totalPullRequestReviewContributions': 92, 'restrictedContributionsCount': 0}, 'year2019': {'totalCommitContributions': 194, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2018': {'totalCommitContributions': 198, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2017': {'totalCommitContributions': 177, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2016': {'totalCommitContributions': 138, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2015': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2014': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2013': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2012': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2011': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}}}}"""
     ]
 
+executedQueryResultsMultiPage = [
+    """{'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'cicirello', 'name': 'Vincent A. Cicirello', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'topRepositories': {'totalCount': 33}}}}""",
+
+    """[{'data': {'user': {'repositories': {'totalCount': 29, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 3, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 2}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 7, 'forkCount': 4, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'Y3Vyc29yOnYyOpHOEEbJCQ=='}}}}}, {'data': {'user': {'repositories': {'totalCount': 29, 'nodes': [{'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 1, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 1, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'Y3Vyc29yOnYyOpHOEcjkCw=='}}}}}, {'data': {'user': {'repositories': {'totalCount': 29, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 1, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 9, 'forkCount': 14, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 2}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'watchers': {'totalCount': 1}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': True, 'watchers': {'totalCount': 1}}], 'pageInfo': {'hasNextPage': False, 'endCursor': 'Y3Vyc29yOnYyOpHOFsahLQ=='}}}}}]""",
+
+    """[{'data': {'user': {'watching': {'totalCount': 28, 'nodes': [{'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'MTA'}}}}}, {'data': {'user': {'watching': {'totalCount': 28, 'nodes': [{'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'MjA'}}}}}, {'data': {'user': {'watching': {'totalCount': 28, 'nodes': [{'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}, {'isFork': False}], 'pageInfo': {'hasNextPage': False, 'endCursor': 'Mjg'}}}}}]""",
+    
+    """{'data': {'user': {'year2021': {'totalCommitContributions': 1850, 'totalPullRequestReviewContributions': 223, 'restrictedContributionsCount': 105}, 'year2020': {'totalCommitContributions': 1845, 'totalPullRequestReviewContributions': 92, 'restrictedContributionsCount': 0}, 'year2019': {'totalCommitContributions': 194, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2018': {'totalCommitContributions': 198, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2017': {'totalCommitContributions': 177, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2016': {'totalCommitContributions': 138, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2015': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2014': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2013': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2012': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}, 'year2011': {'totalCommitContributions': 0, 'totalPullRequestReviewContributions': 0, 'restrictedContributionsCount': 0}}}}"""
+    ]
 
 class TestSomething(unittest.TestCase) :
 
-    def test_sometestcase(self) :
-        pass
+    def test_parseQueryResults(self) :
+        class NoQueries(Statistician) :
+            def __init__(self, fail=True) :
+                self.parseStats(
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2]
+                    )
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueries()
+        self._validate(stats)
     
-    def test_anothertestcase(self) :
-        pass
+    def test_parseQueryResultsMultipageQueryResults(self) :
+        class NoQueriesMultipage(Statistician) :
+            def __init__(self, fail=True) :
+                self.parseStats(
+                    executedQueryResultsMultiPage[0],
+                    executedQueryResultsMultiPage[1],
+                    executedQueryResultsMultiPage[2]
+                    )
+                self.parsePriorYearStats(executedQueryResultsMultiPage[3])
+        stats = NoQueriesMultipage()
+        self._validate(stats)
+
+    def _validate(self, stats) :
+        assertEqual(9, stats._user["followers"])
+        assertEqual(7, stats._user["following"])
+        assertEqual(28, stats._repo["public"][0])
+        assertEqual(28, stats._repo["public"][1])
+        assertEqual(36, stats._repo["starredBy"][0])
+        assertEqual(36, stats._repo["starredBy"][1])
+        assertEqual(28, stats._repo["forkedBy"][0])
+        assertEqual(28, stats._repo["forkedBy"][1])
+        assertEqual(2, stats._repo["watchedBy"][0])
+        assertEqual(2, stats._repo["watchedBy"][1])
+        assertEqual(3601, stats._contrib["commits"][0])
+        assertEqual(4401, stats._contrib["commits"][1])
+        assertEqual(79, stats._contrib["issues"][0])
+        assertEqual(81, stats._contrib["issues"][1])
+        assertEqual(289, stats._contrib["prs"][0])
+        assertEqual(289, stats._contrib["prs"][1])
+        assertEqual(315, stats._contrib["reviews"][0])
+        assertEqual(315, stats._contrib["reviews"][1])
+        assertEqual(3, stats._contrib["contribTo"][0])
+        assertEqual(4, stats._contrib["contribTo"][1])
+        assertEqual(105, stats._contrib["private"][0])
+        assertEqual(105, stats._contrib["private"][1])
+        
+        
