@@ -223,7 +223,7 @@ class Statistician :
         numPages = result.count('{"data"')
         if numPages == 0 :
             # Check if any error details
-            result = json.loads(result)
+            result = json.loads(result) if len(result) > 0 else None
             if result != None and "errors" in result :
                 print("GitHub api Query failed with error:")
                 print(result["errors"])
