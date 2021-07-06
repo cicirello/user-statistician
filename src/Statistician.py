@@ -113,8 +113,8 @@ class Statistician :
 
         # Extract followed and following counts
         self._user = {}
-        self._user["followers"] = basicStats["data"]["user"]["followers"]["totalCount"]
-        self._user["following"] = basicStats["data"]["user"]["following"]["totalCount"]
+        self._user["followers"] = [ basicStats["data"]["user"]["followers"]["totalCount"] ]
+        self._user["following"] = [ basicStats["data"]["user"]["following"]["totalCount"] ]
 
         # Extract all time counts of issues and pull requests
         issues = basicStats["data"]["user"]["issues"]["totalCount"]
