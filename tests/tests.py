@@ -77,8 +77,8 @@ class TestSomething(unittest.TestCase) :
         self._validate(stats)
 
     def _validate(self, stats) :
-        self.assertEqual(9, stats._user["followers"])
-        self.assertEqual(7, stats._user["following"])
+        self.assertEqual(9, stats._user["followers"][0])
+        self.assertEqual(7, stats._user["following"][0])
         self.assertEqual(28, stats._repo["public"][0])
         self.assertEqual(28, stats._repo["public"][1])
         self.assertEqual(36, stats._repo["starredBy"][0])
