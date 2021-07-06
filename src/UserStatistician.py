@@ -52,8 +52,8 @@ if __name__ == "__main__" :
         colors = { "bg" : colors[0],
                 "border" : colors[1],
                 "icons" : colors[2],
-                "text" : colors[3],
-                "title" : colors[4] if len(colors) > 4 else colors[3]
+                "title" : colors[3],
+                "text" : colors[4] if len(colors) > 4 else colors[3]
             }
 
     exclude = set(sys.argv[5].strip().replace(",", " ").split())
