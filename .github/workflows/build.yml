@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
     paths-ignore: [ '**.svg' ]
   pull_request:
     branches: [ main ]
@@ -42,3 +42,4 @@ jobs:
     - name: Output the outputs of the integration test of the action
       run: |
         echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
+
