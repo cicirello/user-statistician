@@ -166,8 +166,8 @@ class StatsImageGenerator :
                     self._colors["icons"],
                     statLabels[k]["icon"],
                     statLabels[k]["label"],
-                    data[k][0],
-                    data[k][1] if len(data[k]) > 1 else ""
+                    self.format(data[k][0]),
+                    self.format(data[k][1]) if len(data[k]) > 1 else ""
                     ))
                 offset += 25
             self._rows.append("</g>")
