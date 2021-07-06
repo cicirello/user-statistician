@@ -67,12 +67,6 @@ if __name__ == "__main__" :
     print("Image")
     print(image)
     
-    print("Contributions", stats._contrib)
-    print("Contrib Years", stats._contributionYears)
-    print("Followers", stats._followers)
-    print("Repos", stats._repo)
-    print("Name", stats._name)
-    print("User", stats._login)
-    
+
     print("::set-output name=exit-code::0")
     
