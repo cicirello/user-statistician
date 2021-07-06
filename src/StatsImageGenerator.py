@@ -84,7 +84,7 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         self.insertGroup(
             self._stats._repo,
-            ["Repositories", "Non-Forks", "With Forks"],
+            ["Repositories", "Non-Forks", "All"],
             self.filterKeys(
                 self._stats._repo,
                 exclude,
@@ -93,7 +93,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._contrib,
-            ["Contributions", "Past Year", "All"],
+            ["Contributions", "Past Year", "Total"],
             self.filterKeys(
                 self._stats._contrib,
                 exclude,
@@ -111,7 +111,7 @@ class StatsImageGenerator :
         exclude - A set of keys to exclude
         keys - The list of keys relevant for the table.
         """
-        return [ k for k in keys if k not in exclude and k in data and (data[k][0] > 0 or data[k][1] > 0) ]
+        return [ k for k in keys if (k not in exclude) and (k in data) and (data[k][0] > 0 or data[k][1] > 0) ]
 
     def insertTitle(self, includeTitle, customTitle) :
         """Generates, formats, and inserts title.
