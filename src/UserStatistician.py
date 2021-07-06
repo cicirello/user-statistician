@@ -61,7 +61,7 @@ def writeImageToFile(filename, image, failOnError) :
         exit(4 if failOnError else 0)
 
 def executeCommand(arguments) :
-    """Execute a subprocess and return result.
+    """Execute a subprocess and return result and exit code.
 
     Keyword arguments:
     arguments - The arguments for the command.
@@ -70,8 +70,8 @@ def executeCommand(arguments) :
         arguments,
         stdout=subprocess.PIPE,
         universal_newlines=True
-        ).stdout.strip()
-    return result
+        )
+    return result.stdout.strip(), result.returncode
 
 def commitAndPush(filename, name, login) :
     """Commits and pushes the image.
@@ -83,10 +83,10 @@ def commitAndPush(filename, name, login) :
     """
     # Make sure this isn't being run during a pull-request.
     result = executeCommand(["git", "symbolic-ref", "-q", "HEAD"])
-    if result == "0" :
+    if result[1] == 0 :
         # Check if the image changed
         result = executeCommand(["git", "diff", "--exit-code", filename])
-        if result == "1" :
+        if result[0] == "1" :
             # Commit and push
             executeCommand(["git", "config", "--global", "user.name", name])
             executeCommand(["git", "config", "--global",
