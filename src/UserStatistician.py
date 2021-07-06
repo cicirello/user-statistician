@@ -86,7 +86,7 @@ def commitAndPush(filename, name, login) :
     if result[1] == 0 :
         # Check if the image changed
         result = executeCommand(["git", "status", "--porcelain", filename])
-        if result[0] == "1" :
+        if len(result[0]) > 0 :
             # Commit and push
             executeCommand(["git", "config", "--global", "user.name", name])
             executeCommand(["git", "config", "--global",
@@ -95,9 +95,6 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "commit", "-m",
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)"])
             executeCommand(["git", "push"])
-        else :
-            print("file changed check", result)
-            print(os.path.isfile(filename))
     
 
 if __name__ == "__main__" :
