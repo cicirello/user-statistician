@@ -241,8 +241,6 @@ class Statistician :
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
         result = json.loads(result)
-        print("EXECUTED")
-        print(result)
         return result
 
     def ghDisableInteractivePrompts(self) :
