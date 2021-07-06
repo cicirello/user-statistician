@@ -35,7 +35,7 @@ class Statistician :
 
     __slots__ = [
         '_contributionYears',
-        '_followers',
+        '_user',
         '_contrib',
         '_repo',
         '_login',
@@ -111,8 +111,10 @@ class Statistician :
         # Just reoganizing data for clarity
         del pastYearData["contributionYears"]
 
-        # Extract followed count
-        self._followers = basicStats["data"]["user"]["followers"]["totalCount"]
+        # Extract followed and following counts
+        self._user = {}
+        self._user["followers"] = basicStats["data"]["user"]["followers"]["totalCount"]
+        self._user["following"] = basicStats["data"]["user"]["following"]["totalCount"]
 
         # Extract all time counts of issues and pull requests
         issues = basicStats["data"]["user"]["issues"]["totalCount"]
