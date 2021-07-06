@@ -84,6 +84,9 @@ class StatsImageGenerator :
                 title = "{0}'s Activity".format(self._stats._name)
             self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
             self._height += 35
+
+    def insertGroup(self, data, exclude, headerRow, keys) :
+        pass
         
 
     def finalizeImageData(self) :
