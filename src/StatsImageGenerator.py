@@ -30,8 +30,8 @@ from StatLabels import statLabels
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
-    headerTemplate = '<svg width="350" height="{0}" viewBox="0 0 350 {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="1" y="1" stroke-width="2" rx="5" width="348" height="{0}" stroke="{1}" fill="{2}" />'
+    headerTemplate = '<svg width="400" height="{0}" viewBox="0 0 400 {0}" xmlns="http://www.w3.org/2000/svg">'
+    backgroundTemplate = '<rect x="1" y="1" stroke-width="2" rx="5" width="398" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="35" font-size="16px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -40,13 +40,13 @@ class StatsImageGenerator :
 {2}
 </svg>
 <text x="25" y="12.5">{3}:</text>
-<text x="200" y="12.5">{4}</text>
-<text x="275" y="12.5">{5}</text>
+<text x="210" y="12.5">{4}</text>
+<text x="300" y="12.5">{5}</text>
 </g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
-<text x="200" y="12.5">{1}</text>
-<text x="275" y="12.5">{2}</text>
+<text x="210" y="12.5">{1}</text>
+<text x="300" y="12.5">{2}</text>
 </g>"""
     
     __slots__ = [
