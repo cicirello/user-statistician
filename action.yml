@@ -29,14 +29,30 @@ branding:
   icon: 'book-open'
   color: 'green'
 inputs:
-  input-one:  
-    description: 'Description of input-one'
+  image-file:  
+    description: 'Name and path of the image file to generate, relative to root of repository'
     required: false
-    default: 'default value goes here'
-  input-two:
-    description: 'Description of input-two'
+    default: images/userstats.svg
+  include-title:
+    description: 'Include a title in the image'
     required: false
-    default: 'default value goes here'
+    default: true
+  custom-title:
+    description: 'Define a custom title for the image'
+    required: false
+    default: ''
+  colors:
+    description: 'The color theme or list of custom colors'
+    required: false
+    default: light	
+  exclude:
+    description: 'A list of statistics to exclude'
+    required: false
+    default: ''
+  fail-on-error:
+    description: 'Choose whether to fail the workflow if there is an error'
+    required: false
+    default: true
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -44,5 +60,9 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.input-one }}
-    - ${{ inputs.input-two }}
+    - ${{ inputs.image-file }}
+    - ${{ inputs.include-title }}
+    - ${{ inputs.custom-title }}
+    - ${{ inputs.colors }}
+    - ${{ inputs.exclude }}
+    - ${{ inputs.fail-on-error }}
