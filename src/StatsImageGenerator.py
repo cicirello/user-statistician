@@ -182,7 +182,7 @@ class StatsImageGenerator :
         self._height += 25
         self._rows[0] = self._rows[0].format(str(self._height))
         self._rows[1] = self._rows[1].format(
-            str(self._height - 2),
+            str(self._height - 4),
             self._colors["border"],
             self._colors["bg"])
         self._rows.append("</g>\n</svg>\n")
