@@ -27,17 +27,42 @@
 #
 
 from Statistician import Statistician
+from Colors import colorMapping
 import sys
 import os
 
 if __name__ == "__main__" :
-    # Rename these variables to something meaningful
-    input1 = sys.argv[1]
-    input2 = sys.argv[2]
+
+    imageFilenameWithPath = sys.argv[1].strip()
+    
+    includeTitle = sys.argv[2].strip().lower() == "true"
+    
+    customTitle = sys.argv[3].strip()
+    if len(customTitle) == 0 or not includeTitle :
+        customTitle = None
+        
+    colors = sys.argv[4].strip().replace(",", " ").split()
+    if len(colors) == 1 and colors[0] in colorMapping :
+        # get theme colors
+        colors = colorMapping[colors[0]]
+    elif len(colors) < 4 :
+        # default to light theme if invalid number of colors passed
+        colors = colorMapping["light"]
+    else :
+        colors = { "bg" : colors[0],
+                "border" : colors[1],
+                "icons" : colors[2],
+                "text" : colors[3],
+                "title" : colors[4] if len(colors) > 4 else colors[3]
+            }
+
+    exclude = set(sys.argv[5].strip().replace(",", " ").split())
+
+    failOnError = sys.argv[6].strip().lower() == "true"
     
     os.chdir("octicons")
     
-    stats = Statistician()
+    stats = Statistician(failOnError)
     print("Contributions", stats._contrib)
     print("Contrib Years", stats._contributionYears)
     print("Followers", stats._followers)
