@@ -224,7 +224,7 @@ class Statistician :
         if numPages == 0 :
             # Check if any error details
             result = json.loads(result)
-            if "errors" in result :
+            if result != None and "errors" in result :
                 print("GitHub api Query failed with error:")
                 print(result["errors"])
                 print("::set-output name=exit-code::2")
