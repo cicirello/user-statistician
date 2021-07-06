@@ -85,7 +85,7 @@ def commitAndPush(filename, name, login) :
     result = executeCommand(["git", "symbolic-ref", "-q", "HEAD"])
     if result[1] == 0 :
         # Check if the image changed
-        result = executeCommand(["git", "diff", "--name-only", os.path.dirname(filename)])
+        result = executeCommand(["git", "status", "--porcelain", filename])
         if result[0] == "1" :
             # Commit and push
             executeCommand(["git", "config", "--global", "user.name", name])
