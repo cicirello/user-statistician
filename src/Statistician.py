@@ -227,12 +227,12 @@ class Statistician :
             # Check if any error details
             result = json.loads(result) if len(result) > 0 else ""
             if "errors" in result :
-                print("GitHub api Query failed with error:")
+                print("Error: GitHub api Query failed with error:")
                 print(result["errors"])
                 print("::set-output name=exit-code::2")
                 code = 2
             else :
-                print("Something unexpected occurred during GitHub API query.")
+                print("Error: Something unexpected occurred during GitHub API query.")
                 print("::set-output name=exit-code::3")
                 code = 3
             exit(code if failOnError else 0)
