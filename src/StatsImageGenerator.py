@@ -40,8 +40,8 @@ class StatsImageGenerator :
 {2}
 </svg>
 <text x="25" y="12.5">{3}:</text>
-<text x="210" y="12.5">{4}</text>
-<text x="300" y="12.5">{5}</text>
+<text x="220" y="12.5">{4}</text>
+<text x="320" y="12.5">{5}</text>
 </g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
@@ -85,7 +85,7 @@ class StatsImageGenerator :
         nonCategorized = {"followers" : [self._stats._followers] }
         self.insertGroup(
             nonCategorized,
-            None,
+            ["General User Stats", "Count", ""],
             self.filterKeys(
                 nonCategorized,
                 exclude,
@@ -151,7 +151,7 @@ class StatsImageGenerator :
         keys - A list of keys in the order they should appear.
         """
         if len(keys) > 0 :
-            self._height += 20
+            self._height += 25
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
                 self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
