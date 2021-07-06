@@ -124,7 +124,7 @@ class Statistician :
             "commits" : [pastYearData["totalCommitContributions"], 0],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
-            "pr-reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            "reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
             "contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
             "private" : [pastYearData["restrictedContributionsCount"], 0]
             }
@@ -184,7 +184,7 @@ class Statistician :
         """
         queryResults = queryResults["data"]["user"]
         self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items())
-        self._contrib["pr-reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
+        self._contrib["reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
         self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
     def executeQuery(self, query, needsPagination=False, failOnError=True) :
