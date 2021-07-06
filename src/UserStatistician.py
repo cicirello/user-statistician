@@ -125,11 +125,16 @@ if __name__ == "__main__" :
     exclude = set(sys.argv[5].strip().replace(",", " ").split())
 
     failOnError = sys.argv[6].strip().lower() == "true"
+
+    commit = sys.argv[7].strip().lower() == "true"
     
     stats = Statistician(failOnError)
     generator = StatsImageGenerator(stats, colors)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
+
+    if commit :
+        commitAndPush(imageFilenameWithPath, stats._name, stats._login)
     
     print("::set-output name=exit-code::0")
     
