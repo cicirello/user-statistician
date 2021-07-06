@@ -44,9 +44,9 @@ class StatsImageGenerator :
 <text x="200" y="12.5">{5}</text>
 </g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
-<text x="0" y="12.5">{1}:</text>
-<text x="160" y="12.5">{2}</text>
-<text x="200" y="12.5">{3}</text>
+<text x="0" y="12.5">{0}:</text>
+<text x="160" y="12.5">{1}</text>
+<text x="200" y="12.5">{2}</text>
 </g>"""
     
     __slots__ = [
