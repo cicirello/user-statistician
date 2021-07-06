@@ -97,6 +97,7 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "push"])
         else :
             print("file changed check", result)
+            print(os.path.isfile(filename))
     
 
 if __name__ == "__main__" :
