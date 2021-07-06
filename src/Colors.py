@@ -25,15 +25,51 @@
 # SOFTWARE.
 #
 
+
+
+# GitHub Themes:
+#
+# The light, dark, and dark-dimmed themes are based on
+# GitHub's themes, and color-palette (see
+# https://primer.style/css/support/color-system
+# and https://primer.style/primitives/).
+#
+# Specifically, we use:
+# * background color (bg): bg.canvasInset
+# * border color: box.blueBorder
+# * icons: icon.info
+# * text: text.secondary
+# * title: text.primary
+#
+# For those who want to contribute a theme,
+# please check the combination of your background
+# color with text color, and background with title
+# color for accessibility at this site,
+# https://colorable.jxnblk.com/, and make sure the
+# combination has a rating of at least AA.
+
 colorMapping = {
-    "light" : { "bg" : "",
-                "border" : "",
-                "icons" : "",
-                "text" : "",
-                "title" : ""},
-    "dark" : { "bg" : "",
-                "border" : "",
-                "icons" : "",
-                "text" : "",
-                "title" : ""}
+    "light" : {
+        "bg" : "#f6f8fa",
+        "border" : "#c8e1ff",
+        "icons" : "#0366d6",
+        "text" : "#586069",
+        "title" : "#24292e"
+        },
+    
+    "dark" : {
+        "bg" : "#090c10",
+        "border" : "#0d419d",
+        "icons" : "#79c0ff",
+        "text" : "#8b949e",
+        "title" : "#c9d1d9"
+        },
+
+    "dark-dimmed" : {
+        "bg" : "#1e2228",
+        "border" : "#1b4b91",
+        "icons" : "#6cb6ff",
+        "text" : "#768390",
+        "title" : "#adbac7"
+        }
     }
