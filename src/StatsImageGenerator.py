@@ -92,7 +92,7 @@ class StatsImageGenerator :
         Must be called after generating the rest of the image since we won't know
         height until the end.  Also inserts closing tags.
         """
-        self._height += 40
+        self._height += 25
         self._rows[0] = self._rows[0].format(str(self._height))
         self._rows[1] = self._rows[1].format(
             str(self._height - 2),
