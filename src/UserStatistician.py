@@ -32,6 +32,33 @@ from StatsImageGenerator import StatsImageGenerator
 import sys
 import os
 
+def writeImageToFile(filename, image, failOnError) :
+    """Writes the image to a file, creating any
+    missing directories from the path.
+
+    Keyword arguments:
+    filename - The filename for the image, with complete path.
+    image - A string containing the image.
+    failOnError - If True, the workflow will fail if there is an error
+        writing the image to a file; and if False, this action will quietly
+        exit with no error code. In either case, an error message will be
+        logged to the console.
+    """
+    # Since we're running in a docker container, everything runs
+    # as root. We need this umask call so we'll have write permissions
+    # once the action finished and we're outside the container again.
+    os.umask(0)
+    # Create the directory if it doesn't exist.
+    os.makedirs(os.path.dirname(filename), exist_ok=True, mode=0o777)
+    try:
+        # Write the image to a file
+        with open(filename, "w") as file:
+            file.write(image)
+    except IOError:
+        print("Error: An error occurred while writing the image to a file.")
+        print("::set-output name=exit-code::4")
+        exit(4 if failOnError else 0)
+
 if __name__ == "__main__" :
 
     imageFilenameWithPath = sys.argv[1].strip()
@@ -64,9 +91,7 @@ if __name__ == "__main__" :
     stats = Statistician(failOnError)
     generator = StatsImageGenerator(stats, colors)
     image = generator.generateImage(includeTitle, customTitle, exclude)
-    print("Image")
-    print(image)
+    writeImageToFile(imageFilenameWithPath, image, failOnError)
     
-
     print("::set-output name=exit-code::0")
     
