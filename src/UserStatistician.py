@@ -95,6 +95,10 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "commit", "-m",
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)"])
             executeCommand(["git", "push"])
+        else :
+            print("file changed check", result)
+    else :
+        print("detached head check", result)
 
 
 if __name__ == "__main__" :
