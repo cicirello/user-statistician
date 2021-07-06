@@ -15,13 +15,15 @@ query($owner: String!) {
     issues {
       totalCount
     }
+    login
+    name
     pullRequests {
       totalCount
     }
-    topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
+    repositoriesContributedTo {
       totalCount
     }
-    repositoriesContributedTo {
+    topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
       totalCount
     }
   }

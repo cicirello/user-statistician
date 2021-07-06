@@ -37,7 +37,9 @@ class Statistician :
         '_contributionYears',
         '_followers',
         '_contrib',
-        '_repo'
+        '_repo',
+        '_login',
+        '_name'
         ]
 
     def __init__(self) :
@@ -82,6 +84,12 @@ class Statistician :
         repoStats - The results of the repo stats query.
         watchingStats - The results of the query of repositories the user is watching.
         """
+        # Extract username (i.e., login) and fullname.
+        # Name needed for title of statistics card, and username
+        # needed if we support committing stats card.
+        self._login = basicStats["data"]["user"]["login"]
+        self._name = basicStats["data"]["user"]["name"]
+        
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
         
