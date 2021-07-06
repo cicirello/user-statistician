@@ -82,7 +82,7 @@ class StatsImageGenerator :
                 title = customTitle
             else :
                 title = "{0}'s Activity".format(self._stats._name)
-            self._rows.append(titleTemplate.format(title, self._colors["title"]))
+            self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
             self._height += 35
         
 
