@@ -31,7 +31,7 @@ class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
     headerTemplate = '<svg width="425" height="{0}" viewBox="0 0 425 {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="1" y="1" stroke-width="2" rx="5" width="423" height="{0}" stroke="{1}" fill="{2}" />'
+    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="35" font-size="16px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -82,14 +82,13 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        nonCategorized = {"followers" : [self._stats._followers] }
         self.insertGroup(
-            nonCategorized,
+            self._stats._user,
             ["General User Stats", "Count", ""],
             self.filterKeys(
-                nonCategorized,
+                self._stats._user,
                 exclude,
-                ["followers"]
+                ["followers", "following"]
                 )
             )
         self.insertGroup(
