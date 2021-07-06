@@ -53,6 +53,10 @@ inputs:
     description: 'Choose whether to fail the workflow if there is an error'
     required: false
     default: true
+  commit-and-push:
+    description: 'Commits and pushes the generated image'
+    required: false
+    default: true	
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -66,3 +70,4 @@ runs:
     - ${{ inputs.colors }}
     - ${{ inputs.exclude }}
     - ${{ inputs.fail-on-error }}
+    - ${{ inputs.commit-and-push }}
