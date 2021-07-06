@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
     paths-ignore: [ '**.svg' ]
   pull_request:
     branches: [ main ]
