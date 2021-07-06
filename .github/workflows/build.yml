@@ -42,3 +42,4 @@ jobs:
     - name: Output the outputs of the integration test of the action
       run: |
         echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
+
