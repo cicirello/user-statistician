@@ -82,7 +82,7 @@ def commitAndPush(filename, name, login) :
     login - The user's login id.
     """
     # Make sure this isn't being run during a pull-request.
-    result = executCommand(["git", "symbolic-ref", "-q", "HEAD"])
+    result = executeCommand(["git", "symbolic-ref", "-q", "HEAD"])
     if result == "0" :
         # Check if the image changed
         result = executeCommand(["git", "diff", "--exit-code", filename])
