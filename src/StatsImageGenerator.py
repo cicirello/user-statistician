@@ -172,6 +172,20 @@ class StatsImageGenerator :
                 offset += 25
             self._rows.append("</g>")
             self._height += offset
+
+    def formatCount(self, count) :
+        """Formats the count.
+
+        Keyword arguments:
+        count - The count to format.
+        """
+        if count < 10000 :
+            return count
+        elif count < 1000000 :
+            return "{0:.1f}K".format(count // 100 * 100 / 1000)
+        else :
+            # can such a real user exist?
+            return "{0:.1f}M".format(count // 100000 * 100000 / 1000000)
         
     def finalizeImageData(self) :
         """Inserts the height into the svg opening tag and the rect for the background.
