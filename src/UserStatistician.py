@@ -31,7 +31,6 @@ from Colors import colorMapping
 from StatsImageGenerator import StatsImageGenerator
 import sys
 import os
-import os.path
 import subprocess
 
 def writeImageToFile(filename, image, failOnError) :
@@ -86,7 +85,6 @@ def commitAndPush(filename, name, login) :
     result = executeCommand(["git", "symbolic-ref", "-q", "HEAD"])
     if result[1] == 0 :
         # Check if the image changed
-        dirname
         result = executeCommand(["git", "diff", "--name-only", os.path.dirname(filename)])
         if result[0] == "1" :
             # Commit and push
