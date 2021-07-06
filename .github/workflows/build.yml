@@ -33,9 +33,9 @@ jobs:
       id: integration
       uses: ./
       with:
-        fail-on-error: False
-      #env:
-       #GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        fail-on-error: True
+      env:
+       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Output the outputs of the integration test of the action
       run: |
