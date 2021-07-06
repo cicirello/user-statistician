@@ -82,7 +82,7 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        nonCategorized = {"followers" : self._stats._followers }
+        nonCategorized = {"followers" : [self._stats._followers] }
         self.insertGroup(
             nonCategorized,
             None,
@@ -121,7 +121,7 @@ class StatsImageGenerator :
         exclude - A set of keys to exclude
         keys - The list of keys relevant for the table.
         """
-        return [ k for k in keys if (k not in exclude) and (k in data) and (data[k][0] > 0 or data[k][1] > 0) ]
+        return [ k for k in keys if (k not in exclude) and (k in data) and (data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
 
     def insertTitle(self, includeTitle, customTitle) :
         """Generates, formats, and inserts title.
@@ -168,7 +168,7 @@ class StatsImageGenerator :
                     statLabels[k]["icon"],
                     statLabels[k]["label"],
                     data[k][0],
-                    data[k][1]
+                    data[k][1] if len(data[k]) > 1 else ""
                     ))
                 offset += 25
             self._rows.append("</g>")
