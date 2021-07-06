@@ -240,7 +240,10 @@ class Statistician :
             if (numPages > 1) :
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
-        return json.loads(result)
+        result = json.loads(result)
+        print("EXECUTED")
+        print(result)
+        return result
 
     def ghDisableInteractivePrompts(self) :
         """Disable gh's interactive prompts. This is probably unnecessary,
