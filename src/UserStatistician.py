@@ -94,7 +94,7 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "add", filename])
             executeCommand(["git", "commit", "-m",
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)"])
-            executeCommand(["git", "push", "--force"])
+            executeCommand(["git", "push"])
     
 
 if __name__ == "__main__" :
