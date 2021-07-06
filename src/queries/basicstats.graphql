@@ -12,6 +12,9 @@ query($owner: String!) {
     followers {
       totalCount
     }
+	following {
+      totalCount
+    }
     issues {
       totalCount
     }
