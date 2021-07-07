@@ -41,21 +41,17 @@
 # * text: text.secondary
 # * title: text.primary
 #
-# For those who want to contribute a theme,
-# please check the combination of your background
-# color with text color, and background with title
-# color for accessibility at this site,
-# https://colorable.jxnblk.com/, and make sure the
-# combination has a rating of at least AA.
+# Notes to Potential Contributors:
+#
+# (1) For those who want to contribute a theme,
+#     please check the combination of your background
+#     color with text color, and background with title
+#     color for accessibility at this site,
+#     https://colorable.jxnblk.com/, and make sure the
+#     combination has a rating of at least AA.
+# (2) Please add the new theme alphabetized by theme name.
 
 colorMapping = {
-    "light" : {
-        "bg" : "#f6f8fa",
-        "border" : "#c8e1ff",
-        "icons" : "#0366d6",
-        "text" : "#586069",
-        "title" : "#24292e"
-        },
     
     "dark" : {
         "bg" : "#090c10",
@@ -71,5 +67,13 @@ colorMapping = {
         "icons" : "#6cb6ff",
         "text" : "#768390",
         "title" : "#adbac7"
+        },
+    
+    "light" : {
+        "bg" : "#f6f8fa",
+        "border" : "#c8e1ff",
+        "icons" : "#0366d6",
+        "text" : "#586069",
+        "title" : "#24292e"
         }
     }
