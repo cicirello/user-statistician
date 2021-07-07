@@ -30,8 +30,8 @@ from StatLabels import statLabels
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
-    headerTemplate = '<svg width="425" height="{0}" viewBox="0 0 425 {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="{0}" stroke="{1}" fill="{2}" />'
+    headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
+    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="6" width="{3}" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="35" font-size="16px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -53,6 +53,7 @@ class StatsImageGenerator :
         '_stats',
         '_colors',
         '_height',
+        '_width',
         '_rows',
         '_lineHeight'
         ]
@@ -67,6 +68,7 @@ class StatsImageGenerator :
         self._stats = stats
         self._colors = colors
         self._height = 0
+        self._width = 425
         self._lineHeight = 18
         self._rows = [
             StatsImageGenerator.headerTemplate,
@@ -196,10 +198,11 @@ class StatsImageGenerator :
         height until the end.  Also inserts closing tags.
         """
         self._height += self._lineHeight
-        self._rows[0] = self._rows[0].format(str(self._height))
+        self._rows[0] = self._rows[0].format(str(self._height), str(self._width))
         self._rows[1] = self._rows[1].format(
             str(self._height - 4),
             self._colors["border"],
-            self._colors["bg"])
+            self._colors["bg"],
+            str(self._width - 4))
         self._rows.append("</g>\n</svg>\n")
         
