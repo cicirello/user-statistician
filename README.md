@@ -1,5 +1,131 @@
-# python-github-action-template
-A template repository for GitHub Actions implemented in Python.
+# user-statistician
+
+## About
+
+[![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
+
+
+
+## Inputs
+
+All inputs include default values, and are thus optional provided the 
+defaults are relevant to your use-case.
+
+### `image-file`
+
+The `image-file` input is the name of the file (including path relative to the 
+root of the repository) for the user statistics image that is generated
+by the action. It defaults to `image-file: images/userstats.svg`. The action
+will create any directories that don't already exist, as necessary. The image is
+an svg.
+
+### `include-title`
+
+The `include-title` controls whether or not the user statistics card 
+includes a title. It defaults to `true`. If you'd rather not have a 
+title in the image, then just pass `include-title: false` (actually, anything
+other than `true`, case insensitive, will be treated as `false`).
+
+### `custom-title`
+
+If you include a title in the user statistics image, the default 
+title is of the form "Your Name's Statistics", where "Your Name" is the name 
+of the owner of the repository that is using the action.
+
+You can customize the title using the `custom-title` input. For example,
+`custom-title: Hello GitHub` will set the title accordingly. Be aware that
+the image width is fixed, and is not resized based on title length. Note that
+if you pass a custom title with the `custom-title` input and also pass
+`include-title: false`, then the conflicting input values will be resolved in
+favor of the `include-title: false`.
+
+### `colors`
+
+The `colors` input enables you to either select from a set of
+built-in color themes, or to define your own set of custom colors.
+At the present time, there are three built-in themes: `light`, `dark`, and
+`dark-dimmed` that are based on GitHub's color palette and themes of the
+same names. If you want to know the specific colors used in each of these,
+see the source in [src/Colors.py](src/Colors.py). Also see the [samples](#samples)
+section of this readme.
+
+The default is `colors: light`. You can change to a different color theme
+by just passing its name (e.g., `colors: dark`).
+
+If you have a specific set of colors that you'd like to instead use, you
+can pass a list of colors (space or comma separated). The list should include
+at least 4 colors in the following order: background color, border color, 
+icon color, title color, and (optionally) text color. If only 4 colors are specified,
+then all text will use the title color. If you pass more than 5 colors, the extras
+are ignored. If you pass less than 4 colors, then the default `light` theme will
+be used.  Here is an example: `colors: '#f6f8fa #c8e1ff #0366d6 #24292e #586069'`.
+This example happens to be the `light` theme. Because `#` has special meaning to 
+YAML (it is used for comments), you must either put quotes around the input value 
+as shown in this example, or you can escape each `#` individually. The colors in this 
+list can be specified either with hex (as in the example above), or with any 
+named colors that are recognized by SVG, or some combination of the two. Here is an 
+example with named colors: `colors: black yellow green white white`. Notice that you 
+don't need quotes around the input if none of the colors are specified by hex.
+
+__The action does not do any validation of the colors that you pass.__ If you pass
+invalid color names or invalid hex color values, then the image generated will be
+incorrect. The color values that you specify are inserted verbatim into the appropriate
+places within the SVG.
+
+### `exclude`
+
+The action automatically excludes any statistics with a value of 0. For example,
+if you have no pull requests, the action automatically will exclude the pull requests
+entry from the image rather than listing it as 0. Otherwise, all supported statistics
+are included by default. If you wish to exclude any, then just pass a list of the "keys"
+corresponding to those you want to exclude. The list can be either space or comma separated.
+If you want to exclude an entire group, including the relevant column headings, then 
+list all of the keys for the elements
+of that group. For example, `exclude: followers following private` will exclude
+both The "Followers" and "Following" counts from the "General User Stats" section,
+and thus will also eliminate the column headings for that section, and this will
+also exclude the "Private Contributions" item from the "Contributions" section.
+
+The keys are case sensitive, and include the following:
+
+| Key | Statistic |
+| --- | --- |
+| `followers` | Followers |
+| `following` | Following |
+| `public` | Repositories Owned |
+| `starredBy` | Starred By |
+| `forkedBy` | Forked By  |
+| `watchedBy` | Watched By |
+| `archived` | Archived |
+| `commits` | Commits |
+| `issues` | Issues |
+| `prs` | Pull Requests |
+| `reviews` | Pull Request Reviews |
+| `contribTo` | Contributed To |
+| `private` | Private Contributions |
+
+### `fail-on-error`
+
+This input enables you to control what happens if the
+action fails for some reason (e.g., error communicating
+with the GitHub GraphQL API, etc). Note that in all of
+our testing so far, this has not happened yet. But as software
+developers, we all know that anything that can go wrong, will
+go wrong eventually.
+
+The default is `fail-on-error: true`, which means that if
+an error occurs it will cause the workflow to fail. The rationale
+for this default is that the failed workflow will lead to a
+GitHub notification so that you know something went wrong.
+If you'd rather just let it quietly fail, to most likely correct
+itself during the next run, then pass `fail-on-error: false`
+(actually anything other than `true` will be treated as `false`).
+
+### `commit-and-push`
+
+## Outputs
+
+
 
 ## Files in This Template
 
