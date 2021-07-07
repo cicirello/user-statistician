@@ -27,14 +27,14 @@
 
 
 
-# GitHub Themes:
+# Notes on the included themes:
 #
 # The light, dark, and dark-dimmed themes are based on
 # GitHub's themes, and color-palette (see
 # https://primer.style/css/support/color-system
 # and https://primer.style/primitives/).
 #
-# Specifically, we use:
+# Specifically, from the link above we use:
 # * background color (bg): bg.canvasInset
 # * border color: box.blueBorder
 # * icons: icon.info
