@@ -1,5 +1,5 @@
   year{0}: contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {{
-    totalCommitContributions 
+    totalCommitContributions
     totalPullRequestReviewContributions
-    restrictedContributionsCount 
+    restrictedContributionsCount
   }}
