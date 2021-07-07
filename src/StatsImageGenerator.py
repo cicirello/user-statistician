@@ -67,7 +67,7 @@ class StatsImageGenerator :
         self._stats = stats
         self._colors = colors
         self._height = 0
-        self._lineHeight = 21
+        self._lineHeight = 17.5
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
