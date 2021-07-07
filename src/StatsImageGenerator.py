@@ -53,7 +53,8 @@ class StatsImageGenerator :
         '_stats',
         '_colors',
         '_height',
-        '_rows'
+        '_rows',
+        '_lineHeight'
         ]
 
     def __init__(self, stats, colors) :
@@ -66,6 +67,7 @@ class StatsImageGenerator :
         self._stats = stats
         self._colors = colors
         self._height = 0
+        self._lineHeight = 21
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
@@ -150,14 +152,14 @@ class StatsImageGenerator :
         keys - A list of keys in the order they should appear.
         """
         if len(keys) > 0 :
-            self._height += 25
+            self._height += self._lineHeight
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
                 self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
                     headerRow[0],
                     headerRow[1],
                     headerRow[2]))
-                offset = 25
+                offset = self._lineHeight
             else :
                 offset = 0
             for k in keys :
@@ -169,7 +171,7 @@ class StatsImageGenerator :
                     self.formatCount(data[k][0]),
                     self.formatCount(data[k][1]) if len(data[k]) > 1 else ""
                     ))
-                offset += 25
+                offset += self._lineHeight
             self._rows.append("</g>")
             self._height += offset
 
@@ -193,7 +195,7 @@ class StatsImageGenerator :
         Must be called after generating the rest of the image since we won't know
         height until the end.  Also inserts closing tags.
         """
-        self._height += 25
+        self._height += self._lineHeight
         self._rows[0] = self._rows[0].format(str(self._height))
         self._rows[1] = self._rows[1].format(
             str(self._height - 4),
