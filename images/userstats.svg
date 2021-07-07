@@ -1,8 +1,8 @@
-<svg width="425" height="395" viewBox="0 0 425 395" xmlns="http://www.w3.org/2000/svg">
-<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="391" stroke="#0d419d" fill="#090c10" />
+<svg width="425" height="399" viewBox="0 0 425 399" xmlns="http://www.w3.org/2000/svg">
+<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="395" stroke="#0d419d" fill="#090c10" />
 <g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">
-<text x="15" y="35" font-size="16px" fill="#c9d1d9">Vincent A. Cicirello's Statistics</text>
-<g transform="translate(0, 53)" font-size="14px" fill="#8b949e">
+<text x="15" y="37" font-size="16px" fill="#c9d1d9">Vincent A. Cicirello's Statistics</text>
+<g transform="translate(0, 57)" font-size="14px" fill="#8b949e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">General User Stats:</text>
 <text x="220" y="12.5">Count</text>
@@ -25,7 +25,7 @@
 <text x="320" y="12.5"></text>
 </g>
 </g>
-<g transform="translate(0, 125)" font-size="14px" fill="#8b949e">
+<g transform="translate(0, 129)" font-size="14px" fill="#8b949e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">Repositories:</text>
 <text x="220" y="12.5">Non-Forks</text>
@@ -72,7 +72,7 @@
 <text x="320" y="12.5">2</text>
 </g>
 </g>
-<g transform="translate(0, 251)" font-size="14px" fill="#8b949e">
+<g transform="translate(0, 255)" font-size="14px" fill="#8b949e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">Contributions:</text>
 <text x="220" y="12.5">Past Year</text>
