@@ -39,6 +39,30 @@
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
 supportedLocales = { "en" }
 
+# Dictionary of header rows for categories of statistics
+categoryLabels = {
+
+    "en" : {
+        "general" : {
+            "heading" : "General User Stats",
+            "column-one" : "Count",
+            "column-two" : ""
+            },
+        "repo" : {
+            "heading" : "Repositories",
+            "column-one" : "Non-Forks",
+            "column-two" : "All Repos"
+            },
+        "contrib" : {
+            "heading" : "Contributions",
+            "column-one" : "Past Year",
+            "column-two" : "Total"
+            }
+        }
+    
+    }
+
+# Dictionary of icon paths and labels for the supported statistics.
 statLabels = {
     
     "followers" : {

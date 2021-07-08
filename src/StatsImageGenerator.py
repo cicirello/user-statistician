@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatLabels import statLabels
+from StatLabels import statLabels, categoryLabels
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -65,6 +65,7 @@ class StatsImageGenerator :
         Keyword arguments:
         stats - An object of the Statistician class.
         colors - A dictionary containing the color theme.
+        locale - The 2-character locale code.
         """
         self._stats = stats
         self._colors = colors
@@ -90,7 +91,7 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         self.insertGroup(
             self._stats._user,
-            ["General User Stats", "Count", ""],
+            categoryLabels[self._locale]["general"],
             self.filterKeys(
                 self._stats._user,
                 exclude,
@@ -99,7 +100,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._repo,
-            ["Repositories", "Non-Forks", "All"],
+            categoryLabels[self._locale]["repo"],
             self.filterKeys(
                 self._stats._repo,
                 exclude,
@@ -108,7 +109,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._contrib,
-            ["Contributions", "Past Year", "Total"],
+            categoryLabels[self._locale]["contrib"],
             self.filterKeys(
                 self._stats._contrib,
                 exclude,
@@ -152,7 +153,7 @@ class StatsImageGenerator :
 
         Keyword arguments:
         data - A dictionary with the data.
-        headerRow - A list with the header row text. Pass None for no table header.
+        headerRow - A dictionary with the header row text. Pass None for no table header.
         keys - A list of keys in the order they should appear.
         """
         if len(keys) > 0 :
@@ -160,9 +161,9 @@ class StatsImageGenerator :
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
                 self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
-                    headerRow[0],
-                    headerRow[1],
-                    headerRow[2]))
+                    headerRow["heading"],
+                    headerRow["column-one"],
+                    headerRow["column-two"]))
                 offset = self._lineHeight
             else :
                 offset = 0
