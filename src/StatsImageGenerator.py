@@ -186,7 +186,7 @@ class StatsImageGenerator :
         Keyword arguments:
         count - The count to format.
         """
-        if count < 10000 :
+        if count < 100000 :
             return count
         elif count < 1000000 :
             return "{0:.1f}K".format(count // 100 * 100 / 1000)
