@@ -29,6 +29,8 @@ import unittest
 import sys
 sys.path.insert(0,'src')
 from Statistician import *
+from Colors import *
+from StatLabels import *
 
 executedQueryResults = [
     {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'cicirello', 'name': 'Vincent A. Cicirello', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'topRepositories': {'totalCount': 33}}}},
@@ -75,6 +77,58 @@ class TestSomething(unittest.TestCase) :
                 self.parsePriorYearStats(executedQueryResultsMultiPage[3])
         stats = NoQueriesMultipage()
         self._validate(stats)
+
+    def test_color_themes(self) :
+        originalThemes = {"light", "dark", "dark-dimmed"}
+        for theme in originalThemes :
+            self._colorValidation(colorMapping[theme])
+        for theme in colorMapping :
+            if theme not in originalThemes :
+                self._colorValidation(colorMapping[theme])
+
+    def test_title_templates(self) :
+        unlikelyInTemplate = "qwertyuiop"
+        try :
+            for locale in supportedLocales :
+                title = titleTemplates[locale].format(unlikelyInTemplate)
+                self.assertTrue(title.find(unlikelyInTemplate)>=0)
+        except IndexError :
+            self.fail()
+
+    def test_category_labels(self) :
+        categories = {"general", "repo", "contrib"}
+        types = {"heading", "column-one", "column-two"}
+        for locale in supportedLocales :
+            self.assertTrue(locale in categoryLabels)
+            labelMap = categoryLabels[locale]
+            for cat in categories :
+                self.assertTrue(cat in labelMap)
+                for t in types :
+                    self.assertTrue(t in labelMap[cat])
+                    
+    def test_stat_labels(self) :
+        keys = {
+            "followers", "following", "public", "starredBy",
+            "forkedBy", "watchedBy", "archived", "commits",
+            "issues", "prs", "reviews", "contribTo", "private"
+            }
+        self.assertTrue(all(k in statLabels for k in keys))
+        for k in keys :
+            self.assertTrue("icon" in statLabels[k])
+            self.assertTrue(statLabels[k]["icon"].startswith("<path "))
+            self.assertTrue(statLabels[k]["icon"].endswith("/>"))
+            labelsByLocale = statLabels[k]["label"]
+            for locale in supportedLocales :
+                self.assertTrue(locale in labelsByLocale)
+
+    def _colorValidation(self, theme) :
+        props = {"bg", "border", "icons", "text", "title"}
+        validHexDigits = set("0123456789abcdefABCDEF")
+        for p in props :
+            color = theme[p]
+            self.assertEqual("#", color[0])
+            self.assertTrue(len(color)==4 or len(color)==7)
+            self.assertTrue(all(c in validHexDigits for c in color[1:]))
 
     def _validate(self, stats) :
         self.assertEqual(9, stats._user["followers"][0])

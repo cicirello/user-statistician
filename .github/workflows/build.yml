@@ -36,6 +36,7 @@ jobs:
       uses: ./
       with:
         colors: dark
+        fail-on-error: false
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 

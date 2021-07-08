@@ -29,6 +29,7 @@
 from Statistician import Statistician
 from Colors import colorMapping
 from StatsImageGenerator import StatsImageGenerator
+from StatLabels import supportedLocales
 import sys
 import os
 import subprocess
@@ -56,7 +57,7 @@ def writeImageToFile(filename, image, failOnError) :
         with open(filename, "w") as file:
             file.write(image)
     except IOError:
-        print("Error: An error occurred while writing the image to a file.")
+        print("Error (4): An error occurred while writing the image to a file.")
         print("::set-output name=exit-code::4")
         exit(4 if failOnError else 0)
 
@@ -73,7 +74,7 @@ def executeCommand(arguments) :
         )
     return result.stdout.strip(), result.returncode
 
-def commitAndPush(filename, name, login) :
+def commitAndPush(filename, name, login, failOnError) :
     """Commits and pushes the image.
 
     Keyword arguments:
@@ -95,7 +96,11 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "commit", "-m",
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)",
                            filename])
-            executeCommand(["git", "push"])
+            r = executeCommand(["git", "push"])
+            if r[1] != 0 :
+                print("Error (5): push failed.")
+                print("::set-output name=exit-code::5")
+                exit(5 if failOnError else 0)
     
 
 if __name__ == "__main__" :
@@ -128,14 +133,18 @@ if __name__ == "__main__" :
     failOnError = sys.argv[6].strip().lower() == "true"
 
     commit = sys.argv[7].strip().lower() == "true"
+
+    locale = sys.argv[8].strip().lower()
+    if locale not in supportedLocales :
+        locale = "en"
     
     stats = Statistician(failOnError)
-    generator = StatsImageGenerator(stats, colors)
+    generator = StatsImageGenerator(stats, colors, locale)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :
-        commitAndPush(imageFilenameWithPath, stats._name, stats._login)
+        commitAndPush(imageFilenameWithPath, stats._name, stats._login, failOnError)
     
     print("::set-output name=exit-code::0")
     
