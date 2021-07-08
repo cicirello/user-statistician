@@ -62,6 +62,12 @@ categoryLabels = {
     
     }
 
+# Dictionary of default title templates.
+# {0} corresponds to repository owner's name.
+titleTemplates = {
+    "en" : "{0}'s Statistics"
+    }
+
 # Dictionary of icon paths and labels for the supported statistics.
 statLabels = {
     

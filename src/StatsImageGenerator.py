@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatLabels import statLabels, categoryLabels
+from StatLabels import statLabels, categoryLabels, titleTemplates
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -141,7 +141,7 @@ class StatsImageGenerator :
             if customTitle != None :
                 title = customTitle
             else :
-                title = "{0}'s Statistics".format(self._stats._name)
+                title = titleTemplates[self._locale].format(self._stats._name)
             self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
             self._height += 39
 
