@@ -55,10 +55,11 @@ class StatsImageGenerator :
         '_height',
         '_width',
         '_rows',
-        '_lineHeight'
+        '_lineHeight',
+        '_locale'
         ]
 
-    def __init__(self, stats, colors) :
+    def __init__(self, stats, colors, locale) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -67,6 +68,7 @@ class StatsImageGenerator :
         """
         self._stats = stats
         self._colors = colors
+        self._locale = locale
         self._height = 0
         self._width = 425
         self._lineHeight = 21
@@ -169,7 +171,7 @@ class StatsImageGenerator :
                     str(offset),
                     self._colors["icons"],
                     statLabels[k]["icon"],
-                    statLabels[k]["label"],
+                    statLabels[k]["label"][self._locale],
                     self.formatCount(data[k][0]),
                     self.formatCount(data[k][1]) if len(data[k]) > 1 else ""
                     ))
