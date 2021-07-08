@@ -20,7 +20,8 @@ data. For details of how GitHub counts contributions, see
 The repository and contribution data included is all public. This is true even
 of the "Private Contributions" entry on the stats image, as the data needed
 for that should only be returned from the query executed by the action if you have
-already opted in to inclusion of private contributions via GitHub's profile settings. 
+already opted in to inclusion of private contributions via 
+[GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
 You can also disable the "Private Contributions" entry as well (see the 
 [Inputs section](#inputs)). It will also auto-hide if the count is 0, as will
 any other statistics with a count of 0.
