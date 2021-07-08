@@ -29,7 +29,7 @@
 from Statistician import Statistician
 from Colors import colorMapping
 from StatsImageGenerator import StatsImageGenerator
-from StatsLabels import supportedLocales
+from StatLabels import supportedLocales
 import sys
 import os
 import subprocess
