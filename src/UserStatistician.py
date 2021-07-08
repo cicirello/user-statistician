@@ -57,7 +57,7 @@ def writeImageToFile(filename, image, failOnError) :
         with open(filename, "w") as file:
             file.write(image)
     except IOError:
-        print("Error: An error occurred while writing the image to a file.")
+        print("Error (4): An error occurred while writing the image to a file.")
         print("::set-output name=exit-code::4")
         exit(4 if failOnError else 0)
 
@@ -98,7 +98,7 @@ def commitAndPush(filename, name, login, failOnError) :
                            filename])
             r = executeCommand(["git", "push"])
             if r[1] != 0 :
-                print("Error: push failed.")
+                print("Error (5): push failed.")
                 print("::set-output name=exit-code::5")
                 exit(5 if failOnError else 0)
     
