@@ -112,6 +112,8 @@ language used in names of statistics, section and column headings,
 and default title on the user stats card. The default is `locale: en`,
 which is English. At the present time, this is the only supported 
 locale, but we anticipate introducing support for additional languages.
+If an unsupported locale is passed, then the action will use the
+default of "en".
 
 If you are interested in contributing a new locale, only the 
 [src/StatLabels.py](src/StatLabels.py) file must be updated.
