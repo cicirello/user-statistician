@@ -45,8 +45,8 @@ inputs:
     description: 'The color theme or list of custom colors'
     required: false
     default: light	
-  exclude:
-    description: 'A list of statistics to exclude'
+  hide-keys:
+    description: 'A list of statistics to hide specified by their key'
     required: false
     default: ''
   fail-on-error:
@@ -68,6 +68,6 @@ runs:
     - ${{ inputs.include-title }}
     - ${{ inputs.custom-title }}
     - ${{ inputs.colors }}
-    - ${{ inputs.exclude }}
+    - ${{ inputs.hide-keys }}
     - ${{ inputs.fail-on-error }}
     - ${{ inputs.commit-and-push }}
