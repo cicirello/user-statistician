@@ -82,7 +82,7 @@ class Statistician :
             with open(queryFilepath, 'r') as file:
                 return file.read()
         except IOError:
-            print("Error: Failed to open query file:", queryFilePath)
+            print("Error (1): Failed to open query file:", queryFilePath)
             print("::set-output name=exit-code::1")
             exit(1 if failOnError else 0)
 
@@ -227,12 +227,12 @@ class Statistician :
             # Check if any error details
             result = json.loads(result) if len(result) > 0 else ""
             if "errors" in result :
-                print("Error: GitHub api Query failed with error:")
+                print("Error (2): GitHub api Query failed with error:")
                 print(result["errors"])
                 print("::set-output name=exit-code::2")
                 code = 2
             else :
-                print("Error: Something unexpected occurred during GitHub API query.")
+                print("Error (3): Something unexpected occurred during GitHub API query.")
                 print("::set-output name=exit-code::3")
                 code = 3
             exit(code if failOnError else 0)
