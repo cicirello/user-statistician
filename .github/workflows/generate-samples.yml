@@ -38,6 +38,6 @@ jobs:
         colors: dark-dimmed
         image-file: images/dark-dimmed.svg
         custom-title: My GitHub Statistics
-        exclude: followers, following
+        hide-keys: followers, following, private
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

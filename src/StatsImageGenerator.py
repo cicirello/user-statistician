@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatLabels import statLabels
+from StatLabels import statLabels, categoryLabels, titleTemplates
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -55,18 +55,21 @@ class StatsImageGenerator :
         '_height',
         '_width',
         '_rows',
-        '_lineHeight'
+        '_lineHeight',
+        '_locale'
         ]
 
-    def __init__(self, stats, colors) :
+    def __init__(self, stats, colors, locale) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
         stats - An object of the Statistician class.
         colors - A dictionary containing the color theme.
+        locale - The 2-character locale code.
         """
         self._stats = stats
         self._colors = colors
+        self._locale = locale
         self._height = 0
         self._width = 425
         self._lineHeight = 21
@@ -88,7 +91,7 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         self.insertGroup(
             self._stats._user,
-            ["General User Stats", "Count", ""],
+            categoryLabels[self._locale]["general"],
             self.filterKeys(
                 self._stats._user,
                 exclude,
@@ -97,7 +100,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._repo,
-            ["Repositories", "Non-Forks", "All"],
+            categoryLabels[self._locale]["repo"],
             self.filterKeys(
                 self._stats._repo,
                 exclude,
@@ -106,7 +109,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._contrib,
-            ["Contributions", "Past Year", "Total"],
+            categoryLabels[self._locale]["contrib"],
             self.filterKeys(
                 self._stats._contrib,
                 exclude,
@@ -138,7 +141,7 @@ class StatsImageGenerator :
             if customTitle != None :
                 title = customTitle
             else :
-                title = "{0}'s Statistics".format(self._stats._name)
+                title = titleTemplates[self._locale].format(self._stats._name)
             self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
             self._height += 39
 
@@ -150,7 +153,7 @@ class StatsImageGenerator :
 
         Keyword arguments:
         data - A dictionary with the data.
-        headerRow - A list with the header row text. Pass None for no table header.
+        headerRow - A dictionary with the header row text. Pass None for no table header.
         keys - A list of keys in the order they should appear.
         """
         if len(keys) > 0 :
@@ -158,9 +161,9 @@ class StatsImageGenerator :
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
                 self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
-                    headerRow[0],
-                    headerRow[1],
-                    headerRow[2]))
+                    headerRow["heading"],
+                    headerRow["column-one"],
+                    headerRow["column-two"]))
                 offset = self._lineHeight
             else :
                 offset = 0
@@ -169,7 +172,7 @@ class StatsImageGenerator :
                     str(offset),
                     self._colors["icons"],
                     statLabels[k]["icon"],
-                    statLabels[k]["label"],
+                    statLabels[k]["label"][self._locale],
                     self.formatCount(data[k][0]),
                     self.formatCount(data[k][1]) if len(data[k]) > 1 else ""
                     ))
@@ -183,7 +186,7 @@ class StatsImageGenerator :
         Keyword arguments:
         count - The count to format.
         """
-        if count < 10000 :
+        if count < 100000 :
             return count
         elif count < 1000000 :
             return "{0:.1f}K".format(count // 100 * 100 / 1000)
