@@ -22,7 +22,7 @@ of the "Private Contributions" entry on the stats image, as the data needed
 for that should only be returned from the query executed by the action if you have
 already opted in to inclusion of private contributions via GitHub's profile settings. 
 You can also disable the "Private Contributions" entry as well (see the 
-[inputs section](#section)). It will also auto-hide if the count is 0, as will
+[Inputs section](#inputs)). It will also auto-hide if the count is 0, as will
 any other statistics with a count of 0.
 
 To use the `user-statistician` action, you just need to set up a workflow in your
