@@ -51,7 +51,7 @@ categoryLabels = {
         "repo" : {
             "heading" : "Repositories",
             "column-one" : "Non-Forks",
-            "column-two" : "All Repos"
+            "column-two" : "All"
             },
         "contrib" : {
             "heading" : "Contributions",
