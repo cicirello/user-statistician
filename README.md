@@ -72,19 +72,20 @@ invalid color names or invalid hex color values, then the image generated will b
 incorrect. The color values that you specify are inserted verbatim into the appropriate
 places within the SVG.
 
-### `exclude`
+### `hide-keys`
 
-The action automatically excludes any statistics with a value of 0. For example,
-if you have no pull requests, the action automatically will exclude the pull requests
+The action automatically hides any statistics with a value of 0. For example,
+if you have no pull requests, the action automatically will hide the pull requests
 entry from the image rather than listing it as 0. Otherwise, all supported statistics
-are included by default. If you wish to exclude any, then just pass a list of the "keys"
-corresponding to those you want to exclude. The list can be either space or comma separated.
-If you want to exclude an entire group, including the relevant column headings, then 
+are shown by default. If you wish to hide any regardless of whether it has a value of 0, 
+then just pass a list of the "keys"
+corresponding to those you want to hide. The list can be either space or comma separated.
+If you want to hide an entire group, including the relevant column headings, then 
 list all of the keys for the elements
-of that group. For example, `exclude: followers following private` will exclude
+of that group. For example, `hide-keys: followers following private` will hide
 both The "Followers" and "Following" counts from the "General User Stats" section,
-and thus will also eliminate the column headings for that section, and this will
-also exclude the "Private Contributions" item from the "Contributions" section.
+and thus will also eliminate the column headings for that entire section, and this will
+also hide the "Private Contributions" item from the "Contributions" section.
 
 The keys are case sensitive, and include the following:
 
