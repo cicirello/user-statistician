@@ -74,7 +74,7 @@ def executeCommand(arguments) :
         )
     return result.stdout.strip(), result.returncode
 
-def commitAndPush(filename, name, login) :
+def commitAndPush(filename, name, login, failOnError) :
     """Commits and pushes the image.
 
     Keyword arguments:
@@ -96,7 +96,11 @@ def commitAndPush(filename, name, login) :
             executeCommand(["git", "commit", "-m",
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)",
                            filename])
-            executeCommand(["git", "push"])
+            r = executeCommand(["git", "push"])
+            if r[1] != 0 :
+                print("Error: push failed.")
+                print("::set-output name=exit-code::5")
+                exit(5 if failOnError else 0)
     
 
 if __name__ == "__main__" :
@@ -140,7 +144,7 @@ if __name__ == "__main__" :
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :
-        commitAndPush(imageFilenameWithPath, stats._name, stats._login)
+        commitAndPush(imageFilenameWithPath, stats._name, stats._login, failOnError)
     
     print("::set-output name=exit-code::0")
     
