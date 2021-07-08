@@ -128,9 +128,11 @@ if __name__ == "__main__" :
     failOnError = sys.argv[6].strip().lower() == "true"
 
     commit = sys.argv[7].strip().lower() == "true"
+
+    locale = sys.argv[8].strip().lower()
     
     stats = Statistician(failOnError)
-    generator = StatsImageGenerator(stats, colors)
+    generator = StatsImageGenerator(stats, colors, locale)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

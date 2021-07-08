@@ -105,6 +105,17 @@ The keys are case sensitive, and include the following:
 | `contribTo` | Contributed To |
 | `private` | Private Contributions |
 
+### `locale`
+
+This input is an ISO 639-1, two character language code for the
+language used in names of statistics, section and column headings,
+and default title on the user stats card. The default is `locale: en`,
+which is English. At the present time, this is the only supported 
+locale, but we anticipate introducing support for additional languages.
+
+If you are interested in contributing a new locale, only the 
+[src/StatLabels.py](src/StatLabels.py) file must be updated.
+
 ### `fail-on-error`
 
 This input enables you to control what happens if the

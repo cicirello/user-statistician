@@ -56,7 +56,11 @@ inputs:
   commit-and-push:
     description: 'Commits and pushes the generated image'
     required: false
-    default: true	
+    default: true
+  locale:
+    description: 'ISO 639-1 two character language code'
+    required: false
+    default: en	
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -71,3 +75,4 @@ runs:
     - ${{ inputs.hide-keys }}
     - ${{ inputs.fail-on-error }}
     - ${{ inputs.commit-and-push }}
+    - ${{ inputs.locale }}
