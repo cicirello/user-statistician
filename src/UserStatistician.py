@@ -97,7 +97,7 @@ def commitAndPush(filename, name, login, failOnError) :
                             "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)",
                            filename])
             r = executeCommand(["git", "push"])
-            if r != 0 :
+            if r[1] != 0 :
                 print("Error: push failed.")
                 print("::set-output name=exit-code::5")
                 exit(5 if failOnError else 0)
