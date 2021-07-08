@@ -1,0 +1,43 @@
+name: Generate Samples
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  samples:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: samples
+
+    - name: Sample light
+      uses: ./
+      with:
+        colors: light
+        image-file: images/light.svg
+        include-title: false
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Sample dark
+      uses: ./
+      with:
+        colors: dark
+        image-file: images/dark.svg
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Sample dark-dimmed
+      uses: ./
+      with:
+        colors: dark-dimmed
+        image-file: images/dark-dimmed.svg
+        custom-title: My GitHub Statistics
+        exclude: followers, following
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
