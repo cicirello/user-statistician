@@ -33,11 +33,22 @@ and pushing the generated image to the repository (provided you use it on a bran
 required reviews and without required checks---running on a protected branch 
 is otherwise fine).
 
-## Design
 
-### Samples
+## Example Workflows and Image Samples
 
-### The Stats
+### Example 1
+
+![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)
+
+### Example 2
+
+![Dark theme](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)
+
+### Example 3
+
+![Dark-dimmed theme](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)
+
+## The Stats
 
 
 
