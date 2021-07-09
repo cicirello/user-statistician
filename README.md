@@ -46,15 +46,6 @@ for details of available inputs). Specifically, it uses the default color
 theme (a light theme), and includes all available statistics in the image and
 the default title. The action commits and pushes the image by default as well.
 
-This example workflow runs on a schedule (every day at 3am) and also includes
-the `workflow_dispatch` event so that you can run it manually if desired.
-The `actions/checkout@v2` step is required, the action generates the stats image
-for the owner of the checked out repository, and also for the commit and push
-functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
-variable (see the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) to
-`cicirello/user-statistician` in order to be able to query GitHub's GraphQl API.
-The default permissions of the `GITHUB_TOKEN` are sufficient.
-
 ```yml
 name: user-statistician
 
@@ -74,6 +65,29 @@ jobs:
       uses: cicirello/user-statistician@v1
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+This example workflow runs on a schedule (every day at 3am) and also includes
+the `workflow_dispatch` event so that you can run it manually if desired.
+The `actions/checkout@v2` step is required because the action generates the stats image
+for the owner of the checked out repository, and it is also for the commit and push
+functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
+variable (see the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) to
+`cicirello/user-statistician` in order to be able to query GitHub's GraphQl API.
+The default permissions of the `GITHUB_TOKEN` are sufficient.
+
+Assuming that you use the default image filename and path, then you can
+insert the image into your README with the following markdown:
+
+```markdown
+![My user statistics](images/userstats.svg)
+```
+
+Although not required, it is appreciated if you link the image to this repository
+so that others know how you generated it, with the following markdown:
+
+```markdown
+[![My user statistics](images/userstats.svg)](https://github.com/cicirello/user-statistician)
 ```
 
 ![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)
