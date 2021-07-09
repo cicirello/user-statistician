@@ -218,7 +218,8 @@ is sufficient to push to this branch.
 Here is how you can do something similar if your profile repository has 
 required checks on its main branch. First, create a branch, perhaps called `stats`.
 The special `stats` branch does not need to be kept up to date with `main`. Then
-modify the workflow to checkout the dedicated `stats` branch as follows:
+modify the workflow to checkout the dedicated `stats` branch (see the modified
+`actions/checkout@v2` step) as follows:
 
 ```yml
 name: user-statistician
