@@ -103,12 +103,12 @@ class Statistician :
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
         
-        # Extract repositories contributes to (pwned by others) in past year
+        # Extract repositories contributes to (owned by others) in past year
         pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
         # Extract list of contribution years
         self._contributionYears = pastYearData["contributionYears"]
-        # Just reoganizing data for clarity
+        # Just reorganizing data for clarity
         del pastYearData["contributionYears"]
 
         # Extract followed and following counts
