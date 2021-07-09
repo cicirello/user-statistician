@@ -163,6 +163,33 @@ Here is a sample of what this will produce:
 
 [![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
+### Specific version vs major release
+
+All of the above examples used the major release tag
+for the `user-statistician` step 
+(i.e., `uses: cicirello/user-statistician@v1`):
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+The advantage to this is that you will automatically
+get all non-breaking changes and bug fixes without the
+need to alter your workflow. If you prefer to 
+use a specific release, just use the SemVer of the
+release that you wish to use, such as with the following:
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+
 ## The Stats
 
 
