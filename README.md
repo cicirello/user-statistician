@@ -38,6 +38,18 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
+The `user-statistician` action uses the following:
+* Python 3 (implemented almost entirely in Python);
+* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
+  image, which includes the GitHub CLI installed on a python:3-slim base image;
+* [The GitHub CLI](https://cli.github.com/);
+* [GitHub GraphQL API](https://docs.github.com/en/graphql);
+* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
+* We started with our template repository for GitHub Actions implemented in 
+  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+
+### Table of Contents
+
 The remainder of the documentation is organized into the following sections:
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
   This section includes workflows to get you started using the action, as well as
@@ -49,16 +61,6 @@ The remainder of the documentation is organized into the following sections:
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
-
-The `user-statistician` action uses the following:
-* Python 3 (implemented almost entirely in Python);
-* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
-  image, which includes the GitHub CLI installed on a python:3-slim base image;
-* [The GitHub CLI](https://cli.github.com/);
-* [GitHub GraphQL API](https://docs.github.com/en/graphql);
-* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
-* We started with our template repository for GitHub Actions implemented in 
-  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
 
 
 ## Example Workflows and Image Samples
