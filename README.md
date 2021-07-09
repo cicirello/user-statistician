@@ -42,11 +42,11 @@ is otherwise fine).
 
 ### Example 2
 
-![Dark theme](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)
+![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)
 
 ### Example 3
 
-![Dark-dimmed theme](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)
+![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)
 
 ## The Stats
 
