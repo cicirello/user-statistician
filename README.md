@@ -42,7 +42,7 @@ The remainder of the documentation is organized into the following sections:
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
   This section includes workflows to get you started using the action, as well as
   sample images.
-* [The Stats](#the-stats): a listing of all of the statistics included in the
+* [The Stats](#the-stats): This documents all of the statistics included in the
   images that the action generates.
 * [Inputs](#inputs): Documentation of all of the inputs to the action, their
   default values, and the effects they have on the behavior of the action.
@@ -438,7 +438,7 @@ The keys are case sensitive.
 
 ### `locale`
 
-This input is an ISO 639-1, two character language code for the
+This input is an ISO 639-1 two character language code for the
 language used in names of statistics, section and column headings,
 and default title on the user stats card. The default is `locale: en`,
 which is English. At the present time, this is the only supported 
@@ -468,6 +468,25 @@ itself during the next run, then pass `fail-on-error: false`
 
 ### `commit-and-push`
 
+The `commit-and-push` input controls whether the action commits
+and pushes the generated image upon creation. It defaults to
+`commit-and-push: true`. If the user stats image has changed since
+last commit, then as long as you are not running this in a detached
+head state (such as on a pull request event), the action will commit
+and push the new user stats image. If you are in a detached head
+state, such as if you were to run this during a pull request 
+(not sure why you would), then the action will simply and quietly
+skip the commit/push without issuing an error. 
+
+If your branch is protected with either required reviews or required
+checks, then the push will fail with an error. Whether this also
+fails your workflow depends on how you have set 
+the `fail-on-error` input. See the earlier discussion for what you 
+can do if you wish to use the action in a repository with
+that has configured required reviews or required checks:
+[Protected branches with required checks](#protected-branches-with-required-checks).
+
+
 ## Outputs
 
 The action has only the following action output variable.
@@ -491,7 +510,43 @@ values, and also shows how to access the action's `exit-code`
 output if desired.
 
 ```yml
+name: user-statistician
 
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      id: statsStep # Only needed if you want to check the exit-code
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/userstats.svg
+        include-title: true
+        custom-title: '' # Defaults to title pattern described earlier
+        colors: light
+        hide-keys: '' # None hidden
+        locale: en
+        fail-on-error: true
+        commit-and-push: true
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Check exit code if desired
+      run: |
+        # Note that if you set fail-on-error to true, you'll
+        # never actually get here if an error occurs. But if you
+        # set fail-on-error to false, then instead of failing the
+        # workflow, the action will output the exit code that would
+        # have failed the workflow and you can check it here.
+        echo "exitCode = ${{ steps.statsStep.outputs.exit-code }}"
 ```
 
 ## License
