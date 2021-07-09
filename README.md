@@ -433,23 +433,8 @@ both The "Followers" and "Following" counts from the "General User Stats" sectio
 and thus will also eliminate the column headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
 
-The keys are case sensitive, and include the following:
-
-| Key | Statistic |
-| --- | --- |
-| `followers` | Followers |
-| `following` | Following |
-| `public` | Repositories Owned |
-| `starredBy` | Starred By |
-| `forkedBy` | Forked By  |
-| `watchedBy` | Watched By |
-| `archived` | Archived |
-| `commits` | Commits |
-| `issues` | Issues |
-| `prs` | Pull Requests |
-| `reviews` | Pull Request Reviews |
-| `contribTo` | Contributed To |
-| `private` | Private Contributions |
+See earlier in the section [The Stats](#the-stats) for the keys needed for this input.
+The keys are case sensitive.
 
 ### `locale`
 
