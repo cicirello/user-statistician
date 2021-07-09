@@ -296,6 +296,59 @@ so that others know how you generated it is as follows:
 
 ## The Stats
 
+The statistics displayed in the image is organized into categories,
+and includes the following. Note that the "Key" is what you need if
+you are using the `hide-keys` input (see the [Inputs](#inputs) section).
+
+### General User Stats
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `followers` | Followers | simple count |
+| `following` | Following | simple count |
+
+### Repositories
+
+The Repositories category in the image includes
+two columns with data summarizing information
+about the non-forks that you own, as well as all repositories
+that you own, including forks.  The statistics include the 
+following.
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `public` | Repositories Owned | simple count |
+| `starredBy` | Starred By | simple count |
+| `forkedBy` | Forked By  | simple count |
+| `watchedBy` | Watched By | number watching your repositories (excluding you) |
+| `archived` | Archived | number of your repositories that you have archived |
+
+### Contributions
+
+The Contributions category in the image includes
+two columns with data summarizing information
+about your contributions during the past year, as well as
+totals over all years. Please note that this can be no more
+accurate than what is available via GitHub's API. For example,
+we have noticed that older contributions of our own seem to
+be missing. Also keep in mind what GitHub specifically counts as contributions. 
+For details of how GitHub counts contributions, see 
+[GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
+
+The contributions statistics in the image include the following.
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `commits` | Commits | simple count |
+| `issues` | Issues | simple count |
+| `prs` | Pull Requests | simple count |
+| `reviews` | Pull Request Reviews | simple count |
+| `contribTo` | Contributed To | number of repositories owned by others that you have contributed to |
+| `private` | Private Contributions | number of private contributions if you have shared them via your GitHub settings |
+
+Please note that GitHub's "restrictedContributionsCount" (which is your private contributions
+count) doesn't distinguish the type of contributions, so we cannot simply add
+these to the specific counts by type. 
 
 
 ## Inputs
