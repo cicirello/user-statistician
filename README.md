@@ -50,6 +50,17 @@ The remainder of the documentation is organized into the following sections:
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
 
+The `user-statistician` action uses the following:
+* Python 3 (implemented almost entirely in Python);
+* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
+  image, which includes the GitHub CLI installed on a python:3-slim base image;
+* [The GitHub CLI](https://cli.github.com/);
+* [GitHub GraphQL API](https://docs.github.com/en/graphql);
+* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
+* We started with our template repository for GitHub Actions implemented in 
+  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+
+
 ## Example Workflows and Image Samples
 
 This section provides example workflows using the action, as
@@ -90,7 +101,7 @@ for the owner of the checked out repository, and it is also for the commit and p
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
 variable to `cicirello/user-statistician` (see 
 the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) in order to be able to query 
-GitHub's GraphQl API. The default permissions of the `GITHUB_TOKEN` are sufficient
+GitHub's GraphQL API. The default permissions of the `GITHUB_TOKEN` are sufficient
 for the API queries as well as (in most cases) for pushing the image to your 
 repository. If you are running this in a repository with branch 
 protection rules that require either reviews or checks, then see the section
