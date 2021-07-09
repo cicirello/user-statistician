@@ -36,15 +36,15 @@ is otherwise fine).
 
 ## Example Workflows and Image Samples
 
-### Example 1
+### Example 1: All default inputs
 
 ![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)
 
-### Example 2
+### Example 2: Dark theme without title
 
 ![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)
 
-### Example 3
+### Example 3: Dark-dimmed theme with custom title and some hidden stats
 
 ![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)
 
@@ -92,8 +92,9 @@ built-in color themes, or to define your own set of custom colors.
 At the present time, there are three built-in themes: `light`, `dark`, and
 `dark-dimmed` that are based on GitHub's color palette and themes of the
 same names. If you want to know the specific colors used in each of these,
-see the source in [src/Colors.py](src/Colors.py). Also see the [samples](#samples)
-section of this readme.
+see the source in [src/Colors.py](src/Colors.py). Also see 
+the [Example Workflows and Image Samples](#example-workflows-and-image-samples)
+section of this readme for a few samples.
 
 The default is `colors: light`. You can change to a different color theme
 by just passing its name (e.g., `colors: dark`).
