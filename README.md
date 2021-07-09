@@ -21,13 +21,13 @@ necessary data. The contribution counts are as reported by the GitHub GraphQL AP
 For details of how GitHub counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
 The repository and contribution data included is all public. This is true even
-of the "Private Contributions" entry on the stats image, as the data needed
-for that should only be returned from the query executed by the action if you have
-already opted in to inclusion of private contributions via 
+of the "Private Contributions" entry on the stats image, as 
+the "restrictedContributionsCount" returned from the query executed by the action 
+will only be non-zero if you have opted in to sharing private contributions via 
 [GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
 You can also disable the "Private Contributions" entry as well (see the 
-[Inputs section](#inputs)). It will also auto-hide if the count is 0, as will
-any other statistics with a count of 0.
+[Inputs section](#inputs)) regardless of your GitHub settings. It will also auto-hide if 
+the count is 0, as will any other statistics with a count of 0.
 
 To use the `user-statistician` action, you just need to set up a workflow in your
 profile repository (or technically any repository that you own) on a schedule (daily
