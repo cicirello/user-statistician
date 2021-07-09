@@ -5,17 +5,20 @@
 [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
 
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
-Action generates a visual summary of your activity on GitHub. The intended use-case is
-to generate an image that you can display on your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme) 
-summarizing your activity on GitHub. This includes statistics for the repositories that
-you own as well as your contribution statistics (e.g., commits, issues, PRs, etc). If you
-don't already have a GitHub Profile README, start by creating a public repository
-with a name identical to your user name, and everything you include in the `README.md` of
-that repository will show up on your GitHub Profile.
+Action generates a visual summary of your activity on GitHub, suitable to display on
+your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme). 
+Although the intended use-case is to generate an image for your GitHub Profile README,
+you can also potentially link to the image from a personal website, or from anywhere else
+where you'd like to share a summary of your activity on GitHub. The image that the action 
+generates includes statistics for the repositories that
+you own as well as your contribution statistics (e.g., commits, issues, PRs, etc). 
+The user stats image can be customized, including the colors such as with one
+of the built-in themes or your own set of custom colors.
 
 The `user-statistician` action runs entirely here on GitHub. It uses the 
 [GitHub GraphQL API](https://docs.github.com/en/graphql) to collect all of the
-data. For details of how GitHub counts contributions, see 
+necessary data. The contribution counts are as reported by the GitHub GraphQL API.
+For details of how GitHub counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
 The repository and contribution data included is all public. This is true even
 of the "Private Contributions" entry on the stats image, as the data needed
@@ -29,10 +32,23 @@ any other statistics with a count of 0.
 To use the `user-statistician` action, you just need to set up a workflow in your
 profile repository (or technically any repository that you own) on a schedule (daily
 should be sufficient), and then add a link to the image. The action handles committing
-and pushing the generated image to the repository (provided you use it on a branch without
-required reviews and without required checks---running on a protected branch 
-is otherwise fine).
+and pushing the generated image to the repository. If you
+don't already have a GitHub Profile README, start by creating a public repository
+with a name identical to your user name, and everything you include in the `README.md` of
+that repository will show up on your GitHub Profile at the 
+address: `https://github.com/USERNAME`.
 
+The remainder of the documentation is organized into the following sections:
+* [Example Workflows and Image Samples](#example-workflows-and-image-samples):
+  This section includes workflows to get you started using the action, as well as
+  sample images.
+* [The Stats](#the-stats): a listing of all of the statistics included in the
+  images that the action generates.
+* [Inputs](#inputs): Documentation of all of the inputs to the action, their
+  default values, and the effects they have on the behavior of the action.
+* [Outputs](#outputs): Documentation of outputs of the action.
+* [All Possible Action Inputs](#all-possible-action-inputs): This section provides
+  a workflow that summarizes all of the action's inputs along with their default values.
 
 ## Example Workflows and Image Samples
 
@@ -74,7 +90,11 @@ for the owner of the checked out repository, and it is also for the commit and p
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
 variable to `cicirello/user-statistician` (see 
 the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) in order to be able to query 
-GitHub's GraphQl API. The default permissions of the `GITHUB_TOKEN` are sufficient.
+GitHub's GraphQl API. The default permissions of the `GITHUB_TOKEN` are sufficient
+for the API queries as well as (in most cases) for pushing the image to your 
+repository. If you are running this in a repository with branch 
+protection rules that require either reviews or checks, then see the section
+below on [Protected branches with required checks](#protected-branches-with-required-checks).
 
 Assuming that you use the default image filename and path, then you can
 insert the image into your README with the following markdown:
@@ -187,6 +207,90 @@ release that you wish to use, such as with the following:
       uses: cicirello/user-statistician@v1.0.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+If you do use a specific release, then we recommend
+configuring [GitHub's Dependabot](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/)
+in your repository.  Dependabot can be used to monitor dependencies,
+including GitHub Actions, and generates automated pull requests to update
+versions. The PRs it generates includes the text of release notes and ChangeLogs
+giving you the opportunity to decide whether to upgrade the version.
+
+### Protected branches with required checks
+
+The default permissions of the `GITHUB_TOKEN` are sufficient for pushing
+to a protected branch, provided that the branch protection hasn't been
+configured with required reviews nor with required checks. If your
+GitHub profile repository does have a branch protection rule with
+required reviews or required checks, there are a couple solutions.
+
+__Not Recommended:__ First, you could create a personal access token (PAT) with necessary
+permissions, save it as a repository secret, and pass that to the action
+instead of the `GITHUB_TOKEN`. However, we do not recommend doing so.
+If anyone else has write access to the repository, then they can potentially
+create additional workflows using that PAT. This is probably reasonably safe
+since it is probably rare to have collaborators on ones profile repository.
+However, we still do not recommend this approach, as you must have had a reason
+to put the required checks in place.
+
+__Recommended:__ The second (and recommended) approach to dealing with a 
+protected branch with
+required checks is to set up a dedicated branch for generating the stats image.
+This is actually what we are doing in this repository to generate the samples.
+Our `main` branch is protected with required checks, after all this is a development
+project repository and not a profile repository. We have a separate branch, `samples`,
+that is protected, but does not have any required checks. The `GITHUB_TOKEN`
+is sufficient to push to this branch.
+
+Here is how you can do something similar if your profile repository has 
+required checks on its main branch. First, create a branch, perhaps called `stats`.
+The special `stats` branch does not need to be kept up to date with `main`. In fact,
+once you create the `stats` branch, you can delete everything from that branch (e.g.,
+you'll notice that the `samples` branch of this repository only has an "images"
+directory. Next, create or modify a workflow in your `main` (or default) branch 
+that checks out the dedicated `stats` branch (see the modified `actions/checkout@v2` 
+step) as follows:
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: stats   # Or whatever you named your dedicated branch
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+Since the image is now in a different branch than your README,
+you then need to modify the markdown used to insert the
+image into your profile README to refer explicitly to that branch
+as follows:
+
+```markdown
+![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)
+```
+
+The repetition of "USERNAME" in the above example is that we are assuming this
+is in your profile repository, which must be named identically to your username.
+
+A version that links the image to this repository
+so that others know how you generated it is as follows:
+
+```markdown
+[![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)](https://github.com/cicirello/user-statistician)
 ```
 
 
@@ -340,4 +444,19 @@ workflow run won't have the opportunity to check the `exit-code` output.
 However, the `exit-code` and a descriptive error message will still be
 logged in the workflow output. In either case, if you believe that the
 failure is a bug, please include this in any bug reports.
+
+
+## All Possible Action Inputs
+
+The workflow here shows all possible inputs, with their default
+values, and also shows how to access the action's `exit-code`
+output if desired.
+
+```yml
+
+```
+
+## License
+
+This GitHub action is released under the [MIT License](LICENSE.md).
 
