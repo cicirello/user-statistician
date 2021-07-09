@@ -189,6 +189,79 @@ release that you wish to use, such as with the following:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
 
+### Protected branches with required checks
+
+The default permissions of the `GITHUB_TOKEN` are sufficient for pushing
+to a protected branch, provided that the branch protection hasn't been
+configured with required reviews nor with required checks. If your
+GitHub profile repository does have a branch protection rule with
+required reviews or required checks, there are a couple solutions.
+
+__Not Recommended:__ First, you could create a personal access token (PAT) with necessary
+permissions, save it as a repository secret, and pass that to the action
+instead of the `GITHUB_TOKEN`. However, we do not recommend doing so.
+If anyone else has write access to the repository, then they can potentially
+create additional workflows using that PAT. This is probably reasonably safe
+since it is probably rare to have collaborators on ones profile repository.
+However, we still do not recommend this approach, as you must have had a reason
+to put the required checks in place.
+
+__Recommended:__ The second (and recommended) approach to dealing with a 
+protected branch with
+required checks is to set up a dedicated branch for generating the stats image.
+This is actually what we are doing in this repository to generate the samples.
+Our `main` branch is protected with required checks, after all this is a development
+project repository and not a profile repository. We have a separate branch, `samples`,
+that is protected, but does not have any required checks. The `GITHUB_TOKEN`
+is sufficient to push to this branch.
+
+Here is how you can do something similar if your profile repository has 
+required checks on its main branch. First, create a branch, perhaps called `stats`.
+The special `stats` branch does not need to be kept up to date with `main`. Then
+modify the workflow to checkout the dedicated `stats` branch as follows:
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: stats   # Or whatever you named your dedicated branch
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+Since the image is now in a different branch than your README,
+you then need to modify the markdown used to insert the
+image into your profile README to refer explicitly to that branch
+as follows:
+
+```markdown
+![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)
+```
+
+The repetition of "USERNAME" in the above example is that we are assuming this
+is in your profile repository, which must be named identical to your username.
+
+A version that links the image to this repository
+so that others know how you generated it is as follows:
+
+```markdown
+[![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)](https://github.com/cicirello/user-statistician)
+```
+
 
 ## The Stats
 
