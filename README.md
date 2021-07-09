@@ -72,9 +72,9 @@ the `workflow_dispatch` event so that you can run it manually if desired.
 The `actions/checkout@v2` step is required because the action generates the stats image
 for the owner of the checked out repository, and it is also for the commit and push
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
-variable (see the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) to
-`cicirello/user-statistician` in order to be able to query GitHub's GraphQl API.
-The default permissions of the `GITHUB_TOKEN` are sufficient.
+variable to `cicirello/user-statistician` (see 
+the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) in order to be able to query 
+GitHub's GraphQl API. The default permissions of the `GITHUB_TOKEN` are sufficient.
 
 Assuming that you use the default image filename and path, then you can
 insert the image into your README with the following markdown:
@@ -83,22 +83,85 @@ insert the image into your README with the following markdown:
 ![My user statistics](images/userstats.svg)
 ```
 
-Although not required, it is appreciated if you link the image to this repository
+Although not required, it is appreciated if you instead link the image to this repository
 so that others know how you generated it, with the following markdown:
 
 ```markdown
 [![My user statistics](images/userstats.svg)](https://github.com/cicirello/user-statistician)
 ```
 
-![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)
+Here is a sample of what this will produce:
+
+[![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 2: Dark theme without title
 
-![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)
+This example shows how to change colors to the
+dark theme, as well as disabling the title.
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: dark
+        include-title: false
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+Here is a sample of what this will produce:
+
+[![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 3: Dark-dimmed theme with custom title and some hidden stats
 
-![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)
+This example shows the dark-dimmed theme, uses a custom title, and hides a
+few statistics (followers, following, and private). Note by hiding both followers
+and following that the action will automatically hide the header row for the
+"General User Stats" section since we've hidden all of the stats from that section.
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: dark-dimmed
+        custom-title: My GitHub Statistics
+        hide-keys: followers, following, private
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+Here is a sample of what this will produce:
+
+[![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
 ## The Stats
 
