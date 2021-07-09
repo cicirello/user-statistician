@@ -217,9 +217,12 @@ is sufficient to push to this branch.
 
 Here is how you can do something similar if your profile repository has 
 required checks on its main branch. First, create a branch, perhaps called `stats`.
-The special `stats` branch does not need to be kept up to date with `main`. Then
-modify the workflow to checkout the dedicated `stats` branch (see the modified
-`actions/checkout@v2` step) as follows:
+The special `stats` branch does not need to be kept up to date with `main`. In fact,
+once you create the `stats` branch, you can delete everything from that branch (e.g.,
+you'll notice that the `samples` branch of this repository only has an "images"
+directory. Next, create or modify a workflow in your `main` (or default) branch 
+that checks out the dedicated `stats` branch (see the modified `actions/checkout@v2` 
+step) as follows:
 
 ```yml
 name: user-statistician
@@ -254,7 +257,7 @@ as follows:
 ```
 
 The repetition of "USERNAME" in the above example is that we are assuming this
-is in your profile repository, which must be named identical to your username.
+is in your profile repository, which must be named identically to your username.
 
 A version that links the image to this repository
 so that others know how you generated it is as follows:
