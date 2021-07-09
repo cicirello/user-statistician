@@ -36,7 +36,45 @@ is otherwise fine).
 
 ## Example Workflows and Image Samples
 
+This section provides example workflows using the action, as
+well as samples of the corresponding images that they generate.
+
 ### Example 1: All default inputs
+
+This first example uses all of the default inputs (see [Inputs](#inputs) section
+for details of available inputs). Specifically, it uses the default color
+theme (a light theme), and includes all available statistics in the image and
+the default title. The action commits and pushes the image by default as well.
+
+This example workflow runs on a schedule (every day at 3am) and also includes
+the `workflow_dispatch` event so that you can run it manually if desired.
+The `actions/checkout@v2` step is required, the action generates the stats image
+for the owner of the checked out repository, and also for the commit and push
+functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
+variable (see the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) to
+`cicirello/user-statistician` in order to be able to query GitHub's GraphQl API.
+The default permissions of the `GITHUB_TOKEN` are sufficient.
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
 
 ![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)
 
