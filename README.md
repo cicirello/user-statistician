@@ -39,12 +39,16 @@ that repository will show up on your GitHub Profile at the
 address: `https://github.com/USERNAME`.
 
 The remainder of the documentation is organized into the following sections:
-* [Example Workflows and Image Samples](#example-workflows-and-image-samples)
+* [Example Workflows and Image Samples](#example-workflows-and-image-samples):
+  This section includes workflows to get you started using the action, as well as
+  sample images.
 * [The Stats](#the-stats): a listing of all of the statistics included in the
   images that the action generates.
 * [Inputs](#inputs): Documentation of all of the inputs to the action, their
   default values, and the effects they have on the behavior of the action.
 * [Outputs](#outputs): Documentation of outputs of the action.
+* [All Possible Action Inputs](#all-possible-action-inputs): This section provides
+  a workflow that summarizes all of the action's inputs along with their default values.
 
 ## Example Workflows and Image Samples
 
@@ -440,4 +444,19 @@ workflow run won't have the opportunity to check the `exit-code` output.
 However, the `exit-code` and a descriptive error message will still be
 logged in the workflow output. In either case, if you believe that the
 failure is a bug, please include this in any bug reports.
+
+
+## All Possible Action Inputs
+
+The workflow here shows all possible inputs, with their default
+values, and also shows how to access the action's `exit-code`
+output if desired.
+
+```yml
+
+```
+
+## License
+
+This GitHub action is released under the [MIT License](LICENSE.md).
 
