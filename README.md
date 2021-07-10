@@ -2,14 +2,13 @@
 
 ## About
 
-[![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
-
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
-Action generates a visual summary of your activity on GitHub, suitable to display on
+Action generates a visual summary of your activity on GitHub in the form of an SVG, 
+suitable to display on
 your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme). 
-Although the intended use-case is to generate an image for your GitHub Profile README,
+Although the intended use-case is to generate an SVG image for your GitHub Profile README,
 you can also potentially link to the image from a personal website, or from anywhere else
-where you'd like to share a summary of your activity on GitHub. The image that the action 
+where you'd like to share a summary of your activity on GitHub. The SVG that the action 
 generates includes statistics for the repositories that
 you own as well as your contribution statistics (e.g., commits, issues, PRs, etc). 
 The user stats image can be customized, including the colors such as with one
@@ -47,6 +46,11 @@ The `user-statistician` action uses the following:
 * [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
 * We started with our template repository for GitHub Actions implemented in 
   Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+
+__Show Your Support__: If you find the `user-statistician` action useful, 
+please consider starring the repository; and if you use it for your profile 
+README, please consider either linking the image to this repository, or 
+otherwise indicating how it was generated. 
 
 ### Table of Contents
 
@@ -260,7 +264,7 @@ required checks on its main branch. First, create a branch, perhaps called `stat
 The special `stats` branch does not need to be kept up to date with `main`. In fact,
 once you create the `stats` branch, you can delete everything from that branch (e.g.,
 you'll notice that the `samples` branch of this repository only has an "images"
-directory. Next, create or modify a workflow in your `main` (or default) branch 
+directory). Next, create or modify a workflow in your `main` (or default) branch 
 that checks out the dedicated `stats` branch (see the modified `actions/checkout@v2` 
 step) as follows:
 
@@ -288,7 +292,7 @@ jobs:
 ```
 
 Since the image is now in a different branch than your README,
-you then need to modify the markdown used to insert the
+you also need to modify the markdown used to insert the
 image into your profile README to refer explicitly to that branch
 as follows:
 
