@@ -65,7 +65,7 @@ The remainder of the documentation is organized into the following sections:
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
-* [Support the Project](#-support-the-project)
+* [Support the Project](#support-the-project)
 
 ## Example Workflows and Image Samples
 
