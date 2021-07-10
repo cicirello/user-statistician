@@ -65,7 +65,7 @@ The remainder of the documentation is organized into the following sections:
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
-
+* [Support the Project](#-support-the-project)
 
 ## Example Workflows and Image Samples
 
@@ -565,6 +565,16 @@ jobs:
         # have failed the workflow and you can check it here.
         echo "exitCode = ${{ steps.statsStep.outputs.exit-code }}"
 ```
+
+## Support the Project
+
+You can support the project in a number of ways:
+* If you find the `user-statistician` action useful, consider starring the
+  repository.
+* If you use it to generate an SVG for your GitHub Profile README, consider
+  either linking the image back to this repository, or otherwise indicating
+  how you generated the stats SVG.
+* You can also consider [becoming a sponsor](https://github.com/sponsors/cicirello).
 
 ## License
 
