@@ -2,14 +2,13 @@
 
 ## About
 
-[![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
-
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
-Action generates a visual summary of your activity on GitHub, suitable to display on
+Action generates a visual summary of your activity on GitHub in the form of an SVG, 
+suitable to display on
 your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme). 
-Although the intended use-case is to generate an image for your GitHub Profile README,
+Although the intended use-case is to generate an SVG image for your GitHub Profile README,
 you can also potentially link to the image from a personal website, or from anywhere else
-where you'd like to share a summary of your activity on GitHub. The image that the action 
+where you'd like to share a summary of your activity on GitHub. The SVG that the action 
 generates includes statistics for the repositories that
 you own as well as your contribution statistics (e.g., commits, issues, PRs, etc). 
 The user stats image can be customized, including the colors such as with one
@@ -21,13 +20,13 @@ necessary data. The contribution counts are as reported by the GitHub GraphQL AP
 For details of how GitHub counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
 The repository and contribution data included is all public. This is true even
-of the "Private Contributions" entry on the stats image, as the data needed
-for that should only be returned from the query executed by the action if you have
-already opted in to inclusion of private contributions via 
+of the "Private Contributions" entry on the stats image, as 
+the "restrictedContributionsCount" returned from the query executed by the action 
+will only be non-zero if you have opted in to sharing private contributions via 
 [GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
 You can also disable the "Private Contributions" entry as well (see the 
-[Inputs section](#inputs)). It will also auto-hide if the count is 0, as will
-any other statistics with a count of 0.
+[Inputs section](#inputs)) regardless of your GitHub settings. It will also auto-hide if 
+the count is 0, as will any other statistics with a count of 0.
 
 To use the `user-statistician` action, you just need to set up a workflow in your
 profile repository (or technically any repository that you own) on a schedule (daily
@@ -38,17 +37,35 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
+The `user-statistician` action uses the following:
+* Python 3 (implemented almost entirely in Python);
+* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
+  image, which includes the GitHub CLI installed on a python:3-slim base image;
+* [The GitHub CLI](https://cli.github.com/);
+* [GitHub GraphQL API](https://docs.github.com/en/graphql);
+* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
+* We started with our template repository for GitHub Actions implemented in 
+  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+
+__Show Your Support__: If you find the `user-statistician` action useful, 
+please consider starring the repository; and if you use it for your profile 
+README, please consider either linking the image to this repository, or 
+otherwise indicating how it was generated. 
+
+### Table of Contents
+
 The remainder of the documentation is organized into the following sections:
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
   This section includes workflows to get you started using the action, as well as
   sample images.
-* [The Stats](#the-stats): a listing of all of the statistics included in the
+* [The Stats](#the-stats): This documents all of the statistics included in the
   images that the action generates.
 * [Inputs](#inputs): Documentation of all of the inputs to the action, their
   default values, and the effects they have on the behavior of the action.
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
+* [Support the Project](#support-the-project)
 
 ## Example Workflows and Image Samples
 
@@ -90,7 +107,7 @@ for the owner of the checked out repository, and it is also for the commit and p
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
 variable to `cicirello/user-statistician` (see 
 the `GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}`) in order to be able to query 
-GitHub's GraphQl API. The default permissions of the `GITHUB_TOKEN` are sufficient
+GitHub's GraphQL API. The default permissions of the `GITHUB_TOKEN` are sufficient
 for the API queries as well as (in most cases) for pushing the image to your 
 repository. If you are running this in a repository with branch 
 protection rules that require either reviews or checks, then see the section
@@ -247,7 +264,7 @@ required checks on its main branch. First, create a branch, perhaps called `stat
 The special `stats` branch does not need to be kept up to date with `main`. In fact,
 once you create the `stats` branch, you can delete everything from that branch (e.g.,
 you'll notice that the `samples` branch of this repository only has an "images"
-directory. Next, create or modify a workflow in your `main` (or default) branch 
+directory). Next, create or modify a workflow in your `main` (or default) branch 
 that checks out the dedicated `stats` branch (see the modified `actions/checkout@v2` 
 step) as follows:
 
@@ -275,7 +292,7 @@ jobs:
 ```
 
 Since the image is now in a different branch than your README,
-you then need to modify the markdown used to insert the
+you also need to modify the markdown used to insert the
 image into your profile README to refer explicitly to that branch
 as follows:
 
@@ -296,6 +313,59 @@ so that others know how you generated it is as follows:
 
 ## The Stats
 
+The statistics displayed in the image is organized into categories,
+and includes the following. Note that the "Key" is what you need if
+you are using the `hide-keys` input (see the [Inputs](#inputs) section).
+
+### General User Stats
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `followers` | Followers | simple count |
+| `following` | Following | simple count |
+
+### Repositories
+
+The Repositories category in the image includes
+two columns with data summarizing information
+about the non-forks that you own, as well as all repositories
+that you own, including forks.  The statistics include the 
+following.
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `public` | Repositories Owned | simple count |
+| `starredBy` | Starred By | simple count |
+| `forkedBy` | Forked By  | simple count |
+| `watchedBy` | Watched By | number watching your repositories (excluding you) |
+| `archived` | Archived | number of your repositories that you have archived |
+
+### Contributions
+
+The Contributions category in the image includes
+two columns with data summarizing information
+about your contributions during the past year, as well as
+totals over all years. Please note that this can be no more
+accurate than what is available via GitHub's API. For example,
+we have noticed that older contributions of our own seem to
+be missing. Also keep in mind what GitHub specifically counts as contributions. 
+For details of how GitHub counts contributions, see 
+[GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
+
+The contributions statistics in the image include the following.
+
+| Key | Statistic | Details |
+| --- | --- | ------ |
+| `commits` | Commits | simple count |
+| `issues` | Issues | simple count |
+| `prs` | Pull Requests | simple count |
+| `reviews` | Pull Request Reviews | simple count |
+| `contribTo` | Contributed To | number of repositories owned by others that you have contributed to |
+| `private` | Private Contributions | number of private contributions if you have shared them via your GitHub settings |
+
+Please note that GitHub's "restrictedContributionsCount" (which is your private contributions
+count) doesn't distinguish the type of contributions, so we cannot simply add
+these to the specific counts by type. 
 
 
 ## Inputs
@@ -380,27 +450,12 @@ both The "Followers" and "Following" counts from the "General User Stats" sectio
 and thus will also eliminate the column headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
 
-The keys are case sensitive, and include the following:
-
-| Key | Statistic |
-| --- | --- |
-| `followers` | Followers |
-| `following` | Following |
-| `public` | Repositories Owned |
-| `starredBy` | Starred By |
-| `forkedBy` | Forked By  |
-| `watchedBy` | Watched By |
-| `archived` | Archived |
-| `commits` | Commits |
-| `issues` | Issues |
-| `prs` | Pull Requests |
-| `reviews` | Pull Request Reviews |
-| `contribTo` | Contributed To |
-| `private` | Private Contributions |
+See earlier in the section [The Stats](#the-stats) for the keys needed for this input.
+The keys are case sensitive.
 
 ### `locale`
 
-This input is an ISO 639-1, two character language code for the
+This input is an ISO 639-1 two character language code for the
 language used in names of statistics, section and column headings,
 and default title on the user stats card. The default is `locale: en`,
 which is English. At the present time, this is the only supported 
@@ -430,6 +485,25 @@ itself during the next run, then pass `fail-on-error: false`
 
 ### `commit-and-push`
 
+The `commit-and-push` input controls whether the action commits
+and pushes the generated image upon creation. It defaults to
+`commit-and-push: true`. If the user stats image has changed since
+last commit, then as long as you are not running this in a detached
+head state (such as on a pull request event), the action will commit
+and push the new user stats image. If you are in a detached head
+state, such as if you were to run this during a pull request 
+(not sure why you would), then the action will simply and quietly
+skip the commit/push without issuing an error. 
+
+If your branch is protected with either required reviews or required
+checks, then the push will fail with an error. Whether this also
+fails your workflow depends on how you have set 
+the `fail-on-error` input. See the earlier discussion for what you 
+can do if you wish to use the action in a repository with
+that has configured required reviews or required checks:
+[Protected branches with required checks](#protected-branches-with-required-checks).
+
+
 ## Outputs
 
 The action has only the following action output variable.
@@ -453,8 +527,54 @@ values, and also shows how to access the action's `exit-code`
 output if desired.
 
 ```yml
+name: user-statistician
 
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      id: statsStep # Only needed if you want to check the exit-code
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/userstats.svg
+        include-title: true
+        custom-title: '' # Defaults to title pattern described earlier
+        colors: light
+        hide-keys: '' # None hidden
+        locale: en
+        fail-on-error: true
+        commit-and-push: true
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Check exit code if desired
+      run: |
+        # Note that if you set fail-on-error to true, you'll
+        # never actually get here if an error occurs. But if you
+        # set fail-on-error to false, then instead of failing the
+        # workflow, the action will output the exit code that would
+        # have failed the workflow and you can check it here.
+        echo "exitCode = ${{ steps.statsStep.outputs.exit-code }}"
 ```
+
+## Support the Project
+
+You can support the project in a number of ways:
+* If you find the `user-statistician` action useful, consider starring the
+  repository.
+* If you use it to generate an SVG for your GitHub Profile README, consider
+  either linking the image back to this repository, or otherwise indicating
+  how you generated the stats SVG.
+* You can also consider [becoming a sponsor](https://github.com/sponsors/cicirello).
 
 ## License
 
