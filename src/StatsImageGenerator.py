@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatLabels import statLabels, categoryLabels, titleTemplates
+from StatConfig import statLabels, categoryLabels, titleTemplates
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
