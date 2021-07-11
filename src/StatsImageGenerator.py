@@ -100,7 +100,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._repo,
-            categoryLabels[self._locale]["repo"],
+            categoryLabels[self._locale]["repositories"],
             self.filterKeys(
                 self._stats._repo,
                 exclude,
@@ -109,7 +109,7 @@ class StatsImageGenerator :
             )
         self.insertGroup(
             self._stats._contrib,
-            categoryLabels[self._locale]["contrib"],
+            categoryLabels[self._locale]["contributions"],
             self.filterKeys(
                 self._stats._contrib,
                 exclude,
