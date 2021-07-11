@@ -96,7 +96,7 @@ class TestSomething(unittest.TestCase) :
             self.fail()
 
     def test_category_labels(self) :
-        categories = {"general", "repo", "contrib"}
+        categories = {"general", "repositories", "contributions"}
         types = {"heading", "column-one", "column-two"}
         for locale in supportedLocales :
             self.assertTrue(locale in categoryLabels)
