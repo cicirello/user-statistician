@@ -89,33 +89,36 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        self.insertGroup(
-            self._stats._user,
-            categoryLabels[self._locale]["general"],
-            self.filterKeys(
+        if "general" not in exclude :
+            self.insertGroup(
                 self._stats._user,
-                exclude,
-                ["followers", "following"]
+                categoryLabels[self._locale]["general"],
+                self.filterKeys(
+                    self._stats._user,
+                    exclude,
+                    ["followers", "following"]
+                    )
                 )
-            )
-        self.insertGroup(
-            self._stats._repo,
-            categoryLabels[self._locale]["repositories"],
-            self.filterKeys(
+        if "repositories" not in exclude :
+            self.insertGroup(
                 self._stats._repo,
-                exclude,
-                ["public", "starredBy", "forkedBy", "watchedBy", "archived"]
+                categoryLabels[self._locale]["repositories"],
+                self.filterKeys(
+                    self._stats._repo,
+                    exclude,
+                    ["public", "starredBy", "forkedBy", "watchedBy", "archived"]
+                    )
                 )
-            )
-        self.insertGroup(
-            self._stats._contrib,
-            categoryLabels[self._locale]["contributions"],
-            self.filterKeys(
+        if "contributions" not in exclude :
+            self.insertGroup(
                 self._stats._contrib,
-                exclude,
-                ["commits", "issues", "prs", "reviews", "contribTo", "private"]
+                categoryLabels[self._locale]["contributions"],
+                self.filterKeys(
+                    self._stats._contrib,
+                    exclude,
+                    ["commits", "issues", "prs", "reviews", "contribTo", "private"]
+                    )
                 )
-            )
         self.finalizeImageData()
         return "\n".join(self._rows)
 
