@@ -35,7 +35,7 @@
 # the MIT license.
 
 
-# The locale keys are ISO 639-1, 2-character language codes
+# The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
 supportedLocales = { "en" }
 
@@ -48,12 +48,12 @@ categoryLabels = {
             "column-one" : "Count",
             "column-two" : ""
             },
-        "repo" : {
+        "repositories" : {
             "heading" : "Repositories",
             "column-one" : "Non-Forks",
             "column-two" : "All"
             },
-        "contrib" : {
+        "contributions" : {
             "heading" : "Contributions",
             "column-one" : "Past Year",
             "column-two" : "Total"
