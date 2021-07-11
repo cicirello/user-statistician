@@ -37,7 +37,6 @@ jobs:
       with:
         colors: dark
         fail-on-error: false
-        hide-keys: general, repositories, contributions
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
