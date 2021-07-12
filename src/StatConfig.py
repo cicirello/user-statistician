@@ -58,6 +58,10 @@ statsByCategory = {
         ]
     }
 
+# Order that the categories of stats should appear.
+categoryOrder = ["general", "repositories", "contributions"]
+
+
 # Steps to Contributing a New Locale:
 # (1) Add a string for the 2-character code to the set
 #     supportedLocales.
