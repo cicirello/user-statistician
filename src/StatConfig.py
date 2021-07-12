@@ -34,6 +34,29 @@
 # and are copyright (c) GitHub, Inc, and licensed by GitHub under
 # the MIT license.
 
+# Mapping from category key to list of stats keys in the
+# order they should appear.
+statsByCategory = {
+    "general" : [
+        "followers",
+        "following"
+        ],
+    "repositories" : [
+        "public",
+        "starredBy",
+        "forkedBy",
+        "watchedBy",
+        "archived"
+        ],
+    "contributions" : [
+        "commits",
+        "issues",
+        "prs",
+        "reviews",
+        "contribTo",
+        "private"
+        ]
+    }
 
 # Steps to Contributing a New Locale:
 # (1) Add a string for the 2-character code to the set
