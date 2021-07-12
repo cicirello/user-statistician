@@ -97,7 +97,7 @@ class TestSomething(unittest.TestCase) :
 
     def test_categories(self) :
         categories = {"general", "repositories", "contributions"}
-        assertEqual(set(categoryOrder), categories)
+        self.assertEqual(set(categoryOrder), categories)
         statistics = {
             "followers", "following", "public", "starredBy",
             "forkedBy", "watchedBy", "archived", "commits",
@@ -106,11 +106,11 @@ class TestSomething(unittest.TestCase) :
         
         # Make sure all are accounted for in a category
         statKeys = { stat for cat in categoryOrder for stat in statsByCategory[cat]}
-        assertEqual(statistics, statKeys)
+        self.assertEqual(statistics, statKeys)
 
         # Make sure none are in more than one categories
         numStats = sum(len(statsByCategory[cat]) for cat in categoryOrder)
-        assertEqual(numStats, len(statistics))
+        self.assertEqual(numStats, len(statistics))
 
     def test_category_labels(self) :
         categories = categoryOrder
