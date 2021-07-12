@@ -169,7 +169,12 @@ Here is a sample of what this will produce:
 This example shows the dark-dimmed theme, uses a custom title, and hides a
 few statistics (followers, following, and private). Note by hiding both followers
 and following that the action will automatically hide the header row for the
-"General User Stats" section since we've hidden all of the stats from that section.
+"General User Stats" section since we've hidden all of the non-zero 
+stats from that section. If someone were to sponsor me, or if I was to
+sponsor someone else, then the "General User Stats" section will show up the next time
+generated since this sample didn't hide the sponsors or sponsoring counts.
+If we want to guarantee that this entire section is hidden, we could instead
+specify "general" among the "keys" we pass to `hide-keys`.
 
 ```yml
 name: user-statistician
@@ -326,6 +331,8 @@ following.
 | --- | --- | ------ |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
+| `sponsors` | Sponsors | simple count |
+| `sponsoring` | Sponsoring | simple count |
 
 ### Repositories
 
@@ -456,9 +463,10 @@ If you want to hide an entire group, including the relevant column headings, the
 can pass the "key" for the category itself. Alternatively, if you
 list all of the keys for the elements
 of that group, then the entire group, including column headings, will be hidden. 
-For example, `hide-keys: followers following private` will hide
-both The "Followers" and "Following" counts from the "General User Stats" section,
-and thus will also eliminate the column headings for that entire section, and this will
+For example, `hide-keys: followers following sponsors sponsoring private` will hide
+both the "Followers", "Following", "Sponsors", and "Sponsoring" counts from 
+the "General User Stats" section, and thus will also eliminate the column 
+headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
 Another way of accomplishing the same thing is to use the "key" for the category
 such as: `hide-keys: general private`. 
