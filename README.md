@@ -69,7 +69,7 @@ __Built With__: The `user-statistician` action uses the following:
 __Show Your Support__: If you find the `user-statistician` action useful, 
 please consider starring the repository; and if you use it for your profile 
 README, please consider either linking the image to this repository, or 
-otherwise indicating how it was generated. 
+otherwise sharing how it was generated with your profile visitors. 
 
 ### Table of Contents
 
@@ -504,7 +504,8 @@ If an unsupported locale is passed, then the action will use the
 default of "en".
 
 If you are interested in contributing a new locale, only the 
-[src/StatLabels.py](src/StatLabels.py) file must be updated.
+[src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
+within that file for guidance in contributing a locale.
 
 ### `fail-on-error`
 
