@@ -26,6 +26,12 @@ query($owner: String!) {
     repositoriesContributedTo {
       totalCount
     }
+    sponsorshipsAsMaintainer {
+      totalCount
+    }
+    sponsorshipsAsSponsor  {
+      totalCount
+    }
     topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
       totalCount
     }
