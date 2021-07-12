@@ -89,36 +89,17 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        if "general" not in exclude :
-            self.insertGroup(
-                self._stats.getStatsByKey("general"),
-                categoryLabels[self._locale]["general"],
-                self.filterKeys(
-                    self._stats.getStatsByKey("general"),
-                    exclude,
-                    statsByCategory["general"]
+        for category in categoryOrder :
+            if category not in exclude :
+                self.insertGroup(
+                    self._stats.getStatsByKey(category),
+                    categoryLabels[self._locale][category],
+                    self.filterKeys(
+                        self._stats.getStatsByKey(category),
+                        exclude,
+                        statsByCategory[category]
+                        )
                     )
-                )
-        if "repositories" not in exclude :
-            self.insertGroup(
-                self._stats.getStatsByKey("repositories"),
-                categoryLabels[self._locale]["repositories"],
-                self.filterKeys(
-                    self._stats.getStatsByKey("repositories"),
-                    exclude,
-                    statsByCategory["repositories"]
-                    )
-                )
-        if "contributions" not in exclude :
-            self.insertGroup(
-                self._stats.getStatsByKey("contributions"),
-                categoryLabels[self._locale]["contributions"],
-                self.filterKeys(
-                    self._stats.getStatsByKey("contributions"),
-                    exclude,
-                    statsByCategory["contributions"]
-                    )
-                )
         self.finalizeImageData()
         return "\n".join(self._rows)
 
