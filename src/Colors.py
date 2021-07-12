@@ -49,10 +49,25 @@
 #     color for accessibility at this site,
 #     https://colorable.jxnblk.com/, and make sure the
 #     combination has a rating of at least AA.
-# (2) Please add the new theme alphabetized by theme name.
+#
+# (2) Before contributing a new color theme, ask yourself
+#     whether it will likely have broad appeal or a narrow
+#     audience. For example, if it is just the color palette
+#     of your personal website or blog, then a theme may not
+#     be necessary. You can simply use the colors input for
+#     your usage.
+#
+# (3) Is it similar to one of the existing themes? Or does it
+#     provide users with something truly new to choose from?
+#
+# (4) Please add the new theme alphabetized by theme name.
+#
+# (5) Include a comment with your GitHub userid indicating you
+#     are the contributor of the theme (see the existing themes).
 
 colorMapping = {
-    
+
+    # Contributor: cicirello (part of initial theme set)
     "dark" : {
         "bg" : "#090c10",
         "border" : "#0d419d",
@@ -61,6 +76,7 @@ colorMapping = {
         "title" : "#c9d1d9"
         },
 
+    # Contributor: cicirello (part of initial theme set)
     "dark-dimmed" : {
         "bg" : "#1e2228",
         "border" : "#1b4b91",
@@ -68,7 +84,8 @@ colorMapping = {
         "text" : "#768390",
         "title" : "#adbac7"
         },
-    
+
+    # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
         "border" : "#c8e1ff",
@@ -76,4 +93,5 @@ colorMapping = {
         "text" : "#586069",
         "title" : "#24292e"
         }
+    
     }

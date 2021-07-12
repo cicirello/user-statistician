@@ -12,7 +12,7 @@ query($owner: String!) {
     followers {
       totalCount
     }
-	following {
+    following {
       totalCount
     }
     issues {
@@ -24,6 +24,12 @@ query($owner: String!) {
       totalCount
     }
     repositoriesContributedTo {
+      totalCount
+    }
+    sponsorshipsAsMaintainer {
+      totalCount
+    }
+    sponsorshipsAsSponsor  {
       totalCount
     }
     topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {

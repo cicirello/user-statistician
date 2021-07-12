@@ -34,8 +34,75 @@
 # and are copyright (c) GitHub, Inc, and licensed by GitHub under
 # the MIT license.
 
+# Mapping from category key to list of stats keys in the
+# order they should appear.
+statsByCategory = {
+    "general" : [
+        "followers",
+        "sponsors",
+        "following",
+        "sponsoring"
+        ],
+    "repositories" : [
+        "public",
+        "starredBy",
+        "forkedBy",
+        "watchedBy",
+        "templates",
+        "archived"
+        ],
+    "contributions" : [
+        "commits",
+        "issues",
+        "prs",
+        "reviews",
+        "contribTo",
+        "private"
+        ]
+    }
 
-# The locale keys are ISO 639-1, 2-character language codes
+# Order that the categories of stats should appear.
+categoryOrder = ["general", "repositories", "contributions"]
+
+
+# Steps to Contributing a New Locale:
+# (0) Check if there are any open issues or pull requests
+#     related to the locale that you want to add. Begin by opening
+#     an issue indicating the locale that you want to add. Perhaps
+#     mention in the issue that you are planning to work on it, so
+#     we know the difference between a simple request with nobody to
+#     work on it vs a volunteer. Once you've submitted the issue,
+#     fork the repo, and create a branch for your feature.
+# (1) Add a string for the 2-character code to the set
+#     supportedLocales.
+# (2) In the Python dictionary, categoryLabels, create a
+#     mapping corresponding to that new 2-character string.
+#     You might start by copying and pasting the entirety of
+#     the entry for "en". Make sure you keep the dictionary keys
+#     as they are, and only translate the values.
+# (3) In the Python dictionary, titleTemplates, add a template for
+#     the default title by adding a mapping from the 2-character
+#     string for the new locale to a format string (see the comments
+#     where titleTemplates is declared.
+# (4) In the Python dictionary, statLabels, each key "label" maps to
+#     a Python dictionary with the locale code as key. Add a corresponding
+#     key value pair for the new locale.
+# (5) The existing test cases will verify that all of the above
+#     has been done for each 2 character locale code in the
+#     supportedLocales set. So no new test cases should be necessary when
+#     adding a locale, but existing tests must pass.
+# (6) If you contribute translations for a new locale,
+#     or if you correct any errors in one, then please
+#     credit yourself here by either adding a list below for
+#     the relevant locale if it is new, or adding your
+#     GitHub user id to the list below if you contributed a bug
+#     fix to an existing one.
+#
+# Locale Contributors:
+# en: cicirello
+#
+
+# The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
 supportedLocales = { "en" }
 
@@ -48,12 +115,12 @@ categoryLabels = {
             "column-one" : "Count",
             "column-two" : ""
             },
-        "repo" : {
+        "repositories" : {
             "heading" : "Repositories",
             "column-one" : "Non-Forks",
             "column-two" : "All"
             },
-        "contrib" : {
+        "contributions" : {
             "heading" : "Contributions",
             "column-one" : "Past Year",
             "column-two" : "Total"
@@ -84,6 +151,20 @@ statLabels = {
             "en" : "Following"
             }
         },
+
+    "sponsors" : {
+        "icon" : '<path fill-rule="evenodd" d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.565 20.565 0 008 13.393a20.561 20.561 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5zM8 14.25l-.345.666-.002-.001-.006-.003-.018-.01a7.643 7.643 0 01-.31-.17 22.075 22.075 0 01-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.08 22.08 0 01-3.744 2.584l-.018.01-.006.003h-.002L8 14.25zm0 0l.345.666a.752.752 0 01-.69 0L8 14.25z"/>',
+        "label" : {
+            "en" : "Sponsors"
+            }
+        },
+
+    "sponsoring" : {
+        "icon" : '<path fill-rule="evenodd" d="M4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.565 20.565 0 008 13.393a20.561 20.561 0 003.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.75.75 0 01-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5zM8 14.25l-.345.666-.002-.001-.006-.003-.018-.01a7.643 7.643 0 01-.31-.17 22.075 22.075 0 01-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.08 22.08 0 01-3.744 2.584l-.018.01-.006.003h-.002L8 14.25zm0 0l.345.666a.752.752 0 01-.69 0L8 14.25z"/>',
+        "label" : {
+            "en" : "Sponsoring"
+            }
+        },
     
     "public" : {
         "icon" : '<path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>',
@@ -110,6 +191,13 @@ statLabels = {
         "icon" : '<path fill-rule="evenodd" d="M1.679 7.932c.412-.621 1.242-1.75 2.366-2.717C5.175 4.242 6.527 3.5 8 3.5c1.473 0 2.824.742 3.955 1.715 1.124.967 1.954 2.096 2.366 2.717a.119.119 0 010 .136c-.412.621-1.242 1.75-2.366 2.717C10.825 11.758 9.473 12.5 8 12.5c-1.473 0-2.824-.742-3.955-1.715C2.92 9.818 2.09 8.69 1.679 8.068a.119.119 0 010-.136zM8 2c-1.981 0-3.67.992-4.933 2.078C1.797 5.169.88 6.423.43 7.1a1.619 1.619 0 000 1.798c.45.678 1.367 1.932 2.637 3.024C4.329 13.008 6.019 14 8 14c1.981 0 3.67-.992 4.933-2.078 1.27-1.091 2.187-2.345 2.637-3.023a1.619 1.619 0 000-1.798c-.45-.678-1.367-1.932-2.637-3.023C11.671 2.992 9.981 2 8 2zm0 8a2 2 0 100-4 2 2 0 000 4z"/>',
         "label" : {
             "en" : "Watched By"
+            }
+        },
+
+    "templates" : {
+        "icon" : '<path fill-rule="evenodd" d="M6 .75A.75.75 0 016.75 0h2.5a.75.75 0 010 1.5h-2.5A.75.75 0 016 .75zm5 0a.75.75 0 01.75-.75h1.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V1.5h-.75A.75.75 0 0111 .75zM4.992.662a.75.75 0 01-.636.848c-.436.063-.783.41-.846.846a.75.75 0 01-1.485-.212A2.501 2.501 0 014.144.025a.75.75 0 01.848.637zM2.75 4a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 012.75 4zm10.5 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM2.75 8a.75.75 0 01.75.75v.268A1.72 1.72 0 013.75 9h.5a.75.75 0 010 1.5h-.5a.25.25 0 00-.25.25v.75c0 .28.114.532.3.714a.75.75 0 01-1.05 1.072A2.495 2.495 0 012 11.5V8.75A.75.75 0 012.75 8zm10.5 0a.75.75 0 01.75.75v4.5a.75.75 0 01-.75.75h-2.5a.75.75 0 010-1.5h1.75v-2h-.75a.75.75 0 010-1.5h.75v-.25a.75.75 0 01.75-.75zM6 9.75A.75.75 0 016.75 9h2.5a.75.75 0 010 1.5h-2.5A.75.75 0 016 9.75zm-1 2.5v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>',
+        "label" : {
+            "en" : "Templates"
             }
         },
     

@@ -3,7 +3,7 @@
 ## About
 
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
-Action generates a visual summary of your activity on GitHub in the form of an SVG, 
+Action generates a detailed visual summary of your activity on GitHub in the form of an SVG, 
 suitable to display on
 your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme). 
 Although the intended use-case is to generate an SVG image for your GitHub Profile README,
@@ -37,7 +37,26 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
-The `user-statistician` action uses the following:
+__Inspiration__: We were inspired by the very awesome project
+[anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
+which generates several different stats cards for GitHub Profile READMEs. You should
+check it out if you haven't already. I currently use their language stats card on my profile.
+
+__Motivation__: The reasons that we decided to create the 
+[cicirello/user-statistician](https://github.com/cicirello/user-statistician)
+GitHub Action, despite the availability of this other tool include the following:
+1. We wanted to include more detailed stats all in a single SVG.
+2. We wanted something that ran entirely within GitHub.
+3. We wanted something that updated the SVG on a schedule (e.g., daily), 
+  rather than on-demand, for the following reasons:
+    1. The image is simply served when requested, avoiding 
+      the delay associated with waiting for API queries to gather the data to generate 
+      the image. 
+    2. The API queries associated with generating the image happen once per 
+      cycle of your configured schedule, regardless of how frequently your 
+      profile is visited, lessening system load.
+
+__Built With__: The `user-statistician` action uses the following:
 * Python 3 (implemented almost entirely in Python);
 * The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
   image, which includes the GitHub CLI installed on a python:3-slim base image;
@@ -50,7 +69,7 @@ The `user-statistician` action uses the following:
 __Show Your Support__: If you find the `user-statistician` action useful, 
 please consider starring the repository; and if you use it for your profile 
 README, please consider either linking the image to this repository, or 
-otherwise indicating how it was generated. 
+otherwise sharing how it was generated with your profile visitors. 
 
 ### Table of Contents
 
@@ -65,7 +84,7 @@ The remainder of the documentation is organized into the following sections:
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
-* [Support the Project](#support-the-project)
+* [Support the Project](#support-the-project): Ways that you can support the project.
 
 ## Example Workflows and Image Samples
 
@@ -169,7 +188,12 @@ Here is a sample of what this will produce:
 This example shows the dark-dimmed theme, uses a custom title, and hides a
 few statistics (followers, following, and private). Note by hiding both followers
 and following that the action will automatically hide the header row for the
-"General User Stats" section since we've hidden all of the stats from that section.
+"General User Stats" section since we've hidden all of the non-zero 
+stats from that section. If someone were to sponsor me, or if I was to
+sponsor someone else, then the "General User Stats" section will show up the next time
+generated since this sample didn't hide the sponsors or sponsoring counts.
+If we want to guarantee that this entire section is hidden, we could instead
+specify "general" among the "keys" we pass to `hide-keys`.
 
 ```yml
 name: user-statistician
@@ -319,17 +343,24 @@ you are using the `hide-keys` input (see the [Inputs](#inputs) section).
 
 ### General User Stats
 
+The key to hide this entire category is: `general`. The statistics include the 
+following.
+
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
+| `sponsors` | Sponsors | simple count |
+| `sponsoring` | Sponsoring | simple count |
 
 ### Repositories
 
 The Repositories category in the image includes
 two columns with data summarizing information
 about the non-forks that you own, as well as all repositories
-that you own, including forks.  The statistics include the 
+that you own, including forks.  
+The key to hide this entire category is: `repositories`.
+The statistics include the 
 following.
 
 | Key | Statistic | Details |
@@ -338,6 +369,7 @@ following.
 | `starredBy` | Starred By | simple count |
 | `forkedBy` | Forked By  | simple count |
 | `watchedBy` | Watched By | number watching your repositories (excluding you) |
+| `templates` | Templates | number of your repositories that are templates |
 | `archived` | Archived | number of your repositories that you have archived |
 
 ### Contributions
@@ -352,6 +384,7 @@ be missing. Also keep in mind what GitHub specifically counts as contributions.
 For details of how GitHub counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
 
+The key to hide this entire category is: `contributions`.
 The contributions statistics in the image include the following.
 
 | Key | Statistic | Details |
@@ -391,8 +424,10 @@ other than `true`, case insensitive, will be treated as `false`).
 ### `custom-title`
 
 If you include a title in the user statistics image, the default 
-title is of the form "Your Name's Statistics", where "Your Name" is the name 
-of the owner of the repository that is using the action.
+title is of the form "Your Name's Statistics", where "Your Name" is the 
+public name of the owner of the repository that is using the action.
+Although note that in the case where the API query returns a null name,
+then the fallback behavior is to use the user id in its place.
 
 You can customize the title using the `custom-title` input. For example,
 `custom-title: Hello GitHub` will set the title accordingly. Be aware that
@@ -441,14 +476,19 @@ The action automatically hides any statistics with a value of 0. For example,
 if you have no pull requests, the action automatically will hide the pull requests
 entry from the image rather than listing it as 0. Otherwise, all supported statistics
 are shown by default. If you wish to hide any regardless of whether it has a value of 0, 
-then just pass a list of the "keys"
-corresponding to those you want to hide. The list can be either space or comma separated.
-If you want to hide an entire group, including the relevant column headings, then 
+then just pass a list of the "keys" corresponding to those you want to hide. 
+The list can be either space or comma separated.
+If you want to hide an entire group, including the relevant column headings, then you
+can pass the "key" for the category itself. Alternatively, if you
 list all of the keys for the elements
-of that group. For example, `hide-keys: followers following private` will hide
-both The "Followers" and "Following" counts from the "General User Stats" section,
-and thus will also eliminate the column headings for that entire section, and this will
+of that group, then the entire group, including column headings, will be hidden. 
+For example, `hide-keys: followers following sponsors sponsoring private` will hide
+both the "Followers", "Following", "Sponsors", and "Sponsoring" counts from 
+the "General User Stats" section, and thus will also eliminate the column 
+headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
+Another way of accomplishing the same thing is to use the "key" for the category
+such as: `hide-keys: general private`. 
 
 See earlier in the section [The Stats](#the-stats) for the keys needed for this input.
 The keys are case sensitive.
@@ -464,7 +504,8 @@ If an unsupported locale is passed, then the action will use the
 default of "en".
 
 If you are interested in contributing a new locale, only the 
-[src/StatLabels.py](src/StatLabels.py) file must be updated.
+[src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
+within that file for guidance in contributing a locale.
 
 ### `fail-on-error`
 
@@ -569,14 +610,18 @@ jobs:
 ## Support the Project
 
 You can support the project in a number of ways:
-* If you find the `user-statistician` action useful, consider starring the
+* __Starring__: If you find the `user-statistician` action useful, consider starring the
   repository.
-* If you use it to generate an SVG for your GitHub Profile README, consider
-  either linking the image back to this repository, or otherwise indicating
+* __Linking or Sharing__: If you use it to generate an SVG for your 
+  GitHub Profile README, consider
+  either linking the image back to this repository, or otherwise sharing
   how you generated the stats SVG.
-* You can also consider [becoming a sponsor](https://github.com/sponsors/cicirello).
+* __Sponsoring__: You can also consider 
+  [becoming a sponsor](https://github.com/sponsors/cicirello).
 
 ## License
 
-This GitHub action is released under the [MIT License](LICENSE.md).
+This GitHub action is licensed under the [MIT License](LICENSE.md). If you contribute
+to the project, you agree that your contributions are likewise licensed through
+the MIT License. 
 

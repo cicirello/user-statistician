@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatLabels import statLabels, categoryLabels, titleTemplates
+from StatConfig import *
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -89,33 +89,17 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        self.insertGroup(
-            self._stats._user,
-            categoryLabels[self._locale]["general"],
-            self.filterKeys(
-                self._stats._user,
-                exclude,
-                ["followers", "following"]
-                )
-            )
-        self.insertGroup(
-            self._stats._repo,
-            categoryLabels[self._locale]["repo"],
-            self.filterKeys(
-                self._stats._repo,
-                exclude,
-                ["public", "starredBy", "forkedBy", "watchedBy", "archived"]
-                )
-            )
-        self.insertGroup(
-            self._stats._contrib,
-            categoryLabels[self._locale]["contrib"],
-            self.filterKeys(
-                self._stats._contrib,
-                exclude,
-                ["commits", "issues", "prs", "reviews", "contribTo", "private"]
-                )
-            )
+        for category in categoryOrder :
+            if category not in exclude :
+                self.insertGroup(
+                    self._stats.getStatsByKey(category),
+                    categoryLabels[self._locale][category],
+                    self.filterKeys(
+                        self._stats.getStatsByKey(category),
+                        exclude,
+                        statsByCategory[category]
+                        )
+                    )
         self.finalizeImageData()
         return "\n".join(self._rows)
 
