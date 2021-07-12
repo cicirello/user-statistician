@@ -37,21 +37,24 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
-__Motivation/Inspiration__: We were inspired by the very awesome project
+__Inspiration__: We were inspired by the very awesome project
 [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
 which generates several different stats cards for GitHub Profile READMEs. You should
 check it out if you haven't already. I currently use their language stats card on my profile.
-The reasons that we decided to create the 
+
+__Motivation__: The reasons that we decided to create the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action, despite the availability of this other tool include the following:
 1. We wanted to include more detailed stats all in a single SVG.
 2. We wanted something that ran entirely within GitHub.
 3. We wanted something that updated the SVG on a schedule (e.g., daily), 
-  rather than on-demand, so the image is simply served when requested, avoiding 
-  the delay associated with waiting for API queries to gather the data to generate 
-  the image. An additional advantage of this is that the API queries associated 
-  with generating the image happen once per cycle of your configured schedule, 
-  regardless of how frequently your profile is visited, lessening system load.
+  rather than on-demand, for the following reasons:
+  a. The image is simply served when requested, avoiding 
+    the delay associated with waiting for API queries to gather the data to generate 
+    the image. 
+  b. The API queries associated with generating the image happen once per 
+    cycle of your configured schedule, regardless of how frequently your 
+    profile is visited, lessening system load.
 
 __Built With__: The `user-statistician` action uses the following:
 * Python 3 (implemented almost entirely in Python);
