@@ -1,7 +1,7 @@
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
     watching(first: 100, after: $endCursor, ownerAffiliations: OWNER, privacy: PUBLIC) {
-	  totalCount
+      totalCount
       nodes {
         isFork
       }
