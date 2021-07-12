@@ -192,7 +192,11 @@ class Statistician :
             # Counts of archived repos
             publicNonForksArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"] and not repo["isFork"])
             publicArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
-        
+
+            # Counts of template repos
+            publicNonForksTemplatesCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isTemplate"] and not repo["isPrivate"] and not repo["isFork"])
+            publicTemplatesCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isTemplate"] and not repo["isPrivate"])
+            
             # Count of public non forks owned by user
             publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
         else :
@@ -209,13 +213,16 @@ class Statistician :
             publicNonForksArchivedCount = 0
             publicArchivedCount = 0
             publicNonForksCount = 0
+            publicNonForksTemplatesCount = 0
+            publicTemplatesCount = 0
 
         self._repo = {
             "public" : [publicNonForksCount, publicAll],
             "starredBy" : [stargazers, stargazersAll],
             "forkedBy" : [forksOfMyRepos, forksOfMyReposAll],
             "watchedBy" : [watchersNonForks, watchers],
-            "archived" : [publicNonForksArchivedCount, publicArchivedCount]
+            "archived" : [publicNonForksArchivedCount, publicArchivedCount],
+            "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
             }
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
