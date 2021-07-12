@@ -91,30 +91,30 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         if "general" not in exclude :
             self.insertGroup(
-                self._stats._user,
+                self._stats.getStatsByKey("general"),
                 categoryLabels[self._locale]["general"],
                 self.filterKeys(
-                    self._stats._user,
+                    self._stats.getStatsByKey("general"),
                     exclude,
                     statsByCategory["general"]
                     )
                 )
         if "repositories" not in exclude :
             self.insertGroup(
-                self._stats._repo,
+                self._stats.getStatsByKey("repositories"),
                 categoryLabels[self._locale]["repositories"],
                 self.filterKeys(
-                    self._stats._repo,
+                    self._stats.getStatsByKey("repositories"),
                     exclude,
                     statsByCategory["repositories"]
                     )
                 )
         if "contributions" not in exclude :
             self.insertGroup(
-                self._stats._contrib,
+                self._stats.getStatsByKey("contributions"),
                 categoryLabels[self._locale]["contributions"],
                 self.filterKeys(
-                    self._stats._contrib,
+                    self._stats.getStatsByKey("contributions"),
                     exclude,
                     statsByCategory["contributions"]
                     )
