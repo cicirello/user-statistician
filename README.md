@@ -319,6 +319,9 @@ you are using the `hide-keys` input (see the [Inputs](#inputs) section).
 
 ### General User Stats
 
+The key to hide this entire category is: `general`. The statistics include the 
+following.
+
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `followers` | Followers | simple count |
@@ -329,7 +332,9 @@ you are using the `hide-keys` input (see the [Inputs](#inputs) section).
 The Repositories category in the image includes
 two columns with data summarizing information
 about the non-forks that you own, as well as all repositories
-that you own, including forks.  The statistics include the 
+that you own, including forks.  
+The key to hide this entire category is: `repositories`.
+The statistics include the 
 following.
 
 | Key | Statistic | Details |
@@ -338,6 +343,7 @@ following.
 | `starredBy` | Starred By | simple count |
 | `forkedBy` | Forked By  | simple count |
 | `watchedBy` | Watched By | number watching your repositories (excluding you) |
+| `templates` | Templates | number of your repositories that are templates |
 | `archived` | Archived | number of your repositories that you have archived |
 
 ### Contributions
@@ -352,6 +358,7 @@ be missing. Also keep in mind what GitHub specifically counts as contributions.
 For details of how GitHub counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
 
+The key to hide this entire category is: `contributions`.
 The contributions statistics in the image include the following.
 
 | Key | Statistic | Details |
@@ -443,14 +450,18 @@ The action automatically hides any statistics with a value of 0. For example,
 if you have no pull requests, the action automatically will hide the pull requests
 entry from the image rather than listing it as 0. Otherwise, all supported statistics
 are shown by default. If you wish to hide any regardless of whether it has a value of 0, 
-then just pass a list of the "keys"
-corresponding to those you want to hide. The list can be either space or comma separated.
-If you want to hide an entire group, including the relevant column headings, then 
+then just pass a list of the "keys" corresponding to those you want to hide. 
+The list can be either space or comma separated.
+If you want to hide an entire group, including the relevant column headings, then you
+can pass the "key" for the category itself. Alternatively, if you
 list all of the keys for the elements
-of that group. For example, `hide-keys: followers following private` will hide
+of that group, then the entire group, including column headings, will be hidden. 
+For example, `hide-keys: followers following private` will hide
 both The "Followers" and "Following" counts from the "General User Stats" section,
 and thus will also eliminate the column headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
+Another way of accomplishing the same thing is to use the "key" for the category
+such as: `hide-keys: general private`. 
 
 See earlier in the section [The Stats](#the-stats) for the keys needed for this input.
 The keys are case sensitive.
