@@ -136,6 +136,10 @@ class Statistician :
         self._user["followers"] = [ basicStats["data"]["user"]["followers"]["totalCount"] ]
         self._user["following"] = [ basicStats["data"]["user"]["following"]["totalCount"] ]
 
+        # Extract sponsors and sponsoring counts
+        self._user["sponsors"] = [ basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
+        self._user["sponsoring"] = [ basicStats["data"]["user"]["sponsorshipsAsSponsor"]["totalCount"] ]
+
         # Extract all time counts of issues and pull requests
         issues = basicStats["data"]["user"]["issues"]["totalCount"]
         pullRequests = basicStats["data"]["user"]["pullRequests"]["totalCount"]
