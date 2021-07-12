@@ -100,7 +100,7 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(set(categoryOrder), categories)
         statistics = {
             "followers", "following", "public", "starredBy",
-            "forkedBy", "watchedBy", "archived", "commits",
+            "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
             }
         
@@ -126,7 +126,7 @@ class TestSomething(unittest.TestCase) :
     def test_stat_labels(self) :
         keys = {
             "followers", "following", "public", "starredBy",
-            "forkedBy", "watchedBy", "archived", "commits",
+            "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
             }
         self.assertTrue(all(k in statLabels for k in keys))
