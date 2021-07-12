@@ -121,6 +121,9 @@ jobs:
 
 This example workflow runs on a schedule (every day at 3am) and also includes
 the `workflow_dispatch` event so that you can run it manually if desired.
+See GitHub's documentation for details 
+on [schedule syntax](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule)
+and [workflow_dispatch](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch).
 The `actions/checkout@v2` step is required because the action generates the stats image
 for the owner of the checked out repository, and it is also for the commit and push
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
