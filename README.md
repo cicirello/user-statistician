@@ -49,12 +49,12 @@ GitHub Action, despite the availability of this other tool include the following
 2. We wanted something that ran entirely within GitHub.
 3. We wanted something that updated the SVG on a schedule (e.g., daily), 
   rather than on-demand, for the following reasons:
-  1. The image is simply served when requested, avoiding 
-    the delay associated with waiting for API queries to gather the data to generate 
-    the image. 
-  2. The API queries associated with generating the image happen once per 
-    cycle of your configured schedule, regardless of how frequently your 
-    profile is visited, lessening system load.
+    1. The image is simply served when requested, avoiding 
+      the delay associated with waiting for API queries to gather the data to generate 
+      the image. 
+    2. The API queries associated with generating the image happen once per 
+      cycle of your configured schedule, regardless of how frequently your 
+      profile is visited, lessening system load.
 
 __Built With__: The `user-statistician` action uses the following:
 * Python 3 (implemented almost entirely in Python);
