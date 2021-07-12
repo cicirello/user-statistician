@@ -77,9 +77,9 @@ class Statistician :
         """
         if key == "general" :
             return self._user
-        elif key = "repositories" :
+        elif key == "repositories" :
             return self._repo
-        elif key = "contributions" :
+        elif key == "contributions" :
             return self._contrib
         else :
             return None # passed an invalid key 
