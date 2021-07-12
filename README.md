@@ -391,8 +391,10 @@ other than `true`, case insensitive, will be treated as `false`).
 ### `custom-title`
 
 If you include a title in the user statistics image, the default 
-title is of the form "Your Name's Statistics", where "Your Name" is the name 
-of the owner of the repository that is using the action.
+title is of the form "Your Name's Statistics", where "Your Name" is the 
+public name of the owner of the repository that is using the action.
+Although note that in the case where the API query returns a null name,
+then the fallback behavior is to use the user id in its place.
 
 You can customize the title using the `custom-title` input. For example,
 `custom-title: Hello GitHub` will set the title accordingly. Be aware that

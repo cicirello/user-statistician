@@ -99,6 +99,11 @@ class Statistician :
         # needed if we support committing stats card.
         self._login = basicStats["data"]["user"]["login"]
         self._name = basicStats["data"]["user"]["name"]
+
+        # The name field is nullable, so use the login id if
+        # user's public name is null.
+        if self._name == None :
+            self._name = self._login
         
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
@@ -141,31 +146,54 @@ class Statistician :
             "private" : [pastYearData["restrictedContributionsCount"], 0]
             }
 
-        # Count stargazers, forks of my repos, and watchers excluding me
-        stargazers = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        forksOfMyRepos = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        stargazersAll = sum(repo["stargazerCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
-        forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
+        # The "nodes" field is nullable so make sure the user owns at least 1 repo. 
+        if repoStats[0]["totalCount"] > 0 :
+            # Note that the explicit checks of, if page["nodes"] != None, are precautionary
+            # since the above check of totalCount should be sufficient to protect against a null list of repos.
+            
+            # Count stargazers, forks of my repos, and watchers excluding me
+            stargazers = sum(repo["stargazerCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            forksOfMyRepos = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            stargazersAll = sum(repo["stargazerCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
+            forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
 
-        # Compute number of watchers excluding cases where user is watching their own repos.
-        watchingMyOwnNonForks = sum(1 for page in watchingStats for repo in page["nodes"] if not repo["isFork"])
-        watchers = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"])
-        watchers -= watchingStats[0]["totalCount"]
-        watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-        watchersNonForks -= watchingMyOwnNonForks
+            # Compute number of watchers excluding cases where user is watching their own repos.
+            watchers = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
+            watchers -= watchingStats[0]["totalCount"]
+
+            if watchingStats[0]["totalCount"] > 0 :
+                watchingMyOwnNonForks = sum(1 for page in watchingStats if page["nodes"] != None for repo in page["nodes"] if not repo["isFork"])
+            else :
+                watchingMyOwnNonForks = 0
+            watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            watchersNonForks -= watchingMyOwnNonForks
         
-        # Count of private repos (which is not accurate since depends on token used to authenticate query,
-        # however, all those here are included in count of owned repos.
-        privateCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"])
+            # Count of private repos (which is not accurate since depends on token used to authenticate query,
+            # however, all those here are included in count of owned repos.
+            privateCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"])
 
-        publicAll = ownedRepositories - privateCount
+            publicAll = ownedRepositories - privateCount
 
-        # Counts of archived repos
-        publicNonForksArchivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"] and not repo["isFork"])
-        publicArchivedCount = sum(1 for page in repoStats for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
+            # Counts of archived repos
+            publicNonForksArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"] and not repo["isFork"])
+            publicArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
         
-        # Count of public non forks owned by user
-        publicNonForksCount = ownedRepositories - sum(1 for page in repoStats for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+            # Count of public non forks owned by user
+            publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+        else :
+            # if no owned repos then set all repo related stats to 0
+            stargazers = 0
+            forksOfMyRepos = 0
+            stargazersAll = 0
+            forksOfMyReposAll = 0
+            watchers = 0
+            watchingMyOwnNonForks = 0
+            watchersNonForks = 0
+            privateCount = 0
+            publicAll = 0
+            publicNonForksArchivedCount = 0
+            publicArchivedCount = 0
+            publicNonForksCount = 0
 
         self._repo = {
             "public" : [publicNonForksCount, publicAll],
