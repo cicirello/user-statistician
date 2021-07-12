@@ -35,6 +35,36 @@
 # the MIT license.
 
 
+# Steps to Contributing a New Locale:
+# (1) Add a string for the 2-character code to the set
+#     supportedLocales.
+# (2) In the Python dictionary, categoryLabels, create a
+#     mapping corresponding to that new 2-character string.
+#     You might start by copying and pasting the entirety of
+#     the entry for "en". Make sure you keep the dictionary keys
+#     as they are, and only translate the values.
+# (3) In the Python dictionary, titleTemplates, add a template for
+#     the default title by adding a mapping from the 2-character
+#     string for the new locale to a format string (see the comments
+#     where titleTemplates is declared.
+# (4) In the Python dictionary, statLabels, each key "label" maps to
+#     a Python dictionary with the locale code as key. Add a corresponding
+#     key value pair for the new locale.
+# (5) The existing test cases will verify that all of the above
+#     has been done for each 2 character locale code in the
+#     supportedLocales set. So no new test cases should be necessary when
+#     adding a locale, but existing tests must pass.
+# (6) If you contribute translations for a new locale,
+#     or if you correct any errors in one, then please
+#     credit yourself here by either adding a list below for
+#     the relevant locale if it is new, or adding your
+#     GitHub user id to the list below if you contributed a bug
+#     fix to an existing one.
+#
+# Locale Contributors:
+# en: cicirello
+#
+
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
 supportedLocales = { "en" }
