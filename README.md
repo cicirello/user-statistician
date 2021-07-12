@@ -3,7 +3,7 @@
 ## About
 
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
-Action generates a visual summary of your activity on GitHub in the form of an SVG, 
+Action generates a detailed visual summary of your activity on GitHub in the form of an SVG, 
 suitable to display on
 your [GitHub Profile README](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme). 
 Although the intended use-case is to generate an SVG image for your GitHub Profile README,
@@ -37,7 +37,23 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
-The `user-statistician` action uses the following:
+__Motivation/Inspiration__: We were inspired by the very awesome project
+[anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
+which generates several different stats cards for GitHub Profile READMEs. You should
+check it out if you haven't already. I currently use their language stats card on my profile.
+The reasons that we decided to create the 
+[cicirello/user-statistician](https://github.com/cicirello/user-statistician)
+GitHub Action, despite the availability of this other tool include the following:
+1. We wanted to include more detailed stats all in a single SVG.
+2. We wanted something that ran entirely within GitHub.
+3. We wanted something that updated the SVG on a schedule (e.g., daily), 
+  rather than on-demand, so the image is simply served when requested, avoiding 
+  the delay associated with waiting for API queries to gather the data to generate 
+  the image. An additional advantage of this is that the API queries associated 
+  with generating the image happen once per cycle of your configured schedule, 
+  regardless of how frequently your profile is visited, lessening system load.
+
+__Built With__: The `user-statistician` action uses the following:
 * Python 3 (implemented almost entirely in Python);
 * The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
   image, which includes the GitHub CLI installed on a python:3-slim base image;
@@ -65,7 +81,7 @@ The remainder of the documentation is organized into the following sections:
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
-* [Support the Project](#support-the-project)
+* [Support the Project](#support-the-project): Ways that you can support the project.
 
 ## Example Workflows and Image Samples
 
@@ -590,12 +606,14 @@ jobs:
 ## Support the Project
 
 You can support the project in a number of ways:
-* If you find the `user-statistician` action useful, consider starring the
+* __Starring__: If you find the `user-statistician` action useful, consider starring the
   repository.
-* If you use it to generate an SVG for your GitHub Profile README, consider
-  either linking the image back to this repository, or otherwise indicating
+* __Linking or Sharing__: If you use it to generate an SVG for your 
+  GitHub Profile README, consider
+  either linking the image back to this repository, or otherwise sharing
   how you generated the stats SVG.
-* You can also consider [becoming a sponsor](https://github.com/sponsors/cicirello).
+* __Sponsoring__: You can also consider 
+  [becoming a sponsor](https://github.com/sponsors/cicirello).
 
 ## License
 
