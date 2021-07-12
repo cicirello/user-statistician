@@ -69,6 +69,21 @@ class Statistician :
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
 
+    def getStatsByKey(self, key) :
+        """Gets a category of stats by key.
+
+        Keyword arguments:
+        key - A category key.
+        """
+        if key == "general" :
+            return self._user
+        elif key = "repositories" :
+            return self._repo
+        elif key = "contributions" :
+            return self._contrib
+        else :
+            return None # passed an invalid key 
+        
     def loadQuery(self, queryFilepath, failOnError=True) :
         """Loads a graphql query.
 
