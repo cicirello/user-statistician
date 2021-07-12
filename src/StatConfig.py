@@ -66,6 +66,13 @@ categoryOrder = ["general", "repositories", "contributions"]
 
 
 # Steps to Contributing a New Locale:
+# (0) Check if there are any open issues or pull requests
+#     related to the locale that you want to add. Begin by opening
+#     an issue indicating the locale that you want to add. Perhaps
+#     mention in the issue that you are planning to work on it, so
+#     we know the difference between a simple request with nobody to
+#     work on it vs a volunteer. Once you've submitted the issue,
+#     fork the repo, and create a branch for your feature.
 # (1) Add a string for the 2-character code to the set
 #     supportedLocales.
 # (2) In the Python dictionary, categoryLabels, create a
