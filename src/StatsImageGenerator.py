@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatConfig import statLabels, categoryLabels, titleTemplates
+from StatConfig import statLabels, categoryLabels, titleTemplates, statsByCategory
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -96,7 +96,7 @@ class StatsImageGenerator :
                 self.filterKeys(
                     self._stats._user,
                     exclude,
-                    ["followers", "following"]
+                    statsByCategory["general"]
                     )
                 )
         if "repositories" not in exclude :
@@ -106,7 +106,7 @@ class StatsImageGenerator :
                 self.filterKeys(
                     self._stats._repo,
                     exclude,
-                    ["public", "starredBy", "forkedBy", "watchedBy", "archived"]
+                    statsByCategory["repositories"]
                     )
                 )
         if "contributions" not in exclude :
@@ -116,7 +116,7 @@ class StatsImageGenerator :
                 self.filterKeys(
                     self._stats._contrib,
                     exclude,
-                    ["commits", "issues", "prs", "reviews", "contribTo", "private"]
+                    statsByCategory["contributions"]
                     )
                 )
         self.finalizeImageData()
