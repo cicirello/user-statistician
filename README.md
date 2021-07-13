@@ -96,8 +96,11 @@ The remainder of the documentation is organized into the following sections:
 
 ## Example Workflows and Image Samples
 
-This section provides example workflows using the action, as
-well as samples of the corresponding images that they generate.
+This section provides example workflows demonstrating various features
+of the action, as well as samples of the corresponding images that they generate.
+If you would like to see a live example, in addition to the detailed examples
+below, then you can check out [my GitHub profile](https://github.com/cicirello),
+along with the corresponding [workflow](https://github.com/cicirello/cicirello/blob/master/.github/workflows/userstats.yml).
 
 ### Example 1: All default inputs
 
