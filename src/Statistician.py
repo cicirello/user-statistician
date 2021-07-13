@@ -147,14 +147,17 @@ class Statistician :
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
         watchingStats = list(map(lambda x : x["data"]["user"]["watching"], watchingStats))
+
+        # This is the count of owned repos, including all public,
+        # but may or may not include all private depending upon token used to authenticate.
+        ownedRepositories = repoStats[0]["totalCount"]
         
         # Initialize this with count of all repos contributed to, and later subtract owned repos
         repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
-        # This is the count of owned repos, including all public, but may or may not include all private.
-        # These, however, are all included in topRepositories.
-        ownedRepositories = repoStats[0]["totalCount"]
-        # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned
-        repositoriesContributedTo -= ownedRepositories
+        # Need to reduce by num owned repos (but exclude forks since GitHub doesn't include forks in contrib stats)
+        adjustment = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isFork"])
+        # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned non-forks
+        repositoriesContributedTo -= adjustment
 
         self._contrib = {
             "commits" : [pastYearData["totalCommitContributions"], 0],
