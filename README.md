@@ -1,5 +1,7 @@
 # user-statistician
 
+[<img alt="user-statistician" src=".github/preview/user-statistician.png" width="640">](#user-statistician)
+	 
 ## About
 
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
