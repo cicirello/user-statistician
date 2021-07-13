@@ -439,6 +439,15 @@ if you pass a custom title with the `custom-title` input and also pass
 `include-title: false`, then the conflicting input values will be resolved in
 favor of the `include-title: false`.
 
+### `small-title`
+
+This input controls the font size of the title. The default is `small-title: false`,
+which is a font size of 18px (the font size of the rest of the text in the SVG is 14px).
+The default should be a good choice in most cases. However, depending upon the
+length of a custom title, or if you use the default title but have a long name, then the 
+title may overflow the viewbox of the SVG. In a case like this, you can pass
+`small-title: true`, which will decrease the font size of the title to 16px.
+
 ### `colors`
 
 The `colors` input enables you to either select from a set of
@@ -603,6 +612,7 @@ jobs:
         image-file: images/userstats.svg
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
+        small-title: false
         colors: light
         border-radius: 6
         show-border: true

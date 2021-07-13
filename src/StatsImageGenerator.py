@@ -33,7 +33,7 @@ class StatsImageGenerator :
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
-    titleTemplate = '<text x="15" y="37" font-size="18px" fill="{1}">{0}</text>'
+    titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
 <svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
@@ -57,10 +57,11 @@ class StatsImageGenerator :
         '_rows',
         '_lineHeight',
         '_locale',
-        '_radius'
+        '_radius',
+        '_titleSize'
         ]
 
-    def __init__(self, stats, colors, locale, radius) :
+    def __init__(self, stats, colors, locale, radius, titleSize) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -72,6 +73,7 @@ class StatsImageGenerator :
         self._colors = colors
         self._locale = locale
         self._radius = radius
+        self._titleSize = titleSize
         self._height = 0
         self._width = 425
         self._lineHeight = 21
@@ -128,7 +130,13 @@ class StatsImageGenerator :
                 title = customTitle
             else :
                 title = titleTemplates[self._locale].format(self._stats._name)
-            self._rows.append(StatsImageGenerator.titleTemplate.format(title, self._colors["title"]))
+            self._rows.append(
+                StatsImageGenerator.titleTemplate.format(
+                    title,
+                    self._colors["title"],
+                    str(self._titleSize)
+                    )
+                )
             self._height += 39
 
     def insertGroup(self, data, headerRow, keys) :

@@ -144,9 +144,15 @@ if __name__ == "__main__" :
     if not showBorder :
         radius = 0
         colors["border"] = colors["bg"]
+
+    smallTitle = sys.argv[11].strip().lower() == "true"
+    if smallTitle :
+        titleSize = 16
+    else :
+        titleSize = 18
     
     stats = Statistician(failOnError)
-    generator = StatsImageGenerator(stats, colors, locale, radius)
+    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

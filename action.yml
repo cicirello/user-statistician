@@ -69,6 +69,10 @@ inputs:
     description: 'Controls whether the stats SVG has a border'
     required: false
     default: true
+  small-title:
+    description: 'Controls size of title'
+    required: false
+    default: false
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -86,3 +90,4 @@ runs:
     - ${{ inputs.locale }}
     - ${{ inputs.border-radius }}
     - ${{ inputs.show-border }}
+    - ${{ inputs.small-title }}
