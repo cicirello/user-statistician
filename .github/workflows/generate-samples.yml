@@ -16,7 +16,7 @@ jobs:
         ref: samples
 
     - name: Sample light
-      uses: cicirello/user-statistician@main
+      uses: cicirello/user-statistician@v1
       with:
         colors: light
         image-file: images/light.svg
@@ -24,7 +24,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Sample dark
-      uses: cicirello/user-statistician@main
+      uses: cicirello/user-statistician@v1
       with:
         colors: dark
         image-file: images/dark.svg
@@ -33,7 +33,7 @@ jobs:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
     - name: Sample dark-dimmed
-      uses: cicirello/user-statistician@main
+      uses: cicirello/user-statistician@v1
       with:
         colors: dark-dimmed
         image-file: images/dark-dimmed.svg
