@@ -4,6 +4,12 @@
 	 
 ## About
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician)
+[![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
+[![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml)
+[![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE)
+[![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician)
+
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
 Action generates a detailed visual summary of your activity on GitHub in the form of an SVG, 
 suitable to display on
@@ -90,8 +96,11 @@ The remainder of the documentation is organized into the following sections:
 
 ## Example Workflows and Image Samples
 
-This section provides example workflows using the action, as
-well as samples of the corresponding images that they generate.
+This section provides example workflows demonstrating various features
+of the action, as well as samples of the corresponding images that they generate.
+If you would like to see a live example, in addition to the detailed examples
+below, then you can check out [my GitHub profile](https://github.com/cicirello),
+along with the corresponding [workflow](https://github.com/cicirello/cicirello/blob/master/.github/workflows/userstats.yml).
 
 ### Example 1: All default inputs
 
