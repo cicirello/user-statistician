@@ -1,5 +1,5 @@
 <svg width="425" height="480" viewBox="0 0 425 480" xmlns="http://www.w3.org/2000/svg">
-<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="476" stroke="#0d419d" fill="#090c10" />
+<rect x="2" y="2" stroke-width="4" rx="0" width="421" height="476" stroke="#0d419d" fill="#090c10" />
 <g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">
 <text x="15" y="37" font-size="18px" fill="#c9d1d9">Vincent A. Cicirello's Statistics</text>
 <g transform="translate(0, 60)" font-size="14px" fill="#8b949e">
