@@ -37,7 +37,7 @@ jobs:
       with:
         colors: dark
         fail-on-error: false
-        border-radius: 0
+        show-border: false
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 

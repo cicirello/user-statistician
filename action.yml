@@ -65,6 +65,10 @@ inputs:
     description: 'The radius of the border'
     required: false
     default: 6
+  show-border:
+    description: 'Controls whether the stats SVG has a border'
+    required: false
+    default: true
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -81,3 +85,4 @@ runs:
     - ${{ inputs.commit-and-push }}
     - ${{ inputs.locale }}
     - ${{ inputs.border-radius }}
+    - ${{ inputs.show-border }}

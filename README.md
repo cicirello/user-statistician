@@ -475,7 +475,11 @@ places within the SVG.
 
 ### `border-radius`
 
-The radius of the border of the SVG. The default is `border-radius: 6`.
+This input is the radius of the border of the SVG. The default is `border-radius: 6`.
+
+### `show-border`
+
+This input controls whether or not the SVG has a border. The default is `true`.
 
 ### `hide-keys`
 
@@ -601,6 +605,7 @@ jobs:
         custom-title: '' # Defaults to title pattern described earlier
         colors: light
         border-radius: 6
+        show-border: true
         hide-keys: '' # None hidden
         locale: en
         fail-on-error: true

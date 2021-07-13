@@ -139,6 +139,11 @@ if __name__ == "__main__" :
         locale = "en"
 
     radius = int(sys.argv[9])
+
+    showBorder = sys.argv[10].strip().lower() == "true"
+    if not showBorder :
+        radius = 0
+        colors["border"] = colors["bg"]
     
     stats = Statistician(failOnError)
     generator = StatsImageGenerator(stats, colors, locale, radius)
