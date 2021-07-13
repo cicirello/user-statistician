@@ -551,6 +551,9 @@ can do if you wish to use the action in a repository with
 that has configured required reviews or required checks:
 [Protected branches with required checks](#protected-branches-with-required-checks).
 
+The committer is the owner of the repository where the action is run, with name
+configured as the public name of the user, and the committer email address
+configured as `USERID@users.noreply.github.com`.
 
 ## Outputs
 
