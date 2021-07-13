@@ -60,7 +60,19 @@ inputs:
   locale:
     description: 'ISO 639-1 two character language code'
     required: false
-    default: en	
+    default: en
+  border-radius:
+    description: 'The radius of the border'
+    required: false
+    default: 6
+  show-border:
+    description: 'Controls whether the stats SVG has a border'
+    required: false
+    default: true
+  small-title:
+    description: 'Controls size of title'
+    required: false
+    default: false
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -76,3 +88,6 @@ runs:
     - ${{ inputs.fail-on-error }}
     - ${{ inputs.commit-and-push }}
     - ${{ inputs.locale }}
+    - ${{ inputs.border-radius }}
+    - ${{ inputs.show-border }}
+    - ${{ inputs.small-title }}

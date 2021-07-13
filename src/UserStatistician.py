@@ -137,9 +137,22 @@ if __name__ == "__main__" :
     locale = sys.argv[8].strip().lower()
     if locale not in supportedLocales :
         locale = "en"
+
+    radius = int(sys.argv[9])
+
+    showBorder = sys.argv[10].strip().lower() == "true"
+    if not showBorder :
+        radius = 0
+        colors["border"] = colors["bg"]
+
+    smallTitle = sys.argv[11].strip().lower() == "true"
+    if smallTitle :
+        titleSize = 16
+    else :
+        titleSize = 18
     
     stats = Statistician(failOnError)
-    generator = StatsImageGenerator(stats, colors, locale)
+    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

@@ -49,10 +49,10 @@ GitHub Action, despite the availability of this other tool include the following
 2. We wanted something that ran entirely within GitHub.
 3. We wanted something that updated the SVG on a schedule (e.g., daily), 
   rather than on-demand, for the following reasons:
-    1. The image is simply served when requested, avoiding 
+    * The image is simply served when requested, avoiding 
       the delay associated with waiting for API queries to gather the data to generate 
       the image. 
-    2. The API queries associated with generating the image happen once per 
+    * The API queries associated with generating the image happen once per 
       cycle of your configured schedule, regardless of how frequently your 
       profile is visited, lessening system load.
 
@@ -71,7 +71,7 @@ please consider starring the repository; and if you use it for your profile
 README, please consider either linking the image to this repository, or 
 otherwise sharing how it was generated with your profile visitors. 
 
-### Table of Contents
+## Table of Contents
 
 The remainder of the documentation is organized into the following sections:
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
@@ -121,6 +121,9 @@ jobs:
 
 This example workflow runs on a schedule (every day at 3am) and also includes
 the `workflow_dispatch` event so that you can run it manually if desired.
+See GitHub's documentation for details 
+on [schedule syntax](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule)
+and [workflow_dispatch](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch).
 The `actions/checkout@v2` step is required because the action generates the stats image
 for the owner of the checked out repository, and it is also for the commit and push
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
@@ -436,6 +439,15 @@ if you pass a custom title with the `custom-title` input and also pass
 `include-title: false`, then the conflicting input values will be resolved in
 favor of the `include-title: false`.
 
+### `small-title`
+
+This input controls the font size of the title. The default is `small-title: false`,
+which is a font size of 18px (the font size of the rest of the text in the SVG is 14px).
+The default should be a good choice in most cases. However, depending upon the
+length of a custom title, or if you use the default title but have a long name, then the 
+title may overflow the viewbox of the SVG. In a case like this, you can pass
+`small-title: true`, which will decrease the font size of the title to 16px.
+
 ### `colors`
 
 The `colors` input enables you to either select from a set of
@@ -469,6 +481,14 @@ __The action does not do any validation of the colors that you pass.__ If you pa
 invalid color names or invalid hex color values, then the image generated will be
 incorrect. The color values that you specify are inserted verbatim into the appropriate
 places within the SVG.
+
+### `border-radius`
+
+This input is the radius of the border of the SVG. The default is `border-radius: 6`.
+
+### `show-border`
+
+This input controls whether or not the SVG has a border. The default is `true`.
 
 ### `hide-keys`
 
@@ -544,6 +564,9 @@ can do if you wish to use the action in a repository with
 that has configured required reviews or required checks:
 [Protected branches with required checks](#protected-branches-with-required-checks).
 
+The committer is the owner of the repository where the action is run, with name
+configured as the public name of the user, and the committer email address
+configured as `USERID@users.noreply.github.com`.
 
 ## Outputs
 
@@ -589,7 +612,10 @@ jobs:
         image-file: images/userstats.svg
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
+        small-title: false
         colors: light
+        border-radius: 6
+        show-border: true
         hide-keys: '' # None hidden
         locale: en
         fail-on-error: true
