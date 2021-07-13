@@ -36,7 +36,8 @@ jobs:
       uses: ./
       with:
         colors: dark
-        fail-on-error: false
+        commit-and-push: false
+        #fail-on-error: false
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
@@ -44,3 +45,8 @@ jobs:
       run: |
         echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
 
+    - name: Upload generated SVG as a workflow artifact for inspection if necessary
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-image
+        path: images/userstats.svg
