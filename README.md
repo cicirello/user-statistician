@@ -71,7 +71,7 @@ please consider starring the repository; and if you use it for your profile
 README, please consider either linking the image to this repository, or 
 otherwise sharing how it was generated with your profile visitors. 
 
-### Table of Contents
+## Table of Contents
 
 The remainder of the documentation is organized into the following sections:
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
