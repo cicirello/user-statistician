@@ -56,7 +56,7 @@ GitHub Action, despite the availability of this other tool include the following
       the image. 
     * The API queries associated with generating the image happen once per 
       cycle of your configured schedule, regardless of how frequently your 
-      profile is visited, lessening system load.
+      profile is visited, decreasing system load.
 
 __Built With__: The `user-statistician` action uses the following:
 * Python 3 (implemented almost entirely in Python);
