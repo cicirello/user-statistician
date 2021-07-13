@@ -473,6 +473,10 @@ invalid color names or invalid hex color values, then the image generated will b
 incorrect. The color values that you specify are inserted verbatim into the appropriate
 places within the SVG.
 
+### `border-radius`
+
+The radius of the border of the SVG. The default is `border-radius: 6`.
+
 ### `hide-keys`
 
 The action automatically hides any statistics with a value of 0. For example,
@@ -593,6 +597,7 @@ jobs:
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
         colors: light
+        border-radius: 6
         hide-keys: '' # None hidden
         locale: en
         fail-on-error: true

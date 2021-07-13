@@ -31,7 +31,7 @@ class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="6" width="{3}" height="{0}" stroke="{1}" fill="{2}" />'
+    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}" />'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="37" font-size="16px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -56,10 +56,11 @@ class StatsImageGenerator :
         '_width',
         '_rows',
         '_lineHeight',
-        '_locale'
+        '_locale',
+        '_radius'
         ]
 
-    def __init__(self, stats, colors, locale) :
+    def __init__(self, stats, colors, locale, radius) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -70,6 +71,7 @@ class StatsImageGenerator :
         self._stats = stats
         self._colors = colors
         self._locale = locale
+        self._radius = radius
         self._height = 0
         self._width = 425
         self._lineHeight = 21
@@ -190,6 +192,8 @@ class StatsImageGenerator :
             str(self._height - 4),
             self._colors["border"],
             self._colors["bg"],
-            str(self._width - 4))
+            str(self._width - 4),
+            self._radius
+            )
         self._rows.append("</g>\n</svg>\n")
         

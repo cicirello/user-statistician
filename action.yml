@@ -60,7 +60,11 @@ inputs:
   locale:
     description: 'ISO 639-1 two character language code'
     required: false
-    default: en	
+    default: en
+  border-radius:
+    description: 'The radius of the border'
+    required: false
+    default: 6
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -76,3 +80,4 @@ runs:
     - ${{ inputs.fail-on-error }}
     - ${{ inputs.commit-and-push }}
     - ${{ inputs.locale }}
+    - ${{ inputs.border-radius }}

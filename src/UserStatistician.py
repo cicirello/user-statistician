@@ -137,9 +137,11 @@ if __name__ == "__main__" :
     locale = sys.argv[8].strip().lower()
     if locale not in supportedLocales :
         locale = "en"
+
+    radius = int(sys.argv[9])
     
     stats = Statistician(failOnError)
-    generator = StatsImageGenerator(stats, colors, locale)
+    generator = StatsImageGenerator(stats, colors, locale, radius)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
