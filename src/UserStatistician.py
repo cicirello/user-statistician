@@ -157,7 +157,7 @@ if __name__ == "__main__" :
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :
-        commitAndPush(imageFilenameWithPath, stats._name, stats._login, failOnError)
+        commitAndPush(imageFilenameWithPath, "github-actions", "41898282+github-actions[bot]", failOnError)
     
     print("::set-output name=exit-code::0")
     
