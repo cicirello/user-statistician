@@ -94,7 +94,7 @@ def commitAndPush(filename, name, login, failOnError) :
                             "user.email", login + '@users.noreply.github.com'])
             executeCommand(["git", "add", filename])
             executeCommand(["git", "commit", "-m",
-                            "Automated change by [cicirello/user-statistician](https://github.com/cicirello/user-statistician)",
+                            "Automated change by https://github.com/cicirello/user-statistician",
                            filename])
             r = executeCommand(["git", "push"])
             if r[1] != 0 :
