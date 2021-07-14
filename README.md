@@ -279,14 +279,18 @@ configured with required reviews nor with required checks. If your
 GitHub profile repository does have a branch protection rule with
 required reviews or required checks, there are a couple solutions.
 
-__Not Recommended:__ First, you could create a personal access token (PAT) with necessary
-permissions, save it as a repository secret, and pass that to the action
-instead of the `GITHUB_TOKEN`. However, we do not recommend doing so.
+__Not Recommended:__ First, you could create a personal access token (PAT) 
+with necessary permissions, save it as a repository secret, and use the PAT
+with during the `actions/checkout` step 
+(see [actions/checkout](https://github.com/actions/checkout)'s documentation). 
+However, we do not recommend doing so.
 If anyone else has write access to the repository, then they can potentially
 create additional workflows using that PAT. This is probably reasonably safe
 since it is probably rare to have collaborators on ones profile repository.
 However, we still do not recommend this approach, as you must have had a reason
-to put the required checks in place.
+to put the required checks in place. If you decide to go this route anyway, note
+that the `user-statistician` action will still only need the `GITHUB_TOKEN` and not
+the PAT.
 
 __Recommended:__ The second (and recommended) approach to dealing with a 
 protected branch with
@@ -575,9 +579,7 @@ can do if you wish to use the action in a repository with
 that has configured required reviews or required checks:
 [Protected branches with required checks](#protected-branches-with-required-checks).
 
-The committer is the owner of the repository where the action is run, with name
-configured as the public name of the user, and the committer email address
-configured as `USERID@users.noreply.github.com`.
+The author of the commit is set to the github-actions bot.
 
 ## Outputs
 
