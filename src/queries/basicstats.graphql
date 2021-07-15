@@ -32,8 +32,5 @@ query($owner: String!) {
     sponsorshipsAsSponsor  {
       totalCount
     }
-    topRepositories(orderBy: {direction: DESC, field: UPDATED_AT}) {
-      totalCount
-    }
   }
 }
