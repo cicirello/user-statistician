@@ -355,7 +355,7 @@ so that others know how you generated it is as follows:
 
 ## The Stats
 
-The statistics displayed in the image is organized into categories. The stats
+The statistics displayed in the image are organized into categories. The stats
 card can be customized to hide either individual statistics, or entire categories
 if desired. Details of each category follows. Note that the "Key" is what you need if
 you are using the `hide-keys` input to either hide individual statistics or 
