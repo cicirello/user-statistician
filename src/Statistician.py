@@ -59,12 +59,18 @@ class Statistician :
                                                 fail)
         watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql",
                                                  fail)
+
+        reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
+                                                 fail)
+        
         self.parseStats(
             self.executeQuery(basicStatsQuery,
                               failOnError=fail),
             self.executeQuery(additionalRepoStatsQuery,
                               needsPagination=True),
             self.executeQuery(watchingAdjustmentQuery,
+                              needsPagination=True),
+            self.executeQuery(reposContributedTo,
                               needsPagination=True)
             )
         self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
@@ -101,7 +107,7 @@ class Statistician :
             print("::set-output name=exit-code::1")
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, watchingStats) :
+    def parseStats(self, basicStats, repoStats, watchingStats, reposContributedToStats) :
         """Parses the user statistics.
 
         Keyword arguments:
@@ -147,18 +153,15 @@ class Statistician :
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
         watchingStats = list(map(lambda x : x["data"]["user"]["watching"], watchingStats))
+        reposContributedToStats = list(map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
 
         # This is the count of owned repos, including all public,
         # but may or may not include all private depending upon token used to authenticate.
         ownedRepositories = repoStats[0]["totalCount"]
         
-        # Initialize this with count of all repos contributed to, and later subtract owned repos
-        repositoriesContributedTo = basicStats["data"]["user"]["topRepositories"]["totalCount"]
-        # Need to reduce by num owned repos (but exclude forks since GitHub doesn't include forks in contrib stats)
-        adjustment = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isFork"])
-        # Compute num contributed to (other people's repos) by reducing all repos contributed to by count of owned non-forks
-        repositoriesContributedTo -= adjustment
-
+        # Count num repos owned by someone else that the user has contributed to
+        repositoriesContributedTo = sum(1 for page in reposContributedToStats if page["nodes"] != None for repo in page["nodes"] if repo["owner"]["login"] != self._login)
+        
         self._contrib = {
             "commits" : [pastYearData["totalCommitContributions"], 0],
             "issues" : [pastYearData["totalIssueContributions"], issues],

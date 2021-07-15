@@ -1,0 +1,16 @@
+query($owner: String!, $endCursor: String) {
+  user(login: $owner) {
+    topRepositories(first: 100, after: $endCursor, orderBy: {direction: DESC, field: UPDATED_AT}) {
+      totalCount
+      nodes {
+        owner {
+          login
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+}

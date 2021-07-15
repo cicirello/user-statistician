@@ -355,9 +355,11 @@ so that others know how you generated it is as follows:
 
 ## The Stats
 
-The statistics displayed in the image is organized into categories,
-and includes the following. Note that the "Key" is what you need if
-you are using the `hide-keys` input (see the [Inputs](#inputs) section).
+The statistics displayed in the image are organized into categories. The stats
+card can be customized to hide either individual statistics, or entire categories
+if desired. Details of each category follows. Note that the "Key" is what you need if
+you are using the `hide-keys` input to either hide individual statistics or 
+entire categories (see the [Inputs](#inputs) section).
 
 ### General User Stats
 
@@ -376,10 +378,10 @@ following.
 The Repositories category in the image includes
 two columns with data summarizing information
 about the non-forks that you own, as well as all repositories
-that you own, including forks.  
+that you own, including forks.
+  
 The key to hide this entire category is: `repositories`.
-The statistics include the 
-following.
+The statistics include the following.
 
 | Key | Statistic | Details |
 | --- | --- | ------ |
@@ -518,7 +520,7 @@ can pass the "key" for the category itself. Alternatively, if you
 list all of the keys for the elements
 of that group, then the entire group, including column headings, will be hidden. 
 For example, `hide-keys: followers following sponsors sponsoring private` will hide
-both the "Followers", "Following", "Sponsors", and "Sponsoring" counts from 
+the "Followers", "Following", "Sponsors", and "Sponsoring" counts from 
 the "General User Stats" section, and thus will also eliminate the column 
 headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
