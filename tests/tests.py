@@ -218,6 +218,6 @@ class TestSomething(unittest.TestCase) :
             self.assertEqual(expectedLanguages[i], L[0])
             self.assertEqual(expectedColors[i], L[1]["color"])
             self.assertEqual(expectedSize[i], L[1]["size"])
-            self.assertAlmostEqual(expectedSize[i]/total, L[1]["pct"], places=5)
+            self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
             
         

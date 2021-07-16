@@ -284,7 +284,7 @@ class Statistician :
                                         "size" : L["size"]
                                         }
         for L in languageData :
-            languageData[L]["pct"] = languageData[L]["size"] / totalSize
+            languageData[L]["percentage"] = languageData[L]["size"] / totalSize
         return totalSize, languageData
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
