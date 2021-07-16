@@ -63,13 +63,13 @@ def svgPieChart(wedges, radius) :
             components.append(
                 _pathTemplate.format(
                     w["color"],
-                    radius + radius * math.cos(w["start"]),
-                    radius + radius * math.sin(w["start"]),
+                    radius + radius * math.cos(w["start"]+math.pi),
+                    radius + radius * math.sin(w["start"]+math.pi),
                     radius,
                     1 if w["percentage"] >= 0.5 else 0, # large arc flag
                     1, # clockwise=1
-                    radius + radius * math.cos(w["end"]),
-                    radius + radius * math.sin(w["end"])
+                    radius + radius * math.cos(w["end"]+math.pi),
+                    radius + radius * math.sin(w["end"]+math.pi)
                     )
                 )
         
