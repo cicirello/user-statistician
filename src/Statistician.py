@@ -214,7 +214,7 @@ class Statistician :
             publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
 
             # Compute language distribution
-            size, languageData = self.summarizeLanguageStats(repoStats)
+            totalSize, languageData = self.summarizeLanguageStats(repoStats)
         else :
             # if no owned repos then set all repo related stats to 0
             stargazers = 0
@@ -231,7 +231,7 @@ class Statistician :
             publicNonForksCount = 0
             publicNonForksTemplatesCount = 0
             publicTemplatesCount = 0
-            size, languageData = 0, {}
+            totalSize, languageData = 0, {}
 
         self._repo = {
             "public" : [publicNonForksCount, publicAll],
@@ -242,10 +242,23 @@ class Statistician :
             "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
             }
 
-        self._languages = {
-            totalSize : size,
-            languages : languageData
-            }
+        self._languages = self.computeLanguagePercentages(totalSize, languageData)
+
+    def computeLanguagePercentages(self, totalSize, languageData) :
+        """Computes a list of languages and percentages in decreasing order
+        by percentage.
+
+        Keyword arguments:
+        totalSize - total size of all code with language detection data
+        languageData - the summarized language totals, colors, etc
+        """
+        if totalSize == 0 :
+            return { "totalSize" : 0, "languages" : [] }
+        else :
+            languages = [ (name, data) for name, data in languageData ]
+            languages.sort(key = lambda L : L[1]["size"], reverse=True)
+            return { "totalSize" : totalSize, "languages" : languages }
+            
 
     def summarizeLanguageStats(self, repoStats) :
         """Summarizes the language distibution of the user's owned repositories.
@@ -270,6 +283,8 @@ class Statistician :
                                         "color" : L["node"]["color"],
                                         "size" : L["size"]
                                         }
+        for L in languageData :
+            languageData[L]["pct"] = languageData[L]["size"] / totalSize
         return totalSize, languageData
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
