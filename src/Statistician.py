@@ -255,7 +255,7 @@ class Statistician :
         if totalSize == 0 :
             return { "totalSize" : 0, "languages" : [] }
         else :
-            languages = [ (name, data) for name, data in languageData ]
+            languages = [ (name, data) for name, data in languageData.items() ]
             languages.sort(key = lambda L : L[1]["size"], reverse=True)
             return { "totalSize" : totalSize, "languages" : languages }
             
