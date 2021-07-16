@@ -39,7 +39,8 @@ class Statistician :
         '_contrib',
         '_repo',
         '_login',
-        '_name'
+        '_name',
+        '_languages'
         ]
 
     def __init__(self, fail=True) :
@@ -87,6 +88,8 @@ class Statistician :
             return self._repo
         elif key == "contributions" :
             return self._contrib
+        elif key == "languages" :
+            return self._languages
         else :
             return None # passed an invalid key 
         
@@ -209,6 +212,9 @@ class Statistician :
             
             # Count of public non forks owned by user
             publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+
+            # Compute language distribution
+            size, languageData = self.summarizeLanguageStats(repoStats)
         else :
             # if no owned repos then set all repo related stats to 0
             stargazers = 0
@@ -225,6 +231,7 @@ class Statistician :
             publicNonForksCount = 0
             publicNonForksTemplatesCount = 0
             publicTemplatesCount = 0
+            size, languageData = 0, {}
 
         self._repo = {
             "public" : [publicNonForksCount, publicAll],
@@ -234,6 +241,36 @@ class Statistician :
             "archived" : [publicNonForksArchivedCount, publicArchivedCount],
             "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
             }
+
+        self._languages = {
+            totalSize : size,
+            languages : languageData
+            }
+
+    def summarizeLanguageStats(self, repoStats) :
+        """Summarizes the language distibution of the user's owned repositories.
+
+        Keyword arguments:
+        repoStats - The results of the repo stats query.
+        """
+        totalSize = 0
+        languageData = {}
+        for page in repoStats :
+            if page["nodes"] != None :
+                for repo in page["nodes"] :
+                    if not repo["isPrivate"] and not repo["isFork"] :
+                        totalSize += repo["languages"]["totalSize"]
+                        if repo["languages"]["edges"] != None :
+                            for L in repo["languages"]["edges"] :
+                                name = L["node"]["name"]
+                                if name in languageData :
+                                    languageData[name]["size"] += L["size"]
+                                else :
+                                    languageData[name] = {
+                                        "color" : L["node"]["color"],
+                                        "size" : L["size"]
+                                        }
+        return totalSize, languageData
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
         """Generates the query for prior year stats.
