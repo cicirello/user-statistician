@@ -12,6 +12,17 @@ query($owner: String!, $endCursor: String) {
         watchers {
           totalCount
         }
+        languages(first: 100, orderBy: {direction: DESC, field: SIZE}) {
+          totalCount
+          totalSize
+          edges {
+            size
+            node { 
+              color
+              name
+            }
+          }
+        }
       }
       pageInfo {
         hasNextPage
