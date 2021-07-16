@@ -1,4 +1,4 @@
-name: Generate Samples
+name: samples
 
 on:
   schedule:
