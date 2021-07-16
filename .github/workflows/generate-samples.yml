@@ -1,8 +1,8 @@
-name: Generate Samples
+name: samples
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 1 * * 6'
   workflow_dispatch:
 
 jobs:
