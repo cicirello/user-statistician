@@ -2,7 +2,7 @@ name: Generate Samples
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 1 * * 6'
   workflow_dispatch:
 
 jobs:
