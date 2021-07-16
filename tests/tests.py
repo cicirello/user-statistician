@@ -184,5 +184,40 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
         self.assertEqual(105, stats._contrib["private"][1])
-        
+        total = 5222379
+        self.assertEqual(total, stats._languages["totalSize"])
+        self.assertEqual(11, len(stats._languages["languages"]))
+        expectedLanguages = [
+            "Java",
+            "HTML",
+            "Python",
+            "TeX",
+            "Dockerfile",
+            "Makefile",
+            "Shell",
+            "GraphQL",
+            "CSS",
+            "JavaScript",
+            "Batchfile"
+            ]
+        expectedColors = [
+            '#b07219',
+            '#e34c26',
+            '#3572A5',
+            '#3D6117',
+            '#384d54',
+            '#427819',
+            '#89e051',
+            '#e10098',
+            '#563d7c',
+            '#f1e05a',
+            '#C1F12E'
+            ]
+        expectedSize = [3385976, 1343301, 274535, 202824, 5448, 4442, 1926, 1902, 1721, 204, 100]
+        for i, L in enumerate(stats._languages["languages"]) :
+            self.assertEqual(expectedLanguages[i], L[0])
+            self.assertEqual(expectedColors[i], L[1]["color"])
+            self.assertEqual(expectedSize[i], L[1]["size"])
+            self.assertAlmostEqual(expectedSize[i]/total, L[1]["pct"], places=5)
+            
         
