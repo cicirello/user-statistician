@@ -58,11 +58,12 @@ statsByCategory = {
         "reviews",
         "contribTo",
         "private"
-        ]
+        ],
+    "languages" : []
     }
 
 # Order that the categories of stats should appear.
-categoryOrder = ["general", "repositories", "contributions"]
+categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 
 # Steps to Contributing a New Locale:
@@ -124,6 +125,11 @@ categoryLabels = {
             "heading" : "Contributions",
             "column-one" : "Past Year",
             "column-two" : "Total"
+            },
+        "languages" : {
+            "heading" : "Language Distribution (public non-forks)",
+            "column-one" : None,
+            "column-two" : None
             }
         }
     

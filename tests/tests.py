@@ -106,7 +106,7 @@ class TestSomething(unittest.TestCase) :
             self.fail()
 
     def test_categories(self) :
-        categories = {"general", "repositories", "contributions"}
+        categories = {"general", "repositories", "contributions", "languages"}
         self.assertEqual(set(categoryOrder), categories)
         statistics = {
             "followers", "following", "sponsors", "sponsoring",
