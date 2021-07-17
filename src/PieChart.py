@@ -34,7 +34,7 @@ _circleTemplate = '<circle fill="{0}" cx="{1}" cy="{1}" r="{1}"/>'
 def svgPieChart(wedges, radius) :
     """Generates an SVG of a pie chart. The intention is to include
     as part of a larger SVG (e.g., it does not insert xmlns into the
-    opening svg tag).
+    opening svg tag). If wedges list is empty, it retrurns None.
 
     Keyword argument:
     wedges - A list of Python dictionaries, with each dictionary
@@ -44,7 +44,7 @@ def svgPieChart(wedges, radius) :
     components = [_headerTemplate.format(str(2*radius))]
 
     if len(wedges) == 0 :
-        pass # handle no wedges case somehow ?
+        return None
     elif len(wedges) == 1 :
         components.append(_circleTemplate.format(wedges[0]["color"], str(radius)))
     else :
