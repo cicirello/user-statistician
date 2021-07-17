@@ -242,9 +242,9 @@ class Statistician :
             "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
             }
 
-        self._languages = self.computeLanguagePercentages(totalSize, languageData)
+        self._languages = self.organizeLanguageStats(totalSize, languageData)
 
-    def computeLanguagePercentages(self, totalSize, languageData) :
+    def organizeLanguageStats(self, totalSize, languageData) :
         """Computes a list of languages and percentages in decreasing order
         by percentage.
 
