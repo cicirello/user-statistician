@@ -48,6 +48,9 @@ class StatsImageGenerator :
 <text x="220" y="12.5">{1}</text>
 <text x="320" y="12.5">{2}</text>
 </g>"""
+    languageHeaderTemplate = """<g transform="translate(15, 0)">
+<text x="0" y="12.5">{0}:</text>
+</g>"""
     
     __slots__ = [
         '_stats',
@@ -95,15 +98,21 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         for category in categoryOrder :
             if category not in exclude :
-                self.insertGroup(
-                    self._stats.getStatsByKey(category),
-                    categoryLabels[self._locale][category],
-                    self.filterKeys(
+                if category == "languages" :
+                    self.insertLanguagesChart(
                         self._stats.getStatsByKey(category),
-                        exclude,
-                        statsByCategory[category]
+                        categoryLabels[self._locale][category]["heading"]
                         )
-                    )
+                else :
+                    self.insertGroup(
+                        self._stats.getStatsByKey(category),
+                        categoryLabels[self._locale][category],
+                        self.filterKeys(
+                            self._stats.getStatsByKey(category),
+                            exclude,
+                            statsByCategory[category]
+                            )
+                        )
         self.finalizeImageData()
         return "\n".join(self._rows)
 
@@ -171,6 +180,30 @@ class StatsImageGenerator :
                     self.formatCount(data[k][1]) if len(data[k]) > 1 else ""
                     ))
                 offset += self._lineHeight
+            self._rows.append("</g>")
+            self._height += offset
+
+    def insertLanguagesChart(self, languageData, categoryHeading) :
+        """Generates and returns the SVG section for the language
+        distribution summary and pie chart.
+
+        Keyword arguments:
+        languageData - The language stats data
+        categoryHeading - The heading for the section
+        """
+        if languageData["totalSize"] > 0 :
+            self._height += self._lineHeight
+            self._rows.append(
+                StatsImageGenerator.groupHeaderTemplate.format(
+                    self._height,
+                    self._colors["text"]
+                    )
+                )
+            self._rows.append(
+                StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
+                )
+            offset = self._lineHeight
+            # ADD ROWS FOR LANGUAGES HERE
             self._rows.append("</g>")
             self._height += offset
 
