@@ -51,6 +51,10 @@ class StatsImageGenerator :
     languageHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
 </g>"""
+    languageEntryTemplate = """<g transform="translate(15, {0})">
+<rect x="0" y="0" rx="2" width="16" height="16" fill="{1}" />
+<text x="25" y="12.5">{2} {3:.2f}%</text>
+</g>"""
     
     __slots__ = [
         '_stats',
@@ -204,6 +208,16 @@ class StatsImageGenerator :
                 )
             offset = self._lineHeight
             # ADD ROWS FOR LANGUAGES HERE
+            for L in languageData["languages"] :
+                self._rows.append(
+                    StatsImageGenerator.languageEntryTemplate.format(
+                        str(offset),
+                        L[1]["color"], # IMPORTANT CHECK FOR NONE HERE
+                        L[0],
+                        100 * L[1]["percentage"]
+                        )
+                    )
+                offset += self._lineHeight
             self._rows.append("</g>")
             self._height += offset
 
