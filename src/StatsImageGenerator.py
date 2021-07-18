@@ -26,6 +26,7 @@
 #
 
 from StatConfig import *
+from PieChart import svgPieChart
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -55,6 +56,7 @@ class StatsImageGenerator :
 <rect x="0" y="0" rx="2" width="16" height="16" fill="{1}" />
 <text x="25" y="12.5">{2} {3:.2f}%</text>
 </g>"""
+    pieTransform = """<g transform="translate(235, {1})">{0}</g>"""
     
     __slots__ = [
         '_stats',
@@ -65,7 +67,8 @@ class StatsImageGenerator :
         '_lineHeight',
         '_locale',
         '_radius',
-        '_titleSize'
+        '_titleSize',
+        '_pieRadius'
         ]
 
     def __init__(self, stats, colors, locale, radius, titleSize) :
@@ -84,6 +87,7 @@ class StatsImageGenerator :
         self._height = 0
         self._width = 425
         self._lineHeight = 21
+        self._pieRadius = (((self._width - 250) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) / 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
@@ -207,6 +211,13 @@ class StatsImageGenerator :
                 StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
                 )
             offset = self._lineHeight
+            # ADD PIE CHART HERE
+            self._rows.append(
+                StatsImageGenerator.pieTransform.format(
+                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius),
+                    str(offset)
+                    )
+                )
             # ADD ROWS FOR LANGUAGES HERE
             for L in languageData["languages"] :
                 self._rows.append(
