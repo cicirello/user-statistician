@@ -32,6 +32,7 @@ from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
 from Colors import *
 from StatConfig import *
+from ColorUtil import isValidColor, _namedColors, highContrastingColor
 import copy
 
 executedQueryResults = [
@@ -150,6 +151,32 @@ class TestSomething(unittest.TestCase) :
             for locale in supportedLocales :
                 self.assertTrue(locale in labelsByLocale)
 
+    def test_isValidColor(self) :
+        for colorName, colorHex in _namedColors.items() :
+            self.assertTrue(isValidColor(colorHex))
+            self.assertTrue(isValidColor(colorName))
+
+    def test_highContrastingColor(self) :
+        # Not really a good way to test this in an automated way.
+        # This test method generates an SVG, outputted to standard out
+        # with one rectangle for each named color and the name of the color
+        # in the computed high contrasting color in text.
+        # Uncomment the print statement to view results.
+        # One time test. Only rerun if code of highContrastingColor
+        # is changed.
+        rows = ["""<svg width="130" height="{0}" viewBox="0 0 130 {0}" xmlns="http://www.w3.org/2000/svg">""".format(str(len(_namedColors)*20))]
+        templateRect = """<rect width="130" height="20" fill="{0}" x="0" y="{1}" />"""
+        templateText = """<text font-size="14" x="15" y="{2}" fill="{1}">{0}</text>"""
+        y = 0
+        for c in _namedColors :
+            rows.append(templateRect.format(c, str(y)))
+            rows.append(templateText.format(c, highContrastingColor(c), str(y+12.5)))
+            y += 20
+        rows.append("</svg>")
+        # Uncomment me and pipe to colorTest.svg
+        #print("\n".join(rows))
+            
+
     def test_generateSVG(self) :
         class NoQueries(Statistician) :
             def __init__(self, fail=True) :
@@ -169,10 +196,8 @@ class TestSomething(unittest.TestCase) :
         validHexDigits = set("0123456789abcdefABCDEF")
         for p in props :
             color = theme[p]
-            self.assertEqual("#", color[0])
-            self.assertTrue(len(color)==4 or len(color)==7)
-            self.assertTrue(all(c in validHexDigits for c in color[1:]))
-
+            self.assertTrue(isValidColor(color))
+            
     def _validate(self, stats) :
         self.assertEqual(9, stats._user["followers"][0])
         self.assertEqual(7, stats._user["following"][0])
