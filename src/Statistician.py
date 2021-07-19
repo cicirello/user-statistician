@@ -257,8 +257,24 @@ class Statistician :
         else :
             languages = [ (name, data) for name, data in languageData.items() ]
             languages.sort(key = lambda L : L[1]["size"], reverse=True)
+            self.checkColors(languages)
             return { "totalSize" : totalSize, "languages" : languages }
-            
+
+    def checkColors(self, languages) :
+        """Make sure all languages have colors, and assign shades of gray to
+        those that don't.
+
+        Keyword arguments:
+        languages - Sorted list of languages (sorted by size).
+        """
+        # Not all languages have colors assigned by GitHub's Linguist.
+        # In such cases, we alternate between these two shades of gray.
+        colorsForLanguagesWithoutColors = [ "#959da5", "#d1d5da" ]
+        index = 0
+        for L in languages :
+            if L[1]["color"] == None :
+                L[1]["color"] = colorsForLanguagesWithoutColors[index]
+                index = (index + 1) % 2
 
     def summarizeLanguageStats(self, repoStats) :
         """Summarizes the language distibution of the user's owned repositories.
