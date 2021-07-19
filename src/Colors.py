@@ -64,6 +64,13 @@
 #
 # (5) Include a comment with your GitHub userid indicating you
 #     are the contributor of the theme (see the existing themes).
+#
+# (6) You can use either 3-digit hex, 6-digit hex, or named colors.
+#
+# (7) The existing test cases will automatically test that your
+#     colors are valid hex, or valid named colors.
+#     See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+#     for list of named colors.
 
 colorMapping = {
 
