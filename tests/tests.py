@@ -32,7 +32,7 @@ from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
 from Colors import *
 from StatConfig import *
-from ColorUtil import isValidColor, _namedColors, highContrastingColor
+from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
 import copy
 
 executedQueryResults = [
@@ -96,6 +96,13 @@ class TestSomething(unittest.TestCase) :
         for theme in colorMapping :
             if theme not in originalThemes :
                 self._colorValidation(colorMapping[theme])
+
+    def test_color_contrast_text_vs_bg(self) :
+        for theme, colors in colorMapping.items() :
+            crText = contrastRatio(colors["bg"], colors["text"])
+            crTitle = contrastRatio(colors["bg"], colors["title"])
+            self.assertTrue(crText >= 4.5, msg=theme+" "+str(crText))
+            self.assertTrue(crTitle >= 7, msg=theme+" "+str(crTitle))
 
     def test_title_templates(self) :
         unlikelyInTemplate = "qwertyuiop"
