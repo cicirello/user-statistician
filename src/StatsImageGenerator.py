@@ -27,6 +27,7 @@
 
 from StatConfig import *
 from PieChart import svgPieChart
+from ColorUtil import highContrastingColor
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -53,10 +54,11 @@ class StatsImageGenerator :
 <text x="0" y="12.5">{0}:</text>
 </g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
-<rect x="0" y="0" rx="2" width="16" height="16" fill="{1}" />
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
 <text x="25" y="12.5">{2} {3:.2f}%</text>
 </g>"""
-    pieTransform = """<g transform="translate(235, {1})">{0}</g>"""
+    pieTransform = """<g transform="translate(236, {1})">{0}</g>"""
+    pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}" /></g>"""
     
     __slots__ = [
         '_stats',
@@ -68,7 +70,8 @@ class StatsImageGenerator :
         '_locale',
         '_radius',
         '_titleSize',
-        '_pieRadius'
+        '_pieRadius',
+        '_highContrast'
         ]
 
     def __init__(self, stats, colors, locale, radius, titleSize) :
@@ -81,6 +84,7 @@ class StatsImageGenerator :
         """
         self._stats = stats
         self._colors = colors
+        self._highContrast = highContrastingColor(self._colors["bg"])
         self._locale = locale
         self._radius = radius
         self._titleSize = titleSize
@@ -213,9 +217,16 @@ class StatsImageGenerator :
             offset = self._lineHeight
             # ADD PIE CHART HERE
             self._rows.append(
+                StatsImageGenerator.pieContrast.format(
+                    self._pieRadius,
+                    str(offset),
+                    self._highContrast
+                    )
+                )
+            self._rows.append(
                 StatsImageGenerator.pieTransform.format(
-                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius),
-                    str(offset)
+                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius - 1),
+                    str(offset+1)
                     )
                 )
             # ADD ROWS FOR LANGUAGES HERE
@@ -225,7 +236,8 @@ class StatsImageGenerator :
                         str(offset),
                         L[1]["color"], # IMPORTANT CHECK FOR NONE HERE
                         L[0],
-                        100 * L[1]["percentage"]
+                        100 * L[1]["percentage"],
+                        self._highContrast
                         )
                     )
                 offset += self._lineHeight
