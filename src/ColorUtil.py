@@ -57,6 +57,23 @@ def highContrastingColor(color) :
     else :
         return "#ffffff" # white
 
+def contrastRatio(c1, c2) :
+    """Computes contrast ratio of a pair of colors.
+    Returns the contrast ratio provided both colors are valid,
+    and otherwise returns None.
+
+    Keyword arguments:
+    c1 - Color 1, in hex or as a named color.
+    c2 - Color 2, in hex or as a named color.
+    """
+    L1 = luminance(c1)
+    L2 = luminance(c2)
+    if L1 == None or L2 == None :
+        return None
+    if L1 < L2 :
+        L1, L2 = L2, L1
+    return (L1 + 0.05) / (L2 + 0.05)
+
 def luminance(color) :
     """Calculates the luminance of a color. Returns None
     if color is not a valid hex color or named color.
