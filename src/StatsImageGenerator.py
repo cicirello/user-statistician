@@ -57,6 +57,12 @@ class StatsImageGenerator :
 <rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
 <text x="25" y="12.5">{2} {3:.2f}%</text>
 </g>"""
+    languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
+<text x="25" y="12.5">{2} {3:.2f}%</text>
+<rect x="220.5" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}" />
+<text x="245" y="12.5">{6} {7:.2f}%</text>
+</g>"""
     pieTransform = """<g transform="translate(236, {1})">{0}</g>"""
     pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}" /></g>"""
     
@@ -215,7 +221,6 @@ class StatsImageGenerator :
                 StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
                 )
             offset = self._lineHeight
-            # ADD PIE CHART HERE
             self._rows.append(
                 StatsImageGenerator.pieContrast.format(
                     self._pieRadius,
@@ -229,20 +234,55 @@ class StatsImageGenerator :
                     str(offset+1)
                     )
                 )
-            # ADD ROWS FOR LANGUAGES HERE
-            for L in languageData["languages"] :
-                self._rows.append(
-                    StatsImageGenerator.languageEntryTemplate.format(
-                        str(offset),
-                        L[1]["color"], # IMPORTANT CHECK FOR NONE HERE
-                        L[0],
-                        100 * L[1]["percentage"],
-                        self._highContrast
+            diameter = self._pieRadius * 2
+            numRowsToLeft = round(diameter / self._lineHeight)
+            for i, L in enumerate(languageData["languages"]) :
+                if i < numRowsToLeft :
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplate.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast
+                            )
                         )
-                    )
-                offset += self._lineHeight
+                    offset += self._lineHeight
+                else :
+                    break
+            for j in range(numRowsToLeft, len(languageData["languages"]), 2) :
+                L = languageData["languages"][j]
+                if j+1 < len(languageData["languages"]) :
+                    L2 = languageData["languages"][j+1]
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplateTwoLangs.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast,
+                            L2[1]["color"], 
+                            L2[0],
+                            100 * L2[1]["percentage"]
+                            )
+                        )
+                    offset += self._lineHeight
+                else :
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplate.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast
+                            )
+                        )
+                    offset += self._lineHeight
             self._rows.append("</g>")
-            self._height += offset
+            if diameter <= offset :
+                self._height += offset
+            else :
+                self._height += diameter
 
     def formatCount(self, count) :
         """Formats the count.
