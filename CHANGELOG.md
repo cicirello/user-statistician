@@ -4,11 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-07-15
+## [Unreleased] - 2021-07-19
 
 ### Added
   
 ### Changed
+* Text and title colors in built-in themes (light, dark, and dark-dimmed)
+  changed slightly for accessibility (changed to ensure text and background
+  have contrast ratio of at least 4.5, and title and background have contrast
+  ration of at least 7). Test cases will enforce this criteria on any themes
+  that may be contributed in the future (but not on a user's own custom colors).
+* Increased width of image slightly for better visual appearance of data portion
+  with label portion (e.g., right half with data is same width as left half with
+  labels).
 
 ### Deprecated
 
