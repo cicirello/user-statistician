@@ -127,7 +127,7 @@ categoryLabels = {
             "column-two" : "Total"
             },
         "languages" : {
-            "heading" : "Language Distribution (public non-forks)",
+            "heading" : "Language Distribution",
             "column-one" : None,
             "column-two" : None
             }
