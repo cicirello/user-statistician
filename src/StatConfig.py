@@ -127,7 +127,7 @@ categoryLabels = {
             "column-two" : "Total"
             },
         "languages" : {
-            "heading" : "Language Distribution",
+            "heading" : "Language Distribution in Public Repositories",
             "column-one" : None,
             "column-two" : None
             }
