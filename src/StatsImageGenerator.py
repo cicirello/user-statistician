@@ -279,10 +279,10 @@ class StatsImageGenerator :
                         )
                     offset += self._lineHeight
             self._rows.append("</g>")
-            if diameter <= offset :
+            if diameter + self._lineHeight + self._lineHeight - 16 <= offset :
                 self._height += offset
             else :
-                self._height += diameter
+                self._height += diameter + self._lineHeight + self._lineHeight - 16
 
     def formatCount(self, count) :
         """Formats the count.
