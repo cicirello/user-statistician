@@ -431,6 +431,8 @@ public repositories, with low percentage languages combined into an "Other".
 The language distribution chart is intended to be equivalent to the
 language charts that GitHub generates for each repository, but by combining
 all of the repositories that you own. The percentages are based on file sizes. 
+You can also configure the number of languages to explicitly list
+(see the [Inputs](#inputs) section).
 
 Here are a few questions that we anticipate you might have:
 
@@ -490,7 +492,7 @@ other than `true`, case insensitive, will be treated as `false`).
 ### `custom-title`
 
 If you include a title in the user statistics image, the default 
-title is of the form "Your Name's Statistics", where "Your Name" is the 
+title is of the form "Your Name's GitHub Activity", where "Your Name" is the 
 public name of the owner of the repository that is using the action.
 Although note that in the case where the API query returns a null name,
 then the fallback behavior is to use the user id in its place.
@@ -510,6 +512,20 @@ The default should be a good choice in most cases. However, depending upon the
 length of a custom title, or if you use the default title but have a long name, then the 
 title may overflow the viewbox of the SVG. In a case like this, you can pass
 `small-title: true`, which will decrease the font size of the title to 16px.
+
+### `max-languages`
+
+This input is the maximum number of languages to explicitly include in 
+the language distribution chart. The default is `max-languages: auto`, which
+will explicitly show all languages that make up at least 1% of the code in your
+public repositories (excluding forks). All other languages will be combined
+into an "Other". You can also specify the number of languages explicitly. 
+For example, `max-languages: 5` will explicitly include the 5 languages with the
+highest percentages, and will then combine all other languages into an "Other".
+Although if your repositories contain 5 or less languages, then "Other" will
+not be listed.  If you want to explicitly include all languages that occur
+in your repositories, then just pass a high integer value, such as with
+`max-languages: 100`.
 
 ### `colors`
 
@@ -531,7 +547,7 @@ at least 4 colors in the following order: background color, border color,
 icon color, title color, and (optionally) text color. If only 4 colors are specified,
 then all text will use the title color. If you pass more than 5 colors, the extras
 are ignored. If you pass less than 4 colors, then the default `light` theme will
-be used.  Here is an example: `colors: '#f6f8fa #c8e1ff #0366d6 #24292e #586069'`.
+be used.  Here is an example: `colors: '#f6f8fa #c8e1ff #0366d6 #24292e #24292e'`.
 This example happens to be the `light` theme. Because `#` has special meaning to 
 YAML (it is used for comments), you must either put quotes around the input value 
 as shown in this example, or you can escape each `#` individually. The colors in this 
@@ -674,6 +690,7 @@ jobs:
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
+        max-languages: auto
         colors: light
         border-radius: 6
         show-border: true
