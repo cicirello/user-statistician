@@ -198,7 +198,7 @@ Here is a sample of what this will produce:
 
 [![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
 
-### Example 3: Dark-dimmed theme with custom title and some hidden stats
+### Example 3: Dark-dimmed theme with custom title, some hidden stats, and including all languages in language distribution chart
 
 This example shows the dark-dimmed theme, uses a custom title, includes all
 languages in language distribution chart, and hides a
