@@ -39,17 +39,26 @@ class Statistician :
         '_contrib',
         '_repo',
         '_login',
-        '_name'
+        '_name',
+        '_languages',
+        '_autoLanguages',
+        '_maxLanguages'
         ]
 
-    def __init__(self, fail=True) :
+    def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
 
         Keyword arguments:
         fail - If True, the workflow will fail if there are errors.
+        autoLanguages - If True, the number of displayed languages is chosen based on data,
+            regardless of value of maxLanguages.
+        maxLanguages - The maximum number of languages to display. Must be at least 1. If less than
+            1, it treats it as if it was 1.
         """
+        self._autoLanguages = autoLanguages
+        self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
@@ -87,6 +96,8 @@ class Statistician :
             return self._repo
         elif key == "contributions" :
             return self._contrib
+        elif key == "languages" :
+            return self._languages
         else :
             return None # passed an invalid key 
         
@@ -209,6 +220,9 @@ class Statistician :
             
             # Count of public non forks owned by user
             publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+
+            # Compute language distribution
+            totalSize, languageData = self.summarizeLanguageStats(repoStats)
         else :
             # if no owned repos then set all repo related stats to 0
             stargazers = 0
@@ -225,6 +239,7 @@ class Statistician :
             publicNonForksCount = 0
             publicNonForksTemplatesCount = 0
             publicTemplatesCount = 0
+            totalSize, languageData = 0, {}
 
         self._repo = {
             "public" : [publicNonForksCount, publicAll],
@@ -234,6 +249,92 @@ class Statistician :
             "archived" : [publicNonForksArchivedCount, publicArchivedCount],
             "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
             }
+
+        self._languages = self.organizeLanguageStats(totalSize, languageData)
+
+    def organizeLanguageStats(self, totalSize, languageData) :
+        """Computes a list of languages and percentages in decreasing order
+        by percentage.
+
+        Keyword arguments:
+        totalSize - total size of all code with language detection data
+        languageData - the summarized language totals, colors, etc
+        """
+        if totalSize == 0 :
+            return { "totalSize" : 0, "languages" : [] }
+        else :
+            languages = [ (name, data) for name, data in languageData.items() ]
+            languages.sort(key = lambda L : L[1]["size"], reverse=True)
+            if self._autoLanguages :
+                for i, L in enumerate(languages) :
+                    if L[1]["percentage"] < 0.01 :
+                        self._maxLanguages = i
+                        break
+            if len(languages) > self._maxLanguages :
+                self.combineLanguages(languages, self._maxLanguages, totalSize)
+            self.checkColors(languages)
+            return { "totalSize" : totalSize, "languages" : languages }
+
+    def combineLanguages(self, languages, maxLanguages, totalSize) :
+        """Combines lowest percentage languages into an Other.
+
+        Keyword arguments:
+        languages - Sorted list of languages (sorted by size).
+        maxLanguages - The maximum number of languages to keep as is.
+        """
+        if len(languages) > self._maxLanguages :
+            combinedSize = sum(L[1]["size"] for L in languages[maxLanguages:])
+            languages[maxLanguages] = (
+                "Other",
+                { "color" : None,
+                  "size" : combinedSize,
+                  "percentage" : combinedSize / totalSize
+                  }
+                )
+            del languages[maxLanguages+1:]
+        
+    def checkColors(self, languages) :
+        """Make sure all languages have colors, and assign shades of gray to
+        those that don't.
+
+        Keyword arguments:
+        languages - Sorted list of languages (sorted by size).
+        """
+        # Not all languages have colors assigned by GitHub's Linguist.
+        # In such cases, we alternate between these two shades of gray.
+        colorsForLanguagesWithoutColors = [ "#959da5", "#d1d5da" ]
+        index = 0
+        for L in languages :
+            if L[1]["color"] == None :
+                L[1]["color"] = colorsForLanguagesWithoutColors[index]
+                index = (index + 1) % 2
+
+    def summarizeLanguageStats(self, repoStats) :
+        """Summarizes the language distibution of the user's owned repositories.
+
+        Keyword arguments:
+        repoStats - The results of the repo stats query.
+        """
+        totalSize = 0
+        languageData = {}
+        for page in repoStats :
+            if page["nodes"] != None :
+                for repo in page["nodes"] :
+                    if not repo["isPrivate"] and not repo["isFork"] :
+                        totalSize += repo["languages"]["totalSize"]
+                        if repo["languages"]["edges"] != None :
+                            for L in repo["languages"]["edges"] :
+                                name = L["node"]["name"]
+                                if name in languageData :
+                                    languageData[name]["size"] += L["size"]
+                                else :
+                                    languageData[name] = {
+                                        "color" : L["node"]["color"],
+                                        "size" : L["size"]
+                                        }
+        for L in languageData :
+            languageData[L]["percentage"] = languageData[L]["size"] / totalSize
+        return totalSize, languageData
 
     def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
         """Generates the query for prior year stats.

@@ -38,8 +38,8 @@
 # * background color (bg): bg.canvasInset
 # * border color: box.blueBorder
 # * icons: icon.info
-# * text: text.secondary
-# * title: text.primary
+# * text: text.primary
+# * title: bg.canvasInverse
 #
 # Notes to Potential Contributors:
 #
@@ -48,7 +48,12 @@
 #     color with text color, and background with title
 #     color for accessibility at this site,
 #     https://colorable.jxnblk.com/, and make sure the
-#     combination has a rating of at least AA.
+#     combination has a rating of at least AA. You can also
+#     simply run the test cases, which will automatically
+#     verify that the text color and the background color have
+#     a contrast ratio of at least 4.5:1, which is AA.
+#     The contrast ratio between the background and title
+#     colors should also be at least 4.5:1 (also enforced by test cases).
 #
 # (2) Before contributing a new color theme, ask yourself
 #     whether it will likely have broad appeal or a narrow
@@ -64,6 +69,13 @@
 #
 # (5) Include a comment with your GitHub userid indicating you
 #     are the contributor of the theme (see the existing themes).
+#
+# (6) You can use either 3-digit hex, 6-digit hex, or named colors.
+#
+# (7) The existing test cases will automatically test that your
+#     colors are valid hex, or valid named colors.
+#     See https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+#     for list of named colors.
 
 colorMapping = {
 
@@ -72,8 +84,8 @@ colorMapping = {
         "bg" : "#090c10",
         "border" : "#0d419d",
         "icons" : "#79c0ff",
-        "text" : "#8b949e",
-        "title" : "#c9d1d9"
+        "text" : "#c9d1d9",
+        "title" : "#f0f6fc"
         },
 
     # Contributor: cicirello (part of initial theme set)
@@ -81,8 +93,8 @@ colorMapping = {
         "bg" : "#1e2228",
         "border" : "#1b4b91",
         "icons" : "#6cb6ff",
-        "text" : "#768390",
-        "title" : "#adbac7"
+        "text" : "#adbac7",
+        "title" : "#cdd9e5"
         },
 
     # Contributor: cicirello (part of initial theme set)
@@ -90,7 +102,7 @@ colorMapping = {
         "bg" : "#f6f8fa",
         "border" : "#c8e1ff",
         "icons" : "#0366d6",
-        "text" : "#586069",
+        "text" : "#24292e",
         "title" : "#24292e"
         }
     

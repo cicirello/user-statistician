@@ -150,8 +150,15 @@ if __name__ == "__main__" :
         titleSize = 16
     else :
         titleSize = 18
+
+    maxLanguages = sys.argv[12].strip().lower()
+    autoLanguages = maxLanguages == "auto"
+    if not autoLanguages :
+        maxLanguages = int(maxLanguages)
+    else :
+        maxLanguages = 1000 # doesn't really matter, but should be an int
     
-    stats = Statistician(failOnError)
+    stats = Statistician(failOnError, autoLanguages, maxLanguages)
     generator = StatsImageGenerator(stats, colors, locale, radius, titleSize)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)

@@ -73,6 +73,10 @@ inputs:
     description: 'Controls size of title'
     required: false
     default: false
+  max-languages:
+    description: 'Controls maximum number of languages to list separately'
+    required: false
+    default: auto
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -91,3 +95,4 @@ runs:
     - ${{ inputs.border-radius }}
     - ${{ inputs.show-border }}
     - ${{ inputs.small-title }}
+    - ${{ inputs.max-languages }}

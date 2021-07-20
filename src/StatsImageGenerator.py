@@ -26,6 +26,8 @@
 #
 
 from StatConfig import *
+from PieChart import svgPieChart
+from ColorUtil import highContrastingColor
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -48,6 +50,21 @@ class StatsImageGenerator :
 <text x="220" y="12.5">{1}</text>
 <text x="320" y="12.5">{2}</text>
 </g>"""
+    languageHeaderTemplate = """<g transform="translate(15, 0)">
+<text x="0" y="12.5">{0}:</text>
+</g>"""
+    languageEntryTemplate = """<g transform="translate(15, {0})">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
+<text x="25" y="12.5">{2} {3:.2f}%</text>
+</g>"""
+    languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
+<text x="25" y="12.5">{2} {3:.2f}%</text>
+<rect x="220.5" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}" />
+<text x="245" y="12.5">{6} {7:.2f}%</text>
+</g>"""
+    pieTransform = """<g transform="translate(236, {1})">{0}</g>"""
+    pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}" /></g>"""
     
     __slots__ = [
         '_stats',
@@ -58,7 +75,9 @@ class StatsImageGenerator :
         '_lineHeight',
         '_locale',
         '_radius',
-        '_titleSize'
+        '_titleSize',
+        '_pieRadius',
+        '_highContrast'
         ]
 
     def __init__(self, stats, colors, locale, radius, titleSize) :
@@ -71,12 +90,14 @@ class StatsImageGenerator :
         """
         self._stats = stats
         self._colors = colors
+        self._highContrast = highContrastingColor(self._colors["bg"])
         self._locale = locale
         self._radius = radius
         self._titleSize = titleSize
         self._height = 0
-        self._width = 425
+        self._width = 440
         self._lineHeight = 21
+        self._pieRadius = (((self._width - 250) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) / 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
@@ -95,15 +116,21 @@ class StatsImageGenerator :
         self.insertTitle(includeTitle, customTitle)
         for category in categoryOrder :
             if category not in exclude :
-                self.insertGroup(
-                    self._stats.getStatsByKey(category),
-                    categoryLabels[self._locale][category],
-                    self.filterKeys(
+                if category == "languages" :
+                    self.insertLanguagesChart(
                         self._stats.getStatsByKey(category),
-                        exclude,
-                        statsByCategory[category]
+                        categoryLabels[self._locale][category]["heading"]
                         )
-                    )
+                else :
+                    self.insertGroup(
+                        self._stats.getStatsByKey(category),
+                        categoryLabels[self._locale][category],
+                        self.filterKeys(
+                            self._stats.getStatsByKey(category),
+                            exclude,
+                            statsByCategory[category]
+                            )
+                        )
         self.finalizeImageData()
         return "\n".join(self._rows)
 
@@ -173,6 +200,89 @@ class StatsImageGenerator :
                 offset += self._lineHeight
             self._rows.append("</g>")
             self._height += offset
+
+    def insertLanguagesChart(self, languageData, categoryHeading) :
+        """Generates and returns the SVG section for the language
+        distribution summary and pie chart.
+
+        Keyword arguments:
+        languageData - The language stats data
+        categoryHeading - The heading for the section
+        """
+        if languageData["totalSize"] > 0 :
+            self._height += self._lineHeight
+            self._rows.append(
+                StatsImageGenerator.groupHeaderTemplate.format(
+                    self._height,
+                    self._colors["text"]
+                    )
+                )
+            self._rows.append(
+                StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
+                )
+            offset = self._lineHeight
+            self._rows.append(
+                StatsImageGenerator.pieContrast.format(
+                    self._pieRadius,
+                    str(offset),
+                    self._highContrast
+                    )
+                )
+            self._rows.append(
+                StatsImageGenerator.pieTransform.format(
+                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius - 1),
+                    str(offset+1)
+                    )
+                )
+            diameter = self._pieRadius * 2
+            numRowsToLeft = round(diameter / self._lineHeight)
+            for i, L in enumerate(languageData["languages"]) :
+                if i < numRowsToLeft :
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplate.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast
+                            )
+                        )
+                    offset += self._lineHeight
+                else :
+                    break
+            for j in range(numRowsToLeft, len(languageData["languages"]), 2) :
+                L = languageData["languages"][j]
+                if j+1 < len(languageData["languages"]) :
+                    L2 = languageData["languages"][j+1]
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplateTwoLangs.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast,
+                            L2[1]["color"], 
+                            L2[0],
+                            100 * L2[1]["percentage"]
+                            )
+                        )
+                    offset += self._lineHeight
+                else :
+                    self._rows.append(
+                        StatsImageGenerator.languageEntryTemplate.format(
+                            str(offset),
+                            L[1]["color"], 
+                            L[0],
+                            100 * L[1]["percentage"],
+                            self._highContrast
+                            )
+                        )
+                    offset += self._lineHeight
+            self._rows.append("</g>")
+            if diameter + self._lineHeight + self._lineHeight - 16 <= offset :
+                self._height += offset
+            else :
+                self._height += diameter + self._lineHeight + self._lineHeight - 16
 
     def formatCount(self, count) :
         """Formats the count.

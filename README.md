@@ -19,9 +19,11 @@ Although the intended use-case is to generate an SVG image for your GitHub Profi
 you can also potentially link to the image from a personal website, or from anywhere else
 where you'd like to share a summary of your activity on GitHub. The SVG that the action 
 generates includes statistics for the repositories that
-you own as well as your contribution statistics (e.g., commits, issues, PRs, etc). 
+you own, your contribution statistics (e.g., commits, issues, PRs, etc), as well as
+the distribution of languages within public repositories that you own. 
 The user stats image can be customized, including the colors such as with one
-of the built-in themes or your own set of custom colors.
+of the built-in themes or your own set of custom colors. You can also pick and choose
+which sections of the card to include. 
 
 The `user-statistician` action runs entirely here on GitHub. It uses the 
 [GitHub GraphQL API](https://docs.github.com/en/graphql) to collect all of the
@@ -33,14 +35,14 @@ of the "Private Contributions" entry on the stats image, as
 the "restrictedContributionsCount" returned from the query executed by the action 
 will only be non-zero if you have opted in to sharing private contributions via 
 [GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
-You can also disable the "Private Contributions" entry as well (see the 
-[Inputs section](#inputs)) regardless of your GitHub settings. It will also auto-hide if 
-the count is 0, as will any other statistics with a count of 0.
+You can also hide the "Private Contributions" entry (see the 
+[Inputs section](#inputs)) regardless of your GitHub settings, or any of the 
+other entries. Each statistic will also auto-hide if the count is 0.
 
 To use the `user-statistician` action, you just need to set up a workflow in your
 profile repository (or technically any repository that you own) on a schedule (daily
-should be sufficient), and then add a link to the image. The action handles committing
-and pushing the generated image to the repository. If you
+should be sufficient), and then add a link to the image in your README. The action 
+handles committing and pushing the generated image to the repository. If you
 don't already have a GitHub Profile README, start by creating a public repository
 with a name identical to your user name, and everything you include in the `README.md` of
 that repository will show up on your GitHub Profile at the 
@@ -49,31 +51,21 @@ address: `https://github.com/USERNAME`.
 __Inspiration__: We were inspired by the very awesome project
 [anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
 which generates several different stats cards for GitHub Profile READMEs. You should
-check it out if you haven't already. I currently use their language stats card on my profile.
+check it out if you haven't already.
 
 __Motivation__: The reasons that we decided to create the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action, despite the availability of this other tool include the following:
 1. We wanted to include more detailed stats all in a single SVG.
-2. We wanted something that ran entirely within GitHub.
+2. We wanted something that runs entirely within GitHub.
 3. We wanted something that updated the SVG on a schedule (e.g., daily), 
   rather than on-demand, for the following reasons:
-    * The image is simply served when requested, avoiding 
+    * The SVG is simply served when requested, avoiding 
       the delay associated with waiting for API queries to gather the data to generate 
-      the image. 
-    * The API queries associated with generating the image happen once per 
+      the SVG. 
+    * The API queries associated with generating the SVG happen once per 
       cycle of your configured schedule, regardless of how frequently your 
       profile is visited, decreasing system load.
-
-__Built With__: The `user-statistician` action uses the following:
-* Python 3 (implemented almost entirely in Python);
-* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
-  image, which includes the GitHub CLI installed on a python:3-slim base image;
-* [The GitHub CLI](https://cli.github.com/);
-* [GitHub GraphQL API](https://docs.github.com/en/graphql);
-* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
-* We started with our template repository for GitHub Actions implemented in 
-  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
 
 __Show Your Support__: If you find the `user-statistician` action useful, 
 please consider starring the repository; and if you use it for your profile 
@@ -87,12 +79,13 @@ The remainder of the documentation is organized into the following sections:
   This section includes workflows to get you started using the action, as well as
   sample images.
 * [The Stats](#the-stats): This documents all of the statistics included in the
-  images that the action generates.
+  SVGs that the action generates.
 * [Inputs](#inputs): Documentation of all of the inputs to the action, their
   default values, and the effects they have on the behavior of the action.
 * [Outputs](#outputs): Documentation of outputs of the action.
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
+* [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 
 ## Example Workflows and Image Samples
@@ -147,6 +140,13 @@ repository. If you are running this in a repository with branch
 protection rules that require either reviews or checks, then see the section
 below on [Protected branches with required checks](#protected-branches-with-required-checks).
 
+The default behavior of the language distribution chart is to explicitly
+list all languages that individually make up at least 1% of the code in your
+public repositories, with low percentage languages combined into an "Other".
+The language distribution chart is intended to be equivalent to the
+language charts that GitHub generates for each repository, but by combining
+all of the repositories that you own. 
+
 Assuming that you use the default image filename and path, then you can
 insert the image into your README with the following markdown:
 
@@ -198,9 +198,10 @@ Here is a sample of what this will produce:
 
 [![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
 
-### Example 3: Dark-dimmed theme with custom title and some hidden stats
+### Example 3: Dark-dimmed theme with custom title, some hidden stats, and including all languages in language distribution chart
 
-This example shows the dark-dimmed theme, uses a custom title, and hides a
+This example shows the dark-dimmed theme, uses a custom title, includes all
+languages in language distribution chart, and hides a
 few statistics (followers, following, and private). Note by hiding both followers
 and following that the action will automatically hide the header row for the
 "General User Stats" section since we've hidden all of the non-zero 
@@ -231,6 +232,7 @@ jobs:
         colors: dark-dimmed
         custom-title: My GitHub Statistics
         hide-keys: followers, following, private
+        max-languages: 100
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -260,7 +262,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.0.0
+      uses: cicirello/user-statistician@v1.1.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -421,6 +423,53 @@ Please note that GitHub's "restrictedContributionsCount" (which is your private 
 count) doesn't distinguish the type of contributions, so we cannot simply add
 these to the specific counts by type. 
 
+### Language Distribution
+
+The key to hide the language distribution section of the card is: `languages`.
+
+The default behavior of the language distribution chart is to explicitly
+list all languages that individually make up at least 1% of the code in your
+public repositories, with low percentage languages combined into an "Other".
+The language distribution chart is intended to be equivalent to the
+language charts that GitHub generates for each repository, but by combining
+all of the repositories that you own. The percentages are based on file sizes. 
+You can also configure the number of languages to explicitly list
+(see the [Inputs](#inputs) section).
+
+Here are a few questions that we anticipate you might have:
+
+__Why file sizes?__ Well, that is what GitHub
+uses for the language charts within repositories, and that is the data that GitHub's
+API makes available to us.
+
+__Why are some of my languages missing?__ There are a variety of reasons that a 
+language might not be represented. GitHub 
+uses [Linguist](https://github.com/github/linguist) to detect the language
+of each file in your repositories. There are several reasons that it might
+exclude either individual files from the analysis, or entire languages. 
+You can find the full list 
+in [Linguist's documentation](https://github.com/github/linguist/blob/master/docs/how-linguist-works.md).
+Among Linguist's default exclusions are languages classified as "data" and "prose",
+as well as generated code, vendored code, and documentation. Some languages
+that GitHub classifies as "data" are XML, JSON, GraphQL, among others.
+Markdown is among the languages classified as "prose". To see how GitHub has
+classified languages, look at 
+[Linguist's languages.yml](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml).
+
+__Can I include languages that Linguist excludes?__ Yes, you can. GitHub's Linguist
+enables you to [configure Linguist on a per-repository basis](https://github.com/github/linguist/blob/master/docs/overrides.md) 
+via a `.gitattributes` file. In fact, we've done this very thing on this repository
+to tell Linguist to include GraphQL (e.g., see our [.gitattributes](.gitattributes)).
+
+__Can I exclude files or languages that Linguist includes?__ Yes, you can. With this, again
+see [Linguist's override documentation](https://github.com/github/linguist/blob/master/docs/overrides.md). For example, Linguist
+excludes documentation by default, but perhaps
+you have documentation that is not in one of the paths that Linguist normally
+treats as documentation. You can use your repository's `.gitattributes` file
+to mark files or directories as documentation (likewise for vendored code, generated code,
+etc). For an example of this, see the [.gitattributes of one of our other repositories](https://github.com/cicirello/Chips-n-Salsa/blob/master/.gitattributes) where we direct
+Linguist to treat a directory as documentation.
+
 
 ## Inputs
 
@@ -445,7 +494,7 @@ other than `true`, case insensitive, will be treated as `false`).
 ### `custom-title`
 
 If you include a title in the user statistics image, the default 
-title is of the form "Your Name's Statistics", where "Your Name" is the 
+title is of the form "Your Name's GitHub Activity", where "Your Name" is the 
 public name of the owner of the repository that is using the action.
 Although note that in the case where the API query returns a null name,
 then the fallback behavior is to use the user id in its place.
@@ -465,6 +514,20 @@ The default should be a good choice in most cases. However, depending upon the
 length of a custom title, or if you use the default title but have a long name, then the 
 title may overflow the viewbox of the SVG. In a case like this, you can pass
 `small-title: true`, which will decrease the font size of the title to 16px.
+
+### `max-languages`
+
+This input is the maximum number of languages to explicitly include in 
+the language distribution chart. The default is `max-languages: auto`, which
+will explicitly show all languages that make up at least 1% of the code in your
+public repositories (excluding forks). All other languages will be combined
+into an "Other". You can also specify the number of languages explicitly. 
+For example, `max-languages: 5` will explicitly include the 5 languages with the
+highest percentages, and will then combine all other languages into an "Other".
+Although if your repositories contain 5 or less languages, then "Other" will
+not be listed.  If you want to explicitly include all languages that occur
+in your repositories, then just pass a high integer value, such as with
+`max-languages: 100`.
 
 ### `colors`
 
@@ -486,7 +549,7 @@ at least 4 colors in the following order: background color, border color,
 icon color, title color, and (optionally) text color. If only 4 colors are specified,
 then all text will use the title color. If you pass more than 5 colors, the extras
 are ignored. If you pass less than 4 colors, then the default `light` theme will
-be used.  Here is an example: `colors: '#f6f8fa #c8e1ff #0366d6 #24292e #586069'`.
+be used.  Here is an example: `colors: '#f6f8fa #c8e1ff #0366d6 #24292e #24292e'`.
 This example happens to be the `light` theme. Because `#` has special meaning to 
 YAML (it is used for comments), you must either put quotes around the input value 
 as shown in this example, or you can escape each `#` individually. The colors in this 
@@ -629,6 +692,7 @@ jobs:
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
+        max-languages: auto
         colors: light
         border-radius: 6
         show-border: true
@@ -648,6 +712,18 @@ jobs:
         # have failed the workflow and you can check it here.
         echo "exitCode = ${{ steps.statsStep.outputs.exit-code }}"
 ```
+
+## Built With
+
+The `user-statistician` action uses the following:
+* Python 3 (implemented almost entirely in Python);
+* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
+  image, which includes the GitHub CLI installed on a python:3-slim base image;
+* [The GitHub CLI](https://cli.github.com/);
+* [GitHub GraphQL API](https://docs.github.com/en/graphql);
+* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
+* We started with our template repository for GitHub Actions implemented in 
+  Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
 
 ## Support the Project
 
