@@ -200,7 +200,8 @@ Here is a sample of what this will produce:
 
 ### Example 3: Dark-dimmed theme with custom title and some hidden stats
 
-This example shows the dark-dimmed theme, uses a custom title, and hides a
+This example shows the dark-dimmed theme, uses a custom title, includes all
+languages in language distribution chart, and hides a
 few statistics (followers, following, and private). Note by hiding both followers
 and following that the action will automatically hide the header row for the
 "General User Stats" section since we've hidden all of the non-zero 
@@ -231,6 +232,7 @@ jobs:
         colors: dark-dimmed
         custom-title: My GitHub Statistics
         hide-keys: followers, following, private
+        max-languages: 100
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
