@@ -40,17 +40,25 @@ class Statistician :
         '_repo',
         '_login',
         '_name',
-        '_languages'
+        '_languages',
+        '_autoLanguages',
+        '_maxLanguages'
         ]
 
-    def __init__(self, fail=True) :
+    def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
 
         Keyword arguments:
         fail - If True, the workflow will fail if there are errors.
+        autoLanguages - If True, the number of displayed languages is chosen based on data,
+            regardless of value of maxLanguages.
+        maxLanguages - The maximum number of languages to display. Must be at least 1. If less than
+            1, it treats it as if it was 1.
         """
+        self._autoLanguages = autoLanguages
+        self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
@@ -257,9 +265,34 @@ class Statistician :
         else :
             languages = [ (name, data) for name, data in languageData.items() ]
             languages.sort(key = lambda L : L[1]["size"], reverse=True)
+            if self._autoLanguages :
+                for i, L in enumerate(languages) :
+                    if L[1]["percentage"] < 0.01 :
+                        self._maxLanguages = i
+                        break
+            if len(languages) > self._maxLanguages :
+                self.combineLanguages(languages, self._maxLanguages, totalSize)
             self.checkColors(languages)
             return { "totalSize" : totalSize, "languages" : languages }
 
+    def combineLanguages(self, languages, maxLanguages, totalSize) :
+        """Combines lowest percentage languages into an Other.
+
+        Keyword arguments:
+        languages - Sorted list of languages (sorted by size).
+        maxLanguages - The maximum number of languages to keep as is.
+        """
+        if len(languages) > self._maxLanguages :
+            combinedSize = sum(L[1]["size"] for L in languages[maxLanguages:])
+            languages[maxLanguages] = (
+                "Other",
+                { "color" : None,
+                  "size" : combinedSize,
+                  "percentage" : combinedSize / totalSize
+                  }
+                )
+            del languages[maxLanguages+1:]
+        
     def checkColors(self, languages) :
         """Make sure all languages have colors, and assign shades of gray to
         those that don't.
