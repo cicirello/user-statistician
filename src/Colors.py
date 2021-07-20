@@ -53,7 +53,7 @@
 #     verify that the text color and the background color have
 #     a contrast ratio of at least 4.5:1, which is AA.
 #     The contrast ratio between the background and title
-#     colors should be at least 7:1 (also enforced by test cases).
+#     colors should also be at least 4.5:1 (also enforced by test cases).
 #
 # (2) Before contributing a new color theme, ask yourself
 #     whether it will likely have broad appeal or a narrow
