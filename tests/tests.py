@@ -102,7 +102,7 @@ class TestSomething(unittest.TestCase) :
             crText = contrastRatio(colors["bg"], colors["text"])
             crTitle = contrastRatio(colors["bg"], colors["title"])
             self.assertTrue(crText >= 4.5, msg=theme+" "+str(crText))
-            self.assertTrue(crTitle >= 7, msg=theme+" "+str(crTitle))
+            self.assertTrue(crTitle >= 4.5, msg=theme+" "+str(crTitle))
 
     def test_title_templates(self) :
         unlikelyInTemplate = "qwertyuiop"
@@ -195,8 +195,8 @@ class TestSomething(unittest.TestCase) :
                     )
                 self.parsePriorYearStats(executedQueryResultsTest2[3])
         stats = NoQueries()
-        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["light"]), "en", 6, 18)
-        #print(svgGen.generateImage(True, None, {}))
+        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark-dimmed"]), "en", 6, 18)
+        print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
