@@ -1,8 +1,8 @@
-<svg width="425" height="480" viewBox="0 0 425 480" xmlns="http://www.w3.org/2000/svg">
-<rect x="2" y="2" stroke-width="4" rx="6" width="421" height="476" stroke="#c8e1ff" fill="#f6f8fa" />
+<svg width="440" height="711.0" viewBox="0 0 440 711.0" xmlns="http://www.w3.org/2000/svg">
+<rect x="2" y="2" stroke-width="4" rx="6" width="436" height="707.0" stroke="#c8e1ff" fill="#f6f8fa" />
 <g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">
-<text x="15" y="37" font-size="18px" fill="#24292e">Vincent A. Cicirello's Statistics</text>
-<g transform="translate(0, 60)" font-size="14px" fill="#586069">
+<text x="15" y="37" font-size="18px" fill="#24292e">Vincent A. Cicirello's GitHub Activity</text>
+<g transform="translate(0, 60)" font-size="14px" fill="#24292e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">General User Stats:</text>
 <text x="220" y="12.5">Count</text>
@@ -25,7 +25,7 @@
 <text x="320" y="12.5"></text>
 </g>
 </g>
-<g transform="translate(0, 144)" font-size="14px" fill="#586069">
+<g transform="translate(0, 144)" font-size="14px" fill="#24292e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">Repositories:</text>
 <text x="220" y="12.5">Non-Forks</text>
@@ -44,8 +44,8 @@
 <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"/>
 </svg>
 <text x="25" y="12.5">Starred By:</text>
-<text x="220" y="12.5">36</text>
-<text x="320" y="12.5">36</text>
+<text x="220" y="12.5">37</text>
+<text x="320" y="12.5">37</text>
 </g>
 <g transform="translate(15, 63)">
 <svg viewBox="0 0 16 16" width="16" height="16" fill="#0366d6">
@@ -80,7 +80,7 @@
 <text x="320" y="12.5">2</text>
 </g>
 </g>
-<g transform="translate(0, 312)" font-size="14px" fill="#586069">
+<g transform="translate(0, 312)" font-size="14px" fill="#24292e">
 <g transform="translate(15, 0)">
 <text x="0" y="12.5">Contributions:</text>
 <text x="220" y="12.5">Past Year</text>
@@ -91,8 +91,8 @@
 <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
 </svg>
 <text x="25" y="12.5">Commits:</text>
-<text x="220" y="12.5">3901</text>
-<text x="320" y="12.5">4719</text>
+<text x="220" y="12.5">3938</text>
+<text x="320" y="12.5">4797</text>
 </g>
 <g transform="translate(15, 42)">
 <svg viewBox="0 0 16 16" width="16" height="16" fill="#0366d6">
@@ -108,7 +108,7 @@
 </svg>
 <text x="25" y="12.5">Pull Requests:</text>
 <text x="220" y="12.5">315</text>
-<text x="320" y="12.5">315</text>
+<text x="320" y="12.5">317</text>
 </g>
 <g transform="translate(15, 84)">
 <svg viewBox="0 0 16 16" width="16" height="16" fill="#0366d6">
@@ -133,6 +133,39 @@
 <text x="25" y="12.5">Private Contributions:</text>
 <text x="220" y="12.5">107</text>
 <text x="320" y="12.5">107</text>
+</g>
+</g>
+<g transform="translate(0, 480)" font-size="14px" fill="#24292e">
+<g transform="translate(15, 0)">
+<text x="0" y="12.5">Language Distribution in Public Repositories:</text>
+</g>
+<g transform="translate(235, 21)"><circle cx="92.0" cy="92.0" r="92.0" fill="#000000" /></g>
+<g transform="translate(236, 22)"><svg viewBox="0 0 182.0 182.0" width="182.0" height="182.0">
+<path fill-rule="evenodd" fill="#b07219" d="M 0.0,91.00000000000001 A 91.0 91.0 0 1 1 147.36229926199883 162.44432253091134 L 91.0,91.0 Z"/>
+<path fill-rule="evenodd" fill="#e34c26" d="M 147.36229926199883,162.44432253091134 A 91.0 91.0 0 0 1 17.695070588532104 144.92019402765266 L 91.0,91.0 Z"/>
+<path fill-rule="evenodd" fill="#3572A5" d="M 17.695070588532104,144.92019402765266 A 91.0 91.0 0 0 1 3.090495524753379 114.51423022164653 L 91.0,91.0 Z"/>
+<path fill-rule="evenodd" fill="#3D6117" d="M 3.090495524753379,114.51423022164653 A 91.0 91.0 0 0 1 0.0165914458740275 92.73763283607256 L 91.0,91.0 Z"/>
+<path fill-rule="evenodd" fill="#959da5" d="M 0.0165914458740275,92.73763283607256 A 91.0 91.0 0 0 1 0.0 91.00000000000003 L 91.0,91.0 Z"/>
+</svg></g>
+<g transform="translate(15, 21)">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="#b07219" stroke-width="1" stroke="#000000" />
+<text x="25" y="12.5">Java 64.37%</text>
+</g>
+<g transform="translate(15, 42)">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="#e34c26" stroke-width="1" stroke="#000000" />
+<text x="25" y="12.5">HTML 25.54%</text>
+</g>
+<g transform="translate(15, 63)">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="#3572A5" stroke-width="1" stroke="#000000" />
+<text x="25" y="12.5">Python 5.93%</text>
+</g>
+<g transform="translate(15, 84)">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="#3D6117" stroke-width="1" stroke="#000000" />
+<text x="25" y="12.5">TeX 3.86%</text>
+</g>
+<g transform="translate(15, 105)">
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="#959da5" stroke-width="1" stroke="#000000" />
+<text x="25" y="12.5">Other 0.30%</text>
 </g>
 </g>
 </g>
