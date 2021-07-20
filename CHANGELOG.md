@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-07-20
 
 ### Added
+  
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.1.0] - 2021-07-20
+
+### Added
 * Language Distribution section added to the card:
   * Languages section of the stats card that summarizes the distribution
     of languages for the public repositories owned by the user. This is intended
@@ -32,12 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with label portion (e.g., right half with data is same width as left half with
   labels).
 * Changed default title template to better reflect content of the stats card.
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 
 ## [1.0.2] - 2021-07-15
