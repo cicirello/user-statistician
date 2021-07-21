@@ -76,13 +76,21 @@ class Statistician :
             self.executeQuery(basicStatsQuery,
                               failOnError=fail),
             self.executeQuery(additionalRepoStatsQuery,
-                              needsPagination=True),
+                              needsPagination=True,
+                              failOnError=fail),
             self.executeQuery(watchingAdjustmentQuery,
-                              needsPagination=True),
+                              needsPagination=True,
+                              failOnError=fail),
             self.executeQuery(reposContributedTo,
-                              needsPagination=True)
+                              needsPagination=True,
+                              failOnError=fail)
             )
-        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
+        self.parsePriorYearStats(
+            self.executeQuery(
+                self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
+                failOnError=fail
+                )
+            )
 
     def getStatsByKey(self, key) :
         """Gets a category of stats by key.
@@ -383,7 +391,7 @@ class Statistician :
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
-        numPages = result.count('{"data"')
+        numPages = result.count('"data"')
         if numPages == 0 :
             # Check if any error details
             result = json.loads(result) if len(result) > 0 else ""
@@ -402,6 +410,15 @@ class Statistician :
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
         result = json.loads(result)
+        failed = False
+        if (not needsPagination) and (("data" not in result) or result["data"] == None) :
+            failed = True
+        elif needsPagination and ("data" not in result[0] or result[0]["data"] == None):
+            failed = True
+        if failed :
+            print("Error (6): No data returned.")
+            print("::set-output name=exit-code::6")
+            exit(6 if failOnError else 0)
         return result
 
     def ghDisableInteractivePrompts(self) :
