@@ -76,13 +76,21 @@ class Statistician :
             self.executeQuery(basicStatsQuery,
                               failOnError=fail),
             self.executeQuery(additionalRepoStatsQuery,
-                              needsPagination=True),
+                              needsPagination=True,
+                              failOnError=fail),
             self.executeQuery(watchingAdjustmentQuery,
-                              needsPagination=True),
+                              needsPagination=True,
+                              failOnError=fail),
             self.executeQuery(reposContributedTo,
-                              needsPagination=True)
+                              needsPagination=True,
+                              failOnError=fail)
             )
-        self.parsePriorYearStats(self.executeQuery(self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate)))
+        self.parsePriorYearStats(
+            self.executeQuery(
+                self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
+                failOnError=fail
+                )
+            )
 
     def getStatsByKey(self, key) :
         """Gets a category of stats by key.
