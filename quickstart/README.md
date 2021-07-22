@@ -40,3 +40,29 @@ so that others know how you generated it, with the following markdown:
 ```
 
 ## Workflow List
+
+The ready-to-use workflows are as follows:
+* [all-defaults.yml](all-defaults.yml): This runs the action
+  on a daily schedule using all of the default settings, which is a 
+  light color theme.
+* [dark.yml](dark.yml): This runs the action
+  on a daily schedule with a dark color theme, but otherwise uses 
+  all of the default settings.
+* [dark-dimmed.yml](dark-dimmed.yml): This runs the action
+  on a daily schedule with a dark-dimmed color theme, but otherwise uses 
+  all of the default settings.
+* [contributions.yml](contributions.yml): This runs the action
+  on a daily schedule, only generating the contribution stats (hiding
+  the other sections), with a dark-dimmed theme.
+* [repositories.yml](repositories.yml): This runs the action
+  on a daily schedule, only generating the repositories stats (hiding
+  the other sections), with a dark-dimmed theme.
+* [languages.yml](languages.yml): This runs the action
+  on a daily schedule, only generating the languages distribution chart 
+  (hiding the other sections), with a dark theme.
+* [multiple-stats-cards.yml](multiple-stats-cards.yml): This runs the
+  action on a daily schedule, generating three separate SVGs, one for
+  the contribution stats, one for the repositories stats, and one for
+  the language distribution chart. It uses the dark theme for all three.
+  Note that if you use this one, you'll have three images to insert into
+  your profile readme.
