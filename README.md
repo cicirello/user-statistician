@@ -85,8 +85,8 @@ The remainder of the documentation is organized into the following sections:
 * [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 
-Additionally, see the [Quickstart](quickstart) directory for ready-to-use workflows
-and quickstart instructions.
+__Quickstart__: Additionally, see the [Quickstart](quickstart) directory 
+for ready-to-use workflows and quickstart instructions.
 
 ## Example Workflows and Image Samples
 
