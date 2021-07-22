@@ -241,6 +241,55 @@ Here is a sample of what this will produce:
 
 [![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
+### Example 4: Multiple SVGs for repository stats, contribution stats, and language distribution
+
+If you would rather have separate SVGs for each type of GitHub stats (repository 
+stats, contribution stats, and language distribution), then you can accomplish this
+by running the action multiple times in a single workflow. This example does this.
+Note that you must use the `image-file` input to give each of the SVGs its own
+filename in this case, which will likewise change the markdown needed to insert
+the images into your readme.
+
+```yml
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the languages distribution
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/languages.svg
+        hide-keys: general, contributions, repositories
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the contributions stats
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/contribs.svg
+        hide-keys: general, languages, repositories
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the repositories stats
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/repos.svg
+        hide-keys: general, contributions, languages
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
 ### Specific version vs major release
 
 All of the above examples used the major release tag
