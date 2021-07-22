@@ -27,14 +27,11 @@ To use one of these workflows, do the following:
   used one of these workflows as is, without using the inputs to change
   the file name of the image, then you can add the image to your profile 
   with the following Markdown:
-
   ```markdown
   ![My user statistics](images/userstats.svg)
   ```
-
   Although not required, it is appreciated if you instead link the image to this repository
   so that others know how you generated it, with the following markdown:
-
   ```markdown
   [![My user statistics](images/userstats.svg)](https://github.com/cicirello/user-statistician)
   ```
