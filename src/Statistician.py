@@ -411,12 +411,19 @@ class Statistician :
             result = "[" + result + "]"
         result = json.loads(result)
         failed = False
+        errorMessage = None
         if (not needsPagination) and (("data" not in result) or result["data"] == None) :
             failed = True
+            if "errors" in result :
+                errorMessage = result["errors"]
         elif needsPagination and ("data" not in result[0] or result[0]["data"] == None):
             failed = True
+            if "errors" in result[0] :
+                errorMessage = result[0]["errors"]
         if failed :
             print("Error (6): No data returned.")
+            if errorMessage != None :
+                print(errorMessage)
             print("::set-output name=exit-code::6")
             exit(6 if failOnError else 0)
         return result
