@@ -1,0 +1,22 @@
+# This workflow configures the user-statistician with all of
+# the defaults, which is a light theme, nothing hidden, etc.
+# It is configured on a daily schedule at 3am.
+
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
