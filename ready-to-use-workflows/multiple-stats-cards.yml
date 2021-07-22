@@ -1,0 +1,47 @@
+# This workflow configures the user-statistician to
+# generate three SVGs, one each for contribution stats,
+# repositories stats, and the language distribution chart, using
+# the dark color theme. It uses the image-file input to assign each
+# SVG a unique filename. It is configured on a daily 
+# schedule at 3am.
+
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the languages distribution
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/languages.svg
+        colors: dark
+        hide-keys: general, contributions, repositories
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the contributions stats
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/contribs.svg
+        colors: dark
+        hide-keys: general, languages, repositories
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Generate the repositories stats
+      uses: cicirello/user-statistician@v1
+      with:
+        image-file: images/repos.svg
+        colors: dark
+        hide-keys: general, contributions, languages
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

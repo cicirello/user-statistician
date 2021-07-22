@@ -1,0 +1,26 @@
+# This workflow configures the user-statistician to
+# generate only the language distribution chart, using
+# the dark color theme. It is configured on a daily 
+# schedule at 3am.
+
+name: user-statistician
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: dark
+        hide-keys: general, contributions, repositories
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
