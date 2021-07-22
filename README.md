@@ -50,11 +50,6 @@ with a name identical to your user name, and everything you include in the `READ
 that repository will show up on your GitHub Profile at the 
 address: `https://github.com/USERNAME`.
 
-__Inspiration__: We were inspired by the very awesome project
-[anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats),
-which generates several different stats cards for GitHub Profile READMEs. You should
-check it out if you haven't already.
-
 __Motivation__: The reasons that we decided to create the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action, despite the availability of this other tool include the following:
