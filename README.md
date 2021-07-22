@@ -52,7 +52,7 @@ address: `https://github.com/USERNAME`.
 
 __Motivation__: The reasons that we decided to create the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
-GitHub Action, despite the availability of this other tool include the following:
+GitHub Action include the following:
 1. We wanted to include more detailed stats all in a single SVG.
 2. We wanted something that runs entirely within GitHub.
 3. We wanted something that updated the SVG on a schedule (e.g., daily), 
