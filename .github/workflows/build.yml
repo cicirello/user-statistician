@@ -38,6 +38,7 @@ jobs:
         colors: dark
         commit-and-push: false
         #fail-on-error: false
+        #category-order: general, repositories, languages, contributions
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 

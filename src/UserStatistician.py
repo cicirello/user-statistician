@@ -29,7 +29,7 @@
 from Statistician import Statistician
 from Colors import colorMapping
 from StatsImageGenerator import StatsImageGenerator
-from StatConfig import supportedLocales
+from StatConfig import supportedLocales, categoryOrder
 import sys
 import os
 import subprocess
@@ -157,9 +157,15 @@ if __name__ == "__main__" :
         maxLanguages = int(maxLanguages)
     else :
         maxLanguages = 1000 # doesn't really matter, but should be an int
+
+    categories = sys.argv[13].strip().replace(",", " ").lower().split()
+    validCategoryKeys = set(categoryOrder)
+    categories = [ c for c in categories if c in validCategoryKeys]
+    if len(categories) == 0 :
+        categories = categoryOrder
     
     stats = Statistician(failOnError, autoLanguages, maxLanguages)
-    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize)
+    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

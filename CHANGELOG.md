@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * The year user joined GitHub is now in General User Stats section of card.
+* New action input, `category-order`, which allows user to customize the order
+  of the categories of stats.
   
 ### Changed
 * Minified SVG during generation (removed unnecessary characters like new lines,
