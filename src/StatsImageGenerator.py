@@ -33,7 +33,7 @@ class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
-    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}" />'
+    backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
     fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
@@ -45,26 +45,37 @@ class StatsImageGenerator :
 <text x="220" y="12.5">{4}</text>
 <text x="320" y="12.5">{5}</text>
 </g>"""
+    tableEntryTemplateOneColumn = """<g transform="translate(15, {0})">
+<svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
+{2}
+</svg>
+<text x="25" y="12.5">{3}:</text>
+<text x="220" y="12.5">{4}</text>
+</g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
 <text x="220" y="12.5">{1}</text>
 <text x="320" y="12.5">{2}</text>
 </g>"""
-    languageHeaderTemplate = """<g transform="translate(15, 0)">
+    tableHeaderTemplateOneColumn = """<g transform="translate(15, 0)">
+<text x="0" y="12.5">{0}:</text>
+<text x="220" y="12.5">{1}</text>
+</g>"""
+    tableHeaderTemplateNoColumns = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
 </g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
 <text x="25" y="12.5">{2} {3:.2f}%</text>
 </g>"""
     languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}" />
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
 <text x="25" y="12.5">{2} {3:.2f}%</text>
-<rect x="220.5" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}" />
+<rect x="220.5" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}"/>
 <text x="245" y="12.5">{6} {7:.2f}%</text>
 </g>"""
     pieTransform = """<g transform="translate(236, {1})">{0}</g>"""
-    pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}" /></g>"""
+    pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}"/></g>"""
     
     __slots__ = [
         '_stats',
@@ -132,7 +143,7 @@ class StatsImageGenerator :
                             )
                         )
         self.finalizeImageData()
-        return "\n".join(self._rows)
+        return "".join(self._rows).replace("\n", "")
 
     def filterKeys(self, data, exclude, keys) :
         """Returns a list of the keys that have non-zero data and which are not excluded.
@@ -181,7 +192,13 @@ class StatsImageGenerator :
             self._height += self._lineHeight
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
-                self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
+                if headerRow["column-one"] == None :
+                    template = StatsImageGenerator.tableHeaderTemplateNoColumns
+                elif headerRow["column-two"] == None :
+                    template = StatsImageGenerator.tableHeaderTemplateOneColumn
+                else :
+                    template = StatsImageGenerator.tableHeaderTemplate  
+                self._rows.append(template.format(
                     headerRow["heading"],
                     headerRow["column-one"],
                     headerRow["column-two"]))
@@ -189,7 +206,8 @@ class StatsImageGenerator :
             else :
                 offset = 0
             for k in keys :
-                self._rows.append(StatsImageGenerator.tableEntryTemplate.format(
+                template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
+                self._rows.append(template.format(
                     str(offset),
                     self._colors["icons"],
                     statLabels[k]["icon"],
@@ -218,7 +236,7 @@ class StatsImageGenerator :
                     )
                 )
             self._rows.append(
-                StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
+                StatsImageGenerator.tableHeaderTemplateNoColumns.format(categoryHeading)
                 )
             offset = self._lineHeight
             self._rows.append(

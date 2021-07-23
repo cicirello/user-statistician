@@ -114,7 +114,7 @@ categoryLabels = {
         "general" : {
             "heading" : "General User Stats",
             "column-one" : "Count",
-            "column-two" : ""
+            "column-two" : None
             },
         "repositories" : {
             "heading" : "Repositories",
