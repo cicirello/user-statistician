@@ -120,7 +120,7 @@ class TestSomething(unittest.TestCase) :
         categories = {"general", "repositories", "contributions", "languages"}
         self.assertEqual(set(categoryOrder), categories)
         statistics = {
-            "followers", "following", "sponsors", "sponsoring",
+            "joined", "followers", "following", "sponsors", "sponsoring",
             "public", "starredBy",
             "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
@@ -212,6 +212,7 @@ class TestSomething(unittest.TestCase) :
             self.assertTrue(isValidColor(color))
             
     def _validate(self, stats) :
+        self.assertEqual(2011, stats._user["joined"][0])
         self.assertEqual(9, stats._user["followers"][0])
         self.assertEqual(7, stats._user["following"][0])
         self.assertEqual(7, stats._user["sponsors"][0])

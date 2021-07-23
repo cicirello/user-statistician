@@ -160,6 +160,7 @@ class Statistician :
         self._user = {}
         self._user["followers"] = [ basicStats["data"]["user"]["followers"]["totalCount"] ]
         self._user["following"] = [ basicStats["data"]["user"]["following"]["totalCount"] ]
+        self._user["joined"] = [ min(self._contributionYears) ]
 
         # Extract sponsors and sponsoring counts
         self._user["sponsors"] = [ basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
