@@ -63,7 +63,7 @@ statsByCategory = {
     "languages" : []
     }
 
-# Order that the categories of stats should appear.
+# The default order for the categories of stats on the SVG
 categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 
