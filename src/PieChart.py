@@ -74,4 +74,4 @@ def svgPieChart(wedges, radius) :
                 )
         
     components.append("</svg>")
-    return "\n".join(components)
+    return "".join(components)
