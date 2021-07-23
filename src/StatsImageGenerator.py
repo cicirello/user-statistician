@@ -45,12 +45,23 @@ class StatsImageGenerator :
 <text x="220" y="12.5">{4}</text>
 <text x="320" y="12.5">{5}</text>
 </g>"""
+    tableEntryTemplateOneColumn = """<g transform="translate(15, {0})">
+<svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
+{2}
+</svg>
+<text x="25" y="12.5">{3}:</text>
+<text x="220" y="12.5">{4}</text>
+</g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
 <text x="220" y="12.5">{1}</text>
 <text x="320" y="12.5">{2}</text>
 </g>"""
-    languageHeaderTemplate = """<g transform="translate(15, 0)">
+    tableHeaderTemplateOneColumn = """<g transform="translate(15, 0)">
+<text x="0" y="12.5">{0}:</text>
+<text x="220" y="12.5">{1}</text>
+</g>"""
+    tableHeaderTemplateNoColumns = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
 </g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
@@ -181,7 +192,13 @@ class StatsImageGenerator :
             self._height += self._lineHeight
             self._rows.append(StatsImageGenerator.groupHeaderTemplate.format(self._height, self._colors["text"]))
             if headerRow != None :
-                self._rows.append(StatsImageGenerator.tableHeaderTemplate.format(
+                if headerRow["column-one"] == None :
+                    template = StatsImageGenerator.tableHeaderTemplateNoColumns
+                elif headerRow["column-two"] == None :
+                    template = StatsImageGenerator.tableHeaderTemplateOneColumn
+                else :
+                    template = StatsImageGenerator.tableHeaderTemplate  
+                self._rows.append(template.format(
                     headerRow["heading"],
                     headerRow["column-one"],
                     headerRow["column-two"]))
@@ -189,7 +206,8 @@ class StatsImageGenerator :
             else :
                 offset = 0
             for k in keys :
-                self._rows.append(StatsImageGenerator.tableEntryTemplate.format(
+                template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
+                self._rows.append(template.format(
                     str(offset),
                     self._colors["icons"],
                     statLabels[k]["icon"],
@@ -218,7 +236,7 @@ class StatsImageGenerator :
                     )
                 )
             self._rows.append(
-                StatsImageGenerator.languageHeaderTemplate.format(categoryHeading)
+                StatsImageGenerator.tableHeaderTemplateNoColumns.format(categoryHeading)
                 )
             offset = self._lineHeight
             self._rows.append(
