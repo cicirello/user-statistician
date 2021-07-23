@@ -202,7 +202,7 @@ Here is a sample of what this will produce:
 
 This example shows the dark-dimmed theme, uses a custom title, includes all
 languages in language distribution chart, and hides a
-few statistics (followers, following, and private). Note by hiding both followers
+few statistics (joined, followers, following, and private). Note by hiding joined, followers,
 and following that the action will automatically hide the header row for the
 "General User Stats" section since we've hidden all of the non-zero 
 stats from that section. If someone were to sponsor me, or if I was to
@@ -231,7 +231,7 @@ jobs:
       with:
         colors: dark-dimmed
         custom-title: My GitHub Statistics
-        hide-keys: followers, following, private
+        hide-keys: joined, followers, following, private
         max-languages: 100
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -239,7 +239,7 @@ jobs:
 
 Here is a sample of what this will produce:
 
-[![Dark-dimmed theme with custom title, and with private, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
+[![Dark-dimmed theme with custom title, and with private, joined, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 4: Multiple SVGs for repository stats, contribution stats, and language distribution
 
@@ -420,6 +420,7 @@ following.
 
 | Key | Statistic | Details |
 | --- | --- | ------ |
+| `joined` | Year Joined | the year user joined GitHub |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
 | `sponsors` | Sponsors | simple count |

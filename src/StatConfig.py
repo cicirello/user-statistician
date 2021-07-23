@@ -38,6 +38,7 @@
 # order they should appear.
 statsByCategory = {
     "general" : [
+        "joined",
         "followers",
         "sponsors",
         "following",
@@ -113,7 +114,7 @@ categoryLabels = {
     "en" : {
         "general" : {
             "heading" : "General User Stats",
-            "column-one" : "Count",
+            "column-one" : None,
             "column-two" : None
             },
         "repositories" : {
@@ -143,6 +144,13 @@ titleTemplates = {
 
 # Dictionary of icon paths and labels for the supported statistics.
 statLabels = {
+
+    "joined" : {
+        "icon" : '<path fill-rule="evenodd" d="M13.25 0a.75.75 0 01.75.75V2h1.25a.75.75 0 010 1.5H14v1.25a.75.75 0 01-1.5 0V3.5h-1.25a.75.75 0 010-1.5h1.25V.75a.75.75 0 01.75-.75zM5.5 4a2 2 0 100 4 2 2 0 000-4zm2.4 4.548a3.5 3.5 0 10-4.799 0 5.527 5.527 0 00-3.1 4.66.75.75 0 101.498.085A4.01 4.01 0 015.5 9.5a4.01 4.01 0 014.001 3.793.75.75 0 101.498-.086 5.527 5.527 0 00-3.1-4.659z"/>',
+        "label" : {
+            "en" : "Year Joined"
+            }
+        },
     
     "followers" : {
         "icon" : '<path fill-rule="evenodd" d="M5.5 3.5a2 2 0 100 4 2 2 0 000-4zM2 5.5a3.5 3.5 0 115.898 2.549 5.507 5.507 0 013.034 4.084.75.75 0 11-1.482.235 4.001 4.001 0 00-7.9 0 .75.75 0 01-1.482-.236A5.507 5.507 0 013.102 8.05 3.49 3.49 0 012 5.5zM11 4a.75.75 0 100 1.5 1.5 1.5 0 01.666 2.844.75.75 0 00-.416.672v.352a.75.75 0 00.574.73c1.2.289 2.162 1.2 2.522 2.372a.75.75 0 101.434-.44 5.01 5.01 0 00-2.56-3.012A3 3 0 0011 4z"/>',
