@@ -1,1 +1,2 @@
 *.graphql linguist-detectable
+quickstart/*.yml linguist-detectable
