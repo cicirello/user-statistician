@@ -143,7 +143,7 @@ class StatsImageGenerator :
                             )
                         )
         self.finalizeImageData()
-        return "".join(self._rows)
+        return "".join(self._rows).replace("\n", "")
 
     def filterKeys(self, data, exclude, keys) :
         """Returns a list of the keys that have non-zero data and which are not excluded.
