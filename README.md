@@ -644,6 +644,22 @@ such as: `hide-keys: general private`.
 See earlier in the section [The Stats](#the-stats) for the keys needed for this input.
 The keys are case sensitive.
 
+### `category-order`
+
+This input enables customizing the order of the stats categories on the card.
+The categories are indicated by their keys, just like in the `hide-keys` input.
+The default is: `category-order: general, repositories, contributions, languages`.
+You can change the order by passing the list in a different order. For example,
+perhaps you want the language chart right after the repositories stats section.
+You can do that with: `category-order: general, repositories, languages, contributions`.
+This input provide another way of controlling which sections appear on the
+card. For example, if all you want are the repositories stats and the languages 
+chart, you can do that 
+with: `category-order: repositories, languages` without using the `hide-keys` 
+input. These two inputs also work in combination. If you use `hide-keys`
+to hide a category that you include in the `category-order` input, that category
+will be hidden despite being in the `category-order`.
+
 ### `locale`
 
 This input is an ISO 639-1 two character language code for the
@@ -747,6 +763,7 @@ jobs:
         border-radius: 6
         show-border: true
         hide-keys: '' # None hidden
+        category-order: general, repositories, contributions, languages
         locale: en
         fail-on-error: true
         commit-and-push: true
