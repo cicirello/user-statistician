@@ -88,16 +88,20 @@ class StatsImageGenerator :
         '_radius',
         '_titleSize',
         '_pieRadius',
-        '_highContrast'
+        '_highContrast',
+        '_categoryOrder'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize) :
+    def __init__(self, stats, colors, locale, radius, titleSize, categories) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
         stats - An object of the Statistician class.
         colors - A dictionary containing the color theme.
         locale - The 2-character locale code.
+        radius - The border radius.
+        titleSize - The font size for the title.
+        categories - List of category keys in order they should appear on card.
         """
         self._stats = stats
         self._colors = colors
@@ -105,6 +109,7 @@ class StatsImageGenerator :
         self._locale = locale
         self._radius = radius
         self._titleSize = titleSize
+        self._categoryOrder = categories
         self._height = 0
         self._width = 440
         self._lineHeight = 21
@@ -125,7 +130,7 @@ class StatsImageGenerator :
         exclude - Set of keys to exclude.
         """
         self.insertTitle(includeTitle, customTitle)
-        for category in categoryOrder :
+        for category in self._categoryOrder :
             if category not in exclude :
                 if category == "languages" :
                     self.insertLanguagesChart(

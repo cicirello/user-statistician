@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
   
 ### Changed
-* Minified SVG during generation (removed unnecessary characters like new lines,
-  and a couple empty text tags). This doesn't change the contents or appearance
-  of the SVG.
 
 ### Deprecated
 
@@ -19,6 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+
+## [1.2.0] - 2021-07-23
+
+### Added
+* The year user joined GitHub is now in General User Stats section of card.
+* New action input, `category-order`, which allows user to customize the order
+  of the categories of stats.
+  
+### Changed
+* Minified SVG during generation (removed unnecessary characters like new lines,
+  and a couple empty text tags). This doesn't change the contents or appearance
+  of the SVG.
+  
 
 ## [1.1.1] - 2021-07-22
 
