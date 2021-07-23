@@ -201,7 +201,9 @@ class TestSomething(unittest.TestCase) :
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 10)
-        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18)
+        #categories = ["general", "repositories", "languages", "contributions"]
+        categories = categoryOrder[:]
+        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)
         #print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :

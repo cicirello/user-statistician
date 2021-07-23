@@ -77,6 +77,10 @@ inputs:
     description: 'Controls maximum number of languages to list separately'
     required: false
     default: auto
+  custom-category-order:
+    description: 'List of keys for the categories in order of appearance.'
+    required: false
+    default: ''
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -96,3 +100,4 @@ runs:
     - ${{ inputs.show-border }}
     - ${{ inputs.small-title }}
     - ${{ inputs.max-languages }}
+    - ${{ inputs.custom-category-order }}
