@@ -25,38 +25,25 @@ you own, your contribution statistics (e.g., commits, issues, PRs, etc), as well
 the distribution of languages within public repositories that you own. 
 The user stats image can be customized, including the colors such as with one
 of the built-in themes or your own set of custom colors. You can also pick and choose
-which sections of the card to include. 
+which sections of the card to include, as well as the order of appearance of 
+the sections; and you can choose to hide individual stats. 
 
-The `user-statistician` action runs entirely here on GitHub. It uses the 
-[GitHub GraphQL API](https://docs.github.com/en/graphql) to collect all of the
-necessary data. The contribution counts are as reported by the GitHub GraphQL API.
-For details of how GitHub counts contributions, see 
-[GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
-The repository and contribution data included is all public. This is true even
-of the "Private Contributions" entry on the stats image, as 
-the "restrictedContributionsCount" returned from the query executed by the action 
-will only be non-zero if you have opted in to sharing private contributions via 
-[GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
-You can also hide the "Private Contributions" entry (see the 
-[Inputs section](#inputs)) regardless of your GitHub settings, or any of the 
-other entries. Each statistic will also auto-hide if the count is 0.
-
-To use the `user-statistician` action, you just need to set up a workflow in your
-profile repository (or technically any repository that you own) on a schedule (daily
+The `user-statistician` action runs entirely here on GitHub.
+To use it, you just need to set up a workflow in your GitHub
+Profile repository (or technically any repository that you own) on a schedule (daily
 should be sufficient), and then add a link to the image in your README. The action 
-handles committing and pushing the generated image to the repository. If you
-don't already have a GitHub Profile README, start by creating a public repository
-with a name identical to your user name, and everything you include in the `README.md` of
-that repository will show up on your GitHub Profile at the 
-address: `https://github.com/USERNAME`.
+handles committing and pushing the generated image to the repository. 
 
-__Motivation__: The reasons that we decided to create the 
+__Features__: The features of the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action include the following:
-1. We wanted to include more detailed stats all in a single SVG.
-2. We wanted something that runs entirely within GitHub.
-3. We wanted something that updated the SVG on a schedule (e.g., daily), 
-  rather than on-demand, for the following reasons:
+1. Generates detailed stats for your GitHub Profile README all in a single SVG.
+2. Ability to generate separate SVGs for the individual categories of stats
+  if you prefer.
+3. Highly customizable (color themes, custom colors, section ordering, custom title).
+4. Runs entirely here on GitHub.
+5. Updates the SVG on a schedule of your choice (e.g., daily), rather than 
+  on-demand when someone views your profile, which has the following advantages:
     * The SVG is simply served when requested, avoiding 
       the delay associated with waiting for API queries to gather the data to generate 
       the SVG. 
@@ -92,9 +79,17 @@ for ready-to-use workflows and quickstart instructions.
 
 This section provides example workflows demonstrating various features
 of the action, as well as samples of the corresponding images that they generate.
-If you would like to see a live example, in addition to the detailed examples
+If you would like to see live examples, in addition to the detailed examples
 below, then you can check out [my GitHub profile](https://github.com/cicirello),
-along with the corresponding [workflow](https://github.com/cicirello/cicirello/blob/master/.github/workflows/userstats.yml).
+as well as [my personal website](https://www.cicirello.org/software/#ghstats),
+along with the corresponding [workflow](https://github.com/cicirello/cicirello/blob/master/.github/workflows/userstats.yml)
+that generates both of these nightly. The GitHub stats card on my GitHub
+profile uses the built-in dark theme, and all other settings are the defaults;
+and the stats card on my personal website uses a set of custom colors to match the
+color palette of my website.
+
+There are also several ready-to-use workflows and quickstart instructions in
+the [Quickstart](quickstart) directory.
 
 ### Example 1: All default inputs
 
@@ -430,7 +425,7 @@ following.
 
 The Repositories category in the image includes
 two columns with data summarizing information
-about the non-forks that you own, as well as all repositories
+about the public non-forks that you own, as well as all public repositories
 that you own, including forks.
   
 The key to hide this entire category is: `repositories`.
@@ -450,12 +445,18 @@ The statistics include the following.
 The Contributions category in the image includes
 two columns with data summarizing information
 about your contributions during the past year, as well as
-totals over all years. Please note that this can be no more
-accurate than what is available via GitHub's API. For example,
-we have noticed that older contributions of our own seem to
-be missing. Also keep in mind what GitHub specifically counts as contributions. 
-For details of how GitHub counts contributions, see 
+totals over all years. The contribution counts are as 
+reported by the GitHub GraphQL API. For details of how GitHub 
+counts contributions, see 
 [GitHub's documentation](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile).
+The contribution data included is all public. This is true even
+of the "Private Contributions" entry on the stats image, as 
+the "restrictedContributionsCount" returned from the query executed by the action 
+will only be non-zero if you have opted in to sharing private contributions via 
+[GitHub's profile settings](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/publicizing-or-hiding-your-private-contributions-on-your-profile). 
+You can also hide the "Private Contributions" entry (see the 
+[Inputs section](#inputs)) regardless of your GitHub settings, or any of the 
+other entries. Each statistic will also auto-hide if the count is 0.
 
 The key to hide this entire category is: `contributions`.
 The contributions statistics in the image include the following.
