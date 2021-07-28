@@ -42,12 +42,12 @@ handles committing and pushing the generated image to the repository.
 __Features__: The features of the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action include the following:
-1. Generates detailed stats for your GitHub Profile README all in a single SVG.
-2. Ability to generate separate SVGs for the individual categories of stats
+* Generates detailed stats for your GitHub Profile README all in a single SVG.
+* Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
-3. Highly customizable (color themes, custom colors, section ordering, custom title).
-4. Runs entirely here on GitHub.
-5. Updates the SVG on a schedule of your choice (e.g., daily), rather than 
+* Highly customizable (color themes, custom colors, section ordering, custom title).
+* Runs entirely here on GitHub.
+* Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
     * The SVG is simply served when requested, avoiding 
       the delay associated with waiting for API queries to gather the data to generate 
