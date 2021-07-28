@@ -56,6 +56,9 @@ please consider starring the repository; and if you use it for your profile
 README, please consider either linking the image to this repository, or 
 otherwise sharing how it was generated with your profile visitors. 
 
+__Contribute__: If you want to contribute, check out the [Issues Tracker](https://github.com/cicirello/user-statistician/issues)
+for open issues, especially issues labeled as [![good first issue](https://img.shields.io/github/labels/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) or [![help wanted](https://img.shields.io/github/labels/cicirello/user-statistician/help%20wanted)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22).
+
 ## Table of Contents
 
 The remainder of the documentation is organized into the following sections:
