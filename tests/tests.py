@@ -77,22 +77,41 @@ class TestSomething(unittest.TestCase) :
                 self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set())
         self._validate(stats)
+
+    def test_parseQueryResults(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+        class NoQueries(Statistician) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+                self._autoLanguages = autoLanguages
+                self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
+                self.parseStats(
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2],
+                    executedQueryResults[4]
+                    )
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueries(True, False, 1000, set())
+        self._validate(stats)
+
     
-    def test_parseQueryResultsMultipageQueryResults(self) :
+    def test_parseQueryResultsMultipageQueryResultsSkipRepo(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsMultiPage)
         class NoQueriesMultipage(Statistician) :
             def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
                 self.parseStats(
-                    executedQueryResultsMultiPage[0],
-                    executedQueryResultsMultiPage[1],
-                    executedQueryResultsMultiPage[2],
-                    executedQueryResultsMultiPage[4]
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResultsMultiPage[3])
-        stats = NoQueriesMultipage(True, False, 1000, set())
-        self._validate(stats)
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"})
+        self._validate(stats, True)
 
     def test_color_themes(self) :
         originalThemes = {"light", "dark", "dark-dimmed"}
@@ -216,7 +235,7 @@ class TestSomething(unittest.TestCase) :
             color = theme[p]
             self.assertTrue(isValidColor(color))
             
-    def _validate(self, stats) :
+    def _validate(self, stats, skip=False) :
         self.assertEqual(2011, stats._user["joined"][0])
         self.assertEqual(9, stats._user["followers"][0])
         self.assertEqual(7, stats._user["following"][0])
@@ -246,9 +265,17 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
         self.assertEqual(105, stats._contrib["private"][1])
+
+        if skip :
+            self._validateLanguagesSkip(stats)
+        else :
+            self._validateLanguages(stats)
+
+    def _validateLanguages(self, stats) :
         total = 5222379
         self.assertEqual(total, stats._languages["totalSize"])
         self.assertEqual(11, len(stats._languages["languages"]))
+        
         expectedLanguages = [
             "Java",
             "HTML",
@@ -282,4 +309,39 @@ class TestSomething(unittest.TestCase) :
             self.assertEqual(expectedSize[i], L[1]["size"])
             self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
             
+    def _validateLanguagesSkip(self, stats) :
+        total = 5147159
+        self.assertEqual(total, stats._languages["totalSize"])
+        self.assertEqual(10, len(stats._languages["languages"]))
         
+        expectedLanguages = [
+            "Java",
+            "HTML",
+            "TeX",
+            "Python",
+            "Dockerfile",
+            "Makefile",
+            "Shell",
+            "CSS",
+            "JavaScript",
+            "Batchfile"
+            ]
+        expectedColors = [
+            '#b07219',
+            '#e34c26',
+            '#3D6117',
+            '#3572A5',
+            '#384d54',
+            '#427819',
+            '#89e051',
+            '#563d7c',
+            '#f1e05a',
+            '#C1F12E'
+            ]
+        expectedSize = [3385976, 1343301, 202824, 201574, 5091, 4442, 1926, 1721, 204, 100]
+        for i, L in enumerate(stats._languages["languages"]) :
+            self.assertEqual(expectedLanguages[i], L[0])
+            self.assertEqual(expectedColors[i], L[1]["color"])
+            self.assertEqual(expectedSize[i], L[1]["size"])
+            self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
+            
