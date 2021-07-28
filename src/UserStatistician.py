@@ -164,7 +164,7 @@ if __name__ == "__main__" :
     if len(categories) == 0 :
         categories = categoryOrder
 
-    languageRepoExclusions = set()
+    languageRepoExclusions = set(sys.argv[14].strip().replace(",", " ").lower().split())
     
     stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions)
     generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories)

@@ -81,6 +81,10 @@ inputs:
     description: 'List of keys for the categories in order of appearance.'
     required: false
     default: general, repositories, contributions, languages
+  language-repository-exclusions:
+    description: 'List of repositories to exclude from language stats.'
+    required: false
+    default: ''
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -101,3 +105,4 @@ runs:
     - ${{ inputs.small-title }}
     - ${{ inputs.max-languages }}
     - ${{ inputs.category-order }}
+    - ${{ inputs.language-repository-exclusions }}
