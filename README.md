@@ -608,7 +608,8 @@ repositories named "repo1" and "repo2":
 ```
 
 If you have many repositories to exclude, you might consider specifying the list
-with a multiline YAML string, like the following example:
+with a multiline YAML string, such as the following example (the `>` is one of 
+YAML's ways to specify a multiline string):
 
 ```yml
     - name: Generate the user stats image
@@ -621,8 +622,6 @@ with a multiline YAML string, like the following example:
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
-
-The `>` is one of YAML's ways to specify a multiline string.
 
 ### `colors`
 
