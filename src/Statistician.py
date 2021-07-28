@@ -42,10 +42,11 @@ class Statistician :
         '_name',
         '_languages',
         '_autoLanguages',
-        '_maxLanguages'
+        '_maxLanguages',
+        '_languageRepoExclusions'
         ]
 
-    def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
+    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
@@ -56,9 +57,11 @@ class Statistician :
             regardless of value of maxLanguages.
         maxLanguages - The maximum number of languages to display. Must be at least 1. If less than
             1, it treats it as if it was 1.
+        languageRepoExclusions - A set of repositories to exclude from language stats
         """
         self._autoLanguages = autoLanguages
         self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+        self._languageRepoExclusions = languageRepoExclusions
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
@@ -329,7 +332,7 @@ class Statistician :
         for page in repoStats :
             if page["nodes"] != None :
                 for repo in page["nodes"] :
-                    if not repo["isPrivate"] and not repo["isFork"] :
+                    if not repo["isPrivate"] and not repo["isFork"] and (repo["name"] not in self._languageRepoExclusions) :
                         totalSize += repo["languages"]["totalSize"]
                         if repo["languages"]["edges"] != None :
                             for L in repo["languages"]["edges"] :

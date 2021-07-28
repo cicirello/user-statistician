@@ -64,9 +64,10 @@ class TestSomething(unittest.TestCase) :
     def test_parseQueryResults(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         class NoQueries(Statistician) :
-            def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -74,14 +75,15 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries()
+        stats = NoQueries(True, False, 1000, set())
         self._validate(stats)
     
     def test_parseQueryResultsMultipageQueryResults(self) :
         class NoQueriesMultipage(Statistician) :
-            def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
                 self.parseStats(
                     executedQueryResultsMultiPage[0],
                     executedQueryResultsMultiPage[1],
@@ -89,7 +91,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResultsMultiPage[4]
                     )
                 self.parsePriorYearStats(executedQueryResultsMultiPage[3])
-        stats = NoQueriesMultipage()
+        stats = NoQueriesMultipage(True, False, 1000, set())
         self._validate(stats)
 
     def test_color_themes(self) :
@@ -190,9 +192,10 @@ class TestSomething(unittest.TestCase) :
     def test_generateSVG(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         class NoQueries(Statistician) :
-            def __init__(self, fail=True, autoLanguages=False, maxLanguages=1000) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -200,7 +203,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries(True, False, 10)
+        stats = NoQueries(True, False, 10, set())
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
         svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)

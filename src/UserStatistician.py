@@ -163,8 +163,10 @@ if __name__ == "__main__" :
     categories = [ c for c in categories if c in validCategoryKeys]
     if len(categories) == 0 :
         categories = categoryOrder
+
+    languageRepoExclusions = set()
     
-    stats = Statistician(failOnError, autoLanguages, maxLanguages)
+    stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions)
     generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
