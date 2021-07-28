@@ -529,6 +529,8 @@ to mark files or directories as documentation (likewise for vendored code, gener
 etc). For an example of this, see the [.gitattributes of one of our other repositories](https://github.com/cicirello/Chips-n-Salsa/blob/master/.gitattributes) where we direct
 Linguist to treat a directory as documentation.
 
+__Can I exclude entire repositories from the language stats?__ Yes, the action has an input for 
+that.  See [Inputs](#inputs) section.
 
 ## Inputs
 
@@ -587,6 +589,40 @@ Although if your repositories contain 5 or less languages, then "Other" will
 not be listed.  If you want to explicitly include all languages that occur
 in your repositories, then just pass a high integer value, such as with
 `max-languages: 100`.
+
+### `language-repository-exclusions`
+
+This input is a list of repositories to exclude entirely from the language
+distribution chart. The default is an empty list. To exclude one or more
+directories from the language distribution chart, pass a comma or space
+separated list of the repository names. The following example will exclude
+repositories named "repo1" and "repo2":
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        language-repository-exclusions: repo1, repo2
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+If you have many repositories to exclude, you might consider specifying the list
+with a multiline YAML string, like the following example:
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        language-repository-exclusions: >
+          repo1
+          repo2
+          repo3
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+The `>` is one of YAML's ways to specify a multiline string.
 
 ### `colors`
 
@@ -768,6 +804,7 @@ jobs:
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
         max-languages: auto
+        language-repository-exclusions: '' # None excluded
         colors: light
         border-radius: 6
         show-border: true
