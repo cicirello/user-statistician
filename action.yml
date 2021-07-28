@@ -24,7 +24,7 @@
 # SOFTWARE.
 # 
 name: 'user-statistician'
-description: "Generate a statistics card for your GitHub Profile README in GitHub Actions"
+description: "Generate an SVG GitHub stats card for your GitHub Profile README in GitHub Actions"
 branding: 
   icon: 'book-open'
   color: 'green'
