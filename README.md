@@ -13,6 +13,11 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 [![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE)
 [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician)
 
+[![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+[![help wanted issues](https://img.shields.io/github/issues/cicirello/user-statistician/help%20wanted)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![GitHub open issues](https://img.shields.io/github/issues/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aclosed)
+
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
 Action generates a detailed visual summary of your activity on GitHub in the form of an SVG, 
 suitable to display on
@@ -56,8 +61,6 @@ please consider starring the repository; and if you use it for your profile
 README, please consider either linking the image to this repository, or 
 otherwise sharing how it was generated with your profile visitors. 
 
-__Contribute__: If you want to contribute, check out the [Issues Tracker](https://github.com/cicirello/user-statistician/issues)
-for open issues, especially issues labeled as [![good first issue](https://img.shields.io/github/labels/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) or [![help wanted](https://img.shields.io/github/labels/cicirello/user-statistician/help%20wanted)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22).
 
 ## Table of Contents
 
