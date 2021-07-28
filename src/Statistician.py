@@ -332,7 +332,7 @@ class Statistician :
         for page in repoStats :
             if page["nodes"] != None :
                 for repo in page["nodes"] :
-                    if not repo["isPrivate"] and not repo["isFork"] and (repo["name"] not in self._languageRepoExclusions) :
+                    if not repo["isPrivate"] and not repo["isFork"] and (repo["name"].lower() not in self._languageRepoExclusions) :
                         totalSize += repo["languages"]["totalSize"]
                         if repo["languages"]["edges"] != None :
                             for L in repo["languages"]["edges"] :
