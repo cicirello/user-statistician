@@ -14,16 +14,23 @@ To use one of these workflows, do the following:
 2. Pick one of the provided workflows (see the [list](#workflow-list) below).
 3. Download your chosen workflow and commit it to your `.github/workflows`
   directory within your profile repository.
-4. The workflow will run on a schedule, but you might want to run it once
-  manually, so that you can verify it is set up correctly. To do this,
+4. If you didn't change the name of the file, then it will run when you push
+  it to your repository since it has been configured to run on a push to
+  that filename (assuming your branch is either named `main` or `master`). If 
+  you changed the name of the file, then edit the `paths`
+  attribute on the `push` event with the new name of the workflow file.
+5. The workflow is configured to run on a schedule daily. You can change the schedule to
+  your liking.
+6. You can also choose to run it manually because it is also configured on the
+  `workflow_dispatch` event. To do this,
   navigate to the `Actions` tab for your profile repository. Select the
   workflow from the list of workflows on the left. You'll notice that
   it indicates: "This workflow has a workflow_dispatch event trigger."
   To the right of that click the "Run workflow" button to run the workflow
   manually.
-5. Now that you've run the workflow, you'll find the SVG in the images
-  directory (which the action creates if it doesn't already exist).
-6. Add a link to it in the `README.md` in your profile repository. If you 
+7. You'll find the SVG in the images directory (which the action creates 
+  if it doesn't already exist).
+8. Add a link to it in the `README.md` in your profile repository. If you 
   used one of these workflows as is, without using the inputs to change
   the file name of the image, then you can add the image to your profile 
   with the following Markdown:

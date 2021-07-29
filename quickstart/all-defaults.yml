@@ -7,6 +7,9 @@ name: user-statistician
 on:
   schedule:
     - cron: '0 3 * * *'
+  push:
+    branches: [ main, master ]
+    paths: [ '.github/workflows/all-defaults.yml' ]
   workflow_dispatch:
 
 jobs:
