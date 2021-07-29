@@ -42,12 +42,12 @@ handles committing and pushing the generated image to the repository.
 __Features__: The features of the 
 [cicirello/user-statistician](https://github.com/cicirello/user-statistician)
 GitHub Action include the following:
-1. Generates detailed stats for your GitHub Profile README all in a single SVG.
-2. Ability to generate separate SVGs for the individual categories of stats
+* Generates detailed stats for your GitHub Profile README all in a single SVG.
+* Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
-3. Highly customizable (color themes, custom colors, section ordering, custom title).
-4. Runs entirely here on GitHub.
-5. Updates the SVG on a schedule of your choice (e.g., daily), rather than 
+* Highly customizable (color themes, custom colors, section ordering, custom title).
+* Runs entirely here on GitHub.
+* Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
     * The SVG is simply served when requested, avoiding 
       the delay associated with waiting for API queries to gather the data to generate 
@@ -65,6 +65,7 @@ otherwise sharing how it was generated with your profile visitors.
 ## Table of Contents
 
 The remainder of the documentation is organized into the following sections:
+* [Quickstart](#quickstart)
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
   This section includes workflows to get you started using the action, as well as
   sample images.
@@ -78,7 +79,8 @@ The remainder of the documentation is organized into the following sections:
 * [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 
-__Quickstart__: Additionally, see the [Quickstart](quickstart) directory 
+## Quickstart 
+See the [Quickstart](quickstart) directory 
 for ready-to-use workflows and quickstart instructions.
 
 ## Example Workflows and Image Samples
@@ -529,6 +531,8 @@ to mark files or directories as documentation (likewise for vendored code, gener
 etc). For an example of this, see the [.gitattributes of one of our other repositories](https://github.com/cicirello/Chips-n-Salsa/blob/master/.gitattributes) where we direct
 Linguist to treat a directory as documentation.
 
+__Can I exclude entire repositories from the language stats?__ Yes, the action has an input for 
+that.  See [Inputs](#inputs) section.
 
 ## Inputs
 
@@ -587,6 +591,39 @@ Although if your repositories contain 5 or less languages, then "Other" will
 not be listed.  If you want to explicitly include all languages that occur
 in your repositories, then just pass a high integer value, such as with
 `max-languages: 100`.
+
+### `language-repository-exclusions`
+
+This input is a list of repositories to exclude entirely from the language
+distribution chart. The default is an empty list. To exclude one or more
+directories from the language distribution chart, pass a comma or space
+separated list of the repository names. The following example will exclude
+repositories named "repo1" and "repo2":
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        language-repository-exclusions: repo1, repo2
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+If you have many repositories to exclude, you might consider specifying the list
+with a multiline YAML string, such as the following example (the `>` is one of 
+YAML's ways to specify a multiline string):
+
+```yml
+    - name: Generate the user stats image
+      uses: cicirello/user-statistician@v1
+      with:
+        language-repository-exclusions: >
+          repo1
+          repo2
+          repo3
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
 
 ### `colors`
 
@@ -768,6 +805,7 @@ jobs:
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
         max-languages: auto
+        language-repository-exclusions: '' # None excluded
         colors: light
         border-radius: 6
         show-border: true

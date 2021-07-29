@@ -9,6 +9,7 @@ query($owner: String!, $endCursor: String) {
         isFork
         isPrivate
         isTemplate
+        name
         watchers {
           totalCount
         }
