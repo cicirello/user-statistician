@@ -78,8 +78,8 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 1000, set())
         self._validate(stats)
 
-    def test_parseQueryResults(self) :
-        executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+    def test_parseQueryResultsMultiPage(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsMultiPage)
         class NoQueries(Statistician) :
             def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
                 self._autoLanguages = autoLanguages
@@ -95,8 +95,24 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 1000, set())
         self._validate(stats)
 
+    def test_parseQueryResultsSkipRepo(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+        class NoQueriesMultipage(Statistician) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+                self._autoLanguages = autoLanguages
+                self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
+                self.parseStats(
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2],
+                    executedQueryResults[4]
+                    )
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"})
+        self._validate(stats, True)
     
-    def test_parseQueryResultsMultipageQueryResultsSkipRepo(self) :
+    def test_parseQueryResultsMultipageSkipRepo(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsMultiPage)
         class NoQueriesMultipage(Statistician) :
             def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
