@@ -4,9 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-07-23
+## [Unreleased] - 2021-07-29
 
 ### Added
+* The ability to exclude specific repositories from the language
+  distribution chart, controlled by a new action input `language-repository-exclusions`,
+  which is a list of repositories to exclude from the language stats.
   
 ### Changed
 
