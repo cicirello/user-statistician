@@ -65,6 +65,7 @@ otherwise sharing how it was generated with your profile visitors.
 ## Table of Contents
 
 The remainder of the documentation is organized into the following sections:
+* [Quickstart](#quickstart)
 * [Example Workflows and Image Samples](#example-workflows-and-image-samples):
   This section includes workflows to get you started using the action, as well as
   sample images.
@@ -78,7 +79,8 @@ The remainder of the documentation is organized into the following sections:
 * [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 
-__Quickstart__: Additionally, see the [Quickstart](quickstart) directory 
+## Quickstart 
+See the [Quickstart](quickstart) directory 
 for ready-to-use workflows and quickstart instructions.
 
 ## Example Workflows and Image Samples
