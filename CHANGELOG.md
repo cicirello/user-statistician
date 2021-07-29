@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-07-29
 
 ### Added
+  
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.3.0] - 2021-07-29
+
+### Added
 * The ability to exclude specific repositories from the language
   distribution chart, controlled by a new action input `language-repository-exclusions`,
   which is a list of repositories to exclude from the language stats.
@@ -14,12 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Revised the Quickstart workflows to include pushing the workflow file to
   the events that runs the workflow to make it even easier for a user to get started.
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 
 ## [1.2.0] - 2021-07-23
