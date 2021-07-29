@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   which is a list of repositories to exclude from the language stats.
   
 ### Changed
+* Revised the Quickstart workflows to include pushing the workflow file to
+  the events that runs the workflow to make it even easier for a user to get started.
 
 ### Deprecated
 
