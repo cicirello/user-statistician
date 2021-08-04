@@ -158,7 +158,19 @@ class StatsImageGenerator :
         exclude - A set of keys to exclude
         keys - The list of keys relevant for the table.
         """
-        return [ k for k in keys if (k not in exclude) and (k in data) and (data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
+        return [ k for k in keys if (k not in exclude) and (k in data) and ((not self.isInt(data[k][0])) or data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
+
+    def isInt(self, value) :
+        """Checks if a value is an int.
+
+        Keyword arguments:
+        value - The value to check.
+        """
+        try:
+            int(value)
+        except:
+            return False
+        return True
 
     def insertTitle(self, includeTitle, customTitle) :
         """Generates, formats, and inserts title.
@@ -313,7 +325,7 @@ class StatsImageGenerator :
         Keyword arguments:
         count - The count to format.
         """
-        if count < 100000 :
+        if (not self.isInt(count)) or count < 100000 :
             return count
         elif count < 1000000 :
             return "{0:.1f}K".format(count // 100 * 100 / 1000)

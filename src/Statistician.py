@@ -205,6 +205,12 @@ class Statistician :
             stargazersAll = sum(repo["stargazerCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
             forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
 
+            # Find repos with most stars and most forks
+            mostStars = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["stargazerCount"])["name"]
+            mostForks = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["forkCount"])["name"]
+            self._user["mostStarred"] = [ self._login + "/" + mostStars ]
+            self._user["mostForked"] = [ self._login + "/" + mostForks ]
+            
             # Compute number of watchers excluding cases where user is watching their own repos.
             watchers = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
             watchers -= watchingStats[0]["totalCount"]

@@ -157,7 +157,7 @@ class TestSomething(unittest.TestCase) :
         categories = {"general", "repositories", "contributions", "languages"}
         self.assertEqual(set(categoryOrder), categories)
         statistics = {
-            "joined", "followers", "following", "sponsors", "sponsoring",
+            "joined", "mostStarred", "mostForked", "followers", "following", "sponsors", "sponsoring",
             "public", "starredBy",
             "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
@@ -242,7 +242,7 @@ class TestSomething(unittest.TestCase) :
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
         svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)
-        #print(svgGen.generateImage(True, None, {}))
+        print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
@@ -252,6 +252,8 @@ class TestSomething(unittest.TestCase) :
             self.assertTrue(isValidColor(color))
             
     def _validate(self, stats, skip=False) :
+        self.assertEqual("someuser/repo23", stats._user["mostStarred"][0])
+        self.assertEqual("someuser/repo23", stats._user["mostForked"][0])
         self.assertEqual(2011, stats._user["joined"][0])
         self.assertEqual(9, stats._user["followers"][0])
         self.assertEqual(7, stats._user["following"][0])
