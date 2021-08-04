@@ -252,8 +252,8 @@ class TestSomething(unittest.TestCase) :
             self.assertTrue(isValidColor(color))
             
     def _validate(self, stats, skip=False) :
-        self.assertEqual("someuser/repo23", stats._user["mostStarred"][0])
-        self.assertEqual("someuser/repo23", stats._user["mostForked"][0])
+        self.assertEqual("repo23", stats._user["mostStarred"][0])
+        self.assertEqual("repo23", stats._user["mostForked"][0])
         self.assertEqual(2011, stats._user["joined"][0])
         self.assertEqual(9, stats._user["followers"][0])
         self.assertEqual(7, stats._user["following"][0])

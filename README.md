@@ -427,8 +427,8 @@ following.
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `joined` | Year Joined | the year user joined GitHub |
-| `mostStarred` | Most starred repository | owner/name of repo |
-| `mostForked` | Most forked repository | owner/name of repo |
+| `mostStarred` | Most starred repository | name of repo |
+| `mostForked` | Most forked repository | name of repo |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
 | `sponsors` | Sponsors | simple count |
