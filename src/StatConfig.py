@@ -113,7 +113,7 @@ categoryLabels = {
 
     "en" : {
         "general" : {
-            "heading" : "General User Stats",
+            "heading" : "General Stats and Info",
             "column-one" : None,
             "column-two" : None
             },
