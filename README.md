@@ -206,12 +206,13 @@ Here is a sample of what this will produce:
 ### Example 3: Dark-dimmed theme with custom title, some hidden stats, and including all languages in language distribution chart
 
 This example shows the dark-dimmed theme, uses a custom title, includes all
-languages in language distribution chart, and hides a
-few statistics (joined, followers, following, and private). Note by hiding joined, followers,
+languages in language distribution chart, and hides
+several statistics (joined, mostStarred, mostForked, followers, following, 
+and private). Note by hiding joined, mostStarred, mostForked, followers,
 and following that the action will automatically hide the header row for the
-"General User Stats" section since we've hidden all of the non-zero 
+"General Stats and Info" section since we've hidden all of the non-zero 
 stats from that section. If someone were to sponsor me, or if I was to
-sponsor someone else, then the "General User Stats" section will show up the next time
+sponsor someone else, then the "General Stats and Info" section will show up the next time
 generated since this sample didn't hide the sponsors or sponsoring counts.
 If we want to guarantee that this entire section is hidden, we could instead
 specify "general" among the "keys" we pass to `hide-keys`.
@@ -236,7 +237,7 @@ jobs:
       with:
         colors: dark-dimmed
         custom-title: My GitHub Statistics
-        hide-keys: joined, followers, following, private
+        hide-keys: joined, mostStarred, mostForked, followers, following, private
         max-languages: 100
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -418,7 +419,7 @@ if desired. Details of each category follows. Note that the "Key" is what you ne
 you are using the `hide-keys` input to either hide individual statistics or 
 entire categories (see the [Inputs](#inputs) section).
 
-### General User Stats
+### General Stats and Info
 
 The key to hide this entire category is: `general`. The statistics include the 
 following.
@@ -426,6 +427,8 @@ following.
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `joined` | Year Joined | the year user joined GitHub |
+| `mostStarred` | Most starred repository | name of repo |
+| `mostForked` | Most forked repository | name of repo |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
 | `sponsors` | Sponsors | simple count |
@@ -681,7 +684,7 @@ list all of the keys for the elements
 of that group, then the entire group, including column headings, will be hidden. 
 For example, `hide-keys: followers following sponsors sponsoring private` will hide
 the "Followers", "Following", "Sponsors", and "Sponsoring" counts from 
-the "General User Stats" section, and thus will also eliminate the column 
+the "General Stats and Info" section, and thus will also eliminate the column 
 headings for that entire section, and this will
 also hide the "Private Contributions" item from the "Contributions" section.
 Another way of accomplishing the same thing is to use the "key" for the category
