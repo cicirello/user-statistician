@@ -206,8 +206,9 @@ Here is a sample of what this will produce:
 ### Example 3: Dark-dimmed theme with custom title, some hidden stats, and including all languages in language distribution chart
 
 This example shows the dark-dimmed theme, uses a custom title, includes all
-languages in language distribution chart, and hides a
-few statistics (joined, followers, following, and private). Note by hiding joined, followers,
+languages in language distribution chart, and hides
+several statistics (joined, mostStarred, mostForked, followers, following, 
+and private). Note by hiding joined, mostStarred, mostForked, followers,
 and following that the action will automatically hide the header row for the
 "General Stats and Info" section since we've hidden all of the non-zero 
 stats from that section. If someone were to sponsor me, or if I was to
@@ -236,7 +237,7 @@ jobs:
       with:
         colors: dark-dimmed
         custom-title: My GitHub Statistics
-        hide-keys: joined, followers, following, private
+        hide-keys: joined, mostStarred, mostForked, followers, following, private
         max-languages: 100
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -426,6 +427,8 @@ following.
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `joined` | Year Joined | the year user joined GitHub |
+| `mostStarred` | Most starred repository | owner/name of repo |
+| `mostForked` | Most forked repository | owner/name of repo |
 | `followers` | Followers | simple count |
 | `following` | Following | simple count |
 | `sponsors` | Sponsors | simple count |
