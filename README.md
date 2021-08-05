@@ -7,6 +7,7 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 ## About
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician)
+[![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fuser-statistician.json)](https://github.com/search?q=cicirello+user-statistician+path%3A.github%2Fworkflows+language%3AYAML&type=Code)
 [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
 [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml)
 [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml)
@@ -851,6 +852,10 @@ You can support the project in a number of ways:
   GitHub Profile README, consider
   either linking the image back to this repository, or otherwise sharing
   how you generated the stats SVG.
+* __Reporting Issues__: If you find a bug or have a suggestion for a new feature, 
+  please report it via the [Issue tracker](https://github.com/cicirello/user-statistician/issues).
+* __Contributing Code__: If there is an open issue that you think you can help with, 
+  submit a pull request. __Please target the dev branch.__
 * __Sponsoring__: You can also consider 
   [becoming a sponsor](https://github.com/sponsors/cicirello).
 
