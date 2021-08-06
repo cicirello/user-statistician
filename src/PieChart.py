@@ -30,8 +30,9 @@ import math
 _headerTemplate = '<svg viewBox="0 0 {0} {0}" width="{0}" height="{0}">'
 _pathTemplate = '<path fill-rule="evenodd" fill="{0}" d="M {1},{2} A {3} {3} 0 {4} {5} {6} {7} L {3},{3} Z"/>'
 _circleTemplate = '<circle fill="{0}" cx="{1}" cy="{1}" r="{1}"/>'
+_animationTemplate = '<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 {0} {0}" to="360 {0} {0}" dur="{1}s" repeatCount="indefinite"/>'
 
-def svgPieChart(wedges, radius) :
+def svgPieChart(wedges, radius, animate, speed) :
     """Generates an SVG of a pie chart. The intention is to include
     as part of a larger SVG (e.g., it does not insert xmlns into the
     opening svg tag). If wedges list is empty, it retrurns None.
@@ -40,6 +41,8 @@ def svgPieChart(wedges, radius) :
     wedges - A list of Python dictionaries, with each dictionary
         containing fields color and percentage.
     radius - the radius, in pixels for the pie chart.
+    animate - Pass True to animate the pie chart.
+    speed - If animate is True, then this input is the number of seconds for one full rotation.
     """
     components = [_headerTemplate.format(str(2*radius))]
 
@@ -59,6 +62,9 @@ def svgPieChart(wedges, radius) :
         # (i.e., last edge should complete a full circle).
         wedges[-1]["end"] = 2 * math.pi
 
+        if animate :
+            components.append("<g>")
+            
         for w in wedges :
             components.append(
                 _pathTemplate.format(
@@ -72,6 +78,15 @@ def svgPieChart(wedges, radius) :
                     radius + radius * math.sin(w["end"]+math.pi)
                     )
                 )
+
+        if animate :
+            components.append(
+                _animationTemplate.format(
+                    radius,
+                    speed
+                    )
+                )
+            components.append("</g>")
         
     components.append("</svg>")
     return "".join(components)

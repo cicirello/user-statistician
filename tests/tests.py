@@ -64,10 +64,11 @@ class TestSomething(unittest.TestCase) :
     def test_parseQueryResults(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         class NoQueries(Statistician) :
-            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -75,16 +76,17 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries(True, False, 1000, set())
+        stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
     def test_parseQueryResultsMultiPage(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsMultiPage)
         class NoQueries(Statistician) :
-            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -92,16 +94,17 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries(True, False, 1000, set())
+        stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
     def test_parseQueryResultsSkipRepo(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         class NoQueriesMultipage(Statistician) :
-            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -109,16 +112,17 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"})
+        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
     
     def test_parseQueryResultsMultipageSkipRepo(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsMultiPage)
         class NoQueriesMultipage(Statistician) :
-            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -126,8 +130,28 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"})
+        stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
+
+    def test_parseQueryResultsAllForks(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+        # Change all repos to forks for this testcase.
+        self._changeToAllForks(executedQueryResults)
+        class NoQueries(Statistician) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
+                self._autoLanguages = autoLanguages
+                self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
+                self.parseStats(
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2],
+                    executedQueryResults[4]
+                    )
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueries(True, False, 1000, set(), None)
+        self._validateAllForks(stats)
 
     def test_color_themes(self) :
         originalThemes = {"light", "dark", "dark-dimmed"}
@@ -157,7 +181,7 @@ class TestSomething(unittest.TestCase) :
         categories = {"general", "repositories", "contributions", "languages"}
         self.assertEqual(set(categoryOrder), categories)
         statistics = {
-            "joined", "mostStarred", "mostForked", "followers", "following", "sponsors", "sponsoring",
+            "joined", "featured", "mostStarred", "mostForked", "followers", "following", "sponsors", "sponsoring",
             "public", "starredBy",
             "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
@@ -184,6 +208,7 @@ class TestSomething(unittest.TestCase) :
                     
     def test_stat_labels(self) :
         keys = {
+            "joined", "featured", "mostStarred", "mostForked",
             "followers", "following", "sponsors", "sponsoring",
             "public", "starredBy",
             "forkedBy", "watchedBy", "templates", "archived", "commits",
@@ -226,11 +251,15 @@ class TestSomething(unittest.TestCase) :
 
     def test_generateSVG(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+        # UNCOMMENT: to generate SVG when user only owns forks, which should
+        # have no repo stats, no languages chart, no most starred, no most forked.
+        # self._changeToAllForks(executedQueryResults)
         class NoQueries(Statistician) :
-            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
                 self._autoLanguages = autoLanguages
                 self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
                 self._languageRepoExclusions = languageRepoExclusions
+                self._featuredRepo = featuredRepo
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
@@ -238,11 +267,19 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries(True, False, 10, set())
+        stats = NoQueries(True, False, 10, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)
-        print(svgGen.generateImage(True, None, {}))
+        svgGen = StatsImageGenerator(
+            stats,
+            copy.deepcopy(colorMapping["dark"]),
+            "en",
+            6,
+            18,
+            categories,
+            True,
+            10)
+        #print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
@@ -288,6 +325,41 @@ class TestSomething(unittest.TestCase) :
             self._validateLanguagesSkip(stats)
         else :
             self._validateLanguages(stats)
+
+    def _validateAllForks(self, stats) :
+        self.assertTrue("mostStarred" not in stats._user)
+        self.assertTrue("mostForked" not in stats._user)
+        self.assertEqual(2011, stats._user["joined"][0])
+        self.assertEqual(9, stats._user["followers"][0])
+        self.assertEqual(7, stats._user["following"][0])
+        self.assertEqual(7, stats._user["sponsors"][0])
+        self.assertEqual(5, stats._user["sponsoring"][0])
+        self.assertEqual(0, stats._repo["public"][0])
+        self.assertEqual(31, stats._repo["public"][1])
+        self.assertEqual(0, stats._repo["starredBy"][0])
+        self.assertEqual(36, stats._repo["starredBy"][1])
+        self.assertEqual(0, stats._repo["forkedBy"][0])
+        self.assertEqual(28, stats._repo["forkedBy"][1])
+        self.assertEqual(0, stats._repo["watchedBy"][0])
+        self.assertEqual(3, stats._repo["watchedBy"][1])
+        self.assertEqual(0, stats._repo["archived"][0])
+        self.assertEqual(2, stats._repo["archived"][1])
+        self.assertEqual(0, stats._repo["templates"][0])
+        self.assertEqual(1, stats._repo["templates"][1])
+        self.assertEqual(3602, stats._contrib["commits"][0])
+        self.assertEqual(4402, stats._contrib["commits"][1])
+        self.assertEqual(79, stats._contrib["issues"][0])
+        self.assertEqual(81, stats._contrib["issues"][1])
+        self.assertEqual(289, stats._contrib["prs"][0])
+        self.assertEqual(289, stats._contrib["prs"][1])
+        self.assertEqual(315, stats._contrib["reviews"][0])
+        self.assertEqual(315, stats._contrib["reviews"][1])
+        self.assertEqual(3, stats._contrib["contribTo"][0])
+        self.assertEqual(8, stats._contrib["contribTo"][1])
+        self.assertEqual(105, stats._contrib["private"][0])
+        self.assertEqual(105, stats._contrib["private"][1])
+        self.assertEqual(0, stats._languages["totalSize"])
+        self.assertEqual(0, len(stats._languages["languages"]))
 
     def _validateLanguages(self, stats) :
         total = 5222379
@@ -362,4 +434,12 @@ class TestSomething(unittest.TestCase) :
             self.assertEqual(expectedColors[i], L[1]["color"])
             self.assertEqual(expectedSize[i], L[1]["size"])
             self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
+
+    def _changeToAllForks(self, queryResults) :
+        for repo in queryResults[1][0]["data"]["user"]["repositories"]["nodes"] :
+            repo["isFork"] = True
+        for repo in queryResults[4][0]["data"]["user"]["topRepositories"]["nodes"] :
+            repo["isFork"] = True
+        for repo in queryResults[2][0]["data"]["user"]["watching"]["nodes"] :
+            repo["isFork"] = True
             

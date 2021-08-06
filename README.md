@@ -428,6 +428,7 @@ following.
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `joined` | Year Joined | the year user joined GitHub |
+| `featured` | Featured repository | user optionally selects this with an input | 
 | `mostStarred` | Most starred repository | name of repo |
 | `mostForked` | Most forked repository | name of repo |
 | `followers` | Followers | simple count |
@@ -582,6 +583,17 @@ length of a custom title, or if you use the default title but have a long name, 
 title may overflow the viewbox of the SVG. In a case like this, you can pass
 `small-title: true`, which will decrease the font size of the title to 16px.
 
+### `featured-repository`
+
+If you want to feature a repository in the General Stats and Info section,
+you can use this input to do so. For example, although the action includes
+the Most Starred and Most Forked repositories in that section by default,
+perhaps there is another repository that you are particularly proud of, or
+which you feel is a better representative of your overall work. The default is
+nothing featured since it is impossible to predict what you would want here.
+To use, just pass the name of the repository via this input. Note that the action
+doesn't attempt to validate whether this repository actually exists.
+
 ### `max-languages`
 
 This input is the maximum number of languages to explicitly include in 
@@ -628,6 +640,21 @@ YAML's ways to specify a multiline string):
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
+
+### `animated-language-chart`
+
+This input can be used to enable animation of the languages pie chart.
+This feature is disabled by default. You can enable it with: `animated-language-chart: true`.
+If enabled, the pie chart will rotate continuously.
+
+### `language-animation-speed`
+
+If you enable the language chart animation using the `animated-language-chart` input,
+then you can control the speed of the animation with the `language-animation-speed`
+input.  The default is a full rotation in 10 seconds.  Perhaps you want
+a slower rotation, such as 20 seconds, then you can pass: `language-animation-speed: 20`.
+Or perhaps you want a faster rotation, such as 5 seconds,
+then you can pass: `language-animation-speed: 5`.  The input must be an integer.
 
 ### `colors`
 
@@ -808,8 +835,11 @@ jobs:
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
+        featured-repository: '' # Defaults to nothing featured
         max-languages: auto
         language-repository-exclusions: '' # None excluded
+        animated-language-chart: false
+        language-animation-speed: 10
         colors: light
         border-radius: 6
         show-border: true

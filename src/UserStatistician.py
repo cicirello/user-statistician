@@ -165,9 +165,16 @@ if __name__ == "__main__" :
         categories = categoryOrder
 
     languageRepoExclusions = set(sys.argv[14].strip().replace(",", " ").lower().split())
+
+    featuredRepo = sys.argv[15].strip()
+    if len(featuredRepo) == 0 :
+        featuredRepo = None
+
+    animateLanguageChart = sys.argv[16].strip().lower() == "true"
+    animationSpeed = int(sys.argv[17].strip())
     
-    stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions)
-    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories)
+    stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo)
+    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

@@ -34,7 +34,7 @@ class StatsImageGenerator :
 
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
-    fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
+    fontGroup = '<g font-weight="bold" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
@@ -42,24 +42,24 @@ class StatsImageGenerator :
 {2}
 </svg>
 <text x="25" y="12.5">{3}:</text>
-<text x="220" y="12.5">{4}</text>
-<text x="320" y="12.5">{5}</text>
+<text x="{6}" y="12.5">{4}</text>
+<text x="{7}" y="12.5">{5}</text>
 </g>"""
     tableEntryTemplateOneColumn = """<g transform="translate(15, {0})">
 <svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
 {2}
 </svg>
 <text x="25" y="12.5">{3}:</text>
-<text x="220" y="12.5">{4}</text>
+<text x="{6}" y="12.5">{4}</text>
 </g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
-<text x="220" y="12.5">{1}</text>
-<text x="320" y="12.5">{2}</text>
+<text x="{3}" y="12.5">{1}</text>
+<text x="{4}" y="12.5">{2}</text>
 </g>"""
     tableHeaderTemplateOneColumn = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
-<text x="220" y="12.5">{1}</text>
+<text x="{3}" y="12.5">{1}</text>
 </g>"""
     tableHeaderTemplateNoColumns = """<g transform="translate(15, 0)">
 <text x="0" y="12.5">{0}:</text>
@@ -71,11 +71,11 @@ class StatsImageGenerator :
     languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
 <rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
 <text x="25" y="12.5">{2} {3:.2f}%</text>
-<rect x="220.5" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}"/>
-<text x="245" y="12.5">{6} {7:.2f}%</text>
+<rect x="{8}" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}"/>
+<text x="{9}" y="12.5">{6} {7:.2f}%</text>
 </g>"""
-    pieTransform = """<g transform="translate(236, {1})">{0}</g>"""
-    pieContrast = """<g transform="translate(235, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}"/></g>"""
+    pieTransform = """<g transform="translate({2}, {1})">{0}</g>"""
+    pieContrast = """<g transform="translate({3}, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}"/></g>"""
     
     __slots__ = [
         '_stats',
@@ -89,10 +89,14 @@ class StatsImageGenerator :
         '_titleSize',
         '_pieRadius',
         '_highContrast',
-        '_categoryOrder'
+        '_categoryOrder',
+        '_animateLanguageChart',
+        '_animationSpeed',
+        '_firstColX',
+        '_secondColX'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories) :
+    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -110,10 +114,14 @@ class StatsImageGenerator :
         self._radius = radius
         self._titleSize = titleSize
         self._categoryOrder = categories
+        self._animateLanguageChart = animateLanguageChart
+        self._animationSpeed = animationSpeed
         self._height = 0
-        self._width = 440
+        self._width = 440 # preferably divisible by 4
+        self._firstColX = self._width // 2
+        self._secondColX = self._firstColX + ((self._firstColX - 16) // 2) 
         self._lineHeight = 21
-        self._pieRadius = (((self._width - 250) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) / 2 
+        self._pieRadius = (((self._width - self._firstColX - 30) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
@@ -218,7 +226,10 @@ class StatsImageGenerator :
                 self._rows.append(template.format(
                     headerRow["heading"],
                     headerRow["column-one"],
-                    headerRow["column-two"]))
+                    headerRow["column-two"],
+                    self._firstColX,
+                    self._secondColX
+                    ))
                 offset = self._lineHeight
             else :
                 offset = 0
@@ -230,7 +241,9 @@ class StatsImageGenerator :
                     statLabels[k]["icon"],
                     statLabels[k]["label"][self._locale],
                     self.formatCount(data[k][0]),
-                    self.formatCount(data[k][1]) if len(data[k]) > 1 else ""
+                    self.formatCount(data[k][1]) if len(data[k]) > 1 else "",
+                    self._firstColX,
+                    self._secondColX
                     ))
                 offset += self._lineHeight
             self._rows.append("</g>")
@@ -260,13 +273,20 @@ class StatsImageGenerator :
                 StatsImageGenerator.pieContrast.format(
                     self._pieRadius,
                     str(offset),
-                    self._highContrast
+                    self._highContrast,
+                    self._firstColX + 15
                     )
                 )
             self._rows.append(
                 StatsImageGenerator.pieTransform.format(
-                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius - 1),
-                    str(offset+1)
+                    svgPieChart(
+                        [L[1] for L in languageData["languages"]],
+                        self._pieRadius - 1,
+                        self._animateLanguageChart,
+                        self._animationSpeed
+                        ),
+                    str(offset+1),
+                    self._firstColX + 16
                     )
                 )
             diameter = self._pieRadius * 2
@@ -298,7 +318,9 @@ class StatsImageGenerator :
                             self._highContrast,
                             L2[1]["color"], 
                             L2[0],
-                            100 * L2[1]["percentage"]
+                            100 * L2[1]["percentage"],
+                            self._firstColX + 0.5,
+                            self._firstColX + 25
                             )
                         )
                     offset += self._lineHeight

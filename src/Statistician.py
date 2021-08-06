@@ -43,10 +43,11 @@ class Statistician :
         '_languages',
         '_autoLanguages',
         '_maxLanguages',
-        '_languageRepoExclusions'
+        '_languageRepoExclusions',
+        '_featuredRepo'
         ]
 
-    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
@@ -62,6 +63,7 @@ class Statistician :
         self._autoLanguages = autoLanguages
         self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
         self._languageRepoExclusions = languageRepoExclusions
+        self._featuredRepo = featuredRepo
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
@@ -169,6 +171,10 @@ class Statistician :
         self._user["sponsors"] = [ basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
         self._user["sponsoring"] = [ basicStats["data"]["user"]["sponsorshipsAsSponsor"]["totalCount"] ]
 
+        #
+        if self._featuredRepo != None :
+            self._user["featured"] = [ self._featuredRepo ]
+
         # Extract all time counts of issues and pull requests
         issues = basicStats["data"]["user"]["issues"]["totalCount"]
         pullRequests = basicStats["data"]["user"]["pullRequests"]["totalCount"]
@@ -206,10 +212,17 @@ class Statistician :
             forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
 
             # Find repos with most stars and most forks
-            mostStars = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["stargazerCount"])["name"]
-            mostForks = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["forkCount"])["name"]
-            self._user["mostStarred"] = [ mostStars ]
-            self._user["mostForked"] = [ mostForks ]
+            try :
+                mostStars = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["stargazerCount"])["name"]
+                self._user["mostStarred"] = [ mostStars ]
+            except ValueError:
+                pass
+
+            try :
+                mostForks = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["forkCount"])["name"]
+                self._user["mostForked"] = [ mostForks ]
+            except ValueError:
+                pass
             
             # Compute number of watchers excluding cases where user is watching their own repos.
             watchers = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
