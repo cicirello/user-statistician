@@ -89,10 +89,12 @@ class StatsImageGenerator :
         '_titleSize',
         '_pieRadius',
         '_highContrast',
-        '_categoryOrder'
+        '_categoryOrder',
+        '_animateLanguageChart',
+        '_animationSpeed'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories) :
+    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -110,6 +112,8 @@ class StatsImageGenerator :
         self._radius = radius
         self._titleSize = titleSize
         self._categoryOrder = categories
+        self._animateLanguageChart = animateLanguageChart
+        self._animationSpeed = animationSpeed
         self._height = 0
         self._width = 440
         self._lineHeight = 21
@@ -265,7 +269,12 @@ class StatsImageGenerator :
                 )
             self._rows.append(
                 StatsImageGenerator.pieTransform.format(
-                    svgPieChart([L[1] for L in languageData["languages"]], self._pieRadius - 1),
+                    svgPieChart(
+                        [L[1] for L in languageData["languages"]],
+                        self._pieRadius - 1,
+                        self._animateLanguageChart,
+                        self._animationSpeed
+                        ),
                     str(offset+1)
                     )
                 )

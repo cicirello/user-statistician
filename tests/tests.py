@@ -270,8 +270,16 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 10, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)
-        print(svgGen.generateImage(True, None, {}))
+        svgGen = StatsImageGenerator(
+            stats,
+            copy.deepcopy(colorMapping["dark"]),
+            "en",
+            6,
+            18,
+            categories,
+            True,
+            10)
+        #print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
