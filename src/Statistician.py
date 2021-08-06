@@ -43,10 +43,11 @@ class Statistician :
         '_languages',
         '_autoLanguages',
         '_maxLanguages',
-        '_languageRepoExclusions'
+        '_languageRepoExclusions',
+        '_featuredRepo'
         ]
 
-    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
@@ -62,6 +63,7 @@ class Statistician :
         self._autoLanguages = autoLanguages
         self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
         self._languageRepoExclusions = languageRepoExclusions
+        self._featuredRepo = featuredRepo
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
@@ -168,6 +170,10 @@ class Statistician :
         # Extract sponsors and sponsoring counts
         self._user["sponsors"] = [ basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
         self._user["sponsoring"] = [ basicStats["data"]["user"]["sponsorshipsAsSponsor"]["totalCount"] ]
+
+        #
+        if self._featuredRepo != None :
+            self._user["featured"] = [ self._featuredRepo ]
 
         # Extract all time counts of issues and pull requests
         issues = basicStats["data"]["user"]["issues"]["totalCount"]

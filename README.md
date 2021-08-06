@@ -428,6 +428,7 @@ following.
 | Key | Statistic | Details |
 | --- | --- | ------ |
 | `joined` | Year Joined | the year user joined GitHub |
+| `featured` | Featured repository | user optionally selects this with an input | 
 | `mostStarred` | Most starred repository | name of repo |
 | `mostForked` | Most forked repository | name of repo |
 | `followers` | Followers | simple count |
@@ -581,6 +582,17 @@ The default should be a good choice in most cases. However, depending upon the
 length of a custom title, or if you use the default title but have a long name, then the 
 title may overflow the viewbox of the SVG. In a case like this, you can pass
 `small-title: true`, which will decrease the font size of the title to 16px.
+
+### `featured-repository`
+
+If you want to feature a repository in the General Stats and Info section,
+you can use this input to do so. For example, although the action includes
+the Most Starred and Most Forked repositories in that section by default,
+perhaps there is another repository that you are particularly proud of, or
+which you feel is a better representative of your overall work. The default is
+nothing featured since it is impossible to predict what you would want here.
+To use, just pass the name of the repository via this input. Note that the action
+doesn't attempt to validate whether this repository actually exists.
 
 ### `max-languages`
 
@@ -808,6 +820,7 @@ jobs:
         include-title: true
         custom-title: '' # Defaults to title pattern described earlier
         small-title: false
+        featured-repository: '' # Defaults to nothing featured
         max-languages: auto
         language-repository-exclusions: '' # None excluded
         colors: light
