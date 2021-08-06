@@ -641,6 +641,21 @@ YAML's ways to specify a multiline string):
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
 
+### `animated-language-chart`
+
+This input can be used to enable animation of the languages pie chart.
+This feature is disabled by default. You can enable it with: `animated-language-chart: true`.
+If enabled, the pie chart will rotate continuously.
+
+### `language-animation-speed`
+
+If you enable the language chart animation using the `animated-language-chart` input,
+then you can control the speed of the animation with the `language-animation-speed`
+input.  The default is a full rotation in 10 seconds.  Perhaps you want
+a slower rotation, such as 20 seconds, then you can pass: `language-animation-speed: 20`.
+Or perhaps you want a faster rotation, such as 5 seconds,
+then you can pass: `language-animation-speed: 5`.  The input must be an integer.
+
 ### `colors`
 
 The `colors` input enables you to either select from a set of
@@ -823,6 +838,8 @@ jobs:
         featured-repository: '' # Defaults to nothing featured
         max-languages: auto
         language-repository-exclusions: '' # None excluded
+        animated-language-chart: false
+        language-animation-speed: 10
         colors: light
         border-radius: 6
         show-border: true
