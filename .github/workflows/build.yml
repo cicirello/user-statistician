@@ -38,6 +38,7 @@ jobs:
         colors: dark
         commit-and-push: false
         featured-repository: Chips-n-Salsa
+        animated-language-chart: true
         #fail-on-error: false
         #category-order: general, repositories, languages, contributions
       env:
