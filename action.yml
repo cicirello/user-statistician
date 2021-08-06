@@ -85,6 +85,10 @@ inputs:
     description: 'List of repositories to exclude from language stats.'
     required: false
     default: ''
+  featured-repository:
+    description: 'Name of a repository to feature in the General Stats and Info section'
+    required: false
+    default: ''
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -106,3 +110,4 @@ runs:
     - ${{ inputs.max-languages }}
     - ${{ inputs.category-order }}
     - ${{ inputs.language-repository-exclusions }}
+    - ${{ inputs.featured-repository }}
