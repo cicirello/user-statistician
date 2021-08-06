@@ -129,6 +129,25 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"})
         self._validate(stats, True)
 
+    def test_parseQueryResultsNoNonForksOwned(self) :
+        executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
+        # Change all repos to forks for this testcase.
+        self._changeToAllForks(executedQueryResults)
+        class NoQueries(Statistician) :
+            def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions) :
+                self._autoLanguages = autoLanguages
+                self._maxLanguages = maxLanguages if maxLanguages >= 1 else 1
+                self._languageRepoExclusions = languageRepoExclusions
+                self.parseStats(
+                    executedQueryResults[0],
+                    executedQueryResults[1],
+                    executedQueryResults[2],
+                    executedQueryResults[4]
+                    )
+                self.parsePriorYearStats(executedQueryResults[3])
+        stats = NoQueries(True, False, 1000, set())
+        self._validate(stats)
+
     def test_color_themes(self) :
         originalThemes = {"light", "dark", "dark-dimmed"}
         for theme in originalThemes :
@@ -242,7 +261,7 @@ class TestSomething(unittest.TestCase) :
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
         svgGen = StatsImageGenerator(stats, copy.deepcopy(colorMapping["dark"]), "en", 6, 18, categories)
-        print(svgGen.generateImage(True, None, {}))
+        #print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
@@ -362,4 +381,12 @@ class TestSomething(unittest.TestCase) :
             self.assertEqual(expectedColors[i], L[1]["color"])
             self.assertEqual(expectedSize[i], L[1]["size"])
             self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
+
+    def _changeToAllForks(self, queryResults) :
+        for repo in queryResults[1]["repositories"]["nodes"] :
+            repo["isFork"] = True
+        for repo in queryResults[4]["topRepositories"]["nodes"] :
+            repo["isFork"] = True
+        for repo in queryResults[2]["watching"]["nodes"] :
+            repo["isFork"] = True
             
