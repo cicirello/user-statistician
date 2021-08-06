@@ -117,7 +117,7 @@ class StatsImageGenerator :
         self._height = 0
         self._width = 440
         self._lineHeight = 21
-        self._pieRadius = (((self._width - 250) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) / 2 
+        self._pieRadius = (((self._width - 250) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
