@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-08-06
 
 ### Added
+* A new action input, `featured-repository`, that enables the user of the action
+  to (optionally) specify a repository to feature in the General Stats and Info
+  section of the SVG. For example, perhaps they have a repository that they feel
+  is a better representative of their work than their most starred and most forked
+  repositories.
   
 ### Changed
 
