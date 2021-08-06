@@ -204,7 +204,7 @@ Here is a sample of what this will produce:
 
 [![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
 
-### Example 3: Dark-dimmed theme with custom title, some hidden stats, and including all languages in language distribution chart
+### Example 3: Dark-dimmed theme with custom title, some hidden stats, an animated language chart, and including all languages in language distribution chart
 
 This example shows the dark-dimmed theme, uses a custom title, includes all
 languages in language distribution chart, and hides
@@ -240,13 +240,14 @@ jobs:
         custom-title: My GitHub Statistics
         hide-keys: joined, mostStarred, mostForked, followers, following, private
         max-languages: 100
+        animated-language-chart: true
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
 
 Here is a sample of what this will produce:
 
-[![Dark-dimmed theme with custom title, and with private, joined, followers, and following all hidden](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
+[![Dark-dimmed theme with custom title, animated language chart, and some hidden stats](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 4: Multiple SVGs for repository stats, contribution stats, and language distribution
 
