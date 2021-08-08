@@ -233,7 +233,7 @@ class StatsImageGenerator :
                 template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
                 self._rows.append(template.format(
                     str(offset),
-                    self._colors["icons"],
+                    self._colors["icons"], # no longer needed, but kept here to avoid need to renumber in templates
                     statLabels[k]["icon"].format(self._colors["icons"]),
                     statLabels[k]["label"][self._locale],
                     self.formatCount(data[k][0]),
