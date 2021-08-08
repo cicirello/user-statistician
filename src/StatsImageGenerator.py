@@ -38,17 +38,13 @@ class StatsImageGenerator :
     titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
-<svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
 {2}
-</svg>
 <text x="25" y="12.5">{3}:</text>
 <text x="{6}" y="12.5">{4}</text>
 <text x="{7}" y="12.5">{5}</text>
 </g>"""
     tableEntryTemplateOneColumn = """<g transform="translate(15, {0})">
-<svg viewBox="0 0 16 16" width="16" height="16" fill="{1}">
 {2}
-</svg>
 <text x="25" y="12.5">{3}:</text>
 <text x="{6}" y="12.5">{4}</text>
 </g>"""
@@ -237,8 +233,8 @@ class StatsImageGenerator :
                 template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
                 self._rows.append(template.format(
                     str(offset),
-                    self._colors["icons"],
-                    statLabels[k]["icon"],
+                    self._colors["icons"], # no longer needed, but kept here to avoid need to renumber in templates
+                    statLabels[k]["icon"].format(self._colors["icons"]),
                     statLabels[k]["label"][self._locale],
                     self.formatCount(data[k][0]),
                     self.formatCount(data[k][1]) if len(data[k]) > 1 else "",

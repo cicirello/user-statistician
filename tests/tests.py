@@ -279,6 +279,7 @@ class TestSomething(unittest.TestCase) :
             categories,
             True,
             10)
+        #UNCOMMENT to output an svg to stdout during run of tests (just redirect to a file to visually inspect)
         #print(svgGen.generateImage(True, None, {}))
 
     def _colorValidation(self, theme) :

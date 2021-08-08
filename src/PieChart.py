@@ -32,7 +32,7 @@ _pathTemplate = '<path fill-rule="evenodd" fill="{0}" d="M {1},{2} A {3} {3} 0 {
 _circleTemplate = '<circle fill="{0}" cx="{1}" cy="{1}" r="{1}"/>'
 _animationTemplate = '<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 {0} {0}" to="360 {0} {0}" dur="{1}s" repeatCount="indefinite"/>'
 
-def svgPieChart(wedges, radius, animate, speed) :
+def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
     """Generates an SVG of a pie chart. The intention is to include
     as part of a larger SVG (e.g., it does not insert xmlns into the
     opening svg tag). If wedges list is empty, it retrurns None.
@@ -44,7 +44,10 @@ def svgPieChart(wedges, radius, animate, speed) :
     animate - Pass True to animate the pie chart.
     speed - If animate is True, then this input is the number of seconds for one full rotation.
     """
-    components = [_headerTemplate.format(str(2*radius))]
+    if includeSVGHeader :
+        components = [_headerTemplate.format(str(2*radius))]
+    else :
+        components = []
 
     if len(wedges) == 0 :
         return None
@@ -87,6 +90,7 @@ def svgPieChart(wedges, radius, animate, speed) :
                     )
                 )
             components.append("</g>")
-        
-    components.append("</svg>")
+
+    if includeSVGHeader :
+        components.append("</svg>")
     return "".join(components)
