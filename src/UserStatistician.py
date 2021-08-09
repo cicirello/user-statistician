@@ -172,9 +172,14 @@ if __name__ == "__main__" :
 
     animateLanguageChart = sys.argv[16].strip().lower() == "true"
     animationSpeed = int(sys.argv[17].strip())
+
+    width = int(sys.argv[18].strip())
+    minimumFeasibleWidth = 472
+    if width < minimumFeasibleWidth :
+        width = minimumFeasibleWidth
     
     stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo)
-    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed)
+    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width)
     image = generator.generateImage(includeTitle, customTitle, exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 

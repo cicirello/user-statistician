@@ -97,6 +97,10 @@ inputs:
     description: 'The time for one full rotation in seconds'
     required: false
     default: 10
+  image-width:
+    description: 'The width of the SVG in pixels'
+    required: false
+    default: 472
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -121,3 +125,4 @@ runs:
     - ${{ inputs.featured-repository }}
     - ${{ inputs.animated-language-chart }}
     - ${{ inputs.language-animation-speed }}
+    - ${{ inputs.image-width }}

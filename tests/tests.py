@@ -278,7 +278,8 @@ class TestSomething(unittest.TestCase) :
             18,
             categories,
             True,
-            10)
+            10,
+            472)
         #UNCOMMENT to output an svg to stdout during run of tests (just redirect to a file to visually inspect)
         #print(svgGen.generateImage(True, None, {}))
 
