@@ -4,9 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-08-08
+## [Unreleased] - 2021-08-09
 
 ### Added
+  
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.6.0] - 2021-08-09
+
+### Added
+* User adjustable width, via a new action input `image-width`.
   
 ### Changed
 * Revised SVG generation to eliminate unnecessary SVG tags surrounding 
@@ -14,12 +28,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   tags referred to here are not incorrect, but they are not needed. By changing
   SVG generation to not insert them, DOM size is decreased (possibly decreasing 
   rendering time), and file size is decreased, possibly speeding up download time.
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 
 ## [1.5.0] - 2021-08-06

@@ -92,7 +92,7 @@ class StatsImageGenerator :
         '_secondColX'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed) :
+    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -102,6 +102,9 @@ class StatsImageGenerator :
         radius - The border radius.
         titleSize - The font size for the title.
         categories - List of category keys in order they should appear on card.
+        animateLanguageChart - Boolean controlling whether to animate the language pie chart.
+        animationSpeed - An integer duration for one full rotation of language pie chart.
+        width - The width of the SVG, preferably divisible by 4.
         """
         self._stats = stats
         self._colors = colors
@@ -113,11 +116,11 @@ class StatsImageGenerator :
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
         self._height = 0
-        self._width = 440 # preferably divisible by 4
-        self._firstColX = self._width // 2
-        self._secondColX = self._firstColX + ((self._firstColX - 16) // 2) 
+        self._width = width
+        self._firstColX = (self._width // 2) - 15
+        self._secondColX = self._firstColX + (self._width // 4) 
         self._lineHeight = 21
-        self._pieRadius = (((self._width - self._firstColX - 30) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
+        self._pieRadius = (((self._width // 2 - 15) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
