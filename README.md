@@ -699,6 +699,19 @@ This input is the radius of the border of the SVG. The default is `border-radius
 
 This input controls whether or not the SVG has a border. The default is `true`.
 
+### `image-width`
+
+This input controls the width of the SVG. The default, `image-width: 472`, should be
+sufficient in most cases. The need to change this input should be uncommon. The most
+likely cases where this input may need to be adjusted is if: (a) your name is extra long,
+causing the title to overflow the SVG; or (b) you specify an extra long custom title with the
+`custom-title` input. If one or the other of these is the case, then you can either
+use the `small-title` input to decrease font size of the title, or you can use the `image-width`
+input to increase the width of the SVG. Please note that at the present time you cannot
+use this input to decrease the width of the SVG. The default value works well with the 
+length of the labels of the various stats. If you pass a value less than the default, the
+default will simply be used instead.
+
 ### `hide-keys`
 
 The action automatically hides any statistics with a value of 0. For example,
@@ -844,6 +857,7 @@ jobs:
         colors: light
         border-radius: 6
         show-border: true
+        image-width: 472
         hide-keys: '' # None hidden
         category-order: general, repositories, contributions, languages
         locale: en
