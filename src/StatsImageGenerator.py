@@ -113,11 +113,11 @@ class StatsImageGenerator :
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
         self._height = 0
-        self._width = 440 # preferably divisible by 4
-        self._firstColX = self._width // 2
-        self._secondColX = self._firstColX + ((self._firstColX - 16) // 2) 
+        self._width = 472 # preferably divisible by 4
+        self._firstColX = (self._width // 2) - 15
+        self._secondColX = self._firstColX + (self._width // 4) 
         self._lineHeight = 21
-        self._pieRadius = (((self._width - self._firstColX - 30) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
+        self._pieRadius = (((self._width // 2 - 15) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
