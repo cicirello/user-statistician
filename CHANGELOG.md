@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-08-09
+## [Unreleased] - 2021-08-28
 
 ### Added
   
@@ -16,6 +16,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+
+## [1.7.0] - 2021-08-28
+
+### Added
+* Italian locale: Italian translations of title template, headings, labels, 
+  etc for locale code `it`.
+  
+### Fixed
+* Added missing UTF-8 encoding when writing the SVG to fix issue with
+  characters needed for some language translations.
+* Fixed exception in case when user stores the SVG at root of repo.
+  
 
 ## [1.6.0] - 2021-08-09
 

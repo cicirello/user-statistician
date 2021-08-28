@@ -30,6 +30,7 @@ import sys
 sys.path.insert(0,'src')
 from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
+from UserStatistician import writeImageToFile
 from Colors import *
 from StatConfig import *
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
@@ -279,10 +280,12 @@ class TestSomething(unittest.TestCase) :
             categories,
             True,
             10,
-            472)
-        #UNCOMMENT to output an svg to stdout during run of tests (just redirect to a file to visually inspect)
-        #print(svgGen.generateImage(True, None, {}))
-
+            472
+            ) #width=472 works OK for 'en', but not for 'it' (550 seems ok).
+        image = svgGen.generateImage(True, None, {})
+        #UNCOMMENT to output an svg to stdout during run of tests
+        #writeImageToFile("testing.svg", image, False)
+        
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
         validHexDigits = set("0123456789abcdefABCDEF")
