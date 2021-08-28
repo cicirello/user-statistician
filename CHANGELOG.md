@@ -16,7 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Missing UTF-8 encoding
+* Added missing UTF-8 encoding when writing the SVG to fix issue with
+  characters needed for some language translations.
+* Fixed bug in case when user stores the SVG at root of repo.
 
 
 ## [1.6.0] - 2021-08-09

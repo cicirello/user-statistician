@@ -51,7 +51,9 @@ def writeImageToFile(filename, image, failOnError) :
     # once the action finished and we're outside the container again.
     os.umask(0)
     # Create the directory if it doesn't exist.
-    os.makedirs(os.path.dirname(filename), exist_ok=True, mode=0o777)
+    directoryName = os.path.dirname(filename)
+    if len(directoryName) > 0 :
+        os.makedirs(directoryName, exist_ok=True, mode=0o777)
     try:
         # Write the image to a file
         with open(filename, "wb") as file:
