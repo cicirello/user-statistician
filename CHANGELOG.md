@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-08-28
 
 ### Added
-* Italian locale: Italian translations of title template, headings, labels, 
-  etc for locale code `it`.
   
 ### Changed
 
@@ -17,10 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+
+## [1.7.0] - 2021-08-28
+
+### Added
+* Italian locale: Italian translations of title template, headings, labels, 
+  etc for locale code `it`.
+  
+### Fixed
 * Added missing UTF-8 encoding when writing the SVG to fix issue with
   characters needed for some language translations.
 * Fixed exception in case when user stores the SVG at root of repo.
-
+  
 
 ## [1.6.0] - 2021-08-09
 
