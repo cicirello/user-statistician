@@ -145,7 +145,7 @@ categoryLabels = {
             },
         "repositories" : {
             "heading" : "Repository",
-            "column-one" : "Non-Forks",
+            "column-one" : "Non-Fork",
             "column-two" : "Tutti"
             },
         "contributions" : {
