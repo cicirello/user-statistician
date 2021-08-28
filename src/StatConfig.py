@@ -105,6 +105,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 #
 # Locale Contributors:
 # en: cicirello
+# it: ziriuz84
 #
 
 # The locale keys are ISO 639-1 two-character language codes
