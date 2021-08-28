@@ -274,16 +274,17 @@ class TestSomething(unittest.TestCase) :
         svgGen = StatsImageGenerator(
             stats,
             copy.deepcopy(colorMapping["dark"]),
-            "it",
+            "en",
             6,
             18,
             categories,
             True,
             10,
-            550) #472 works OK for 'en', but not for 'it'.
-        #UNCOMMENT to output an svg to stdout during run of tests
+            472
+            ) #width=472 works OK for 'en', but not for 'it' (550 seems ok).
         image = svgGen.generateImage(True, None, {})
-        writeImageToFile("testing.svg", image, False)
+        #UNCOMMENT to output an svg to stdout during run of tests
+        #writeImageToFile("testing.svg", image, False)
         
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
