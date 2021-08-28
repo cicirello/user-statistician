@@ -169,7 +169,7 @@ so that others know how you generated it, with the following markdown:
 
 Here is a sample of what this will produce:
 
-[![Default input values uses light theme](https://github.com/cicirello/user-statistician/blob/samples/images/light.svg)](https://github.com/cicirello/user-statistician)
+[![Default input values uses light theme](../samples/images/light.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 2: Dark theme without title
 
@@ -202,7 +202,7 @@ jobs:
 
 Here is a sample of what this will produce:
 
-[![Dark theme without title](https://github.com/cicirello/user-statistician/blob/samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
+[![Dark theme without title](../samples/images/dark.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 3: Dark-dimmed theme with custom title, some hidden stats, an animated language chart, and including all languages in language distribution chart
 
@@ -247,7 +247,7 @@ jobs:
 
 Here is a sample of what this will produce:
 
-[![Dark-dimmed theme with custom title, animated language chart, and some hidden stats](https://github.com/cicirello/user-statistician/blob/samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
+[![Dark-dimmed theme with custom title, animated language chart, and some hidden stats](../samples/images/dark-dimmed.svg)](https://github.com/cicirello/user-statistician)
 
 ### Example 4: Multiple SVGs for repository stats, contribution stats, and language distribution
 
@@ -399,17 +399,18 @@ image into your profile README to refer explicitly to that branch
 as follows:
 
 ```markdown
-![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)
+![My user statistics](../BRANCHNAME/images/userstats.svg)
 ```
 
-The repetition of "USERNAME" in the above example is that we are assuming this
-is in your profile repository, which must be named identically to your username.
+The relative link in the example above is relative to the branch
+of the README that the viewer is viewing, so we can go up one level
+with `..` and then into the branch where our SVG resides.
 
 A version that links the image to this repository
 so that others know how you generated it is as follows:
 
 ```markdown
-[![My user statistics](https://github.com/USERNAME/USERNAME/blob/BRANCHNAME/images/userstats.svg)](https://github.com/cicirello/user-statistician)
+[![My user statistics](../BRANCHNAME/images/userstats.svg)](https://github.com/cicirello/user-statistician)
 ```
 
 
