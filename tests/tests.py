@@ -30,6 +30,7 @@ import sys
 sys.path.insert(0,'src')
 from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
+from UserStatistician import writeImageToFile
 from Colors import *
 from StatConfig import *
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
@@ -273,16 +274,17 @@ class TestSomething(unittest.TestCase) :
         svgGen = StatsImageGenerator(
             stats,
             copy.deepcopy(colorMapping["dark"]),
-            "en",
+            "it",
             6,
             18,
             categories,
             True,
             10,
-            472)
-        #UNCOMMENT to output an svg to stdout during run of tests (just redirect to a file to visually inspect)
-        #print(svgGen.generateImage(True, None, {}))
-
+            550) #472 works OK for 'en', but not for 'it'.
+        #UNCOMMENT to output an svg to stdout during run of tests
+        image = svgGen.generateImage(True, None, {})
+        writeImageToFile("testing.svg", image, False)
+        
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
         validHexDigits = set("0123456789abcdefABCDEF")
