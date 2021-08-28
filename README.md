@@ -757,10 +757,14 @@ will be hidden despite being in the `category-order`.
 This input is an ISO 639-1 two character language code for the
 language used in names of statistics, section and column headings,
 and default title on the user stats card. The default is `locale: en`,
-which is English. At the present time, this is the only supported 
-locale, but we anticipate introducing support for additional languages.
-If an unsupported locale is passed, then the action will use the
-default of "en".
+which is English. If an unsupported locale is passed, then the 
+action will use the default of "en". The following locales are
+currently supported:
+
+| locale code | language |
+| :--- | :--- |
+| en | English |
+| it | Italian |
 
 If you are interested in contributing a new locale, only the 
 [src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
