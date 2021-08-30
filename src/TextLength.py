@@ -25,8 +25,8 @@
 # SOFTWARE.
 #
 
-def calculateTextWidth(s, size, pixels=False) :
-    """Calculates the width of a string in DejaVu Sans for
+def calculateTextLength(s, size, pixels) :
+    """Calculates the length of a string in DejaVu Sans for
     a specified font size.
 
     Keyword arguments:
@@ -35,11 +35,11 @@ def calculateTextWidth(s, size, pixels=False) :
     pixels - If True, the size is in px, otherwise it is in pt.
     """
     if pixels :
-        size /= 0.75
-    return size * calculateTextWidth110(s) / 110
+        size *= 0.75
+    return size * calculateTextLength110(s) / 110
 
-def calculateTextWidth110(s) :
-    """Calculates the width of a string in DejaVu Sans 110pt font.
+def calculateTextLength110(s) :
+    """Calculates the length of a string in DejaVu Sans 110pt font.
 
     Keyword arguments:
     s - The string.
