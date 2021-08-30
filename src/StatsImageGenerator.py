@@ -212,6 +212,7 @@ class StatsImageGenerator :
                         if headerRow["column-one"] != None :
                             headingRowLength *= 2
                         length = max(length, headingRowLength)
+                        data = self._stats.getStatsByKey(category)
                         for k in keys :
                             labelLength = calculateTextLength(
                                 statLabels[k]["label"][self._locale],
@@ -222,6 +223,16 @@ class StatsImageGenerator :
                                 length,
                                 (labelLength + 25 + (2 * self._margin)) * 2
                                 )
+                            if len(data[k]) == 1 and not self.isInt(data[k][0]) :
+                                dataLength = calculateTextLength(
+                                    data[k][0],
+                                    14,
+                                    True,
+                                    600)
+                                length = max(
+                                    length,
+                                    2*(dataLength + self._margin)
+                                    )
         return math.ceil(length)
 
     def generateImage(self) :
