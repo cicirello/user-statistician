@@ -34,6 +34,7 @@ from UserStatistician import writeImageToFile
 from Colors import *
 from StatConfig import *
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
+from TextLength import *
 import copy
 
 executedQueryResultsOriginal = [
@@ -248,8 +249,19 @@ class TestSomething(unittest.TestCase) :
         rows.append("</svg>")
         # Uncomment me and pipe to colorTest.svg
         #print("\n".join(rows))
-            
 
+    def test_TextLength(self) :
+        # We have known text lengths of "coverage" and "branches"
+        # from another project, so using these as test cases.
+        self.assertEqual(510, calculateTextLength110("coverage"))
+        self.assertEqual(507, calculateTextLength110("branches"))
+        self.assertAlmostEqual(51.0, calculateTextLength("coverage", 11, False))
+        self.assertAlmostEqual(50.7, calculateTextLength("branches", 11, False))
+        self.assertAlmostEqual(510, calculateTextLength("coverage", 146 + 2/3, True))
+        self.assertAlmostEqual(507, calculateTextLength("branches", 146 + 2/3, True))
+        self.assertAlmostEqual(51.0, calculateTextLength("coverage", 14 + 2/3, True))
+        self.assertAlmostEqual(50.7, calculateTextLength("branches", 14 + 2/3, True))
+ 
     def test_generateSVG(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         # UNCOMMENT: to generate SVG when user only owns forks, which should
