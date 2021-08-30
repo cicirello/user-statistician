@@ -298,11 +298,11 @@ class TestSomething(unittest.TestCase) :
             categories,
             True,
             10,
-            551,
+            0, # Doesn't matter since will autosize
             None,
             True,
             {}
-            ) #width=447 works OK for 'en', but not for 'it' (551 seems ok).
+            ) 
         image = svgGen.generateImage()
         #UNCOMMENT to output an svg to stdout during run of tests
         writeImageToFile("testing.svg", image, False)
