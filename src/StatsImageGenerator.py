@@ -90,10 +90,22 @@ class StatsImageGenerator :
         '_animationSpeed',
         '_firstColX',
         '_secondColX',
-        '_title'
+        '_title',
+        '_includeTitle'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width, customTitle) :
+    def __init__(self,
+                 stats,
+                 colors,
+                 locale,
+                 radius,
+                 titleSize,
+                 categories,
+                 animateLanguageChart,
+                 animationSpeed,
+                 width,
+                 customTitle,
+                 includeTitle) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -108,6 +120,7 @@ class StatsImageGenerator :
         width - The width of the SVG, preferably divisible by 4.
         customTitle - If not None, this is used as the title, otherwise title is formed
             from user's name.
+        includeTitle - If True inserts a title.
         """
         self._stats = stats
         self._colors = colors
@@ -119,6 +132,7 @@ class StatsImageGenerator :
             self._title = customTitle
         else :
             self._title = titleTemplates[self._locale].format(self._stats._name)
+        self._includeTitle = includeTitle
         self._categoryOrder = categories
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
@@ -134,14 +148,13 @@ class StatsImageGenerator :
             StatsImageGenerator.fontGroup
             ]
 
-    def generateImage(self, includeTitle, exclude) :
+    def generateImage(self, exclude) :
         """Generates and returns the image.
 
         Keyword arguments:
-        includeTitle - If True inserts a title.
         exclude - Set of keys to exclude.
         """
-        self.insertTitle(includeTitle)
+        self.insertTitle()
         for category in self._categoryOrder :
             if category not in exclude :
                 if category == "languages" :
@@ -184,13 +197,9 @@ class StatsImageGenerator :
             return False
         return True
 
-    def insertTitle(self, includeTitle) :
-        """Generates, formats, and inserts title.
-
-        Keyword arguments:
-        includeTitle - If True generates, formats, and inserts the title.
-        """
-        if includeTitle :
+    def insertTitle(self) :
+        """Generates, formats, and inserts title."""
+        if self._includeTitle :
             self._rows.append(
                 StatsImageGenerator.titleTemplate.format(
                     self._title,

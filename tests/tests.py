@@ -292,15 +292,17 @@ class TestSomething(unittest.TestCase) :
         svgGen = StatsImageGenerator(
             stats,
             copy.deepcopy(colorMapping["dark"]),
-            "en",
+            "it",
             6,
             18,
             categories,
             True,
             10,
-            447
-            ) #width=472 works OK for 'en', but not for 'it' (550 seems ok).
-        image = svgGen.generateImage(True, None, {})
+            551,
+            None,
+            True
+            ) #width=447 works OK for 'en', but not for 'it' (551 seems ok).
+        image = svgGen.generateImage({})
         #UNCOMMENT to output an svg to stdout during run of tests
         writeImageToFile("testing.svg", image, False)
         

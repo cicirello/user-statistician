@@ -198,9 +198,10 @@ if __name__ == "__main__" :
         animateLanguageChart,
         animationSpeed,
         width,
-        customTitle
+        customTitle,
+        includeTitle
         )
-    image = generator.generateImage(includeTitle, exclude)
+    image = generator.generateImage(exclude)
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :
