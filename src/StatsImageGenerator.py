@@ -212,6 +212,24 @@ class StatsImageGenerator :
                         if headerRow["column-one"] != None :
                             headingRowLength *= 2
                         length = max(length, headingRowLength)
+                        if headerRow["column-one"] != None :
+                            length = max(
+                                length,
+                                4*(self._margin + calculateTextLength(
+                                    headerRow["column-one"],
+                                    14,
+                                    True,
+                                    600))
+                                )
+                        if headerRow["column-two"] != None :
+                            length = max(
+                                length,
+                                4*(self._margin + calculateTextLength(
+                                    headerRow["column-two"],
+                                    14,
+                                    True,
+                                    600))
+                                )
                         data = self._stats.getStatsByKey(category)
                         for k in keys :
                             labelLength = calculateTextLength(
