@@ -89,10 +89,11 @@ class StatsImageGenerator :
         '_animateLanguageChart',
         '_animationSpeed',
         '_firstColX',
-        '_secondColX'
+        '_secondColX',
+        '_title'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width) :
+    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width, customTitle) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -105,6 +106,8 @@ class StatsImageGenerator :
         animateLanguageChart - Boolean controlling whether to animate the language pie chart.
         animationSpeed - An integer duration for one full rotation of language pie chart.
         width - The width of the SVG, preferably divisible by 4.
+        customTitle - If not None, this is used as the title, otherwise title is formed
+            from user's name.
         """
         self._stats = stats
         self._colors = colors
@@ -112,6 +115,10 @@ class StatsImageGenerator :
         self._locale = locale
         self._radius = radius
         self._titleSize = titleSize
+        if customTitle != None :
+            self._title = customTitle
+        else :
+            self._title = titleTemplates[self._locale].format(self._stats._name)
         self._categoryOrder = categories
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
@@ -127,16 +134,14 @@ class StatsImageGenerator :
             StatsImageGenerator.fontGroup
             ]
 
-    def generateImage(self, includeTitle, customTitle, exclude) :
+    def generateImage(self, includeTitle, exclude) :
         """Generates and returns the image.
 
         Keyword arguments:
         includeTitle - If True inserts a title.
-        customTitle - If not None, this is used as the title, otherwise title is formed
-            from user's name.
         exclude - Set of keys to exclude.
         """
-        self.insertTitle(includeTitle, customTitle)
+        self.insertTitle(includeTitle)
         for category in self._categoryOrder :
             if category not in exclude :
                 if category == "languages" :
@@ -179,22 +184,16 @@ class StatsImageGenerator :
             return False
         return True
 
-    def insertTitle(self, includeTitle, customTitle) :
+    def insertTitle(self, includeTitle) :
         """Generates, formats, and inserts title.
 
         Keyword arguments:
         includeTitle - If True generates, formats, and inserts the title.
-        customTitle - If not None, this is used as the title, otherwise title is formed
-            from user's name.
         """
         if includeTitle :
-            if customTitle != None :
-                title = customTitle
-            else :
-                title = titleTemplates[self._locale].format(self._stats._name)
             self._rows.append(
                 StatsImageGenerator.titleTemplate.format(
-                    title,
+                    self._title,
                     self._colors["title"],
                     str(self._titleSize)
                     )
