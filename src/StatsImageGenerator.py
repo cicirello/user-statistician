@@ -175,7 +175,7 @@ class StatsImageGenerator :
                     languageData = self._stats.getStatsByKey(category)
                     if languageData["totalSize"] > 0 :
                         headingRowLength = calculateTextLength(
-                            categoryLabels[self._locale][category]["heading"],
+                            categoryLabels[self._locale][category]["heading"]+":",
                             14,
                             True,
                             600)
@@ -204,7 +204,7 @@ class StatsImageGenerator :
                     if len(keys) > 0 :
                         headerRow = categoryLabels[self._locale][category]
                         headingRowLength = calculateTextLength(
-                            headerRow["heading"],
+                            headerRow["heading"]+":",
                             14,
                             True,
                             600)
@@ -233,7 +233,7 @@ class StatsImageGenerator :
                         data = self._stats.getStatsByKey(category)
                         for k in keys :
                             labelLength = calculateTextLength(
-                                statLabels[k]["label"][self._locale],
+                                statLabels[k]["label"][self._locale]+":",
                                 14,
                                 True,
                                 600)
