@@ -199,9 +199,10 @@ if __name__ == "__main__" :
         animationSpeed,
         width,
         customTitle,
-        includeTitle
+        includeTitle,
+        exclude
         )
-    image = generator.generateImage(exclude)
+    image = generator.generateImage()
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :

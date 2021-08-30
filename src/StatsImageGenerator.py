@@ -91,7 +91,8 @@ class StatsImageGenerator :
         '_firstColX',
         '_secondColX',
         '_title',
-        '_includeTitle'
+        '_includeTitle',
+        '_exclude'
         ]
 
     def __init__(self,
@@ -105,7 +106,8 @@ class StatsImageGenerator :
                  animationSpeed,
                  width,
                  customTitle,
-                 includeTitle) :
+                 includeTitle,
+                 exclude) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -121,6 +123,7 @@ class StatsImageGenerator :
         customTitle - If not None, this is used as the title, otherwise title is formed
             from user's name.
         includeTitle - If True inserts a title.
+        exclude - A set of keys to exclude.
         """
         self._stats = stats
         self._colors = colors
@@ -134,6 +137,7 @@ class StatsImageGenerator :
             self._title = titleTemplates[self._locale].format(self._stats._name)
         self._includeTitle = includeTitle
         self._categoryOrder = categories
+        self._exclude = exclude
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
         self._height = 0
@@ -148,15 +152,11 @@ class StatsImageGenerator :
             StatsImageGenerator.fontGroup
             ]
 
-    def generateImage(self, exclude) :
-        """Generates and returns the image.
-
-        Keyword arguments:
-        exclude - Set of keys to exclude.
-        """
+    def generateImage(self) :
+        """Generates and returns the image."""
         self.insertTitle()
         for category in self._categoryOrder :
-            if category not in exclude :
+            if category not in self._exclude :
                 if category == "languages" :
                     self.insertLanguagesChart(
                         self._stats.getStatsByKey(category),
@@ -168,22 +168,20 @@ class StatsImageGenerator :
                         categoryLabels[self._locale][category],
                         self.filterKeys(
                             self._stats.getStatsByKey(category),
-                            exclude,
                             statsByCategory[category]
                             )
                         )
         self.finalizeImageData()
         return "".join(self._rows).replace("\n", "")
 
-    def filterKeys(self, data, exclude, keys) :
+    def filterKeys(self, data, keys) :
         """Returns a list of the keys that have non-zero data and which are not excluded.
 
         Keyword arguments:
         data - The data (either contrib or repo data)
-        exclude - A set of keys to exclude
         keys - The list of keys relevant for the table.
         """
-        return [ k for k in keys if (k not in exclude) and (k in data) and ((not self.isInt(data[k][0])) or data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
+        return [ k for k in keys if (k not in self._exclude) and (k in data) and ((not self.isInt(data[k][0])) or data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
 
     def isInt(self, value) :
         """Checks if a value is an int.
