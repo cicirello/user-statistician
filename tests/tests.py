@@ -34,6 +34,7 @@ from UserStatistician import writeImageToFile
 from Colors import *
 from StatConfig import *
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
+from TextLength import *
 import copy
 
 executedQueryResultsOriginal = [
@@ -248,8 +249,25 @@ class TestSomething(unittest.TestCase) :
         rows.append("</svg>")
         # Uncomment me and pipe to colorTest.svg
         #print("\n".join(rows))
-            
 
+    def test_TextLength(self) :
+        # We have known text lengths of "coverage" and "branches"
+        # from another project, so using these as test cases.
+        self.assertEqual(510, calculateTextLength110("coverage"))
+        self.assertEqual(507, calculateTextLength110("branches"))
+        self.assertAlmostEqual(51.0, calculateTextLength("coverage", 11, False, 400))
+        self.assertAlmostEqual(50.7, calculateTextLength("branches", 11, False, 400))
+        self.assertAlmostEqual(510, calculateTextLength("coverage", 146 + 2/3, True, 400))
+        self.assertAlmostEqual(507, calculateTextLength("branches", 146 + 2/3, True, 400))
+        self.assertAlmostEqual(51.0, calculateTextLength("coverage", 14 + 2/3, True, 400))
+        self.assertAlmostEqual(50.7, calculateTextLength("branches", 14 + 2/3, True, 400))
+        self.assertAlmostEqual(76.5, calculateTextLength("coverage", 11, False, 600))
+        self.assertAlmostEqual(76.05, calculateTextLength("branches", 11, False, 600))
+        self.assertAlmostEqual(765, calculateTextLength("coverage", 146 + 2/3, True, 600))
+        self.assertAlmostEqual(760.5, calculateTextLength("branches", 146 + 2/3, True, 600))
+        self.assertAlmostEqual(76.5, calculateTextLength("coverage", 14 + 2/3, True, 600))
+        self.assertAlmostEqual(76.05, calculateTextLength("branches", 14 + 2/3, True, 600))
+ 
     def test_generateSVG(self) :
         executedQueryResults = copy.deepcopy(executedQueryResultsOriginal)
         # UNCOMMENT: to generate SVG when user only owns forks, which should
@@ -280,9 +298,12 @@ class TestSomething(unittest.TestCase) :
             categories,
             True,
             10,
-            472
-            ) #width=472 works OK for 'en', but not for 'it' (550 seems ok).
-        image = svgGen.generateImage(True, None, {})
+            0, # Doesn't matter since will autosize
+            None,
+            True,
+            {}
+            ) 
+        image = svgGen.generateImage()
         #UNCOMMENT to output an svg to stdout during run of tests
         #writeImageToFile("testing.svg", image, False)
         

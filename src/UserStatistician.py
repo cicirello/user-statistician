@@ -177,13 +177,29 @@ if __name__ == "__main__" :
     animationSpeed = int(sys.argv[17].strip())
 
     width = int(sys.argv[18].strip())
-    minimumFeasibleWidth = 472
-    if width < minimumFeasibleWidth :
-        width = minimumFeasibleWidth
-    
-    stats = Statistician(failOnError, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo)
-    generator = StatsImageGenerator(stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width)
-    image = generator.generateImage(includeTitle, customTitle, exclude)
+        
+    stats = Statistician(
+        failOnError,
+        autoLanguages,
+        maxLanguages,
+        languageRepoExclusions,
+        featuredRepo
+        )
+    generator = StatsImageGenerator(
+        stats,
+        colors,
+        locale,
+        radius,
+        titleSize,
+        categories,
+        animateLanguageChart,
+        animationSpeed,
+        width,
+        customTitle,
+        includeTitle,
+        exclude
+        )
+    image = generator.generateImage()
     writeImageToFile(imageFilenameWithPath, image, failOnError)
 
     if commit :

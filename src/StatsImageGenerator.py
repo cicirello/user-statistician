@@ -28,13 +28,15 @@
 from StatConfig import *
 from PieChart import svgPieChart
 from ColorUtil import highContrastingColor
+from TextLength import calculateTextLength
+import math
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
-    fontGroup = '<g font-weight="bold" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
+    fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif">'
     titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
@@ -61,15 +63,16 @@ class StatsImageGenerator :
 <text x="0" y="12.5">{0}:</text>
 </g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
-<text x="25" y="12.5">{2} {3:.2f}%</text>
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{3}"/>
+<text x="25" y="12.5">{2}</text>
 </g>"""
     languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
-<text x="25" y="12.5">{2} {3:.2f}%</text>
-<rect x="{8}" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}"/>
-<text x="{9}" y="12.5">{6} {7:.2f}%</text>
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{3}"/>
+<text x="25" y="12.5">{2}</text>
+<rect x="{6}" y="0.5" rx="2" width="15" height="15" fill="{4}" stroke-width="1" stroke="{3}"/>
+<text x="{7}" y="12.5">{5}</text>
 </g>"""
+    languageStringTemplate = "{0} {1:.2f}%"
     pieTransform = """<g transform="translate({2}, {1})">{0}</g>"""
     pieContrast = """<g transform="translate({3}, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}"/></g>"""
     
@@ -80,6 +83,7 @@ class StatsImageGenerator :
         '_width',
         '_rows',
         '_lineHeight',
+        '_margin',
         '_locale',
         '_radius',
         '_titleSize',
@@ -89,10 +93,25 @@ class StatsImageGenerator :
         '_animateLanguageChart',
         '_animationSpeed',
         '_firstColX',
-        '_secondColX'
+        '_secondColX',
+        '_title',
+        '_includeTitle',
+        '_exclude'
         ]
 
-    def __init__(self, stats, colors, locale, radius, titleSize, categories, animateLanguageChart, animationSpeed, width) :
+    def __init__(self,
+                 stats,
+                 colors,
+                 locale,
+                 radius,
+                 titleSize,
+                 categories,
+                 animateLanguageChart,
+                 animationSpeed,
+                 width,
+                 customTitle,
+                 includeTitle,
+                 exclude) :
         """Initializes the StatsImageGenerator.
 
         Keyword arguments:
@@ -104,7 +123,11 @@ class StatsImageGenerator :
         categories - List of category keys in order they should appear on card.
         animateLanguageChart - Boolean controlling whether to animate the language pie chart.
         animationSpeed - An integer duration for one full rotation of language pie chart.
-        width - The width of the SVG, preferably divisible by 4.
+        width - The minimum width of the SVG, but will autosize larger as needed.
+        customTitle - If not None, this is used as the title, otherwise title is formed
+            from user's name.
+        includeTitle - If True inserts a title.
+        exclude - A set of keys to exclude.
         """
         self._stats = stats
         self._colors = colors
@@ -112,33 +135,129 @@ class StatsImageGenerator :
         self._locale = locale
         self._radius = radius
         self._titleSize = titleSize
+        if customTitle != None :
+            self._title = customTitle
+        else :
+            self._title = titleTemplates[self._locale].format(self._stats._name)
+        self._includeTitle = includeTitle
         self._categoryOrder = categories
+        self._exclude = exclude
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
+        self._margin = 15 # CAUTION: Templates currently have margin hardcoded to 15 (refactor before changing here)
         self._height = 0
-        self._width = width
-        self._firstColX = (self._width // 2) - 15
+        self._width = max(
+            width,
+            self.calculateMinimumFeasibleWidth()
+            )
+        self._firstColX = (self._width // 2) - self._margin
         self._secondColX = self._firstColX + (self._width // 4) 
         self._lineHeight = 21
-        self._pieRadius = (((self._width // 2 - 15) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
+        self._pieRadius = (((self._width // 2 - self._margin) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
             StatsImageGenerator.fontGroup
             ]
 
-    def generateImage(self, includeTitle, customTitle, exclude) :
-        """Generates and returns the image.
-
-        Keyword arguments:
-        includeTitle - If True inserts a title.
-        customTitle - If not None, this is used as the title, otherwise title is formed
-            from user's name.
-        exclude - Set of keys to exclude.
+    def calculateMinimumFeasibleWidth(self) :
+        """Calculates the minimum feasible width for the
+        SVG based on the lengths of the labels of the
+        stats that are to be included, the category headings,
+        and the title (if any), factoring in the chosen locale.
         """
-        self.insertTitle(includeTitle, customTitle)
+        length = 0
+        if self._includeTitle :
+            length = calculateTextLength(self._title, self._titleSize, True, 600) + 2 * self._margin
         for category in self._categoryOrder :
-            if category not in exclude :
+            if category not in self._exclude :
+                if category == "languages" :
+                    languageData = self._stats.getStatsByKey(category)
+                    if languageData["totalSize"] > 0 :
+                        headingRowLength = calculateTextLength(
+                            categoryLabels[self._locale][category]["heading"],
+                            14,
+                            True,
+                            600)
+                        headingRowLength += 2 * self._margin
+                        length = max(length, headingRowLength)
+                        for lang in languageData["languages"] :
+                            langStr = StatsImageGenerator.languageStringTemplate.format(
+                                lang[0],
+                                100 * lang[1]["percentage"]
+                                )
+                            langRowLength = calculateTextLength(
+                                langStr,
+                                14,
+                                True,
+                                600
+                                )
+                            length = max(
+                                length,
+                                (langRowLength + 25 + (2 * self._margin)) * 2
+                                )
+                else :
+                    keys = self.filterKeys(
+                        self._stats.getStatsByKey(category),
+                        statsByCategory[category]
+                        )
+                    if len(keys) > 0 :
+                        headerRow = categoryLabels[self._locale][category]
+                        headingRowLength = calculateTextLength(
+                            headerRow["heading"],
+                            14,
+                            True,
+                            600)
+                        headingRowLength += 2 * self._margin
+                        if headerRow["column-one"] != None :
+                            headingRowLength *= 2
+                        length = max(length, headingRowLength)
+                        if headerRow["column-one"] != None :
+                            length = max(
+                                length,
+                                4*(self._margin + calculateTextLength(
+                                    headerRow["column-one"],
+                                    14,
+                                    True,
+                                    600))
+                                )
+                        if headerRow["column-two"] != None :
+                            length = max(
+                                length,
+                                4*(self._margin + calculateTextLength(
+                                    headerRow["column-two"],
+                                    14,
+                                    True,
+                                    600))
+                                )
+                        data = self._stats.getStatsByKey(category)
+                        for k in keys :
+                            labelLength = calculateTextLength(
+                                statLabels[k]["label"][self._locale],
+                                14,
+                                True,
+                                600)
+                            length = max(
+                                length,
+                                (labelLength + 25 + (2 * self._margin)) * 2
+                                )
+                            if len(data[k]) == 1 and not self.isInt(data[k][0]) :
+                                dataLength = calculateTextLength(
+                                    data[k][0],
+                                    14,
+                                    True,
+                                    600)
+                                length = max(
+                                    length,
+                                    2*(dataLength + self._margin)
+                                    )
+        return math.ceil(length)
+
+    def generateImage(self) :
+        """Generates and returns the image."""
+        self.insertTitle()
+        for category in self._categoryOrder :
+            if category not in self._exclude :
                 if category == "languages" :
                     self.insertLanguagesChart(
                         self._stats.getStatsByKey(category),
@@ -150,22 +269,20 @@ class StatsImageGenerator :
                         categoryLabels[self._locale][category],
                         self.filterKeys(
                             self._stats.getStatsByKey(category),
-                            exclude,
                             statsByCategory[category]
                             )
                         )
         self.finalizeImageData()
         return "".join(self._rows).replace("\n", "")
 
-    def filterKeys(self, data, exclude, keys) :
+    def filterKeys(self, data, keys) :
         """Returns a list of the keys that have non-zero data and which are not excluded.
 
         Keyword arguments:
         data - The data (either contrib or repo data)
-        exclude - A set of keys to exclude
         keys - The list of keys relevant for the table.
         """
-        return [ k for k in keys if (k not in exclude) and (k in data) and ((not self.isInt(data[k][0])) or data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
+        return [ k for k in keys if (k not in self._exclude) and (k in data) and ((not self.isInt(data[k][0])) or data[k][0] > 0 or (len(data[k]) > 1 and data[k][1] > 0)) ]
 
     def isInt(self, value) :
         """Checks if a value is an int.
@@ -179,22 +296,12 @@ class StatsImageGenerator :
             return False
         return True
 
-    def insertTitle(self, includeTitle, customTitle) :
-        """Generates, formats, and inserts title.
-
-        Keyword arguments:
-        includeTitle - If True generates, formats, and inserts the title.
-        customTitle - If not None, this is used as the title, otherwise title is formed
-            from user's name.
-        """
-        if includeTitle :
-            if customTitle != None :
-                title = customTitle
-            else :
-                title = titleTemplates[self._locale].format(self._stats._name)
+    def insertTitle(self) :
+        """Generates, formats, and inserts title."""
+        if self._includeTitle :
             self._rows.append(
                 StatsImageGenerator.titleTemplate.format(
-                    title,
+                    self._title,
                     self._colors["title"],
                     str(self._titleSize)
                     )
@@ -296,8 +403,10 @@ class StatsImageGenerator :
                         StatsImageGenerator.languageEntryTemplate.format(
                             str(offset),
                             L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast
                             )
                         )
@@ -311,13 +420,17 @@ class StatsImageGenerator :
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplateTwoLangs.format(
                             str(offset),
-                            L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            L[1]["color"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast,
                             L2[1]["color"], 
-                            L2[0],
-                            100 * L2[1]["percentage"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L2[0],
+                                100 * L2[1]["percentage"]
+                                ),
                             self._firstColX + 0.5,
                             self._firstColX + 25
                             )
@@ -327,9 +440,11 @@ class StatsImageGenerator :
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplate.format(
                             str(offset),
-                            L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            L[1]["color"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast
                             )
                         )
