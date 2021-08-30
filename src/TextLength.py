@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-def calculateTextLength(s, size, pixels) :
+def calculateTextLength(s, size, pixels, fontWeight) :
     """Calculates the length of a string in DejaVu Sans for
     a specified font size.
 
@@ -33,10 +33,14 @@ def calculateTextLength(s, size, pixels) :
     s - The string.
     size - The font size.
     pixels - If True, the size is in px, otherwise it is in pt.
+    fontWeight - The weight of the font (e.g., 400 for normal, 600 for bold)
     """
     if pixels :
         size *= 0.75
-    return size * calculateTextLength110(s) / 110
+    weightMultiplier = 1
+    if fontWeight != 400 :
+        weightMultiplier = fontWeight / 400
+    return weightMultiplier * size * calculateTextLength110(s) / 110
 
 def calculateTextLength110(s) :
     """Calculates the length of a string in DejaVu Sans 110pt font.
