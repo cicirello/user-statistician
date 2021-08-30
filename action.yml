@@ -98,9 +98,9 @@ inputs:
     required: false
     default: 10
   image-width:
-    description: 'The width of the SVG in pixels'
+    description: 'The minimum width of the SVG in pixels'
     required: false
-    default: 472
+    default: 0
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
