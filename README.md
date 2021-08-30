@@ -581,9 +581,9 @@ favor of the `include-title: false`.
 This input controls the font size of the title. The default is `small-title: false`,
 which is a font size of 18px (the font size of the rest of the text in the SVG is 14px).
 The default should be a good choice in most cases. However, depending upon the
-length of a custom title, or if you use the default title but have a long name, then the 
-title may overflow the viewbox of the SVG. In a case like this, you can pass
-`small-title: true`, which will decrease the font size of the title to 16px.
+length of a custom title, or if you use the default title but have a long name, then 
+you might consider using a smaller size for the title. If you pass
+`small-title: true`, then it will decrease the font size of the title to 16px.
 
 ### `featured-repository`
 
@@ -702,16 +702,14 @@ This input controls whether or not the SVG has a border. The default is `true`.
 
 ### `image-width`
 
-This input controls the width of the SVG. The default, `image-width: 472`, should be
-sufficient in most cases. The need to change this input should be uncommon. The most
-likely cases where this input may need to be adjusted is if: (a) your name is extra long,
-causing the title to overflow the SVG; or (b) you specify an extra long custom title with the
-`custom-title` input. If one or the other of these is the case, then you can either
-use the `small-title` input to decrease font size of the title, or you can use the `image-width`
-input to increase the width of the SVG. Please note that at the present time you cannot
-use this input to decrease the width of the SVG. The default value works well with the 
-length of the labels of the various stats. If you pass a value less than the default, the
-default will simply be used instead.
+This input is used to set the minimum width of the SVG. The action
+will auto-adjust the width as necessary based on the length of the
+title, the length of the section headings, and names of languages in
+the language distribution chart. This includes factoring in the specific
+headings, labels, etc associated with the chosen locale. The 
+default, `image-width: 0`, directs the action to strictly base the width 
+of the SVG on its content. You only need to use this input if you desire
+to set a fixed width that is larger.
 
 ### `hide-keys`
 
@@ -862,7 +860,7 @@ jobs:
         colors: light
         border-radius: 6
         show-border: true
-        image-width: 472
+        image-width: 0
         hide-keys: '' # None hidden
         category-order: general, repositories, contributions, languages
         locale: en
