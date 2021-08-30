@@ -177,10 +177,7 @@ if __name__ == "__main__" :
     animationSpeed = int(sys.argv[17].strip())
 
     width = int(sys.argv[18].strip())
-    minimumFeasibleWidth = 472
-    if width < minimumFeasibleWidth :
-        width = minimumFeasibleWidth
-    
+        
     stats = Statistician(
         failOnError,
         autoLanguages,
