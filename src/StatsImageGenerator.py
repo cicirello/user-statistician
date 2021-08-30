@@ -28,6 +28,8 @@
 from StatConfig import *
 from PieChart import svgPieChart
 from ColorUtil import highContrastingColor
+from TextLength import calculateTextLength
+import math
 
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
@@ -61,15 +63,16 @@ class StatsImageGenerator :
 <text x="0" y="12.5">{0}:</text>
 </g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
-<text x="25" y="12.5">{2} {3:.2f}%</text>
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{3}"/>
+<text x="25" y="12.5">{2}</text>
 </g>"""
     languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
-<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{4}"/>
-<text x="25" y="12.5">{2} {3:.2f}%</text>
-<rect x="{8}" y="0.5" rx="2" width="15" height="15" fill="{5}" stroke-width="1" stroke="{4}"/>
-<text x="{9}" y="12.5">{6} {7:.2f}%</text>
+<rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{3}"/>
+<text x="25" y="12.5">{2}</text>
+<rect x="{6}" y="0.5" rx="2" width="15" height="15" fill="{4}" stroke-width="1" stroke="{3}"/>
+<text x="{7}" y="12.5">{5}</text>
 </g>"""
+    languageStringTemplate = "{0} {1:.2f}%"
     pieTransform = """<g transform="translate({2}, {1})">{0}</g>"""
     pieContrast = """<g transform="translate({3}, {1})"><circle cx="{0}" cy="{0}" r="{0}" fill="{2}"/></g>"""
     
@@ -80,6 +83,7 @@ class StatsImageGenerator :
         '_width',
         '_rows',
         '_lineHeight',
+        '_margin',
         '_locale',
         '_radius',
         '_titleSize',
@@ -119,7 +123,7 @@ class StatsImageGenerator :
         categories - List of category keys in order they should appear on card.
         animateLanguageChart - Boolean controlling whether to animate the language pie chart.
         animationSpeed - An integer duration for one full rotation of language pie chart.
-        width - The width of the SVG, preferably divisible by 4.
+        width - The minimum width of the SVG, but will autosize larger as needed.
         customTitle - If not None, this is used as the title, otherwise title is formed
             from user's name.
         includeTitle - If True inserts a title.
@@ -140,17 +144,85 @@ class StatsImageGenerator :
         self._exclude = exclude
         self._animateLanguageChart = animateLanguageChart
         self._animationSpeed = animationSpeed
+        self._margin = 15 # CAUTION: Templates currently have margin hardcoded to 15 (refactor before changing here)
         self._height = 0
-        self._width = width
-        self._firstColX = (self._width // 2) - 15
+        self._width = max(
+            width,
+            self.calculateMinimumFeasibleWidth()
+            )
+        self._firstColX = (self._width // 2) - self._margin
         self._secondColX = self._firstColX + (self._width // 4) 
         self._lineHeight = 21
-        self._pieRadius = (((self._width // 2 - 15) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
+        self._pieRadius = (((self._width // 2 - self._margin) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
         self._rows = [
             StatsImageGenerator.headerTemplate,
             StatsImageGenerator.backgroundTemplate,
             StatsImageGenerator.fontGroup
             ]
+
+    def calculateMinimumFeasibleWidth(self) :
+        """Calculates the minimum feasible width for the
+        SVG based on the lengths of the labels of the
+        stats that are to be included, the category headings,
+        and the title (if any), factoring in the chosen locale.
+        """
+        length = 0
+        if self._includeTitle :
+            length = calculateTextLength(self._title, self._titleSize, True, 600) + 2 * self._margin
+        for category in self._categoryOrder :
+            if category not in self._exclude :
+                if category == "languages" :
+                    languageData = self._stats.getStatsByKey(category)
+                    if languageData["totalSize"] > 0 :
+                        headingRowLength = calculateTextLength(
+                            categoryLabels[self._locale][category]["heading"],
+                            14,
+                            True,
+                            600)
+                        headingRowLength += 2 * self._margin
+                        length = max(length, headingRowLength)
+                        for lang in languageData["languages"] :
+                            langStr = StatsImageGenerator.languageStringTemplate.format(
+                                lang[0],
+                                100 * lang[1]["percentage"]
+                                )
+                            langRowLength = calculateTextLength(
+                                langStr,
+                                14,
+                                True,
+                                600
+                                )
+                            length = max(
+                                length,
+                                (langRowLength + 25 + (2 * self._margin)) * 2
+                                )
+                else :
+                    keys = self.filterKeys(
+                        self._stats.getStatsByKey(category),
+                        statsByCategory[category]
+                        )
+                    if len(keys) > 0 :
+                        headerRow = categoryLabels[self._locale][category]
+                        headingRowLength = calculateTextLength(
+                            headerRow["heading"],
+                            14,
+                            True,
+                            600)
+                        headingRowLength += 2 * self._margin
+                        if headerRow["column-one"] != None :
+                            headingRowLength *= 2
+                        length = max(length, headingRowLength)
+                        for k in keys :
+                            labelLength = calculateTextLength(
+                                statLabels[k]["label"][self._locale],
+                                14,
+                                True,
+                                600)
+                            length = max(
+                                length,
+                                (labelLength + 25 + (2 * self._margin)) * 2
+                                )
+        return math.ceil(length)
 
     def generateImage(self) :
         """Generates and returns the image."""
@@ -302,8 +374,10 @@ class StatsImageGenerator :
                         StatsImageGenerator.languageEntryTemplate.format(
                             str(offset),
                             L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast
                             )
                         )
@@ -317,13 +391,17 @@ class StatsImageGenerator :
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplateTwoLangs.format(
                             str(offset),
-                            L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            L[1]["color"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast,
                             L2[1]["color"], 
-                            L2[0],
-                            100 * L2[1]["percentage"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L2[0],
+                                100 * L2[1]["percentage"]
+                                ),
                             self._firstColX + 0.5,
                             self._firstColX + 25
                             )
@@ -333,9 +411,11 @@ class StatsImageGenerator :
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplate.format(
                             str(offset),
-                            L[1]["color"], 
-                            L[0],
-                            100 * L[1]["percentage"],
+                            L[1]["color"],
+                            StatsImageGenerator.languageStringTemplate.format(
+                                L[0],
+                                100 * L[1]["percentage"]
+                                ),
                             self._highContrast
                             )
                         )
