@@ -305,7 +305,7 @@ class TestSomething(unittest.TestCase) :
             ) 
         image = svgGen.generateImage()
         #UNCOMMENT to output an svg to stdout during run of tests
-        writeImageToFile("testing.svg", image, False)
+        #writeImageToFile("testing.svg", image, False)
         
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
