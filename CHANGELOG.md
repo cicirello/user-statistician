@@ -7,18 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-08-31
 
 ### Added
-* German locale: German translations of title template, headings, labels, 
-  etc for locale code `de`.
   
 ### Changed
-* Improved precision of fonts if the SVG is scaled.
-* Minor adjustment to margins.
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+
+## [1.8.0] - 2021-08-31
+
+### Added
+* German locale: German translations of title template, headings, labels, 
+  etc for locale code `de`.
+  
+### Changed
+* Improved precision of fonts if the SVG is scaled.
+* Minor adjustment to margins.
 
 
 ## [1.7.1] - 2021-08-30
