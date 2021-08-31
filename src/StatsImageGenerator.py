@@ -28,7 +28,7 @@
 from StatConfig import *
 from PieChart import svgPieChart
 from ColorUtil import highContrastingColor
-from TextLength import calculateTextLength
+from TextLength import calculateTextLength, calculateTextLength110Weighted
 import math
 
 class StatsImageGenerator :
@@ -37,7 +37,7 @@ class StatsImageGenerator :
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
     fontGroup = '<g font-weight="600" font-size="110pt" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision">'
-    titleTemplate = '<text x="{3}" y="{4}" transform="scale({2})" fill="{1}">{0}</text>'
+    titleTemplate = '<text x="{3}" y="{4}" textLength="{5}" transform="scale({2})" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
 {1}
@@ -311,7 +311,8 @@ class StatsImageGenerator :
                     self._colors["title"],
                     "{0:.3f}".format(scale),
                     str(round(self._margin/scale)),
-                    str(round(37/scale))
+                    str(round(37/scale)),
+                    round(calculateTextLength110Weighted(self._title, 600))
                     )
                 )
             self._height += 39

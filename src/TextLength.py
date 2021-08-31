@@ -42,6 +42,19 @@ def calculateTextLength(s, size, pixels, fontWeight) :
         weightMultiplier = fontWeight / 400
     return weightMultiplier * size * calculateTextLength110(s) / 110
 
+def calculateTextLength110Weighted(s, fontWeight) :
+    """Calculates the length of a string in DejaVu Sans 110pt font,
+    factoring in font weight.
+
+    Keyword arguments:
+    s - The string.
+    fontWeight - The weight of the font (e.g., 400 for normal, 600 for bold, etc)
+    """
+    weightMultiplier = 1
+    if fontWeight != 400 :
+        weightMultiplier = fontWeight / 400
+    return weightMultiplier * calculateTextLength110(s)
+
 def calculateTextLength110(s) :
     """Calculates the length of a string in DejaVu Sans 110pt font.
 
