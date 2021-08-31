@@ -36,8 +36,8 @@ class StatsImageGenerator :
 
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
-    fontGroup = '<g font-weight="600" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision">'
-    titleTemplate = '<text x="15" y="37" font-size="{2}px" fill="{1}">{0}</text>'
+    fontGroup = '<g font-weight="600" font-size="110pt" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision">'
+    titleTemplate = '<text x="{3}" y="{4}" transform="scale({2})" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" font-size="14px" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
 {2}
@@ -299,11 +299,14 @@ class StatsImageGenerator :
     def insertTitle(self) :
         """Generates, formats, and inserts title."""
         if self._includeTitle :
+            scale = round(0.75 * self._titleSize / 110, 3)
             self._rows.append(
                 StatsImageGenerator.titleTemplate.format(
                     self._title,
                     self._colors["title"],
-                    str(self._titleSize)
+                    "{0:.3f}".format(scale),
+                    str(round(self._margin/scale)),
+                    str(round(37/scale))
                     )
                 )
             self._height += 39
