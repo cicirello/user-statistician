@@ -150,7 +150,7 @@ class StatsImageGenerator :
             width,
             self.calculateMinimumFeasibleWidth()
             )
-        self._firstColX = (self._width // 2) - self._margin
+        self._firstColX = (self._width // 2)
         self._secondColX = self._firstColX + (self._width // 4) 
         self._lineHeight = 21
         self._pieRadius = (((self._width // 2 - self._margin) // self._lineHeight * self._lineHeight) - (self._lineHeight - 16)) // 2 
@@ -380,7 +380,7 @@ class StatsImageGenerator :
                     self._pieRadius,
                     str(offset),
                     self._highContrast,
-                    self._firstColX + 15
+                    self._firstColX + self._margin
                     )
                 )
             self._rows.append(
@@ -392,7 +392,7 @@ class StatsImageGenerator :
                         self._animationSpeed
                         ),
                     str(offset+1),
-                    self._firstColX + 16
+                    self._firstColX + self._margin + 1
                     )
                 )
             diameter = self._pieRadius * 2
@@ -450,10 +450,10 @@ class StatsImageGenerator :
                         )
                     offset += self._lineHeight
             self._rows.append("</g>")
-            if diameter + self._lineHeight + self._lineHeight - 16 <= offset :
+            if diameter + self._lineHeight + self._lineHeight - self._margin - 1 <= offset :
                 self._height += offset
             else :
-                self._height += diameter + self._lineHeight + self._lineHeight - 16
+                self._height += diameter + self._lineHeight + self._lineHeight - self._margin - 1
 
     def formatCount(self, count) :
         """Formats the count.
