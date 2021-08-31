@@ -286,7 +286,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[4]
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
-        stats = NoQueries(True, False, 10, set(), "FavoriteRepo")
+        stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
         svgGen = StatsImageGenerator(
