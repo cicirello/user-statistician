@@ -761,6 +761,7 @@ currently supported:
 
 | locale code | language |
 | :--- | :--- |
+| de | German |
 | en | English |
 | it | Italian |
 
