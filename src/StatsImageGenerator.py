@@ -28,7 +28,7 @@
 from StatConfig import *
 from PieChart import svgPieChart
 from ColorUtil import highContrastingColor
-from TextLength import calculateTextLength
+from TextLength import calculateTextLength, calculateTextLength110Weighted
 import math
 
 class StatsImageGenerator :
@@ -37,45 +37,45 @@ class StatsImageGenerator :
     headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
     fontGroup = '<g font-weight="600" font-size="110pt" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision">'
-    titleTemplate = '<text x="{3}" y="{4}" transform="scale({2})" fill="{1}">{0}</text>'
+    titleTemplate = '<text x="{3}" y="{4}" lengthAdjust="spacingAndGlyphs" textLength="{5}" transform="scale({2})" fill="{1}">{0}</text>'
     groupHeaderTemplate = '<g transform="translate(0, {0})" fill="{1}">'
     tableEntryTemplate = """<g transform="translate(15, {0})">
 {1}
 <g transform="scale({2})">
-<text x="{5}" y="{3}">{4}</text>
-<text x="{7}" y="{3}">{6}</text>
-<text x="{9}" y="{3}">{8}</text>
+<text lengthAdjust="spacingAndGlyphs" textLength="{8}" x="{5}" y="{3}">{4}</text>
+<text lengthAdjust="spacingAndGlyphs" textLength="{9}" x="{7}" y="{3}">{6}</text>
+<text lengthAdjust="spacingAndGlyphs" textLength="{12}" x="{11}" y="{3}">{10}</text>
 </g></g>"""
     tableEntryTemplateOneColumn = """<g transform="translate(15, {0})">
 {1}
 <g transform="scale({2})">
-<text x="{5}" y="{3}">{4}</text>
-<text x="{7}" y="{3}">{6}</text>
+<text lengthAdjust="spacingAndGlyphs" textLength="{8}" x="{5}" y="{3}">{4}</text>
+<text lengthAdjust="spacingAndGlyphs" textLength="{9}" x="{7}" y="{3}">{6}</text>
 </g></g>"""
     tableHeaderTemplate = """<g transform="translate(15, 0)">
 <g transform="scale({0})">
-<text x="0" y="{1}">{2}</text>
-<text x="{4}" y="{1}">{3}</text>
-<text x="{6}" y="{1}">{5}</text>
+<text x="0" y="{1}" textLength="{3}" lengthAdjust="spacingAndGlyphs">{2}</text>
+<text x="{5}" y="{1}" textLength="{6}" lengthAdjust="spacingAndGlyphs">{4}</text>
+<text x="{8}" y="{1}" textLength="{9}" lengthAdjust="spacingAndGlyphs">{7}</text>
 </g></g>"""
     tableHeaderTemplateOneColumn = """<g transform="translate(15, 0)">
 <g transform="scale({0})">
-<text x="0" y="{1}">{2}</text>
-<text x="{4}" y="{1}">{3}</text>
+<text x="0" y="{1}" textLength="{3}" lengthAdjust="spacingAndGlyphs">{2}</text>
+<text x="{5}" y="{1}" textLength="{6}" lengthAdjust="spacingAndGlyphs">{4}</text>
 </g></g>"""
     tableHeaderTemplateNoColumns = """<g transform="translate(15, 0)">
 <g transform="scale({0})">
-<text x="0" y="{1}">{2}</text>
+<text x="0" y="{1}" textLength="{3}" lengthAdjust="spacingAndGlyphs">{2}</text>
 </g></g>"""
     languageEntryTemplate = """<g transform="translate(15, {0})">
 <rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{2}"/>
-<text transform="scale({4})" x="{5}" y="{6}">{3}</text>
+<text transform="scale({4})" x="{5}" y="{6}" textLength="{7}" lengthAdjust="spacingAndGlyphs">{3}</text>
 </g>"""
     languageEntryTemplateTwoLangs = """<g transform="translate(15, {0})">
 <rect x="0.5" y="0.5" rx="2" width="15" height="15" fill="{1}" stroke-width="1" stroke="{2}"/>
-<text transform="scale({4})" x="{5}" y="{6}">{3}</text>
-<rect x="{8}" y="0.5" rx="2" width="15" height="15" fill="{7}" stroke-width="1" stroke="{2}"/>
-<text transform="scale({4})" x="{10}" y="{6}">{9}</text>
+<text transform="scale({4})" x="{5}" y="{6}" textLength="{7}" lengthAdjust="spacingAndGlyphs">{3}</text>
+<rect x="{9}" y="0.5" rx="2" width="15" height="15" fill="{8}" stroke-width="1" stroke="{2}"/>
+<text transform="scale({4})" x="{11}" y="{6}" textLength="{12}" lengthAdjust="spacingAndGlyphs">{10}</text>
 </g>"""
     languageStringTemplate = "{0} {1:.2f}%"
     pieTransform = """<g transform="translate({2}, {1})">{0}</g>"""
@@ -311,7 +311,8 @@ class StatsImageGenerator :
                     self._colors["title"],
                     "{0:.3f}".format(scale),
                     str(round(self._margin/scale)),
-                    str(round(37/scale))
+                    str(round(37/scale)),
+                    round(calculateTextLength110Weighted(self._title, 600))
                     )
                 )
             self._height += 39
@@ -337,32 +338,41 @@ class StatsImageGenerator :
                 elif headerRow["column-two"] == None :
                     template = StatsImageGenerator.tableHeaderTemplateOneColumn
                 else :
-                    template = StatsImageGenerator.tableHeaderTemplate  
+                    template = StatsImageGenerator.tableHeaderTemplate
                 self._rows.append(template.format(
                     "{0:.3f}".format(scale),
                     str(round(12.5/scale)),
                     headerRow["heading"],
+                    round(calculateTextLength110Weighted(headerRow["heading"], 600)),
                     headerRow["column-one"],
                     str(round(self._firstColX/scale)),
+                    round(calculateTextLength110Weighted(headerRow["column-one"], 600)),
                     headerRow["column-two"],
-                    str(round(self._secondColX/scale))
+                    str(round(self._secondColX/scale)),
+                    round(calculateTextLength110Weighted(headerRow["column-two"], 600))
                     ))
                 offset = self._lineHeight
             else :
                 offset = 0
             for k in keys :
                 template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
+                label = statLabels[k]["label"][self._locale]
+                data1 = str(self.formatCount(data[k][0]))
+                data2 = str(self.formatCount(data[k][1])) if len(data[k]) > 1 else ""
                 self._rows.append(template.format(
                     str(offset),
                     statLabels[k]["icon"].format(self._colors["icons"]),
                     "{0:.3f}".format(scale),
                     str(round(12.5/scale)),
-                    statLabels[k]["label"][self._locale],
+                    label,
                     str(round(25/scale)),
-                    self.formatCount(data[k][0]),
+                    data1,
                     str(round(self._firstColX/scale)),
-                    self.formatCount(data[k][1]) if len(data[k]) > 1 else "",
-                    str(round(self._secondColX/scale))
+                    round(calculateTextLength110Weighted(label, 600)),
+                    round(calculateTextLength110Weighted(data1, 600)),
+                    data2,
+                    str(round(self._secondColX/scale)),
+                    round(calculateTextLength110Weighted(data2, 600))
                     ))
                 offset += self._lineHeight
             self._rows.append("</g>")
@@ -389,7 +399,8 @@ class StatsImageGenerator :
                 StatsImageGenerator.tableHeaderTemplateNoColumns.format(
                     "{0:.3f}".format(scale),
                     str(round(12.5/scale)),
-                    categoryHeading
+                    categoryHeading,
+                    round(calculateTextLength110Weighted(categoryHeading, 600))
                     )
                 )
             offset = self._lineHeight
@@ -417,18 +428,20 @@ class StatsImageGenerator :
             numRowsToLeft = round(diameter / self._lineHeight)
             for i, L in enumerate(languageData["languages"]) :
                 if i < numRowsToLeft :
+                    lang = StatsImageGenerator.languageStringTemplate.format(
+                        L[0],
+                        100 * L[1]["percentage"]
+                        )
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplate.format(
                             str(offset),
                             L[1]["color"],
                             self._highContrast,
-                            StatsImageGenerator.languageStringTemplate.format(
-                                L[0],
-                                100 * L[1]["percentage"]
-                                ),
+                            lang,
                             "{0:.3f}".format(scale),
                             str(round(25/scale)),
-                            str(round(12.5/scale))
+                            str(round(12.5/scale)),
+                            round(calculateTextLength110Weighted(lang, 600))
                             )
                         )
                     offset += self._lineHeight
@@ -436,27 +449,31 @@ class StatsImageGenerator :
                     break
             for j in range(numRowsToLeft, len(languageData["languages"]), 2) :
                 L = languageData["languages"][j]
+                lang = StatsImageGenerator.languageStringTemplate.format(
+                    L[0],
+                    100 * L[1]["percentage"]
+                    )
                 if j+1 < len(languageData["languages"]) :
                     L2 = languageData["languages"][j+1]
+                    lang2 = StatsImageGenerator.languageStringTemplate.format(
+                        L2[0],
+                        100 * L2[1]["percentage"]
+                        )
                     self._rows.append(
                         StatsImageGenerator.languageEntryTemplateTwoLangs.format(
                             str(offset),
                             L[1]["color"],
                             self._highContrast,
-                            StatsImageGenerator.languageStringTemplate.format(
-                                L[0],
-                                100 * L[1]["percentage"]
-                                ),
+                            lang,
                             "{0:.3f}".format(scale),
                             str(round(25/scale)),
                             str(round(12.5/scale)),
+                            round(calculateTextLength110Weighted(lang, 600)),
                             L2[1]["color"], 
                             self._firstColX + 0.5,
-                            StatsImageGenerator.languageStringTemplate.format(
-                                L2[0],
-                                100 * L2[1]["percentage"]
-                                ),
-                            str(round((self._firstColX + 25)/scale))
+                            lang2,
+                            str(round((self._firstColX + 25)/scale)),
+                            round(calculateTextLength110Weighted(lang2, 600))
                             )
                         )
                     offset += self._lineHeight
@@ -466,13 +483,11 @@ class StatsImageGenerator :
                             str(offset),
                             L[1]["color"],
                             self._highContrast,
-                            StatsImageGenerator.languageStringTemplate.format(
-                                L[0],
-                                100 * L[1]["percentage"]
-                                ),
+                            lang,
                             "{0:.3f}".format(scale),
                             str(round(25/scale)),
-                            str(round(12.5/scale))
+                            str(round(12.5/scale)),
+                            round(calculateTextLength110Weighted(lang, 600))
                             )
                         )
                     offset += self._lineHeight
