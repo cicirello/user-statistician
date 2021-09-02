@@ -61,7 +61,7 @@ def calculateTextLength110(s) :
     Keyword arguments:
     s - The string.
     """
-    if len(s) == 0 :
+    if s==None or len(s) == 0 :
         return 0
     total = sum(defaultWidths["character-lengths"][c] if c in defaultWidths["character-lengths"] else defaultWidths["mean-character-length"] for c in s)
     for i in range(1,len(s)) :
