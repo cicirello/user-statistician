@@ -39,5 +39,8 @@ if __name__ == "__main__" :
 # which is licensed under Apache-2.0.
 ########################################
 """
-        s = heading + "\ndefaultWidths = " + pprint.pformat(defaultWidths)
+        formatted = pprint.pformat(defaultWidths)
+        formatted = formatted.replace(" " * 23, " " * 2)
+        formatted = formatted.replace(" " * 19, " " * 2)
+        s = heading + "\ndefaultWidths = " + formatted
         f.write(s.encode(encoding="UTF-8"))
