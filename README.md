@@ -909,7 +909,7 @@ You can support the project in a number of ways:
 * __Sponsoring__: You can also consider 
   [becoming a sponsor](https://github.com/sponsors/cicirello).
 
-## Conttributors
+## Contributors
 
 If you would like to contribute to the project, please start by reading
 our [Contributing Guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md)
