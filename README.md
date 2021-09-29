@@ -79,6 +79,7 @@ The remainder of the documentation is organized into the following sections:
   a workflow that summarizes all of the action's inputs along with their default values.
 * [Built With](#built-with): A list of the tools, etc used to develop this action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
+* [Contributors](#contributors): Information for potential contributors.
 
 ## Quickstart 
 See the [Quickstart](quickstart) directory 
@@ -907,6 +908,12 @@ You can support the project in a number of ways:
   submit a pull request. __Please target the dev branch.__
 * __Sponsoring__: You can also consider 
   [becoming a sponsor](https://github.com/sponsors/cicirello).
+
+## Conttributors
+
+If you would like to contribute to the project, please start by reading
+our [Contributing Guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md)
+and our [Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md). 
 
 ## License
 
