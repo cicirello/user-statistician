@@ -1,0 +1,32 @@
+name: international samples
+
+on:
+  workflow_dispatch:
+
+jobs:
+  samples:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: samples
+
+    - name: Sample German
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: light
+        locale: de
+        image-file: images/de.svg
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+    - name: Sample Italian
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: dark
+        locale: it
+        image-file: images/it.svg
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
