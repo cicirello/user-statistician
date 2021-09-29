@@ -15,7 +15,7 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician)
 
 [![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-[![help wanted issues](https://img.shields.io/github/issues/cicirello/user-statistician/help%20wanted)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![Hacktoberfest](https://img.shields.io/github/issues/cicirello/user-statistician/Hacktoberfest)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22Hacktoberfest%22)
 [![GitHub open issues](https://img.shields.io/github/issues/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aclosed)
 
