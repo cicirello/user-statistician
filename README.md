@@ -4,7 +4,7 @@
 
 Check out all of our GitHub Actions: https://actions.cicirello.org/
 
-## Hactoberfest Participants and Other Potential Contributors
+## Hacktoberfest Participants and Other Potential Contributors
 
 We are currently interested in increasing internationalization of this project. It currently supports generating
 the SVG in English, Italian, and German. There are open issues for a few other languages, which you can work on if
