@@ -107,11 +107,12 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # en: cicirello
 # it: ziriuz84
 # de: pje3110
+# pt: andrefpoliveira
 #
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de" }
+supportedLocales = { "en", "it", "de", "pt" }
 
 # Dictionary of header rows for categories of statistics
 categoryLabels = {
@@ -185,6 +186,29 @@ categoryLabels = {
             }
         },
 
+    "pt" : {
+        "general" : {
+            "heading" : "Estatísticas Gerais e Informações",
+            "column-one" : None,
+            "column-two" : None
+            },
+        "repositories" : {
+            "heading" : "Repositórios",
+            "column-one" : "Sem Forks",
+            "column-two" : "Todos"
+            },
+        "contributions" : {
+            "heading" : "Contribuições",
+            "column-one" : "Último ano",
+            "column-two" : "Total"
+            },
+        "languages" : {
+            "heading" : "Distribuição de Linguagens em Repositórios Públicos",
+            "column-one" : None,
+            "column-two" : None
+            }
+        },
+
     }
 
 # Dictionary of default title templates.
@@ -192,7 +216,8 @@ categoryLabels = {
 titleTemplates = {
     "en" : "{0}'s GitHub Activity",
     "it" : "Attività GitHub di {0}",
-    "de" : "{0}s GitHub Aktivität"
+    "de" : "{0}s GitHub Aktivität",
+    "pt" : "Atividade de {0} no GitHub"
     }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -203,7 +228,8 @@ statLabels = {
         "label" : {
             "en" : "Year Joined",
             "it" : "Anno di Iscrizione",
-            "de" : "Beitrittsdatum"
+            "de" : "Beitrittsdatum",
+            "pt" : "Ano de Inscrição"
             }
         },
 
@@ -212,7 +238,8 @@ statLabels = {
         "label" : {
             "en" : "Featured Repo",
             "it" : "Repo in Primo Piano",
-            "de" : "Vorgestelltes Repo"
+            "de" : "Vorgestelltes Repo",
+            "pt" : "Repositório em Primeiro Plano"
             }
         },
 
@@ -221,7 +248,8 @@ statLabels = {
         "label" : {
             "en" : "Most Starred Repo",
             "it" : "Repo con più Stelle",
-            "de" : "Meistmarkiertes Repo"
+            "de" : "Meistmarkiertes Repo",
+            "pt" : "Repositório com mais estrelas"
             }
         },
 
@@ -230,7 +258,8 @@ statLabels = {
         "label" : {
             "en" : "Most Forked Repo",
             "it" : "Repo con più Fork",
-            "de" : "Meistgeforktes Repo"
+            "de" : "Meistgeforktes Repo",
+            "pt" : "Repositório mais bifurcado"
             }
         },
     
@@ -239,7 +268,8 @@ statLabels = {
         "label" : {
             "en" : "Followers",
             "it" : "Seguaci",
-            "de" : "Follower"
+            "de" : "Follower",
+            "pt" : "Seguidores"
             }
         },
 
@@ -248,7 +278,8 @@ statLabels = {
         "label" : {
             "en" : "Following",
             "it" : "Seguendo",
-            "de" : "Folgt"
+            "de" : "Folgt",
+            "pt" : "A seguir"
             }
         },
 
@@ -257,7 +288,8 @@ statLabels = {
         "label" : {
             "en" : "Sponsors",
             "it" : "Sponsors",
-            "de" : "Sponsoren"
+            "de" : "Sponsoren",
+            "pt" : "Patrocinado"
             }
         },
 
@@ -266,7 +298,8 @@ statLabels = {
         "label" : {
             "en" : "Sponsoring",
             "it" : "Sponsorizza",
-            "de" : "Sponsoring"
+            "de" : "Sponsoring",
+            "pt" : "A patrocinar"
             }
         },
     
@@ -275,7 +308,8 @@ statLabels = {
         "label" : {
             "en" : "Repositories Owned",
             "it" : "Repository di Proprietà",
-            "de" : "Eigene Repositories"
+            "de" : "Eigene Repositories",
+            "pt" : "Repositórios Possuídos"
             }
         },
     
@@ -284,7 +318,8 @@ statLabels = {
         "label" : {
             "en" : "Starred By",
             "it" : "Stellato Da",
-            "de" : "Markiert Von"
+            "de" : "Markiert Von",
+            "pt" : "Com Estrela De"
             }
         },
     
@@ -293,7 +328,8 @@ statLabels = {
         "label" : {
             "en" : "Forked By",
             "it" : "Forkato Da",
-            "de" : "Geforkt Von"
+            "de" : "Geforkt Von",
+            "pt" : "Bifurcado Por"
             }
         },
     
@@ -302,7 +338,8 @@ statLabels = {
         "label" : {
             "en" : "Watched By",
             "it" : "Seguito Da",
-            "de" : "Verfolgt Von"
+            "de" : "Verfolgt Von",
+            "pt" : "Visto Por"
             }
         },
 
@@ -311,7 +348,8 @@ statLabels = {
         "label" : {
             "en" : "Templates",
             "it" : "Modelli",
-            "de" : "Vorlagen"
+            "de" : "Vorlagen",
+            "pt" : "Modelos"
             }
         },
     
@@ -320,7 +358,8 @@ statLabels = {
         "label" : {
             "en" : "Archived",
             "it" : "Archiviato",
-            "de" : "Archiviert"
+            "de" : "Archiviert",
+            "pt" : "Arquivados"
             }
         },
     
@@ -329,7 +368,8 @@ statLabels = {
         "label" : {
             "en" : "Commits",
             "it" : "Commits",
-            "de" : "Commits"
+            "de" : "Commits",
+            "pt" : "Commits"
             }
         },
     
@@ -338,7 +378,8 @@ statLabels = {
         "label" : {
             "en" : "Issues",
             "it" : "Problemi",
-            "de" : "Issues"
+            "de" : "Issues",
+            "pt" : "Problemas"
             }
         },
     
@@ -348,6 +389,7 @@ statLabels = {
             "en" : "Pull Requests",
             "it" : "Richieste di Pull",
             "de" : "Pull Requests"
+            "pt" : "Pull Requests"
             }
         },
     
@@ -356,7 +398,8 @@ statLabels = {
         "label" : {
             "en" : "Pull Request Reviews",
             "it" : "Revisioni di Richieste di Pull",
-            "de" : "Überprüfungen von Pull Requests"
+            "de" : "Überprüfungen von Pull Requests",
+            "pt" : "Avaliação de Pull Requests"
             }
         },
     
@@ -365,7 +408,8 @@ statLabels = {
         "label" : {
             "en" : "Contributed To",
             "it" : "Contribuito A",
-            "de" : "Beigetragen Zu"
+            "de" : "Beigetragen Zu",
+            "pt" : "Contribuiu Para"
             }
         },
     
@@ -374,7 +418,8 @@ statLabels = {
         "label" : {
             "en" : "Private Contributions",
             "it" : "Contributi Privati",
-            "de" : "Private Beiträge"
+            "de" : "Private Beiträge",
+            "pt" : "Contribuições Privadas"
             }
         }
     }
