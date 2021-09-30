@@ -388,7 +388,7 @@ statLabels = {
         "label" : {
             "en" : "Pull Requests",
             "it" : "Richieste di Pull",
-            "de" : "Pull Requests"
+            "de" : "Pull Requests",
             "pt" : "Pull Requests"
             }
         },
