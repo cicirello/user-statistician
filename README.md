@@ -772,6 +772,7 @@ currently supported:
 | :--- | :--- |
 | de | German |
 | en | English |
+| fr | French |
 | id | Bahasa Indonesia |
 | it | Italian |
 | pt | Portuguese |
