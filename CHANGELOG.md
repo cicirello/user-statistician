@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * Increased internationalization support with the addition of new locales:
   * Portuguese (`locale: pt`) via [PR#69](https://github.com/cicirello/user-statistician/pull/69).
-  * Bahasa Indonesia (`locale: id`) via [PR#69](https://github.com/cicirello/user-statistician/pull/71).
+  * Bahasa Indonesia (`locale: id`) via [PR#71](https://github.com/cicirello/user-statistician/pull/71).
 
 ### Changed
 * Minor refactoring to improve code maintainability
