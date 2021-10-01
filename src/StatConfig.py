@@ -108,11 +108,12 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # it: ziriuz84
 # de: pje3110
 # pt: andrefpoliveira
+# hi: Anik-Bardhan
 #
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi" }
 
 # Dictionary of header rows for categories of statistics
 categoryLabels = {
@@ -232,6 +233,28 @@ categoryLabels = {
             }
         },
 
+    "hi" : {
+        "general" : {
+            "heading" : "सामान्य सांख्यिकी और सूचना",
+            "column-one" : None,
+            "column-two" : None
+            },
+        "repositories" : {
+            "heading" : "डेटा संग्रह स्थान",
+            "column-one" : "गैर-कांटे",
+            "column-two" : "सभी"
+            },
+        "contributions" : {
+            "heading" : "योगदान",
+            "column-one" : "पिछला वर्ष",
+            "column-two" : "कुल"
+            },
+        "languages" : {
+            "heading" : "सार्वजनिक भंडारों में भाषा वितरण",
+            "column-one" : None,
+            "column-two" : None
+            }
+        },
     }
 
 # Dictionary of default title templates.
