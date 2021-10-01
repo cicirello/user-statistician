@@ -273,7 +273,7 @@ categoryLabels = {
             "column-one" : None,
             "column-two" : None
         }
-    },
+    }
 }
 
 # Dictionary of default title templates.
@@ -301,7 +301,7 @@ statLabels = {
             "id" : "Tahun Bergabung",
             "fr" : "Année d'adhésion",
             "pl" : "Rok Dołączenia"
-            }
+        }
     },
 
     "featured" : {
@@ -314,7 +314,7 @@ statLabels = {
             "id" : "Repositori Unggulan",
             "fr" : "Dépôt en vedette",
             "pl" : "Polecane repozytorium"
-            }
+        }
     },
 
     "mostStarred" : {
@@ -327,7 +327,7 @@ statLabels = {
             "id" : "Repositori dengan Bintang Terbanyak",
             "fr" : "Dépôt le plus étoilé",
             "pl" : "Repozytoria z największą ilością gwiazdek",
-            }
+        }
     },
 
     "mostForked" : {
@@ -340,7 +340,7 @@ statLabels = {
             "id" : "Repositori dengan Fork Terbanyak",
             "fr" : "Dépôt le plus cloné",
             "pl" : "Najczęściej Forkowane Repozytoria"
-            }
+        }
     },
 
     "followers" : {
@@ -353,7 +353,7 @@ statLabels = {
             "id" : "Pengikut",
             "fr" : "Abonnés",
             "pl" : "Obserwujący"
-            }
+        }
     },
 
     "following" : {
@@ -366,7 +366,7 @@ statLabels = {
             "id" : "Mengikuti",
             "fr" : "Abonnements",
             "pl" : "Obserwowani"
-            }
+        }
     },
 
     "sponsors" : {
@@ -379,7 +379,7 @@ statLabels = {
             "id" : "Sponsor",
             "fr" : "Sponsors",
             "pl" : "Sponsorzy"
-            }
+        }
     },
 
     "sponsoring" : {
@@ -392,7 +392,7 @@ statLabels = {
             "id" : "Mensponsori",
             "fr" : "Sponsorise",
             "pl" : "Sponsoring"
-            }
+        }
     },
 
     "public" : {
@@ -405,7 +405,7 @@ statLabels = {
             "id" : "Repositori yang Dimiliki",
             "fr" : "Dépôts possédés",
             "pl" : "Posiadane Repozytoria"
-            }
+        }
     },
 
     "starredBy" : {
@@ -418,7 +418,7 @@ statLabels = {
             "id" : "Diberikan bintang oleh",
             "fr" : "Étoilé par",
             "pl" : "Polubione przez"
-            }
+        }
     },
 
     "forkedBy" : {
@@ -431,7 +431,7 @@ statLabels = {
             "id" : "Di-fork oleh",
             "fr" : "Cloné par",
             "pl" : "Sforkowane przez"
-            }
+        }
     },
 
     "watchedBy" : {
@@ -444,7 +444,7 @@ statLabels = {
             "id" : "Dilihat oleh",
             "fr" : "Regardé par",
             "pl" : "Obserwowane przez",
-            }
+        }
     },
 
     "templates" : {
@@ -457,7 +457,7 @@ statLabels = {
             "id" : "Template",
             "fr" : "Modèles",
             "pl" : "Szablony"
-            }
+        }
     },
 
     "archived" : {
@@ -470,7 +470,7 @@ statLabels = {
             "id" : "Diarsipkan",
             "fr" : "Archivé",
             "pl" : "Zarchiwizowane"
-            }
+        }
     },
 
     "commits" : {
@@ -483,7 +483,7 @@ statLabels = {
             "id" : "Commits",
             "fr" : "Commits",
             "pl" : "Commity"
-            }
+        }
     },
 
     "issues" : {
@@ -496,7 +496,7 @@ statLabels = {
             "id" : "Isu",
             "fr" : "Issues",
             "pl" : "Problemy"
-            }
+        }
     },
 
     "prs" : {
@@ -509,7 +509,7 @@ statLabels = {
             "id" : "Pull Requests",
             "fr" : "Pull Requests",
             "pl" : "Pull Requesty"
-            }
+        }
     },
 
     "reviews" : {
@@ -522,7 +522,7 @@ statLabels = {
             "id" : "Ulasan Pull Request",
             "fr" : "Révision de Pull Request",
             "pl" : "Recenzje Pull Requestów"
-            }
+        }
     },
 
     "contribTo" : {
@@ -535,7 +535,7 @@ statLabels = {
             "id" : "Berkontribusi Ke",
             "fr" : "Contribué à",
             "pl" : "Kontrybuował Do"
-            }
+        }
     },
 
     "private" : {
@@ -548,6 +548,6 @@ statLabels = {
             "id" : "Kontribusi Pribadi",
             "fr" : "Contributions privées",
             "pl" : "Prywatne Kontrybucje"
-            }
+        }
     }
 }
