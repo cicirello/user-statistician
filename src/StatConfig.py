@@ -346,7 +346,7 @@ statLabels = {
             "it" : "Sponsors",
             "de" : "Sponsoren",
             "pt" : "Patrocinado",
-            "id" : "Sponsor"
+            "id" : "Sponsor",
             "fr" : "Sponsors"
         }
     },
@@ -359,7 +359,7 @@ statLabels = {
             "de" : "Sponsoring",
             "pt" : "A patrocinar",
             "id" : "Mensponsori",
-            "en" : "Sponsorise"
+            "fr" : "Sponsorise"
         }
     },
 
