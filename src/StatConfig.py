@@ -112,7 +112,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt" }
+supportedLocales = { "en", "it", "de", "pt", "id" }
 
 # Dictionary of header rows for categories of statistics
 categoryLabels = {
@@ -209,6 +209,29 @@ categoryLabels = {
             }
         },
 
+    "id" : {
+        "general" : {
+            "heading" : "Info dan Status Umum",
+            "column-one" : None,
+            "column-two" : None
+            },
+        "repositories" : {
+            "heading" : "Repositori",
+            "column-one" : "Non Fork",
+            "column-two" : "Semua"
+            },
+        "contributions" : {
+            "heading" : "Kontribusi",
+            "column-one" : "Tahun Lalu",
+            "column-two" : "Total"
+            },
+        "languages" : {
+            "heading" : "Distribusi Bahasa dalam Repositori Publik",
+            "column-one" : None,
+            "column-two" : None
+            }
+        },
+
     }
 
 # Dictionary of default title templates.
@@ -217,7 +240,8 @@ titleTemplates = {
     "en" : "{0}'s GitHub Activity",
     "it" : "Attività GitHub di {0}",
     "de" : "{0}s GitHub Aktivität",
-    "pt" : "Atividade de {0} no GitHub"
+    "pt" : "Atividade de {0} no GitHub",
+    "id" : "Aktivitas Github {0}"
     }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -229,7 +253,8 @@ statLabels = {
             "en" : "Year Joined",
             "it" : "Anno di Iscrizione",
             "de" : "Beitrittsdatum",
-            "pt" : "Ano de Inscrição"
+            "pt" : "Ano de Inscrição",
+            "id" : "Tahun Bergabung"
             }
         },
 
@@ -239,7 +264,8 @@ statLabels = {
             "en" : "Featured Repo",
             "it" : "Repo in Primo Piano",
             "de" : "Vorgestelltes Repo",
-            "pt" : "Repositório em Primeiro Plano"
+            "pt" : "Repositório em Primeiro Plano",
+            "id" : "Repositori Unggulan"
             }
         },
 
@@ -249,7 +275,8 @@ statLabels = {
             "en" : "Most Starred Repo",
             "it" : "Repo con più Stelle",
             "de" : "Meistmarkiertes Repo",
-            "pt" : "Repositório com mais estrelas"
+            "pt" : "Repositório com mais estrelas",
+            "id" : "Repositori dengan Bintang Terbanyak"
             }
         },
 
@@ -259,7 +286,8 @@ statLabels = {
             "en" : "Most Forked Repo",
             "it" : "Repo con più Fork",
             "de" : "Meistgeforktes Repo",
-            "pt" : "Repositório mais bifurcado"
+            "pt" : "Repositório mais bifurcado",
+            "id" : "Repositori dengan Fork Terbanyak"
             }
         },
     
@@ -269,7 +297,8 @@ statLabels = {
             "en" : "Followers",
             "it" : "Seguaci",
             "de" : "Follower",
-            "pt" : "Seguidores"
+            "pt" : "Seguidores",
+            "id" : "Pengikut"
             }
         },
 
@@ -279,7 +308,8 @@ statLabels = {
             "en" : "Following",
             "it" : "Seguendo",
             "de" : "Folgt",
-            "pt" : "A seguir"
+            "pt" : "A seguir",
+            "id" : "Mengikuti"
             }
         },
 
@@ -289,7 +319,8 @@ statLabels = {
             "en" : "Sponsors",
             "it" : "Sponsors",
             "de" : "Sponsoren",
-            "pt" : "Patrocinado"
+            "pt" : "Patrocinado",
+            "id" : "Sponsor"
             }
         },
 
@@ -299,7 +330,8 @@ statLabels = {
             "en" : "Sponsoring",
             "it" : "Sponsorizza",
             "de" : "Sponsoring",
-            "pt" : "A patrocinar"
+            "pt" : "A patrocinar",
+            "id" : "Mensponsori"
             }
         },
     
@@ -309,7 +341,8 @@ statLabels = {
             "en" : "Repositories Owned",
             "it" : "Repository di Proprietà",
             "de" : "Eigene Repositories",
-            "pt" : "Repositórios Possuídos"
+            "pt" : "Repositórios Possuídos",
+            "id" : "Repositori yang Dimiliki"
             }
         },
     
@@ -319,7 +352,8 @@ statLabels = {
             "en" : "Starred By",
             "it" : "Stellato Da",
             "de" : "Markiert Von",
-            "pt" : "Com Estrela De"
+            "pt" : "Com Estrela De",
+            "id" : "Diberikan bintang oleh"
             }
         },
     
@@ -329,7 +363,8 @@ statLabels = {
             "en" : "Forked By",
             "it" : "Forkato Da",
             "de" : "Geforkt Von",
-            "pt" : "Bifurcado Por"
+            "pt" : "Bifurcado Por",
+            "id" : "Di-fork oleh"
             }
         },
     
@@ -339,7 +374,8 @@ statLabels = {
             "en" : "Watched By",
             "it" : "Seguito Da",
             "de" : "Verfolgt Von",
-            "pt" : "Visto Por"
+            "pt" : "Visto Por",
+            "id" : "Dilihat oleh"
             }
         },
 
@@ -349,17 +385,20 @@ statLabels = {
             "en" : "Templates",
             "it" : "Modelli",
             "de" : "Vorlagen",
-            "pt" : "Modelos"
+            "pt" : "Modelos",
+            "id" : "Template"
             }
         },
     
+
     "archived" : {
         "icon" : '<path fill="{0}" fill-rule="evenodd" d="M1.75 2.5a.25.25 0 00-.25.25v1.5c0 .138.112.25.25.25h12.5a.25.25 0 00.25-.25v-1.5a.25.25 0 00-.25-.25H1.75zM0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v1.5A1.75 1.75 0 0114.25 6H1.75A1.75 1.75 0 010 4.25v-1.5zM1.75 7a.75.75 0 01.75.75v5.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25v-5.5a.75.75 0 111.5 0v5.5A1.75 1.75 0 0113.25 15H2.75A1.75 1.75 0 011 13.25v-5.5A.75.75 0 011.75 7zm4.5 1a.75.75 0 000 1.5h3.5a.75.75 0 100-1.5h-3.5z"/>',
         "label" : {
             "en" : "Archived",
             "it" : "Archiviato",
             "de" : "Archiviert",
-            "pt" : "Arquivados"
+            "pt" : "Arquivados",
+            "id" : "Diarsipkan"
             }
         },
     
@@ -369,7 +408,8 @@ statLabels = {
             "en" : "Commits",
             "it" : "Commits",
             "de" : "Commits",
-            "pt" : "Commits"
+            "pt" : "Commits",
+            "id" : "Commits"
             }
         },
     
@@ -379,7 +419,8 @@ statLabels = {
             "en" : "Issues",
             "it" : "Problemi",
             "de" : "Issues",
-            "pt" : "Problemas"
+            "pt" : "Problemas",
+            "id" : "Isu"
             }
         },
     
@@ -389,7 +430,8 @@ statLabels = {
             "en" : "Pull Requests",
             "it" : "Richieste di Pull",
             "de" : "Pull Requests",
-            "pt" : "Pull Requests"
+            "pt" : "Pull Requests",
+            "id" : "Pull Requests"
             }
         },
     
@@ -399,7 +441,8 @@ statLabels = {
             "en" : "Pull Request Reviews",
             "it" : "Revisioni di Richieste di Pull",
             "de" : "Überprüfungen von Pull Requests",
-            "pt" : "Avaliação de Pull Requests"
+            "pt" : "Avaliação de Pull Requests",
+            "id" : "Ulasan Pull Request"
             }
         },
     
@@ -409,7 +452,8 @@ statLabels = {
             "en" : "Contributed To",
             "it" : "Contribuito A",
             "de" : "Beigetragen Zu",
-            "pt" : "Contribuiu Para"
+            "pt" : "Contribuiu Para",
+            "id" : "Berkontribusi Ke"
             }
         },
     
@@ -419,7 +463,8 @@ statLabels = {
             "en" : "Private Contributions",
             "it" : "Contributi Privati",
             "de" : "Private Beiträge",
-            "pt" : "Contribuições Privadas"
+            "pt" : "Contribuições Privadas",
+            "id" : "Kontribusi Pribadi"
             }
         }
     }
