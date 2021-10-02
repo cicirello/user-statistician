@@ -279,7 +279,7 @@ statLabels = {
             "de" : "Beitrittsdatum",
             "pt" : "Ano de Inscrição",
             "id" : "Tahun Bergabung",
-            "hi" : "शामिल होने का वर्ष"
+            "hi" : "युक्त होने का वर्ष"
             }
         },
 
@@ -315,7 +315,7 @@ statLabels = {
             "de" : "Meistgeforktes Repo",
             "pt" : "Repositório mais bifurcado",
             "id" : "Repositori dengan Fork Terbanyak",
-            "hi" : "अधिकांश फोर्क भंडार"
+            "hi" : "सर्वाधिक फोर्क भंडार"
             }
         },
     
@@ -387,7 +387,7 @@ statLabels = {
             "de" : "Markiert Von",
             "pt" : "Com Estrela De",
             "id" : "Diberikan bintang oleh",
-            "hi" : "द्वारा तारांकित"
+            "hi" : "किसके द्वारा तारांकित"
             }
         },
     
@@ -399,7 +399,7 @@ statLabels = {
             "de" : "Geforkt Von",
             "pt" : "Bifurcado Por",
             "id" : "Di-fork oleh",
-            "hi" : "द्वारा फोर्क किया गया"
+            "hi" : "किसके द्वारा फोर्क किया गया"
             }
         },
     
@@ -411,7 +411,7 @@ statLabels = {
             "de" : "Verfolgt Von",
             "pt" : "Visto Por",
             "id" : "Dilihat oleh",
-            "hi" : "द्वारा देखा गया"
+            "hi" : "किसके द्वारा देखा गया"
             }
         },
 
@@ -472,7 +472,7 @@ statLabels = {
             "de" : "Pull Requests",
             "pt" : "Pull Requests",
             "id" : "Pull Requests",
-            "hi" : "अनुरोध खींचना"
+            "hi" : "अनुरोध"
             }
         },
     
@@ -484,7 +484,7 @@ statLabels = {
             "de" : "Überprüfungen von Pull Requests",
             "pt" : "Avaliação de Pull Requests",
             "id" : "Ulasan Pull Request",
-            "hi" : "अनुरोध खींचना आलोचना"
+            "hi" : "अनुरोध समीक्षा"
             }
         },
     
