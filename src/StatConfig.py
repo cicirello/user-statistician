@@ -112,7 +112,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # fr: thomasbnt
 # ru: JayBee007
 # es: alanverdugo
-# po: Jibendu007
+# pl: Jibendu007
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
