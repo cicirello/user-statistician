@@ -116,7 +116,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es","pl" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl" }
 
 
 # Dictionary of header rows for categories of statistics
@@ -328,7 +328,8 @@ categoryLabels = {
             "column-two" : None
         }
     },
-      "pl" : {
+
+    "pl" : {
         "general" : {
             "heading" : "Ogólne statystyki i informacje",
             "column-one" : None,
@@ -340,7 +341,7 @@ categoryLabels = {
             "column-two" : "Wszystkie"
             },
         "contributions" : {
-            "heading" : "Wkład",
+            "heading" : "Kontrybucje",
             "column-one" : "Ostatni rok",
             "column-two" : "Wszystkie"
             },
@@ -367,7 +368,7 @@ titleTemplates = {
     # so it literally says "Activity on Github"
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}",
-    "pl" : "Aktywność {0} na GitHub'ie"
+    "pl" : "Aktywność {0} na GitHubie"
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
