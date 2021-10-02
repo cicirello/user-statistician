@@ -108,14 +108,15 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # it: ziriuz84
 # de: pje3110
 # pt: andrefpoliveira
+# hi: Anik-Bardhan
 # fr: thomasbnt
 # ru: JayBee007
 # es: alanverdugo
 
-
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "fr", "ru", "es" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es" }
+
 
 # Dictionary of header rows for categories of statistics
 categoryLabels = {
@@ -235,6 +236,29 @@ categoryLabels = {
         }
     },
   
+    "hi" : {
+        "general" : {
+            "heading" : "साधारण सांख्यिकी और सूचना",
+            "column-one" : None,
+            "column-two" : None
+            },
+        "repositories" : {
+            "heading" : "भंडार",
+            "column-one" : "गैर-फोर्क",
+            "column-two" : "सभी"
+            },
+        "contributions" : {
+            "heading" : "योगदान",
+            "column-one" : "पिछला वर्ष",
+            "column-two" : "कुल"
+            },
+        "languages" : {
+            "heading" : "सार्वजनिक भंडारों में भाषा वितरण",
+            "column-one" : None,
+            "column-two" : None
+            }
+    },
+  
     "fr" : {
         "general" : {
           "heading" : "Statistiques Générales et Info",
@@ -313,13 +337,13 @@ titleTemplates = {
     "de" : "{0}s GitHub Aktivität",
     "pt" : "Atividade de {0} no GitHub",
     "id" : "Aktivitas Github {0}",
+    "hi" : "{0} की गिटहब गतिविधि",
     "fr" : "Activité GitHub de {0}",
     # Russian declension depends on many factors
     # just adding 's wont help
     # so it literally says "Activity on Github"
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}"
-
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -333,6 +357,7 @@ statLabels = {
             "de" : "Beitrittsdatum",
             "pt" : "Ano de Inscrição",
             "id" : "Tahun Bergabung",
+            "hi" : "युक्त होने का वर्ष",
             "fr" : "Année d'adhésion",
             "ru" : "Год начала работы на гитхабе",
             "es" : "Año de ingreso"
@@ -347,6 +372,7 @@ statLabels = {
             "de" : "Vorgestelltes Repo",
             "pt" : "Repositório em Primeiro Plano",
             "id" : "Repositori Unggulan",
+            "hi" : "विशेष रुप से प्रदर्शित भंडार",
             "fr" : "Dépôt en vedette",
             "ru" : "Избранное репо",
             "es" : "Repositorio destacado"
@@ -361,6 +387,7 @@ statLabels = {
             "de" : "Meistmarkiertes Repo",
             "pt" : "Repositório com mais estrelas",
             "id" : "Repositori dengan Bintang Terbanyak",
+            "hi" : "सर्वाधिक तारांकित भंडार",
             "fr" : "Dépôt le plus étoilé",
             "ru" : "Самое замеченное репо",
             "es" : "Repositorio con más estrellas"
@@ -375,6 +402,7 @@ statLabels = {
             "de" : "Meistgeforktes Repo",
             "pt" : "Repositório mais bifurcado",
             "id" : "Repositori dengan Fork Terbanyak",
+            "hi" : "सर्वाधिक फोर्क भंडार",
             "fr" : "Dépôt le plus cloné",
             "ru" : "Самое клонированное репо",
             "es" : "Repositorio más bifurcado"
@@ -389,6 +417,7 @@ statLabels = {
             "de" : "Follower",
             "pt" : "Seguidores",
             "id" : "Pengikut",
+            "hi" : "समर्थक",
             "fr" : "Abonnés",
             "ru" : "Подписчики",
             "es" : "Seguidores"
@@ -403,6 +432,7 @@ statLabels = {
             "de" : "Folgt",
             "pt" : "A seguir",
             "id" : "Mengikuti",
+            "hi" : "अनुगामी",
             "fr" : "Abonnements",
             "ru" : "Подписан",
             "es" : "Siguiendo"
@@ -417,6 +447,7 @@ statLabels = {
             "de" : "Sponsoren",
             "pt" : "Patrocinado",
             "id" : "Sponsor",
+            "hi" : "प्रायोजक",
             "fr" : "Sponsors",
             "ru" : "Спонсоры",
             "es" : "Patrocinadores"
@@ -431,6 +462,7 @@ statLabels = {
             "de" : "Sponsoring",
             "pt" : "A patrocinar",
             "id" : "Mensponsori",
+            "hi" : "प्रायोजन",
             "fr" : "Sponsorise",
             "ru" : "Спонсирует",
             "es" : "Patrocinando"
@@ -445,6 +477,7 @@ statLabels = {
             "de" : "Eigene Repositories",
             "pt" : "Repositórios Possuídos",
             "id" : "Repositori yang Dimiliki",
+            "hi" : "अपना भंडार",
             "fr" : "Dépôts possédés",
             "ru" : "Собственные репозитории",
             "es" : "Repositorios propios"
@@ -459,6 +492,7 @@ statLabels = {
             "de" : "Markiert Von",
             "pt" : "Com Estrela De",
             "id" : "Diberikan bintang oleh",
+            "hi" : "किसके द्वारा तारांकित",
             "fr" : "Étoilé par",
             "ru" : "Отметили",
             "es" : "Con estrella por"
@@ -473,6 +507,7 @@ statLabels = {
             "de" : "Geforkt Von",
             "pt" : "Bifurcado Por",
             "id" : "Di-fork oleh",
+            "hi" : "किसके द्वारा फोर्क किया गया",
             "fr" : "Cloné par",
             "ru" : "Клонирован",
             "es" : "Bifurcado por"
@@ -487,6 +522,7 @@ statLabels = {
             "de" : "Verfolgt Von",
             "pt" : "Visto Por",
             "id" : "Dilihat oleh",
+            "hi" : "किसके द्वारा देखा गया",
             "fr" : "Regardé par",
             "ru" : "Наблюдатели",
             "es" : "Visto por"
@@ -501,6 +537,7 @@ statLabels = {
             "de" : "Vorlagen",
             "pt" : "Modelos",
             "id" : "Template",
+            "hi" : "आकार पट्ट",
             "fr" : "Modèles",
             "ru" : "Шаблоны",
             "es" : "Plantillas"
@@ -515,6 +552,7 @@ statLabels = {
             "de" : "Archiviert",
             "pt" : "Arquivados",
             "id" : "Diarsipkan",
+            "hi" : "संग्रहीत",
             "fr" : "Archivé",
             "ru" : "Заархивированный",
             "es" : "Archivado"
@@ -529,6 +567,7 @@ statLabels = {
             "de" : "Commits",
             "pt" : "Commits",
             "id" : "Commits",
+            "hi" : "प्रतिबद्ध",
             "fr" : "Commits",
             "ru" : "Коммиты",
             "es" : "Commits"
@@ -543,6 +582,7 @@ statLabels = {
             "de" : "Issues",
             "pt" : "Problemas",
             "id" : "Isu",
+            "hi" : "मुद्दे",
             "fr" : "Issues",
             "ru" : "Проблемы",
             "es" : "Problemas"
@@ -557,6 +597,7 @@ statLabels = {
             "de" : "Pull Requests",
             "pt" : "Pull Requests",
             "id" : "Pull Requests",
+            "hi" : "अनुरोध",
             "fr" : "Pull Requests",
             "ru" : "Пулл реквесты",
             "es" : "Pull Requests"
@@ -571,6 +612,7 @@ statLabels = {
             "de" : "Überprüfungen von Pull Requests",
             "pt" : "Avaliação de Pull Requests",
             "id" : "Ulasan Pull Request",
+            "hi" : "अनुरोध समीक्षा",
             "fr" : "Révision de Pull Request",
             "ru": "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests"
@@ -585,6 +627,7 @@ statLabels = {
             "de" : "Beigetragen Zu",
             "pt" : "Contribuiu Para",
             "id" : "Berkontribusi Ke",
+            "hi" : "योगदान",
             "fr" : "Contribué à",
             "ru" : "Участие в",
             "es" : "Contribuido a"
@@ -599,6 +642,7 @@ statLabels = {
             "de" : "Private Beiträge",
             "pt" : "Contribuições Privadas",
             "id" : "Kontribusi Pribadi",
+            "hi" : "गुप्त योगदान",
             "fr" : "Contributions privées",
             "ru" : "Частное участие",
             "es" : "Contribuciones privadas"
