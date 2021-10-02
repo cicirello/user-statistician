@@ -112,10 +112,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # fr: thomasbnt
 # ru: JayBee007
 # es: alanverdugo
+# po: Jibendu007
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es","pl" }
 
 
 # Dictionary of header rows for categories of statistics
@@ -326,6 +327,28 @@ categoryLabels = {
             "column-one" : None,
             "column-two" : None
         }
+    },
+      "pl" : {
+        "general" : {
+            "heading" : "Ogólne statystyki i informacje",
+            "column-one" : None,
+            "column-two" : None
+            },
+        "repositories" : {
+            "heading" : "Repozytoria",
+            "column-one" : "Non-Forks",
+            "column-two" : "Wszystkie"
+            },
+        "contributions" : {
+            "heading" : "Wkład",
+            "column-one" : "Ostatni rok",
+            "column-two" : "Wszystkie"
+            },
+        "languages" : {
+            "heading" : "Rozkład języków w Repozytoriach Publicznych",
+            "column-one" : None,
+            "column-two" : None
+        }
     }
 }
 
@@ -343,7 +366,8 @@ titleTemplates = {
     # just adding 's wont help
     # so it literally says "Activity on Github"
     "ru" : "Активность на гитхабе",
-    "es" : "Actividad en GitHub de {0}"
+    "es" : "Actividad en GitHub de {0}",
+    "pl" : "Aktywność {0} na GitHub'ie"
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -360,7 +384,8 @@ statLabels = {
             "hi" : "युक्त होने का वर्ष",
             "fr" : "Année d'adhésion",
             "ru" : "Год начала работы на гитхабе",
-            "es" : "Año de ingreso"
+            "es" : "Año de ingreso",
+            "pl" : "Rok Dołączenia"
         }
     },
 
@@ -375,7 +400,8 @@ statLabels = {
             "hi" : "विशेष रुप से प्रदर्शित भंडार",
             "fr" : "Dépôt en vedette",
             "ru" : "Избранное репо",
-            "es" : "Repositorio destacado"
+            "es" : "Repositorio destacado",
+            "pl" : "Polecane repozytorium"
         }
     },
 
@@ -390,7 +416,8 @@ statLabels = {
             "hi" : "सर्वाधिक तारांकित भंडार",
             "fr" : "Dépôt le plus étoilé",
             "ru" : "Самое замеченное репо",
-            "es" : "Repositorio con más estrellas"
+            "es" : "Repositorio con más estrellas",
+            "pl" : "Repozytoria z największą ilością gwiazdek"
         }
     },
 
@@ -405,7 +432,8 @@ statLabels = {
             "hi" : "सर्वाधिक फोर्क भंडार",
             "fr" : "Dépôt le plus cloné",
             "ru" : "Самое клонированное репо",
-            "es" : "Repositorio más bifurcado"
+            "es" : "Repositorio más bifurcado",
+            "pl" : "Najczęściej Forkowane Repozytoria"
         }
     },
 
@@ -420,7 +448,8 @@ statLabels = {
             "hi" : "समर्थक",
             "fr" : "Abonnés",
             "ru" : "Подписчики",
-            "es" : "Seguidores"
+            "es" : "Seguidores",
+            "pl" : "Obserwujący"
         }
     },
 
@@ -435,7 +464,8 @@ statLabels = {
             "hi" : "अनुगामी",
             "fr" : "Abonnements",
             "ru" : "Подписан",
-            "es" : "Siguiendo"
+            "es" : "Siguiendo",
+            "pl" : "Obserwowani"
         }
     },
 
@@ -450,7 +480,8 @@ statLabels = {
             "hi" : "प्रायोजक",
             "fr" : "Sponsors",
             "ru" : "Спонсоры",
-            "es" : "Patrocinadores"
+            "es" : "Patrocinadores",
+            "pl" : "Sponsorzy"
         }
     },
 
@@ -465,7 +496,8 @@ statLabels = {
             "hi" : "प्रायोजन",
             "fr" : "Sponsorise",
             "ru" : "Спонсирует",
-            "es" : "Patrocinando"
+            "es" : "Patrocinando",
+            "pl" : "Sponsoring"
         }
     },
 
@@ -480,7 +512,8 @@ statLabels = {
             "hi" : "अपना भंडार",
             "fr" : "Dépôts possédés",
             "ru" : "Собственные репозитории",
-            "es" : "Repositorios propios"
+            "es" : "Repositorios propios",
+            "pl" : "Posiadane Repozytoria"
         }
     },
 
@@ -495,7 +528,8 @@ statLabels = {
             "hi" : "किसके द्वारा तारांकित",
             "fr" : "Étoilé par",
             "ru" : "Отметили",
-            "es" : "Con estrella por"
+            "es" : "Con estrella por",
+            "pl" : "Polubione przez"
         }
     },
 
@@ -510,7 +544,8 @@ statLabels = {
             "hi" : "किसके द्वारा फोर्क किया गया",
             "fr" : "Cloné par",
             "ru" : "Клонирован",
-            "es" : "Bifurcado por"
+            "es" : "Bifurcado por",
+            "pl" : "Sforkowane przez"
         }
     },
 
@@ -525,7 +560,8 @@ statLabels = {
             "hi" : "किसके द्वारा देखा गया",
             "fr" : "Regardé par",
             "ru" : "Наблюдатели",
-            "es" : "Visto por"
+            "es" : "Visto por",
+            "pl" : "Obserwowane przez"
         }
     },
 
@@ -540,7 +576,8 @@ statLabels = {
             "hi" : "आकार पट्ट",
             "fr" : "Modèles",
             "ru" : "Шаблоны",
-            "es" : "Plantillas"
+            "es" : "Plantillas",
+            "pl" : "Szablony"
         }
     },
 
@@ -555,7 +592,8 @@ statLabels = {
             "hi" : "संग्रहीत",
             "fr" : "Archivé",
             "ru" : "Заархивированный",
-            "es" : "Archivado"
+            "es" : "Archivado",
+            "pl" : "Zarchiwizowane"
         }
     },
 
@@ -570,7 +608,8 @@ statLabels = {
             "hi" : "प्रतिबद्ध",
             "fr" : "Commits",
             "ru" : "Коммиты",
-            "es" : "Commits"
+            "es" : "Commits",
+            "pl" : "Commity"
         }
     },
 
@@ -585,7 +624,8 @@ statLabels = {
             "hi" : "मुद्दे",
             "fr" : "Issues",
             "ru" : "Проблемы",
-            "es" : "Problemas"
+            "es" : "Problemas",
+            "pl" : "Problemy"
         }
     },
 
@@ -600,7 +640,8 @@ statLabels = {
             "hi" : "अनुरोध",
             "fr" : "Pull Requests",
             "ru" : "Пулл реквесты",
-            "es" : "Pull Requests"
+            "es" : "Pull Requests",
+            "pl" : "Pull Requesty"
         }
     },
 
@@ -615,7 +656,8 @@ statLabels = {
             "hi" : "अनुरोध समीक्षा",
             "fr" : "Révision de Pull Request",
             "ru": "Ревьювы пулл реквестов",
-            "es" : "Revisiones de Pull Requests"
+            "es" : "Revisiones de Pull Requests",
+            "pl" : "Recenzje Pull Requestów"
         }
     },
 
@@ -630,7 +672,8 @@ statLabels = {
             "hi" : "योगदान",
             "fr" : "Contribué à",
             "ru" : "Участие в",
-            "es" : "Contribuido a"
+            "es" : "Contribuido a",
+            "pl" : "Kontrybuował Do"
         }
     },
 
@@ -645,7 +688,8 @@ statLabels = {
             "hi" : "गुप्त योगदान",
             "fr" : "Contributions privées",
             "ru" : "Частное участие",
-            "es" : "Contribuciones privadas"
+            "es" : "Contribuciones privadas",
+            "pl" : "Prywatne Kontrybucje"
         }
     }
 }
