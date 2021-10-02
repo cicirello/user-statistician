@@ -117,7 +117,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl","tr" }
 
 
 # Dictionary of header rows for categories of statistics
