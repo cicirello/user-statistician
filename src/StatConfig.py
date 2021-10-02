@@ -250,7 +250,29 @@ categoryLabels = {
           "column-one" : None,
           "column-two" : None
         }
-    }
+    },
+    "ru" : {
+        "general" : {
+            "heading" : "Общая статистика и информация",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Репозиториев",
+            "column-one" : "Без форков",
+            "column-two" : "Все"
+        },
+        "contributions" : {
+            "heading" : "Участие",
+            "column-one" : "За последный год",
+            "column-two" : "Всего"
+        },
+        "languages" : {
+            "heading" : "Использование языков в общедоступных репозиториях",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
 }
 
 # Dictionary of default title templates.
@@ -261,7 +283,11 @@ titleTemplates = {
     "de" : "{0}s GitHub Aktivität",
     "pt" : "Atividade de {0} no GitHub",
     "id" : "Aktivitas Github {0}",
-    "fr" : "Activité GitHub de {0}"
+    "fr" : "Activité GitHub de {0}",
+    # Russian declension depends on many factors
+    # just adding 's wont help
+    # so it literally says "Activity on Github"
+    "ru" : "Активность на гитхабе"
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -275,7 +301,8 @@ statLabels = {
             "de" : "Beitrittsdatum",
             "pt" : "Ano de Inscrição",
             "id" : "Tahun Bergabung",
-            "fr" : "Année d'adhésion"
+            "fr" : "Année d'adhésion",
+            "ru" : "Год начала работы на гитхабе"
         }
     },
 
@@ -287,7 +314,8 @@ statLabels = {
             "de" : "Vorgestelltes Repo",
             "pt" : "Repositório em Primeiro Plano",
             "id" : "Repositori Unggulan",
-            "fr" : "Dépôt en vedette"
+            "fr" : "Dépôt en vedette",
+            "ru" : "Избранное репо"
         }
     },
 
@@ -299,7 +327,8 @@ statLabels = {
             "de" : "Meistmarkiertes Repo",
             "pt" : "Repositório com mais estrelas",
             "id" : "Repositori dengan Bintang Terbanyak",
-            "fr" : "Dépôt le plus étoilé"
+            "fr" : "Dépôt le plus étoilé",
+            "ru" : "Самое замеченное репо"
         }
     },
 
@@ -311,7 +340,8 @@ statLabels = {
             "de" : "Meistgeforktes Repo",
             "pt" : "Repositório mais bifurcado",
             "id" : "Repositori dengan Fork Terbanyak",
-            "fr" : "Dépôt le plus cloné"
+            "fr" : "Dépôt le plus cloné",
+            "ru" : "Самое клонированное репо"
         }
     },
 
@@ -323,7 +353,8 @@ statLabels = {
             "de" : "Follower",
             "pt" : "Seguidores",
             "id" : "Pengikut",
-            "fr" : "Abonnés"
+            "fr" : "Abonnés",
+            "ru" : "Подписчики"
         }
     },
 
@@ -335,7 +366,8 @@ statLabels = {
             "de" : "Folgt",
             "pt" : "A seguir",
             "id" : "Mengikuti",
-            "fr" : "Abonnements"
+            "fr" : "Abonnements",
+            "ru" : "Подписан"
         }
     },
 
@@ -347,7 +379,8 @@ statLabels = {
             "de" : "Sponsoren",
             "pt" : "Patrocinado",
             "id" : "Sponsor",
-            "fr" : "Sponsors"
+            "fr" : "Sponsors",
+            "ru" : "Спонсоры"
         }
     },
 
@@ -359,7 +392,8 @@ statLabels = {
             "de" : "Sponsoring",
             "pt" : "A patrocinar",
             "id" : "Mensponsori",
-            "fr" : "Sponsorise"
+            "fr" : "Sponsorise",
+            "ru" : "Спонсирует"
         }
     },
 
@@ -371,7 +405,8 @@ statLabels = {
             "de" : "Eigene Repositories",
             "pt" : "Repositórios Possuídos",
             "id" : "Repositori yang Dimiliki",
-            "fr" : "Dépôts possédés"
+            "fr" : "Dépôts possédés",
+            "ru" : "Собственные репозитории"
         }
     },
 
@@ -383,7 +418,8 @@ statLabels = {
             "de" : "Markiert Von",
             "pt" : "Com Estrela De",
             "id" : "Diberikan bintang oleh",
-            "fr" : "Étoilé par"
+            "fr" : "Étoilé par", 
+            "ru" : "Отметили"
         }
     },
 
@@ -395,7 +431,8 @@ statLabels = {
             "de" : "Geforkt Von",
             "pt" : "Bifurcado Por",
             "id" : "Di-fork oleh",
-            "fr" : "Cloné par"
+            "fr" : "Cloné par",
+            "ru" : "Клонирован"
         }
     },
 
@@ -407,7 +444,8 @@ statLabels = {
             "de" : "Verfolgt Von",
             "pt" : "Visto Por",
             "id" : "Dilihat oleh",
-            "fr" : "Regardé par"
+            "fr" : "Regardé par",
+            "ru" : "Наблюдатели"
         }
     },
 
@@ -419,7 +457,8 @@ statLabels = {
             "de" : "Vorlagen",
             "pt" : "Modelos",
             "id" : "Template",
-            "fr" : "Modèles"
+            "fr" : "Modèles",
+            "ru" : "Шаблоны"
         }
     },
 
@@ -431,7 +470,8 @@ statLabels = {
             "de" : "Archiviert",
             "pt" : "Arquivados",
             "id" : "Diarsipkan",
-            "fr" : "Archivé"
+            "fr" : "Archivé",
+            "ru" : "Заархивированный"
         }
     },
 
@@ -443,7 +483,8 @@ statLabels = {
             "de" : "Commits",
             "pt" : "Commits",
             "id" : "Commits",
-            "fr" : "Commits"
+            "fr" : "Commits",
+            "ru" : "Коммиты"
         }
     },
 
@@ -455,7 +496,8 @@ statLabels = {
             "de" : "Issues",
             "pt" : "Problemas",
             "id" : "Isu",
-            "fr" : "Issues"
+            "fr" : "Issues",
+            "ru" : "Проблемы"
         }
     },
 
@@ -467,7 +509,8 @@ statLabels = {
             "de" : "Pull Requests",
             "pt" : "Pull Requests",
             "id" : "Pull Requests",
-            "fr" : "Pull Requests"
+            "fr" : "Pull Requests",
+            "ru" : "Пулл реквесты"
         }
     },
 
@@ -479,7 +522,8 @@ statLabels = {
             "de" : "Überprüfungen von Pull Requests",
             "pt" : "Avaliação de Pull Requests",
             "id" : "Ulasan Pull Request",
-            "fr" : "Révision de Pull Request"
+            "fr" : "Révision de Pull Request",
+            "ru": "Ревьювы пулл реквестов"
         }
     },
 
@@ -491,7 +535,8 @@ statLabels = {
             "de" : "Beigetragen Zu",
             "pt" : "Contribuiu Para",
             "id" : "Berkontribusi Ke",
-            "fr" : "Contribué à"
+            "fr" : "Contribué à",
+            "ru" : "Участие в"
         }
     },
 
@@ -503,7 +548,8 @@ statLabels = {
             "de" : "Private Beiträge",
             "pt" : "Contribuições Privadas",
             "id" : "Kontribusi Pribadi",
-            "fr" : "Contributions privées"
+            "fr" : "Contributions privées",
+            "ru" : "Частное участие",
         }
     }
 }
