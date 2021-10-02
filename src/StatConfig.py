@@ -240,7 +240,7 @@ categoryLabels = {
             "column-two" : None
             },
         "repositories" : {
-            "heading" : "डेटा संग्रह स्थान",
+            "heading" : "भंडार",
             "column-one" : "गैर-फोर्क",
             "column-two" : "सभी"
             },
