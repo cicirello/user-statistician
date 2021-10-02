@@ -776,6 +776,7 @@ currently supported:
 | de | German |
 | hi | Hindi |
 | it | Italian |
+| pl | Polish |
 | pt | Portuguese |
 | ru | Russian |
 | es | Spanish |
