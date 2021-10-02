@@ -265,7 +265,7 @@ titleTemplates = {
     "de" : "{0}s GitHub Aktivität",
     "pt" : "Atividade de {0} no GitHub",
     "id" : "Aktivitas Github {0}",
-    "hi" : "{0} गिटहब गतिविधि",
+    "hi" : "{0} की गिटहब गतिविधि",
     }
 
 # Dictionary of icon paths and labels for the supported statistics.
