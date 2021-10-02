@@ -113,10 +113,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # ru: JayBee007
 # es: alanverdugo
 # pl: Jibendu007
+# ja: a-ayush19
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es","pl" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es","pl", "ja"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -349,6 +350,28 @@ categoryLabels = {
             "column-one" : None,
             "column-two" : None
         }
+    },
+    "ja" : {
+        "general" : {
+            "heading" : "一般的な統計と情報",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "リポジトリ",
+            "column-one" : "非フォーク",
+            "column-two" : "全て"
+        },
+        "contributions" : {
+            "heading" : "貢献",
+            "column-one" : "昨年",
+            "column-two" : "合計"
+        },
+        "languages" : {
+            "heading" : "公開リポジトリでの言語配布",
+            "column-one" : None,
+            "column-two" : None
+        }
     }
 }
 
@@ -368,6 +391,7 @@ titleTemplates = {
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}",
     "pl" : "Aktywność {0} na GitHub'ie"
+    "ja" : "{0}のgithubアクティビティ"
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -386,6 +410,7 @@ statLabels = {
             "ru" : "Год начала работы на гитхабе",
             "es" : "Año de ingreso",
             "pl" : "Rok Dołączenia"
+            "ja" : "入社年"
         }
     },
 
@@ -402,6 +427,7 @@ statLabels = {
             "ru" : "Избранное репо",
             "es" : "Repositorio destacado",
             "pl" : "Polecane repozytorium"
+            "ja" : "注目のリポジトリ"
         }
     },
 
@@ -418,6 +444,7 @@ statLabels = {
             "ru" : "Самое замеченное репо",
             "es" : "Repositorio con más estrellas",
             "pl" : "Repozytoria z największą ilością gwiazdek"
+            "ja" : "最もスター付きのリポジトリ"
         }
     },
 
@@ -434,6 +461,7 @@ statLabels = {
             "ru" : "Самое клонированное репо",
             "es" : "Repositorio más bifurcado",
             "pl" : "Najczęściej Forkowane Repozytoria"
+            "ja" : "最もフォークされたリポジトリ"
         }
     },
 
@@ -450,6 +478,7 @@ statLabels = {
             "ru" : "Подписчики",
             "es" : "Seguidores",
             "pl" : "Obserwujący"
+            "ja" : "フォロワー"
         }
     },
 
@@ -466,6 +495,7 @@ statLabels = {
             "ru" : "Подписан",
             "es" : "Siguiendo",
             "pl" : "Obserwowani"
+            "ja" : "続く"
         }
     },
 
@@ -482,6 +512,7 @@ statLabels = {
             "ru" : "Спонсоры",
             "es" : "Patrocinadores",
             "pl" : "Sponsorzy"
+            "ja" : "スポンサー"
         }
     },
 
@@ -498,6 +529,7 @@ statLabels = {
             "ru" : "Спонсирует",
             "es" : "Patrocinando",
             "pl" : "Sponsoring"
+            "ja" : "主催"
         }
     },
 
@@ -514,6 +546,7 @@ statLabels = {
             "ru" : "Собственные репозитории",
             "es" : "Repositorios propios",
             "pl" : "Posiadane Repozytoria"
+            "ja" : "所有リポジトリ"
         }
     },
 
@@ -530,6 +563,7 @@ statLabels = {
             "ru" : "Отметили",
             "es" : "Con estrella por",
             "pl" : "Polubione przez"
+            "ja" : "主演"
         }
     },
 
@@ -546,6 +580,7 @@ statLabels = {
             "ru" : "Клонирован",
             "es" : "Bifurcado por",
             "pl" : "Sforkowane przez"
+            "ja" : "によるフォーク"
         }
     },
 
@@ -562,6 +597,7 @@ statLabels = {
             "ru" : "Наблюдатели",
             "es" : "Visto por",
             "pl" : "Obserwowane przez"
+            "ja" : "によって見られた"
         }
     },
 
@@ -578,6 +614,7 @@ statLabels = {
             "ru" : "Шаблоны",
             "es" : "Plantillas",
             "pl" : "Szablony"
+            "ja" : "レンプレート"
         }
     },
 
@@ -594,6 +631,7 @@ statLabels = {
             "ru" : "Заархивированный",
             "es" : "Archivado",
             "pl" : "Zarchiwizowane"
+            "ja" : "記録"
         }
     },
 
@@ -610,6 +648,7 @@ statLabels = {
             "ru" : "Коммиты",
             "es" : "Commits",
             "pl" : "Commity"
+            "ja" : "専念"
         }
     },
 
@@ -626,6 +665,7 @@ statLabels = {
             "ru" : "Проблемы",
             "es" : "Problemas",
             "pl" : "Problemy"
+            "ja" : "問題"
         }
     },
 
@@ -642,6 +682,7 @@ statLabels = {
             "ru" : "Пулл реквесты",
             "es" : "Pull Requests",
             "pl" : "Pull Requesty"
+            "ja" : "プルリクエスト"
         }
     },
 
@@ -658,6 +699,7 @@ statLabels = {
             "ru": "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests",
             "pl" : "Recenzje Pull Requestów"
+            "ja" : "プルリクエストレビュー"
         }
     },
 
@@ -674,6 +716,7 @@ statLabels = {
             "ru" : "Участие в",
             "es" : "Contribuido a",
             "pl" : "Kontrybuował Do"
+            "ja" : "に貢献しました"
         }
     },
 
@@ -690,6 +733,7 @@ statLabels = {
             "ru" : "Частное участие",
             "es" : "Contribuciones privadas",
             "pl" : "Prywatne Kontrybucje"
+            "ja" : "個人的な貢献"
         }
     }
 }
