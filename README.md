@@ -776,6 +776,7 @@ currently supported:
 | de | German |
 | it | Italian |
 | pt | Portuguese |
+| ru | Russian |
 | es | Spanish |
 
 If you are interested in contributing a new locale, only the 
