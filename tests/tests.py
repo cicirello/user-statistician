@@ -178,7 +178,7 @@ class TestSomething(unittest.TestCase) :
         try :
             for locale in supportedLocales :
                 title = titleTemplates[locale].format(unlikelyInTemplate)
-                self.assertTrue(title.find(unlikelyInTemplate)>=0)
+                self.assertTrue(titleTemplates[locale].find("{0}") < 0 or title.find(unlikelyInTemplate)>=0)
         except IndexError :
             self.fail()
 
