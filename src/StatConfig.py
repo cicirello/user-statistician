@@ -235,13 +235,13 @@ categoryLabels = {
 
     "hi" : {
         "general" : {
-            "heading" : "सामान्य सांख्यिकी और सूचना",
+            "heading" : "साधारण सांख्यिकी और सूचना",
             "column-one" : None,
             "column-two" : None
             },
         "repositories" : {
             "heading" : "डेटा संग्रह स्थान",
-            "column-one" : "गैर-कांटे",
+            "column-one" : "गैर-फोर्क",
             "column-two" : "सभी"
             },
         "contributions" : {
@@ -264,7 +264,8 @@ titleTemplates = {
     "it" : "Attività GitHub di {0}",
     "de" : "{0}s GitHub Aktivität",
     "pt" : "Atividade de {0} no GitHub",
-    "id" : "Aktivitas Github {0}"
+    "id" : "Aktivitas Github {0}",
+    "hi" : "{0} गिटहब गतिविधि",
     }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -277,7 +278,8 @@ statLabels = {
             "it" : "Anno di Iscrizione",
             "de" : "Beitrittsdatum",
             "pt" : "Ano de Inscrição",
-            "id" : "Tahun Bergabung"
+            "id" : "Tahun Bergabung",
+            "hi" : "शामिल होने का वर्ष"
             }
         },
 
@@ -288,7 +290,8 @@ statLabels = {
             "it" : "Repo in Primo Piano",
             "de" : "Vorgestelltes Repo",
             "pt" : "Repositório em Primeiro Plano",
-            "id" : "Repositori Unggulan"
+            "id" : "Repositori Unggulan",
+            "hi" : "विशेष रुप से प्रदर्शित भंडार"
             }
         },
 
@@ -299,7 +302,8 @@ statLabels = {
             "it" : "Repo con più Stelle",
             "de" : "Meistmarkiertes Repo",
             "pt" : "Repositório com mais estrelas",
-            "id" : "Repositori dengan Bintang Terbanyak"
+            "id" : "Repositori dengan Bintang Terbanyak",
+            "hi" : "सर्वाधिक तारांकित भंडार"
             }
         },
 
@@ -310,7 +314,8 @@ statLabels = {
             "it" : "Repo con più Fork",
             "de" : "Meistgeforktes Repo",
             "pt" : "Repositório mais bifurcado",
-            "id" : "Repositori dengan Fork Terbanyak"
+            "id" : "Repositori dengan Fork Terbanyak",
+            "hi" : "अधिकांश फोर्क भंडार"
             }
         },
     
@@ -321,7 +326,8 @@ statLabels = {
             "it" : "Seguaci",
             "de" : "Follower",
             "pt" : "Seguidores",
-            "id" : "Pengikut"
+            "id" : "Pengikut",
+            "hi" : "समर्थक"
             }
         },
 
@@ -332,7 +338,8 @@ statLabels = {
             "it" : "Seguendo",
             "de" : "Folgt",
             "pt" : "A seguir",
-            "id" : "Mengikuti"
+            "id" : "Mengikuti",
+            "hi" : "अनुगामी"
             }
         },
 
@@ -343,7 +350,8 @@ statLabels = {
             "it" : "Sponsors",
             "de" : "Sponsoren",
             "pt" : "Patrocinado",
-            "id" : "Sponsor"
+            "id" : "Sponsor",
+            "hi" : "प्रायोजक"
             }
         },
 
@@ -354,7 +362,8 @@ statLabels = {
             "it" : "Sponsorizza",
             "de" : "Sponsoring",
             "pt" : "A patrocinar",
-            "id" : "Mensponsori"
+            "id" : "Mensponsori",
+            "hi" : "प्रायोजन"
             }
         },
     
@@ -365,7 +374,8 @@ statLabels = {
             "it" : "Repository di Proprietà",
             "de" : "Eigene Repositories",
             "pt" : "Repositórios Possuídos",
-            "id" : "Repositori yang Dimiliki"
+            "id" : "Repositori yang Dimiliki",
+            "hi" : "अपना भंडार"
             }
         },
     
@@ -376,7 +386,8 @@ statLabels = {
             "it" : "Stellato Da",
             "de" : "Markiert Von",
             "pt" : "Com Estrela De",
-            "id" : "Diberikan bintang oleh"
+            "id" : "Diberikan bintang oleh",
+            "hi" : "द्वारा तारांकित"
             }
         },
     
@@ -387,7 +398,8 @@ statLabels = {
             "it" : "Forkato Da",
             "de" : "Geforkt Von",
             "pt" : "Bifurcado Por",
-            "id" : "Di-fork oleh"
+            "id" : "Di-fork oleh",
+            "hi" : "द्वारा फोर्क किया गया"
             }
         },
     
@@ -398,7 +410,8 @@ statLabels = {
             "it" : "Seguito Da",
             "de" : "Verfolgt Von",
             "pt" : "Visto Por",
-            "id" : "Dilihat oleh"
+            "id" : "Dilihat oleh",
+            "hi" : "द्वारा देखा गया"
             }
         },
 
@@ -409,7 +422,8 @@ statLabels = {
             "it" : "Modelli",
             "de" : "Vorlagen",
             "pt" : "Modelos",
-            "id" : "Template"
+            "id" : "Template",
+            "hi" : "आकार पट्ट"
             }
         },
     
@@ -421,7 +435,8 @@ statLabels = {
             "it" : "Archiviato",
             "de" : "Archiviert",
             "pt" : "Arquivados",
-            "id" : "Diarsipkan"
+            "id" : "Diarsipkan",
+            "hi" : "संग्रहीत"
             }
         },
     
@@ -432,7 +447,8 @@ statLabels = {
             "it" : "Commits",
             "de" : "Commits",
             "pt" : "Commits",
-            "id" : "Commits"
+            "id" : "Commits",
+            "hi" : "प्रतिबद्ध"
             }
         },
     
@@ -443,7 +459,8 @@ statLabels = {
             "it" : "Problemi",
             "de" : "Issues",
             "pt" : "Problemas",
-            "id" : "Isu"
+            "id" : "Isu",
+            "hi" : "मुद्दे"
             }
         },
     
@@ -454,7 +471,8 @@ statLabels = {
             "it" : "Richieste di Pull",
             "de" : "Pull Requests",
             "pt" : "Pull Requests",
-            "id" : "Pull Requests"
+            "id" : "Pull Requests",
+            "hi" : "अनुरोध खींचना"
             }
         },
     
@@ -465,7 +483,8 @@ statLabels = {
             "it" : "Revisioni di Richieste di Pull",
             "de" : "Überprüfungen von Pull Requests",
             "pt" : "Avaliação de Pull Requests",
-            "id" : "Ulasan Pull Request"
+            "id" : "Ulasan Pull Request",
+            "hi" : "अनुरोध खींचना आलोचना"
             }
         },
     
@@ -476,7 +495,8 @@ statLabels = {
             "it" : "Contribuito A",
             "de" : "Beigetragen Zu",
             "pt" : "Contribuiu Para",
-            "id" : "Berkontribusi Ke"
+            "id" : "Berkontribusi Ke",
+            "hi" : "योगदान"
             }
         },
     
@@ -487,7 +507,8 @@ statLabels = {
             "it" : "Contributi Privati",
             "de" : "Private Beiträge",
             "pt" : "Contribuições Privadas",
-            "id" : "Kontribusi Pribadi"
+            "id" : "Kontribusi Pribadi",
+            "hi" : "गुप्त योगदान"
             }
         }
     }
