@@ -770,13 +770,13 @@ currently supported:
 
 | locale code | language |
 | :--- | :--- |
-| de | German |
-| en | English |
-| es | Spanish |
-| fr | French |
 | id | Bahasa Indonesia |
+| en | English |
+| fr | French |
+| de | German |
 | it | Italian |
 | pt | Portuguese |
+| es | Spanish |
 
 If you are interested in contributing a new locale, only the 
 [src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
