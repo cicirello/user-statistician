@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Portuguese (`locale: pt`) via [PR#69](https://github.com/cicirello/user-statistician/pull/69).
   * Bahasa Indonesia (`locale: id`) via [PR#71](https://github.com/cicirello/user-statistician/pull/71).
   * French (`locale: fr`) via [PR#77](https://github.com/cicirello/user-statistician/pull/77).
+  * Spanish (`locale: es`) via [PR#79](https://github.com/cicirello/user-statistician/pull/79).
+  * Russian (`locale: ru`) via [PR#80](https://github.com/cicirello/user-statistician/pull/80).
+  * Hindi (`locale: hi`) via [PR#81](https://github.com/cicirello/user-statistician/pull/81).
+  * Polish (`locale: pl`) via [PR#78](https://github.com/cicirello/user-statistician/pull/78).
+  * Bengali (`locale: bn`) via [PR#92](https://github.com/cicirello/user-statistician/pull/92).
 
 ### Changed
 * Minor refactoring to improve code maintainability
