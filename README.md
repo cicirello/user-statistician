@@ -328,7 +328,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.7.1
+      uses: cicirello/user-statistician@v1.9.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
