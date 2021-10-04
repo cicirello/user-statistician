@@ -771,6 +771,7 @@ currently supported:
 | locale code | language |
 | :--- | :--- |
 | id | Bahasa Indonesia |
+| bn | Bengali |
 | en | English |
 | fr | French |
 | de | German |
