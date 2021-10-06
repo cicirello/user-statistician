@@ -113,11 +113,13 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # ru: JayBee007
 # es: alanverdugo
 # pl: Jibendu007
+# bn: ponickkhan
+# ko: 5d-jh
 # zh: Jibendu007
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl","zh" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "zh", "bn", "ko" }
 
 
 # Dictionary of header rows for categories of statistics
@@ -352,6 +354,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
+  
     "zh" : {
         "general" : {
             "heading" : "一般统计数据和信息",
@@ -373,7 +376,54 @@ categoryLabels = {
             "column-one" : None,
             "column-two" : None
         }
-    }
+    },
+
+    "bn" : {
+        "general" : {
+            "heading" : "সাধারণ পরিসংখ্যান এবং তথ্য",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "সংগ্রহস্থল",
+            "column-one" : "অ-কাঁটা",
+            "column-two" : "সব"
+        },
+        "contributions" : {
+            "heading" : "অবদানসমূহ",
+            "column-one" : "বিগত বছর",
+            "column-two" : "মোট"
+        },
+        "languages" : {
+            "heading" : "প্রকাশ্য ভান্ডারে ভাষা বিতরণ",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+
+    "ko" : {
+        "general" : {
+            "heading" : "통계 및 정보",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "저장소",
+            "column-one" : "직접 만든(Non-Forks)",
+            "column-two" : "모두"
+        },
+        "contributions" : {
+            "heading" : "기여",
+            "column-one" : "지난해",
+            "column-two" : "총"
+        },
+        "languages" : {
+            "heading" : "공개 저장소 사용 언어 분포",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+
 }
 
 # Dictionary of default title templates.
@@ -392,7 +442,9 @@ titleTemplates = {
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}",
     "pl" : "Aktywność {0} na GitHubie",
-    "zh" : "{0} 的 GitHub 活动"
+    "zh" : "{0} 的 GitHub 活动",
+    "bn" : "{0} এর গিটহাব কার্যকলাপ",
+    "ko" : "{0}의 GitHub 활동",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -411,7 +463,9 @@ statLabels = {
             "ru" : "Год начала работы на гитхабе",
             "es" : "Año de ingreso",
             "pl" : "Rok Dołączenia",
-            "zh" : "加入年份"
+            "zh" : "加入年份",
+            "bn" : "যোগদানের বছর",
+            "ko" : "가입 년도"
         }
     },
 
@@ -428,7 +482,9 @@ statLabels = {
             "ru" : "Избранное репо",
             "es" : "Repositorio destacado",
             "pl" : "Polecane repozytorium",
-            "zh" : "精选回购"
+            "zh" : "精选回购",
+            "bn" : "বৈশিষ্ট্যযুক্ত রেপো",
+            "ko" : "추천 저장소"
         }
     },
 
@@ -445,7 +501,9 @@ statLabels = {
             "ru" : "Самое замеченное репо",
             "es" : "Repositorio con más estrellas",
             "pl" : "Repozytoria z największą ilością gwiazdek",
-            "zh" : "最受关注的回购"
+            "zh" : "最受关注的回购",
+            "bn": "সর্বাধিক তারকা প্রাপ্ত রেপো",
+            "ko": "Star를 가장 많이 받은 저장소"
         }
     },
 
@@ -462,7 +520,9 @@ statLabels = {
             "ru" : "Самое клонированное репо",
             "es" : "Repositorio más bifurcado",
             "pl" : "Najczęściej Forkowane Repozytoria",
-            "zh" : "大多数分叉的回购"
+            "zh" : "大多数分叉的回购",
+            "bn" : "সর্বাধিক ফর্কড রেপো",
+            "ko": "Fork가 가장 많이된 저장소"
         }
     },
 
@@ -479,7 +539,9 @@ statLabels = {
             "ru" : "Подписчики",
             "es" : "Seguidores",
             "pl" : "Obserwujący",
-            "zh" : "追随者"
+            "zh" : "追随者",
+            "bn" : "অনুসারী",
+            "ko" : "팔로워"
         }
     },
 
@@ -496,7 +558,9 @@ statLabels = {
             "ru" : "Подписан",
             "es" : "Siguiendo",
             "pl" : "Obserwowani",
-            "zh" : "下列的"
+            "zh" : "下列的",
+            "bn" : "অনুসরণ করছে",
+            "ko" : "팔로잉"
         }
     },
 
@@ -513,7 +577,9 @@ statLabels = {
             "ru" : "Спонсоры",
             "es" : "Patrocinadores",
             "pl" : "Sponsorzy",
-            "zh" : "赞助商"
+            "zh" : "赞助商",
+            "bn" : "পৃষ্ঠপোষক",
+            "ko" : "후원받은"
         }
     },
 
@@ -530,7 +596,9 @@ statLabels = {
             "ru" : "Спонсирует",
             "es" : "Patrocinando",
             "pl" : "Sponsoring",
-            "zh" : "赞助"
+            "zh" : "赞助",
+            "bn" : "পৃষ্ঠপোষকতা",
+            "ko" : "후원하는"
         }
     },
 
@@ -547,7 +615,9 @@ statLabels = {
             "ru" : "Собственные репозитории",
             "es" : "Repositorios propios",
             "pl" : "Posiadane Repozytoria",
-            "zh" : "拥有的存储库"
+            "zh" : "拥有的存储库",
+            "bn" : "ভাণ্ডার মালিকানাধীন",
+            "ko" : "보유한 저장소"
         }
     },
 
@@ -564,7 +634,9 @@ statLabels = {
             "ru" : "Отметили",
             "es" : "Con estrella por",
             "pl" : "Polubione przez",
-            "zh" : "主演"
+            "zh" : "主演",
+            "bn" : "তারকা প্রদান করেছে",
+            "ko" : "받은 Star"
         }
     },
 
@@ -581,7 +653,9 @@ statLabels = {
             "ru" : "Клонирован",
             "es" : "Bifurcado por",
             "pl" : "Sforkowane przez",
-            "zh" : "分叉者"
+            "zh" : "分叉者",
+            "bn" : "ফোর্ক করেছে",
+            "ko" : "Fork된 횟수"
         }
     },
 
@@ -598,7 +672,9 @@ statLabels = {
             "ru" : "Наблюдатели",
             "es" : "Visto por",
             "pl" : "Obserwowane przez",
-            "zh" : "观看者"
+            "zh" : "观看者",
+            "bn" : "দেখেছেন",
+            "ko" : "Watch된 횟수"
         }
     },
 
@@ -615,7 +691,9 @@ statLabels = {
             "ru" : "Шаблоны",
             "es" : "Plantillas",
             "pl" : "Szablony",
-            "zh" : "模板"
+            "zh" : "模板",
+            "bn" : "টেমপ্লেট সমুহ",
+            "ko" : "템플릿"
         }
     },
 
@@ -632,7 +710,9 @@ statLabels = {
             "ru" : "Заархивированный",
             "es" : "Archivado",
             "pl" : "Zarchiwizowane",
-            "zh" : "存档"
+            "zh" : "存档",
+            "bn": "সংরক্ষণাগারভুক্ত",
+            "ko" : "보관 처리된(Archived) 저장소"
         }
     },
 
@@ -649,7 +729,9 @@ statLabels = {
             "ru" : "Коммиты",
             "es" : "Commits",
             "pl" : "Commity",
-            "zh" : "提交"
+            "zh" : "提交",
+            "bn": "কমিট করে",
+            "ko" : "커밋"
         }
     },
 
@@ -666,7 +748,9 @@ statLabels = {
             "ru" : "Проблемы",
             "es" : "Problemas",
             "pl" : "Problemy",
-            "zh" : "问题"
+            "zh" : "问题",
+            "bn": "ইস্যু",
+            "ko" : "이슈"
         }
     },
 
@@ -683,7 +767,9 @@ statLabels = {
             "ru" : "Пулл реквесты",
             "es" : "Pull Requests",
             "pl" : "Pull Requesty",
-            "zh" : "拉取请求"
+            "zh" : "拉取请求",
+            "bn": "অনুরোধগুলি টানুন",
+            "ko" : "풀 리퀘스트"
         }
     },
 
@@ -700,7 +786,9 @@ statLabels = {
             "ru": "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests",
             "pl" : "Recenzje Pull Requestów",
-            "zh" : "拉取请求审查"
+            "zh" : "拉取请求审查",
+            "bn": "অনুরোধ টানার পর্যালোচনাগুলি",
+            "ko" : "리뷰"
         }
     },
 
@@ -717,7 +805,9 @@ statLabels = {
             "ru" : "Участие в",
             "es" : "Contribuido a",
             "pl" : "Kontrybuował Do",
-            "zh" : "拉取请求审查"
+            "zh" : "拉取请求审查",
+            "bn": "অবদান",
+            "ko" : "기여 횟수"
         }
     },
 
@@ -734,7 +824,9 @@ statLabels = {
             "ru" : "Частное участие",
             "es" : "Contribuciones privadas",
             "pl" : "Prywatne Kontrybucje",
-            "zh" : "私人捐款"
+            "zh" : "私人捐款",
+            "bn": "ব্যক্তিগত অবদান",
+            "ko" : "비공개"
         }
     }
 }

@@ -4,7 +4,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-10-01
+## [Unreleased] - 2021-10-06
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Korean (`locale: ko`) via [PR#93](https://github.com/cicirello/user-statistician/pull/93).
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.9.0] - 2021-10-04
 
 ### Added
 * Increased internationalization support with the addition of new locales:
@@ -14,16 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Spanish (`locale: es`) via [PR#79](https://github.com/cicirello/user-statistician/pull/79).
   * Russian (`locale: ru`) via [PR#80](https://github.com/cicirello/user-statistician/pull/80).
   * Hindi (`locale: hi`) via [PR#81](https://github.com/cicirello/user-statistician/pull/81).
-  * Polish (`locale: pl`) via [PR#83](https://github.com/cicirello/user-statistician/pull/83).
+  * Polish (`locale: pl`) via [PR#78](https://github.com/cicirello/user-statistician/pull/78).
+  * Bengali (`locale: bn`) via [PR#92](https://github.com/cicirello/user-statistician/pull/92).
 
 ### Changed
 * Minor refactoring to improve code maintainability
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 
 ## [1.8.1] - 2021-09-02
