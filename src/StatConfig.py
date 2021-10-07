@@ -365,8 +365,8 @@ categoryLabels = {
             "column-two" : "Tüm"
         },
         "contributions" : {
-            "heading" : "katkılar",
-            "column-one" : "geçen sene",
+            "heading" : "Katkılar",
+            "column-one" : "Geçen sene",
             "column-two" : "Total"
         },
         "languages" : {
@@ -480,7 +480,7 @@ statLabels = {
             "ru" : "Подписчики",
             "es" : "Seguidores",
             "pl" : "Obserwujący",
-            "tr" : "takipçiler"
+            "tr" : "Takipçiler"
         }
     },
 
@@ -514,7 +514,7 @@ statLabels = {
             "ru" : "Спонсоры",
             "es" : "Patrocinadores",
             "pl" : "Sponsorzy",
-            "tr" : "sponsorlar"
+            "tr" : "Sponsorlar"
         }
     },
 
@@ -531,7 +531,7 @@ statLabels = {
             "ru" : "Спонсирует",
             "es" : "Patrocinando",
             "pl" : "Sponsoring",
-            "tr" : "sponsorluk"
+            "tr" : "Sponsorluk"
         }
     },
 
@@ -565,7 +565,7 @@ statLabels = {
             "ru" : "Отметили",
             "es" : "Con estrella por",
             "pl" : "Polubione przez",
-            "tr" : "tarafından yıldız"
+            "tr" : "Tarafından yıldız"
         }
     },
 
@@ -582,7 +582,7 @@ statLabels = {
             "ru" : "Клонирован",
             "es" : "Bifurcado por",
             "pl" : "Sforkowane przez",
-            "tr" : "tarafından çatallandı"
+            "tr" : "Tarafından çatallandı"
         }
     },
 
@@ -616,7 +616,7 @@ statLabels = {
             "ru" : "Шаблоны",
             "es" : "Plantillas",
             "pl" : "Szablony",
-            "tr" : "şablonlar"
+            "tr" : "Sablonlar"
         }
     },
 
@@ -633,7 +633,7 @@ statLabels = {
             "ru" : "Заархивированный",
             "es" : "Archivado",
             "pl" : "Zarchiwizowane",
-            "tr" : "arşivlenmiş"
+            "tr" : "Arşivlenmiş"
         }
     },
 
@@ -650,7 +650,7 @@ statLabels = {
             "ru" : "Коммиты",
             "es" : "Commits",
             "pl" : "Commity",
-            "tr" : "taahhütler"
+            "tr" : "Taahhütler"
         }
     },
 
