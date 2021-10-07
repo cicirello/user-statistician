@@ -4,11 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-10-06
+## [Unreleased] - 2021-10-07
 
 ### Added
 * Increased internationalization support with the addition of new locales:
-  * Korean (`locale: ko`) via [PR#93](https://github.com/cicirello/user-statistician/pull/93).
+  * Lithuanian (`locale: lt`) via [PR#98](https://github.com/cicirello/user-statistician/pull/98).
 
 ### Changed
 
@@ -17,12 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+
+## [1.10.0] - 2021-10-06
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Korean (`locale: ko`) via [PR#93](https://github.com/cicirello/user-statistician/pull/93).
+
+### Fixed
 * The total column for the number of repositories (owned by someone else) that the user has
   contributed to, at the present time, cannot be computed exactly due to limitations in the
   GitHub API. The relevant queries seem to exclude older contribTo data. To account for this,
   that value is now listed as a lower bound (e.g., instead of a number like 7, it is listed
   as &geq;7). This is the only stat affected by this.
-
+  
 
 ## [1.9.0] - 2021-10-04
 

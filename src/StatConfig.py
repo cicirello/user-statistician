@@ -116,15 +116,16 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # bn: ponickkhan
 # ko: 5d-jh
 # zh: Jibendu007
+# lt: mantasio
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "zh", "bn", "ko" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "zh", "bn", "ko", "lt" }
 
 
 # Dictionary of header rows for categories of statistics
 categoryLabels = {
-  
+
     "en" : {
         "general" : {
             "heading" : "General Stats and Info",
@@ -147,7 +148,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
-  
+
     "it" : {
         "general" : {
             "heading" : "Statistiche Generali e Informazioni",
@@ -170,7 +171,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
-  
+
     "de" : {
         "general" : {
             "heading" : "Allgemeine Statistiken und Informationen",
@@ -239,7 +240,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
-  
+
     "hi" : {
         "general" : {
             "heading" : "साधारण सांख्यिकी और सूचना",
@@ -262,7 +263,7 @@ categoryLabels = {
             "column-two" : None
             }
     },
-  
+
     "fr" : {
         "general" : {
           "heading" : "Statistiques Générales et Info",
@@ -285,7 +286,7 @@ categoryLabels = {
           "column-two" : None
         }
     },
-  
+
     "ru" : {
         "general" : {
             "heading" : "Общая статистика и информация",
@@ -308,7 +309,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
-  
+
     "es" : {
         "general" : {
             "heading" : "Estadísticas generales e información",
@@ -424,6 +425,29 @@ categoryLabels = {
         }
     },
 
+    "lt" : {
+        "general" : {
+            "heading" : "Bendra statistika ir informacija",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Repozitorijos",
+            "column-one" : "Neklonuotos",
+            "column-two" : "Visos"
+        },
+        "contributions" : {
+            "heading" : "Įnašai",
+            "column-one" : "Praeitais metais",
+            "column-two" : "Viso"
+        },
+        "languages" : {
+            "heading" : "Kalbu pasiskirstymas viešosiose repozitorijose",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+
 }
 
 # Dictionary of default title templates.
@@ -445,6 +469,7 @@ titleTemplates = {
     "zh" : "{0} 的 GitHub 活动",
     "bn" : "{0} এর গিটহাব কার্যকলাপ",
     "ko" : "{0}의 GitHub 활동",
+    "lt" : "{0} aktyvumas GitHub",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -465,7 +490,8 @@ statLabels = {
             "pl" : "Rok Dołączenia",
             "zh" : "加入年份",
             "bn" : "যোগদানের বছর",
-            "ko" : "가입 년도"
+            "ko" : "가입 년도",
+            "lt" : "Prisijungimo metai"
         }
     },
 
@@ -484,7 +510,8 @@ statLabels = {
             "pl" : "Polecane repozytorium",
             "zh" : "精选回购",
             "bn" : "বৈশিষ্ট্যযুক্ত রেপো",
-            "ko" : "추천 저장소"
+            "ko" : "추천 저장소",
+            "lt" : "Siūloma repozitorija"
         }
     },
 
@@ -502,8 +529,9 @@ statLabels = {
             "es" : "Repositorio con más estrellas",
             "pl" : "Repozytoria z największą ilością gwiazdek",
             "zh" : "最受关注的回购",
-            "bn": "সর্বাধিক তারকা প্রাপ্ত রেপো",
-            "ko": "Star를 가장 많이 받은 저장소"
+            "bn" : "সর্বাধিক তারকা প্রাপ্ত রেপো",
+            "ko" : "Star를 가장 많이 받은 저장소",
+            "lt" : "Labiausiai pažymėta repozitorija"
         }
     },
 
@@ -522,7 +550,8 @@ statLabels = {
             "pl" : "Najczęściej Forkowane Repozytoria",
             "zh" : "大多数分叉的回购",
             "bn" : "সর্বাধিক ফর্কড রেপো",
-            "ko": "Fork가 가장 많이된 저장소"
+            "ko" : "Fork가 가장 많이된 저장소",
+            "lt" : "Labiausiai klonuota repozitorija"
         }
     },
 
@@ -541,7 +570,8 @@ statLabels = {
             "pl" : "Obserwujący",
             "zh" : "追随者",
             "bn" : "অনুসারী",
-            "ko" : "팔로워"
+            "ko" : "팔로워",
+            "lt" : "Sekėjai"
         }
     },
 
@@ -560,7 +590,8 @@ statLabels = {
             "pl" : "Obserwowani",
             "zh" : "下列的",
             "bn" : "অনুসরণ করছে",
-            "ko" : "팔로잉"
+            "ko" : "팔로잉",
+            "lt" : "Sekama"
         }
     },
 
@@ -579,7 +610,8 @@ statLabels = {
             "pl" : "Sponsorzy",
             "zh" : "赞助商",
             "bn" : "পৃষ্ঠপোষক",
-            "ko" : "후원받은"
+            "ko" : "후원받은",
+            "lt" : "Remėjai"
         }
     },
 
@@ -598,7 +630,8 @@ statLabels = {
             "pl" : "Sponsoring",
             "zh" : "赞助",
             "bn" : "পৃষ্ঠপোষকতা",
-            "ko" : "후원하는"
+            "ko" : "후원하는",
+            "lt" : "Remiama"
         }
     },
 
@@ -617,7 +650,8 @@ statLabels = {
             "pl" : "Posiadane Repozytoria",
             "zh" : "拥有的存储库",
             "bn" : "ভাণ্ডার মালিকানাধীন",
-            "ko" : "보유한 저장소"
+            "ko" : "보유한 저장소",
+            "lt" : "Priklausančios repozitorijos"
         }
     },
 
@@ -636,7 +670,8 @@ statLabels = {
             "pl" : "Polubione przez",
             "zh" : "主演",
             "bn" : "তারকা প্রদান করেছে",
-            "ko" : "받은 Star"
+            "ko" : "받은 Star",
+            "lt" : "Pažymėta"
         }
     },
 
@@ -655,7 +690,8 @@ statLabels = {
             "pl" : "Sforkowane przez",
             "zh" : "分叉者",
             "bn" : "ফোর্ক করেছে",
-            "ko" : "Fork된 횟수"
+            "ko" : "Fork된 횟수",
+            "lt" : "Klonuota"
         }
     },
 
@@ -674,7 +710,8 @@ statLabels = {
             "pl" : "Obserwowane przez",
             "zh" : "观看者",
             "bn" : "দেখেছেন",
-            "ko" : "Watch된 횟수"
+            "ko" : "Watch된 횟수",
+            "lt" : "Stebima"
         }
     },
 
@@ -693,7 +730,8 @@ statLabels = {
             "pl" : "Szablony",
             "zh" : "模板",
             "bn" : "টেমপ্লেট সমুহ",
-            "ko" : "템플릿"
+            "ko" : "템플릿",
+            "lt" : "Šablonai"
         }
     },
 
@@ -711,8 +749,9 @@ statLabels = {
             "es" : "Archivado",
             "pl" : "Zarchiwizowane",
             "zh" : "存档",
-            "bn": "সংরক্ষণাগারভুক্ত",
-            "ko" : "보관 처리된(Archived) 저장소"
+            "bn" : "সংরক্ষণাগারভুক্ত",
+            "ko" : "보관 처리된(Archived) 저장소",
+            "lt" : "Archyvuota"
         }
     },
 
@@ -730,8 +769,9 @@ statLabels = {
             "es" : "Commits",
             "pl" : "Commity",
             "zh" : "提交",
-            "bn": "কমিট করে",
-            "ko" : "커밋"
+            "bn" : "কমিট করে",
+            "ko" : "커밋",
+            "lt" : "Commits"
         }
     },
 
@@ -749,8 +789,9 @@ statLabels = {
             "es" : "Problemas",
             "pl" : "Problemy",
             "zh" : "问题",
-            "bn": "ইস্যু",
-            "ko" : "이슈"
+            "bn" : "ইস্যু",
+            "ko" : "이슈",
+            "lt" : "Problemos"
         }
     },
 
@@ -768,8 +809,9 @@ statLabels = {
             "es" : "Pull Requests",
             "pl" : "Pull Requesty",
             "zh" : "拉取请求",
-            "bn": "অনুরোধগুলি টানুন",
-            "ko" : "풀 리퀘스트"
+            "bn" : "অনুরোধগুলি টানুন",
+            "ko" : "풀 리퀘스트",
+            "lt" : "Pull Prašymai"
         }
     },
 
@@ -783,12 +825,13 @@ statLabels = {
             "id" : "Ulasan Pull Request",
             "hi" : "अनुरोध समीक्षा",
             "fr" : "Révision de Pull Request",
-            "ru": "Ревьювы пулл реквестов",
+            "ru" : "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests",
             "pl" : "Recenzje Pull Requestów",
             "zh" : "拉取请求审查",
-            "bn": "অনুরোধ টানার পর্যালোচনাগুলি",
-            "ko" : "리뷰"
+            "bn" : "অনুরোধ টানার পর্যালোচনাগুলি",
+            "ko" : "리뷰",
+            "lt" : "Pull prašymų peržiūros"
         }
     },
 
@@ -807,8 +850,9 @@ statLabels = {
             "es" : "Contribuido a",
             "pl" : "Kontrybuował Do",
             "zh" : "拉取请求审查",
-            "bn": "অবদান",
-            "ko" : "기여 횟수"
+            "bn" : "অবদান",
+            "ko" : "기여 횟수",
+            "lt" : "Prisidėjo prie"
         }
     },
 
@@ -826,8 +870,9 @@ statLabels = {
             "es" : "Contribuciones privadas",
             "pl" : "Prywatne Kontrybucje",
             "zh" : "私人捐款",
-            "bn": "ব্যক্তিগত অবদান",
-            "ko" : "비공개"
+            "bn" : "ব্যক্তিগত অবদান",
+            "ko" : "비공개",
+            "lt" : "Privatūs įnašai"
         }
     }
 }
