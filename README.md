@@ -778,6 +778,7 @@ currently supported:
 | hi | Hindi |
 | it | Italian |
 | ko | Korean |
+| lt | Lithuanian |
 | pl | Polish |
 | pt | Portuguese |
 | ru | Russian |
