@@ -113,13 +113,14 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # ru: JayBee007
 # es: alanverdugo
 # pl: Jibendu007
+# ja: a-ayush19
 # bn: ponickkhan
 # ko: 5d-jh
 # lt: mantasio
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "bn", "ko", "lt" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "ja", "bn", "ko", "lt" }
 
 
 # Dictionary of header rows for categories of statistics
@@ -355,6 +356,29 @@ categoryLabels = {
         }
     },
 
+    "ja" : {
+        "general" : {
+            "heading" : "一般的な統計と情報",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "リポジトリ",
+            "column-one" : "非フォーク",
+            "column-two" : "全て"
+        },
+        "contributions" : {
+            "heading" : "貢献",
+            "column-one" : "昨年",
+            "column-two" : "合計"
+        },
+        "languages" : {
+            "heading" : "公開リポジトリでの言語配布",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+
     "bn" : {
         "general" : {
             "heading" : "সাধারণ পরিসংখ্যান এবং তথ্য",
@@ -423,6 +447,7 @@ categoryLabels = {
             "column-two" : None
         }
     },
+  
 }
 
 # Dictionary of default title templates.
@@ -441,6 +466,7 @@ titleTemplates = {
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}",
     "pl" : "Aktywność {0} na GitHubie",
+    "ja" : "{0}のgithubアクティビティ",
     "bn" : "{0} এর গিটহাব কার্যকলাপ",
     "ko" : "{0}의 GitHub 활동",
     "lt" : "{0} aktyvumas GitHub",
@@ -462,6 +488,7 @@ statLabels = {
             "ru" : "Год начала работы на гитхабе",
             "es" : "Año de ingreso",
             "pl" : "Rok Dołączenia",
+            "ja" : "入社年",
             "bn" : "যোগদানের বছর",
             "ko" : "가입 년도",
             "lt" : "Prisijungimo metai"
@@ -481,6 +508,7 @@ statLabels = {
             "ru" : "Избранное репо",
             "es" : "Repositorio destacado",
             "pl" : "Polecane repozytorium",
+            "ja" : "注目のリポジトリ",
             "bn" : "বৈশিষ্ট্যযুক্ত রেপো",
             "ko" : "추천 저장소",
             "lt" : "Siūloma repozitorija"
@@ -500,6 +528,7 @@ statLabels = {
             "ru" : "Самое замеченное репо",
             "es" : "Repositorio con más estrellas",
             "pl" : "Repozytoria z największą ilością gwiazdek",
+            "ja" : "最もスター付きのリポジトリ",
             "bn" : "সর্বাধিক তারকা প্রাপ্ত রেপো",
             "ko" : "Star를 가장 많이 받은 저장소",
             "lt" : "Labiausiai pažymėta repozitorija"
@@ -519,6 +548,7 @@ statLabels = {
             "ru" : "Самое клонированное репо",
             "es" : "Repositorio más bifurcado",
             "pl" : "Najczęściej Forkowane Repozytoria",
+            "ja" : "最もフォークされたリポジトリ",
             "bn" : "সর্বাধিক ফর্কড রেপো",
             "ko" : "Fork가 가장 많이된 저장소",
             "lt" : "Labiausiai klonuota repozitorija"
@@ -538,6 +568,7 @@ statLabels = {
             "ru" : "Подписчики",
             "es" : "Seguidores",
             "pl" : "Obserwujący",
+            "ja" : "フォロワー",
             "bn" : "অনুসারী",
             "ko" : "팔로워",
             "lt" : "Sekėjai"
@@ -557,6 +588,7 @@ statLabels = {
             "ru" : "Подписан",
             "es" : "Siguiendo",
             "pl" : "Obserwowani",
+            "ja" : "続く",
             "bn" : "অনুসরণ করছে",
             "ko" : "팔로잉",
             "lt" : "Sekama"
@@ -576,6 +608,7 @@ statLabels = {
             "ru" : "Спонсоры",
             "es" : "Patrocinadores",
             "pl" : "Sponsorzy",
+            "ja" : "スポンサー",
             "bn" : "পৃষ্ঠপোষক",
             "ko" : "후원받은",
             "lt" : "Remėjai"
@@ -595,6 +628,7 @@ statLabels = {
             "ru" : "Спонсирует",
             "es" : "Patrocinando",
             "pl" : "Sponsoring",
+            "ja" : "主催",
             "bn" : "পৃষ্ঠপোষকতা",
             "ko" : "후원하는",
             "lt" : "Remiama"
@@ -614,6 +648,7 @@ statLabels = {
             "ru" : "Собственные репозитории",
             "es" : "Repositorios propios",
             "pl" : "Posiadane Repozytoria",
+            "ja" : "所有リポジトリ",
             "bn" : "ভাণ্ডার মালিকানাধীন",
             "ko" : "보유한 저장소",
             "lt" : "Priklausančios repozitorijos"
@@ -633,6 +668,7 @@ statLabels = {
             "ru" : "Отметили",
             "es" : "Con estrella por",
             "pl" : "Polubione przez",
+            "ja" : "主演",
             "bn" : "তারকা প্রদান করেছে",
             "ko" : "받은 Star",
             "lt" : "Pažymėta"
@@ -652,6 +688,7 @@ statLabels = {
             "ru" : "Клонирован",
             "es" : "Bifurcado por",
             "pl" : "Sforkowane przez",
+            "ja" : "によるフォーク",
             "bn" : "ফোর্ক করেছে",
             "ko" : "Fork된 횟수",
             "lt" : "Klonuota"
@@ -671,6 +708,7 @@ statLabels = {
             "ru" : "Наблюдатели",
             "es" : "Visto por",
             "pl" : "Obserwowane przez",
+            "ja" : "によって見られた",
             "bn" : "দেখেছেন",
             "ko" : "Watch된 횟수",
             "lt" : "Stebima"
@@ -690,6 +728,7 @@ statLabels = {
             "ru" : "Шаблоны",
             "es" : "Plantillas",
             "pl" : "Szablony",
+            "ja" : "レンプレート",
             "bn" : "টেমপ্লেট সমুহ",
             "ko" : "템플릿",
             "lt" : "Šablonai"
@@ -709,6 +748,7 @@ statLabels = {
             "ru" : "Заархивированный",
             "es" : "Archivado",
             "pl" : "Zarchiwizowane",
+            "ja" : "記録",
             "bn" : "সংরক্ষণাগারভুক্ত",
             "ko" : "보관 처리된(Archived) 저장소",
             "lt" : "Archyvuota"
@@ -728,6 +768,7 @@ statLabels = {
             "ru" : "Коммиты",
             "es" : "Commits",
             "pl" : "Commity",
+            "ja" : "専念",
             "bn" : "কমিট করে",
             "ko" : "커밋",
             "lt" : "Commits"
@@ -747,6 +788,7 @@ statLabels = {
             "ru" : "Проблемы",
             "es" : "Problemas",
             "pl" : "Problemy",
+            "ja" : "問題",
             "bn" : "ইস্যু",
             "ko" : "이슈",
             "lt" : "Problemos"
@@ -766,6 +808,7 @@ statLabels = {
             "ru" : "Пулл реквесты",
             "es" : "Pull Requests",
             "pl" : "Pull Requesty",
+            "ja" : "プルリクエスト",
             "bn" : "অনুরোধগুলি টানুন",
             "ko" : "풀 리퀘스트",
             "lt" : "Pull Prašymai"
@@ -785,6 +828,7 @@ statLabels = {
             "ru" : "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests",
             "pl" : "Recenzje Pull Requestów",
+            "ja" : "プルリクエストレビュー",
             "bn" : "অনুরোধ টানার পর্যালোচনাগুলি",
             "ko" : "리뷰",
             "lt" : "Pull prašymų peržiūros"
@@ -805,6 +849,7 @@ statLabels = {
             "ru" : "Участие в",
             "es" : "Contribuido a",
             "pl" : "Kontrybuował Do",
+            "ja" : "に貢献しました",
             "bn" : "অবদান",
             "ko" : "기여 횟수",
             "lt" : "Prisidėjo prie"
@@ -824,6 +869,7 @@ statLabels = {
             "ru" : "Частное участие",
             "es" : "Contribuciones privadas",
             "pl" : "Prywatne Kontrybucje",
+            "ja" : "個人的な貢献",
             "bn" : "ব্যক্তিগত অবদান",
             "ko" : "비공개",
             "lt" : "Privatūs įnašai"
