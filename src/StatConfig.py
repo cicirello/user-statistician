@@ -390,7 +390,7 @@ titleTemplates = {
     # so it literally says "Activity on Github"
     "ru" : "Активность на гитхабе",
     "es" : "Actividad en GitHub de {0}",
-    "pl" : "Aktywność {0} na GitHub'ie"
+    "pl" : "Aktywność {0} na GitHub'ie",
     "ja" : "{0}のgithubアクティビティ"
 }
 
@@ -409,7 +409,7 @@ statLabels = {
             "fr" : "Année d'adhésion",
             "ru" : "Год начала работы на гитхабе",
             "es" : "Año de ingreso",
-            "pl" : "Rok Dołączenia"
+            "pl" : "Rok Dołączenia",
             "ja" : "入社年"
         }
     },
@@ -426,7 +426,7 @@ statLabels = {
             "fr" : "Dépôt en vedette",
             "ru" : "Избранное репо",
             "es" : "Repositorio destacado",
-            "pl" : "Polecane repozytorium"
+            "pl" : "Polecane repozytorium",
             "ja" : "注目のリポジトリ"
         }
     },
@@ -443,7 +443,7 @@ statLabels = {
             "fr" : "Dépôt le plus étoilé",
             "ru" : "Самое замеченное репо",
             "es" : "Repositorio con más estrellas",
-            "pl" : "Repozytoria z największą ilością gwiazdek"
+            "pl" : "Repozytoria z największą ilością gwiazdek",
             "ja" : "最もスター付きのリポジトリ"
         }
     },
@@ -460,7 +460,7 @@ statLabels = {
             "fr" : "Dépôt le plus cloné",
             "ru" : "Самое клонированное репо",
             "es" : "Repositorio más bifurcado",
-            "pl" : "Najczęściej Forkowane Repozytoria"
+            "pl" : "Najczęściej Forkowane Repozytoria",
             "ja" : "最もフォークされたリポジトリ"
         }
     },
@@ -477,7 +477,7 @@ statLabels = {
             "fr" : "Abonnés",
             "ru" : "Подписчики",
             "es" : "Seguidores",
-            "pl" : "Obserwujący"
+            "pl" : "Obserwujący",
             "ja" : "フォロワー"
         }
     },
@@ -494,7 +494,7 @@ statLabels = {
             "fr" : "Abonnements",
             "ru" : "Подписан",
             "es" : "Siguiendo",
-            "pl" : "Obserwowani"
+            "pl" : "Obserwowani",
             "ja" : "続く"
         }
     },
@@ -511,7 +511,7 @@ statLabels = {
             "fr" : "Sponsors",
             "ru" : "Спонсоры",
             "es" : "Patrocinadores",
-            "pl" : "Sponsorzy"
+            "pl" : "Sponsorzy",
             "ja" : "スポンサー"
         }
     },
@@ -528,7 +528,7 @@ statLabels = {
             "fr" : "Sponsorise",
             "ru" : "Спонсирует",
             "es" : "Patrocinando",
-            "pl" : "Sponsoring"
+            "pl" : "Sponsoring",
             "ja" : "主催"
         }
     },
@@ -545,7 +545,7 @@ statLabels = {
             "fr" : "Dépôts possédés",
             "ru" : "Собственные репозитории",
             "es" : "Repositorios propios",
-            "pl" : "Posiadane Repozytoria"
+            "pl" : "Posiadane Repozytoria",
             "ja" : "所有リポジトリ"
         }
     },
@@ -562,7 +562,7 @@ statLabels = {
             "fr" : "Étoilé par",
             "ru" : "Отметили",
             "es" : "Con estrella por",
-            "pl" : "Polubione przez"
+            "pl" : "Polubione przez",
             "ja" : "主演"
         }
     },
@@ -579,7 +579,7 @@ statLabels = {
             "fr" : "Cloné par",
             "ru" : "Клонирован",
             "es" : "Bifurcado por",
-            "pl" : "Sforkowane przez"
+            "pl" : "Sforkowane przez",
             "ja" : "によるフォーク"
         }
     },
@@ -596,7 +596,7 @@ statLabels = {
             "fr" : "Regardé par",
             "ru" : "Наблюдатели",
             "es" : "Visto por",
-            "pl" : "Obserwowane przez"
+            "pl" : "Obserwowane przez",
             "ja" : "によって見られた"
         }
     },
@@ -613,7 +613,7 @@ statLabels = {
             "fr" : "Modèles",
             "ru" : "Шаблоны",
             "es" : "Plantillas",
-            "pl" : "Szablony"
+            "pl" : "Szablony",
             "ja" : "レンプレート"
         }
     },
@@ -630,7 +630,7 @@ statLabels = {
             "fr" : "Archivé",
             "ru" : "Заархивированный",
             "es" : "Archivado",
-            "pl" : "Zarchiwizowane"
+            "pl" : "Zarchiwizowane",
             "ja" : "記録"
         }
     },
@@ -647,7 +647,7 @@ statLabels = {
             "fr" : "Commits",
             "ru" : "Коммиты",
             "es" : "Commits",
-            "pl" : "Commity"
+            "pl" : "Commity",
             "ja" : "専念"
         }
     },
@@ -664,7 +664,7 @@ statLabels = {
             "fr" : "Issues",
             "ru" : "Проблемы",
             "es" : "Problemas",
-            "pl" : "Problemy"
+            "pl" : "Problemy",
             "ja" : "問題"
         }
     },
@@ -681,7 +681,7 @@ statLabels = {
             "fr" : "Pull Requests",
             "ru" : "Пулл реквесты",
             "es" : "Pull Requests",
-            "pl" : "Pull Requesty"
+            "pl" : "Pull Requesty",
             "ja" : "プルリクエスト"
         }
     },
@@ -698,7 +698,7 @@ statLabels = {
             "fr" : "Révision de Pull Request",
             "ru": "Ревьювы пулл реквестов",
             "es" : "Revisiones de Pull Requests",
-            "pl" : "Recenzje Pull Requestów"
+            "pl" : "Recenzje Pull Requestów",
             "ja" : "プルリクエストレビュー"
         }
     },
@@ -715,7 +715,7 @@ statLabels = {
             "fr" : "Contribué à",
             "ru" : "Участие в",
             "es" : "Contribuido a",
-            "pl" : "Kontrybuował Do"
+            "pl" : "Kontrybuował Do",
             "ja" : "に貢献しました"
         }
     },
@@ -732,7 +732,7 @@ statLabels = {
             "fr" : "Contributions privées",
             "ru" : "Частное участие",
             "es" : "Contribuciones privadas",
-            "pl" : "Prywatne Kontrybucje"
+            "pl" : "Prywatne Kontrybucje",
             "ja" : "個人的な貢献"
         }
     }
