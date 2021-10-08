@@ -784,6 +784,7 @@ currently supported:
 | pt | Portuguese |
 | ru | Russian |
 | es | Spanish |
+| tr | Turkish |
 
 If you are interested in contributing a new locale, only the 
 [src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
