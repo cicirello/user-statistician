@@ -39,6 +39,7 @@ import copy
 
 # Set to True to cause tests to generate a sample SVG, or False not to.
 outputSampleSVG = False
+localeCode = "en"
 
 executedQueryResultsOriginal = [
     {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
@@ -295,7 +296,7 @@ class TestSomething(unittest.TestCase) :
         svgGen = StatsImageGenerator(
             stats,
             copy.deepcopy(colorMapping["dark"]),
-            "en",
+            localeCode,
             6,
             18,
             categories,
