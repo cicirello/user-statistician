@@ -4,7 +4,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-10-01
+## [Unreleased] - 2021-10-07
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Lithuanian (`locale: lt`) via [PR#98](https://github.com/cicirello/user-statistician/pull/98).
+  * Japanese (`locale: ja`) via [PR#89](https://github.com/cicirello/user-statistician/pull/89).
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.10.0] - 2021-10-06
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Korean (`locale: ko`) via [PR#93](https://github.com/cicirello/user-statistician/pull/93).
+
+### Fixed
+* The total column for the number of repositories (owned by someone else) that the user has
+  contributed to, at the present time, cannot be computed exactly due to limitations in the
+  GitHub API. The relevant queries seem to exclude older contribTo data. To account for this,
+  that value is now listed as a lower bound (e.g., instead of a number like 7, it is listed
+  as &geq;7). This is the only stat affected by this.
+  
+
+## [1.9.0] - 2021-10-04
 
 ### Added
 * Increased internationalization support with the addition of new locales:
@@ -14,16 +44,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * Spanish (`locale: es`) via [PR#79](https://github.com/cicirello/user-statistician/pull/79).
   * Russian (`locale: ru`) via [PR#80](https://github.com/cicirello/user-statistician/pull/80).
   * Hindi (`locale: hi`) via [PR#81](https://github.com/cicirello/user-statistician/pull/81).
-  * Polish (`locale: pl`) via [PR#83](https://github.com/cicirello/user-statistician/pull/83).
+  * Polish (`locale: pl`) via [PR#78](https://github.com/cicirello/user-statistician/pull/78).
+  * Bengali (`locale: bn`) via [PR#92](https://github.com/cicirello/user-statistician/pull/92).
 
 ### Changed
 * Minor refactoring to improve code maintainability
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 
 ## [1.8.1] - 2021-09-02

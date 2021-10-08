@@ -359,6 +359,8 @@ class StatsImageGenerator :
                 label = statLabels[k]["label"][self._locale]
                 data1 = str(self.formatCount(data[k][0]))
                 data2 = str(self.formatCount(data[k][1])) if len(data[k]) > 1 else ""
+                if "totalIsLowerBound" in statLabels[k] and statLabels[k]["totalIsLowerBound"] :
+                    data2 = "≥" + data2
                 self._rows.append(template.format(
                     str(offset),
                     statLabels[k]["icon"].format(self._colors["icons"]),
