@@ -7,7 +7,7 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 ## Hacktoberfest Participants and Other Potential Contributors
 
 We are currently interested in increasing internationalization of this project. It currently supports generating
-the SVG in English, Italian, and German. There are open issues for a few other languages, which you can work on if
+the SVG in [15 languages](#locale). There are open issues for a few other languages, which you can work on if
 you would like to translate the various labels. You may also work on translations to other languages not currently
 included among open issues. In such a case, please start by submitting an issue (similar to the existing ones) so that
 we are aware of interest in a particular language.
