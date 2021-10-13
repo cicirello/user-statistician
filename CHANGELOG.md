@@ -4,13 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-10-07
+## [Unreleased] - 2021-10-13
 
 ### Added
-* Increased internationalization support with the addition of new locales:
-  * Lithuanian (`locale: lt`) via [PR#98](https://github.com/cicirello/user-statistician/pull/98).
-  * Japanese (`locale: ja`) via [PR#89](https://github.com/cicirello/user-statistician/pull/89).
-  * Turkish (`locale: tr`) via [PR#90](https://github.com/cicirello/user-statistician/pull/90).
 
 ### Changed
 
@@ -20,6 +16,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+
+## [1.11.0] - 2021-10-13
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Lithuanian (`locale: lt`) via [PR#98](https://github.com/cicirello/user-statistician/pull/98).
+  * Japanese (`locale: ja`) via [PR#89](https://github.com/cicirello/user-statistician/pull/89).
+  * Turkish (`locale: tr`) via [PR#90](https://github.com/cicirello/user-statistician/pull/90).
+  
 
 ## [1.10.0] - 2021-10-06
 
