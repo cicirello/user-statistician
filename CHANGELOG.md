@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 * Increased internationalization support with the addition of new locales:
   * Lithuanian (`locale: lt`) via [PR#98](https://github.com/cicirello/user-statistician/pull/98).
+  * Japanese (`locale: ja`) via [PR#89](https://github.com/cicirello/user-statistician/pull/89).
+  * Turkish (`locale: tr`) via [PR#90](https://github.com/cicirello/user-statistician/pull/90).
 
 ### Changed
 
