@@ -9,6 +9,7 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician)
 [![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fuser-statistician.json)](https://github.com/search?q=cicirello+user-statistician+path%3A.github%2Fworkflows+language%3AYAML&type=Code)
 [![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors)
+
 [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
 [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml)
 [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml)
