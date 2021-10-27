@@ -4,18 +4,12 @@
 
 Check out all of our GitHub Actions: https://actions.cicirello.org/
 
-## Hacktoberfest Participants and Other Potential Contributors
-
-We are currently interested in increasing internationalization of this project. It currently supports generating
-the SVG in [15 languages](#locale). There are open issues for a few other languages, which you can work on if
-you would like to translate the various labels. You may also work on translations to other languages not currently
-included among open issues. In such a case, please start by submitting an issue (similar to the existing ones) so that
-we are aware of interest in a particular language.
-
 ## About
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician)
 [![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fuser-statistician.json)](https://github.com/search?q=cicirello+user-statistician+path%3A.github%2Fworkflows+language%3AYAML&type=Code)
+[![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors)
+
 [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
 [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml)
 [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml)
@@ -23,7 +17,6 @@ we are aware of interest in a particular language.
 [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician)
 
 [![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-[![Hacktoberfest](https://img.shields.io/github/issues/cicirello/user-statistician/Hacktoberfest)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22Hacktoberfest%22)
 [![GitHub open issues](https://img.shields.io/github/issues/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aclosed)
 
@@ -55,6 +48,7 @@ GitHub Action include the following:
 * Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
 * Highly customizable (color themes, custom colors, section ordering, custom title).
+* [International](#locale) with option to generate SVG in over 15 [languages](#locale).
 * Runs entirely here on GitHub.
 * Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
