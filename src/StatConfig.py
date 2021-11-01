@@ -118,10 +118,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # bn: ponickkhan
 # ko: 5d-jh
 # lt: mantasio
+# uk: therrance
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt" }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", }
 
 
 # Dictionary of header rows for categories of statistics
@@ -471,6 +472,29 @@ categoryLabels = {
             "column-two" : None
         }
     },
+    
+    "uk": {
+        "general": {
+            "heading": "Загальна статистика та інформація",
+            "column-one": None,
+            "column-two": None
+        },
+        "repositories": {
+            "heading": "Репозиторіїв",
+            "column-one": "Без форків",
+            "column-two": "Всі"
+        },
+        "contributions": {
+            "heading": "Внески",
+            "column-one": "За останній рік",
+            "column-two": "Всього"
+        },
+        "languages": {
+            "heading": "Використання мов у загальнодоступних репозиторіях",
+            "column-one": None,
+            "column-two": None
+        }
+    },
   
 }
 
@@ -495,6 +519,7 @@ titleTemplates = {
     "bn" : "{0} এর গিটহাব কার্যকলাপ",
     "ko" : "{0}의 GitHub 활동",
     "lt" : "{0} aktyvumas GitHub",
+    "uk": "{0} активностей на GitHub",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -517,7 +542,8 @@ statLabels = {
             "ja" : "入社年",
             "bn" : "যোগদানের বছর",
             "ko" : "가입 년도",
-            "lt" : "Prisijungimo metai"
+            "lt" : "Prisijungimo metai",
+            "uk": "Рік приєднання",
         }
     },
 
@@ -538,7 +564,8 @@ statLabels = {
             "ja" : "注目のリポジトリ",
             "bn" : "বৈশিষ্ট্যযুক্ত রেপো",
             "ko" : "추천 저장소",
-            "lt" : "Siūloma repozitorija"
+            "lt" : "Siūloma repozitorija",
+            "uk": "Вибрані ререпозиторії",
         }
     },
 
@@ -559,7 +586,8 @@ statLabels = {
             "ja" : "最もスター付きのリポジトリ",
             "bn" : "সর্বাধিক তারকা প্রাপ্ত রেপো",
             "ko" : "Star를 가장 많이 받은 저장소",
-            "lt" : "Labiausiai pažymėta repozitorija"
+            "lt" : "Labiausiai pažymėta repozitorija",
+            "uk": "Найпопулярніший репозиторій",
         }
     },
 
@@ -580,7 +608,8 @@ statLabels = {
             "ja" : "最もフォークされたリポジトリ",
             "bn" : "সর্বাধিক ফর্কড রেপো",
             "ko" : "Fork가 가장 많이된 저장소",
-            "lt" : "Labiausiai klonuota repozitorija"
+            "lt" : "Labiausiai klonuota repozitorija",
+            "uk": "Найбільш клонований репозиторій",
         }
     },
 
@@ -601,7 +630,8 @@ statLabels = {
             "ja" : "フォロワー",
             "bn" : "অনুসারী",
             "ko" : "팔로워",
-            "lt" : "Sekėjai"
+            "lt" : "Sekėjai",
+            "uk": "Підписники",
         }
     },
 
@@ -622,7 +652,8 @@ statLabels = {
             "ja" : "続く",
             "bn" : "অনুসরণ করছে",
             "ko" : "팔로잉",
-            "lt" : "Sekama"
+            "lt" : "Sekama",
+            "uk": "Підписки",
         }
     },
 
@@ -643,7 +674,8 @@ statLabels = {
             "ja" : "スポンサー",
             "bn" : "পৃষ্ঠপোষক",
             "ko" : "후원받은",
-            "lt" : "Remėjai"
+            "lt" : "Remėjai",
+            "uk": "Спонсори",
         }
     },
 
@@ -664,7 +696,8 @@ statLabels = {
             "ja" : "主催",
             "bn" : "পৃষ্ঠপোষকতা",
             "ko" : "후원하는",
-            "lt" : "Remiama"
+            "lt" : "Remiama",
+            "uk": "Спонсорство",
         }
     },
 
@@ -685,7 +718,8 @@ statLabels = {
             "ja" : "所有リポジトリ",
             "bn" : "ভাণ্ডার মালিকানাধীন",
             "ko" : "보유한 저장소",
-            "lt" : "Priklausančios repozitorijos"
+            "lt" : "Priklausančios repozitorijos",
+            "uk": "Власні репозиторії",
         }
     },
 
@@ -706,7 +740,8 @@ statLabels = {
             "ja" : "主演",
             "bn" : "তারকা প্রদান করেছে",
             "ko" : "받은 Star",
-            "lt" : "Pažymėta"
+            "lt" : "Pažymėta",
+            "uk": "Відмітили",
         }
     },
 
@@ -727,7 +762,8 @@ statLabels = {
             "ja" : "によるフォーク",
             "bn" : "ফোর্ক করেছে",
             "ko" : "Fork된 횟수",
-            "lt" : "Klonuota"
+            "lt" : "Klonuota",
+            "uk": "Клонували",
         }
     },
 
@@ -748,7 +784,8 @@ statLabels = {
             "ja" : "によって見られた",
             "bn" : "দেখেছেন",
             "ko" : "Watch된 횟수",
-            "lt" : "Stebima"
+            "lt" : "Stebima",
+            "uk": "Підписники",
         }
     },
 
@@ -769,7 +806,8 @@ statLabels = {
             "ja" : "レンプレート",
             "bn" : "টেমপ্লেট সমুহ",
             "ko" : "템플릿",
-            "lt" : "Šablonai"
+            "lt" : "Šablonai",
+            "uk": "Шаблони",
         }
     },
 
@@ -790,7 +828,8 @@ statLabels = {
             "ja" : "記録",
             "bn" : "সংরক্ষণাগারভুক্ত",
             "ko" : "보관 처리된(Archived) 저장소",
-            "lt" : "Archyvuota"
+            "lt" : "Archyvuota",
+            "uk": "Заархівовано",
         }
     },
 
@@ -811,7 +850,8 @@ statLabels = {
             "ja" : "専念",
             "bn" : "কমিট করে",
             "ko" : "커밋",
-            "lt" : "Commits"
+            "lt" : "Commits",
+            "uk": "Комміти",
         }
     },
 
@@ -832,7 +872,8 @@ statLabels = {
             "ja" : "問題",
             "bn" : "ইস্যু",
             "ko" : "이슈",
-            "lt" : "Problemos"
+            "lt" : "Problemos",
+            "uk": "Проблеми",
         }
     },
 
@@ -853,7 +894,8 @@ statLabels = {
             "ja" : "プルリクエスト",
             "bn" : "অনুরোধগুলি টানুন",
             "ko" : "풀 리퀘스트",
-            "lt" : "Pull Prašymai"
+            "lt" : "Pull Prašymai",
+            "uk": "Пулл реквести",
         }
     },
 
@@ -874,7 +916,8 @@ statLabels = {
             "ja" : "プルリクエストレビュー",
             "bn" : "অনুরোধ টানার পর্যালোচনাগুলি",
             "ko" : "리뷰",
-            "lt" : "Pull prašymų peržiūros"
+            "lt" : "Pull prašymų peržiūros",
+            "uk": "Огляди пулл реквестів",
         }
     },
 
@@ -896,7 +939,8 @@ statLabels = {
             "ja" : "に貢献しました",
             "bn" : "অবদান",
             "ko" : "기여 횟수",
-            "lt" : "Prisidėjo prie"
+            "lt" : "Prisidėjo prie",
+            "uk": "Участь в",
         }
     },
 
@@ -917,7 +961,8 @@ statLabels = {
             "ja" : "個人的な貢献",
             "bn" : "ব্যক্তিগত অবদান",
             "ko" : "비공개",
-            "lt" : "Privatūs įnašai"
+            "lt" : "Privatūs įnašai",
+            "uk": "Приватна участь",
         }
     }
 }
