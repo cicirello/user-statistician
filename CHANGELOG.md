@@ -4,9 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-10-13
+## [Unreleased] - 2021-11-01
 
 ### Added
+* Increased internationalization support with the addition of new locales:
+  * Ukrainian (`locale: uk`) via [PR#102](https://github.com/cicirello/user-statistician/pull/102).
 
 ### Changed
 
