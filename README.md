@@ -779,6 +779,7 @@ currently supported:
 | ru | Russian |
 | es | Spanish |
 | tr | Turkish |
+| uk | Ukrainian |
 
 If you are interested in contributing a new locale, only the 
 [src/StatConfig.py](src/StatConfig.py) file must be updated. See the comments
