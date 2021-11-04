@@ -34,7 +34,7 @@ import math
 class StatsImageGenerator :
     """Generates an svg image from the collected stats."""
 
-    headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg">'
+    headerTemplate = '<svg width="{1}" height="{0}" viewBox="0 0 {1} {0}" xmlns="http://www.w3.org/2000/svg" lang="{2}" xml:lang="{2}">'
     backgroundTemplate = '<rect x="2" y="2" stroke-width="4" rx="{4}" width="{3}" height="{0}" stroke="{1}" fill="{2}"/>'
     fontGroup = '<g font-weight="600" font-size="110pt" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision">'
     titleTemplate = '<text x="{3}" y="{4}" lengthAdjust="spacingAndGlyphs" textLength="{5}" transform="scale({2})" fill="{1}">{0}</text>'
@@ -520,7 +520,7 @@ class StatsImageGenerator :
         height until the end.  Also inserts closing tags.
         """
         self._height += self._lineHeight
-        self._rows[0] = self._rows[0].format(str(self._height), str(self._width))
+        self._rows[0] = self._rows[0].format(str(self._height), str(self._width), self._locale)
         self._rows[1] = self._rows[1].format(
             str(self._height - 4),
             self._colors["border"],

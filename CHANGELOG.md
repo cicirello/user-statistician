@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2021-11-01
+## [Unreleased] - 2021-11-04
 
 ### Added
 * Increased internationalization support with the addition of new locales:
@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Added missing `lang` and `xml:lang` attributes to the opening svg tag to report the
+  language of the content of the SVG to provide better support for visually impaired
+  users who use a screen reader.  
 
 
 ## [1.11.0] - 2021-10-13
