@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Added missing `lang` and `xml:lang` attributes to the opening svg tag to report the
+  language of the content of the SVG to provide better support for visually impaired
+  users who use a screen reader.  
 
 
 ## [1.11.0] - 2021-10-13
