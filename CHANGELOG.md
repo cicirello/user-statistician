@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2021-11-04
 
 ### Added
-* Increased internationalization support with the addition of new locales:
-  * Ukrainian (`locale: uk`) via [PR#102](https://github.com/cicirello/user-statistician/pull/102).
 
 ### Changed
 
@@ -17,9 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+
+## [1.12.0] - 2021-11-04
+
+### Added
+* Increased internationalization support with the addition of new locales:
+  * Ukrainian (`locale: uk`) via [PR#102](https://github.com/cicirello/user-statistician/pull/102).
+
+### Fixed
 * Added missing `lang` and `xml:lang` attributes to the opening svg tag to report the
   language of the content of the SVG to provide better support for visually impaired
-  users who use a screen reader.  
+  users who use a screen reader.
 
 
 ## [1.11.0] - 2021-10-13
