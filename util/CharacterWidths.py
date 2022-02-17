@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -39,8 +39,8 @@ if __name__ == "__main__" :
 # which is licensed under Apache-2.0.
 ########################################
 """
-        formatted = pprint.pformat(defaultWidths)
-        formatted = formatted.replace(" " * 23, " " * 2)
-        formatted = formatted.replace(" " * 19, " " * 2)
+        formatted = pprint.pformat(defaultWidths, indent=0, compact=True)
+        formatted = formatted.replace(" " * 21, "")
+        formatted = formatted.replace(" " * 17, "")
         s = heading + "\ndefaultWidths = " + formatted
         f.write(s.encode(encoding="UTF-8"))
