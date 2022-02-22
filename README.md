@@ -490,6 +490,9 @@ The contributions statistics in the image include the following.
 | `contribTo` | Contributed To | number of repositories owned by others that you have contributed to |
 | `private` | Private Contributions | number of private contributions if you have shared them via your GitHub settings |
 
+Note that due to limitations in the available data from the GitHub GraphQL API, the
+"Total" column for `contribTo` on the generated SVG is deliberately blank.
+
 Please note that GitHub's "restrictedContributionsCount" (which is your private contributions
 count) doesn't distinguish the type of contributions, so we cannot simply add
 these to the specific counts by type. 
