@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-02-18
+## [Unreleased] - 2022-02-22
 
 ### Added
 
@@ -16,6 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+
+## [1.12.3] - 2022-02-22
+
+### Changed
+* Switched to specific release of base Docker image to avoid accidental breaking changes
+  in base Docker image.
+
+### Fixed
+* Total count of repositories (other than own) contributed to will now show as
+  a blank spot on the SVG. Previously reported values were highly inaccurate, and
+  cannot be computed accurately at the present time due to unavailability of
+  necessary data from the GitHub GraphQL API.
+  
 
 ## [1.12.2] - 2022-02-18
 
