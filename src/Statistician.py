@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -189,6 +189,10 @@ class Statistician :
         ownedRepositories = repoStats[0]["totalCount"]
         
         # Count num repos owned by someone else that the user has contributed to
+        # NOTE: It doesn't appear that it is currently possible through any query
+        # or combination of queries to actually compute this other than for the most recent
+        # year's data. Keeping the query in, but changing to leave that stat blank in
+        # the SVG.
         repositoriesContributedTo = sum(1 for page in reposContributedToStats if page["nodes"] != None for repo in page["nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
@@ -196,7 +200,9 @@ class Statistician :
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
             "reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
-            "contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
+            # See comment above for reason for this change.
+            #"contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
+            "contribTo" : [pastYearData["repositoriesContributedTo"]],
             "private" : [pastYearData["restrictedContributionsCount"], 0]
             }
 
