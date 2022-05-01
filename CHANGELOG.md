@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Fixed margin when most starred, most forked, or featured repo has long name.
+* Fixed margin calculation when most starred, most forked, or featured repo has long name.
 
 
 ## [1.12.3] - 2022-02-22
