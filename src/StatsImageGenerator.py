@@ -254,7 +254,7 @@ class StatsImageGenerator :
                                     600)
                                 length = max(
                                     length,
-                                    2*(dataLength + self._margin)
+                                    2*(dataLength + (2 * self._margin))
                                     )
         return math.ceil(length)
 
