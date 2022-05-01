@@ -31,15 +31,14 @@
 #
 # The light, dark, and dark-dimmed themes are based on
 # GitHub's themes, and color-palette (see
-# https://primer.style/css/support/color-system
-# and https://primer.style/primitives/).
+# https://primer.style/primitives/colors).
 #
 # Specifically, from the link above we use:
-# * background color (bg): bg.canvasInset
-# * border color: box.blueBorder
-# * icons: icon.info
-# * text: text.primary
-# * title: bg.canvasInverse
+# * background color (bg): canvas.inset
+# * border color: accent.emphasis
+# * icons: accent.fg
+# * text: fg.default                      
+# * title: fg.default
 #
 # Notes to Potential Contributors:
 #
@@ -81,29 +80,29 @@ colorMapping = {
 
     # Contributor: cicirello (part of initial theme set)
     "dark" : {
-        "bg" : "#090c10",
-        "border" : "#0d419d",
-        "icons" : "#79c0ff",
+        "bg" : "#010409",
+        "border" : "#1f6feb",
+        "icons" : "#58a6ff",
         "text" : "#c9d1d9",
-        "title" : "#f0f6fc"
+        "title" : "#c9d1d9"
         },
 
     # Contributor: cicirello (part of initial theme set)
     "dark-dimmed" : {
-        "bg" : "#1e2228",
-        "border" : "#1b4b91",
-        "icons" : "#6cb6ff",
+        "bg" : "#1c2128",
+        "border" : "#316dca",
+        "icons" : "#539bf5",
         "text" : "#adbac7",
-        "title" : "#cdd9e5"
+        "title" : "#adbac7"
         },
 
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
-        "border" : "#c8e1ff",
-        "icons" : "#0366d6",
-        "text" : "#24292e",
-        "title" : "#24292e"
+        "border" : "#0969da",
+        "icons" : "#0969da",
+        "text" : "#24292f",
+        "title" : "#24292f"
         }
     
     }
