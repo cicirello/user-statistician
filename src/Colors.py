@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -38,7 +38,7 @@
 # * border color: accent.emphasis
 # * icons: accent.fg
 # * text: fg.default                      
-# * title: fg.default
+# * title: accent.fg
 #
 # Notes to Potential Contributors:
 #
@@ -84,7 +84,7 @@ colorMapping = {
         "border" : "#1f6feb",
         "icons" : "#58a6ff",
         "text" : "#c9d1d9",
-        "title" : "#c9d1d9"
+        "title" : "#58a6ff"
         },
 
     # Contributor: cicirello (part of initial theme set)
@@ -93,7 +93,7 @@ colorMapping = {
         "border" : "#316dca",
         "icons" : "#539bf5",
         "text" : "#adbac7",
-        "title" : "#adbac7"
+        "title" : "#539bf5"
         },
 
     # Contributor: cicirello (part of initial theme set)
@@ -102,7 +102,7 @@ colorMapping = {
         "border" : "#0969da",
         "icons" : "#0969da",
         "text" : "#24292f",
-        "title" : "#24292f"
+        "title" : "#0969da"
         }
     
     }
