@@ -36,7 +36,7 @@
 # Specifically, from the link above we use:
 # * background color (bg): canvas.inset
 # * border color: accent.emphasis
-# * icons: accent.fg
+# * icons: accent.emphasis
 # * text: fg.default                      
 # * title: accent.fg
 #
@@ -82,7 +82,7 @@ colorMapping = {
     "dark" : {
         "bg" : "#010409",
         "border" : "#1f6feb",
-        "icons" : "#58a6ff",
+        "icons" : "#1f6feb",
         "text" : "#c9d1d9",
         "title" : "#58a6ff"
         },
@@ -91,7 +91,7 @@ colorMapping = {
     "dark-dimmed" : {
         "bg" : "#1c2128",
         "border" : "#316dca",
-        "icons" : "#539bf5",
+        "icons" : "#316dca",
         "text" : "#adbac7",
         "title" : "#539bf5"
         },
