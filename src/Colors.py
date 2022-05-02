@@ -112,6 +112,15 @@ colorMapping = {
         "icons" : "#0969da",
         "text" : "#24292f",
         "title" : "#0969da"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "light-high-contrast" : {
+        "bg" : "#ffffff",
+        "border" : "#368cf9",
+        "icons" : "#0349b4",
+        "text" : "#0E1116",
+        "title" : "#0349b4"
         }
     
     }
