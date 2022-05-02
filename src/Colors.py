@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -35,10 +35,10 @@
 #
 # Specifically, from the link above we use:
 # * background color (bg): canvas.inset
-# * border color: accent.emphasis
-# * icons: accent.fg
+# * border color: accent.muted
+# * icons: accent.emphasis
 # * text: fg.default                      
-# * title: fg.default
+# * title: accent.fg
 #
 # Notes to Potential Contributors:
 #
@@ -81,28 +81,82 @@ colorMapping = {
     # Contributor: cicirello (part of initial theme set)
     "dark" : {
         "bg" : "#010409",
-        "border" : "#1f6feb",
-        "icons" : "#58a6ff",
+        "border" : "rgba(56,139,253,0.4)",
+        "icons" : "#1f6feb",
         "text" : "#c9d1d9",
-        "title" : "#c9d1d9"
+        "title" : "#58a6ff"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "dark-colorblind" : {
+        "bg" : "#010409",
+        "border" : "rgba(56,139,253,0.4)",
+        "icons" : "#1f6feb",
+        "text" : "#c9d1d9",
+        "title" : "#58a6ff"
         },
 
     # Contributor: cicirello (part of initial theme set)
     "dark-dimmed" : {
         "bg" : "#1c2128",
-        "border" : "#316dca",
-        "icons" : "#539bf5",
+        "border" : "rgba(65,132,228,0.4)",
+        "icons" : "#316dca",
         "text" : "#adbac7",
-        "title" : "#adbac7"
+        "title" : "#539bf5"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "dark-high-contrast" : {
+        "bg" : "#010409",
+        "border" : "#409eff",
+        "icons" : "#409eff",
+        "text" : "#f0f3f6",
+        "title" : "#71b7ff"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "dark-tritanopia" : {
+        "bg" : "#010409",
+        "border" : "rgba(56,139,253,0.4)",
+        "icons" : "#1f6feb",
+        "text" : "#c9d1d9",
+        "title" : "#58a6ff"
         },
 
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
-        "border" : "#0969da",
+        "border" : "rgba(84,174,255,0.4)",
         "icons" : "#0969da",
         "text" : "#24292f",
-        "title" : "#24292f"
+        "title" : "#0969da"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "light-colorblind" : {
+        "bg" : "#f6f8fa",
+        "border" : "rgba(84,174,255,0.4)",
+        "icons" : "#0969da",
+        "text" : "#24292f",
+        "title" : "#0969da"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "light-high-contrast" : {
+        "bg" : "#ffffff",
+        "border" : "#368cf9",
+        "icons" : "#0349b4",
+        "text" : "#0E1116",
+        "title" : "#0349b4"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "light-tritanopia" : {
+        "bg" : "#f6f8fa",
+        "border" : "rgba(84,174,255,0.4)",
+        "icons" : "#0969da",
+        "text" : "#24292f",
+        "title" : "#0969da"
         }
     
     }

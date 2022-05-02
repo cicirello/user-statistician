@@ -668,15 +668,34 @@ then you can pass: `language-animation-speed: 5`.  The input must be an integer.
 
 The `colors` input enables you to either select from a set of
 built-in color themes, or to define your own set of custom colors.
-At the present time, there are three built-in themes: `light`, `dark`, and
-`dark-dimmed` that are based on GitHub's color palette and themes of the
-same names. If you want to know the specific colors used in each of these,
+At the present time, there are nine built-in themes that are based 
+on GitHub's color palette and themes of the same names. If you want to 
+know the specific colors used in each of these,
 see the source in [src/Colors.py](src/Colors.py). Also see 
 the [Example Workflows and Image Samples](#example-workflows-and-image-samples)
 section of this readme for a few samples.
 
 The default is `colors: light`. You can change to a different color theme
-by just passing its name (e.g., `colors: dark`).
+by just passing its name (e.g., `colors: dark`). Here is a list of the 
+currently supported built-in themes:
+
+| Theme Name |
+| --- |
+| `dark` |
+| `dark-colorblind` |
+| `dark-dimmed` |
+| `dark-high-contrast` |
+| `dark-tritanopia` |
+| `light` |
+| `light-colorblind` |
+| `light-high-contrast` |
+| `light-tritanopia` |
+
+Note that at the present time a couple of these are identical. For example,
+`light`, `light-colorblind`, and `light-tritanopia` are currently identical 
+because the part of GitHub's color palettes from which these themes derive
+do not differ. They have been included as valid values for the `colors` input
+to the action for consistency.
 
 If you have a specific set of colors that you'd like to instead use, you
 can pass a list of colors (space or comma separated). The list should include
