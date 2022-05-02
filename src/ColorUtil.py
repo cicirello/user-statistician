@@ -28,7 +28,7 @@ def isValidColor(color) :
     """Checks if a color is a valid color.
 
     Keyword arguments:
-    color - The color to check, either in hex or as a named color.
+    color - The color to check, either in hex or as a named color or as an rgba().
     """
     validHexDigits = set("0123456789abcdefABCDEF")
     color = color.strip()
@@ -36,8 +36,49 @@ def isValidColor(color) :
         if len(color) != 4 and len(color) != 7 :
             return False
         return all(c in validHexDigits for c in color[1:])
+    elif color.startswith("rgba(") :
+        return strToRGBA(color) != None
     else :
         return color in _namedColors
+
+def strToRGBA(color) :
+    """Converts a str specifying rgba color to
+    r, g, b, and a channels. Returns (r, g, b, a) is valid
+    and otherwise returns None.
+
+    Keyword arguments:
+    color - a str of the form: rgba(r,g,b,a).
+    """
+    if color.startswith("rgba(") :
+        last = color.find(")")
+        if last > 5 :
+            rgba = color[5:last].split(",")
+            if len(rgba) == 4 :
+                try :
+                    r = int(rgba[0])
+                    g = int(rgba[1])
+                    b = int(rgba[2])
+                    a = float(rgba[3])
+                except ValueError :
+                    return None
+                if r >= 256 :
+                    r = 255
+                if g >= 256 :
+                    g = 255
+                if b >= 256 :
+                    b = 255
+                if r < 0 :
+                    r = 0
+                if g < 0 :
+                    g = 0
+                if b < 0 :
+                    b = 0
+                if a < 0.0 :
+                    a = 0.0
+                if a > 1.0 :
+                    a = 1.0
+                return r, g, b, a
+    return None
 
 def highContrastingColor(color) :
     """Computes a highly contrasting color.
@@ -82,23 +123,33 @@ def luminance(color) :
     color - The color, either in hex or as a named color.
     """
     color = color.strip()
-    if not color.startswith("#") :
-        if color not in _namedColors :
+    if color.startswith("rgba(") :
+        rgba = strToRGBA(color)
+        if rgba != None :
+            r, g, b, a = rgba
+        else :
             return None
-        color = _namedColors[color]
-    if len(color) == 4 :
-        r = color[1] + color[1]
-        g = color[2] + color[2]
-        b = color[3] + color[3]
-    elif len(color) == 7 :
-        r = color[1:3]
-        g = color[3:5]
-        b = color[5:7]
-    else:
-        return None
-    r = _sRGBtoLin(int(r, base=16) / 255)
-    g = _sRGBtoLin(int(g, base=16) / 255)
-    b = _sRGBtoLin(int(b, base=16) / 255)
+    else :
+        if not color.startswith("#") :
+            if color not in _namedColors :
+                return None
+            color = _namedColors[color]
+        if len(color) == 4 :
+            r = color[1] + color[1]
+            g = color[2] + color[2]
+            b = color[3] + color[3]
+        elif len(color) == 7 :
+            r = color[1:3]
+            g = color[3:5]
+            b = color[5:7]
+        else:
+            return None
+        r = int(r, base=16)
+        g = int(g, base=16)
+        b = int(b, base=16)
+    r = _sRGBtoLin(r / 255)
+    g = _sRGBtoLin(g / 255)
+    b = _sRGBtoLin(b / 255)
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
 def _sRGBtoLin(c) :
