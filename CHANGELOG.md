@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-05-02
 
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+
+## [1.13.0] - 2022-05-02
+
+### Added
 * New themes added to correspond to all of GitHub's themes, including:
   * dark-high-contrast
   * light-high-contrast
@@ -17,10 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 * Bumped base Docker image cicirello/pyaction from 4.2.0 to 4.3.1.
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 * Fixed margin calculation when most starred, most forked, or featured repo has long name.
