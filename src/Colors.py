@@ -124,6 +124,15 @@ colorMapping = {
         },
 
     # Contributor: cicirello (updated theme set)
+    "light-colorblind" : {
+        "bg" : "#f6f8fa",
+        "border" : "rgba(84,174,255,0.4)",
+        "icons" : "#0969da",
+        "text" : "#24292f",
+        "title" : "#0969da"
+        },
+
+    # Contributor: cicirello (updated theme set)
     "light-high-contrast" : {
         "bg" : "#ffffff",
         "border" : "#368cf9",
