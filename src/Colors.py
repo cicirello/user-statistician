@@ -35,7 +35,7 @@
 #
 # Specifically, from the link above we use:
 # * background color (bg): canvas.inset
-# * border color: accent.emphasis
+# * border color: accent.muted
 # * icons: accent.emphasis
 # * text: fg.default                      
 # * title: accent.fg
@@ -81,7 +81,7 @@ colorMapping = {
     # Contributor: cicirello (part of initial theme set)
     "dark" : {
         "bg" : "#010409",
-        "border" : "#1f6feb",
+        "border" : "rgba(56,139,253,0.4)",
         "icons" : "#1f6feb",
         "text" : "#c9d1d9",
         "title" : "#58a6ff"
@@ -90,7 +90,7 @@ colorMapping = {
     # Contributor: cicirello (part of initial theme set)
     "dark-dimmed" : {
         "bg" : "#1c2128",
-        "border" : "#316dca",
+        "border" : "rgba(65,132,228,0.4)",
         "icons" : "#316dca",
         "text" : "#adbac7",
         "title" : "#539bf5"
@@ -99,7 +99,7 @@ colorMapping = {
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
-        "border" : "#0969da",
+        "border" : "rgba(84,174,255,0.4)",
         "icons" : "#0969da",
         "text" : "#24292f",
         "title" : "#0969da"
