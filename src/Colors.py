@@ -87,6 +87,15 @@ colorMapping = {
         "title" : "#58a6ff"
         },
 
+    # Contributor: cicirello (updated theme set)
+    "dark-colorblind" : {
+        "bg" : "#010409",
+        "border" : "rgba(56,139,253,0.4)",
+        "icons" : "#1f6feb",
+        "text" : "#c9d1d9",
+        "title" : "#58a6ff"
+        },
+
     # Contributor: cicirello (part of initial theme set)
     "dark-dimmed" : {
         "bg" : "#1c2128",
