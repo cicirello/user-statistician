@@ -96,6 +96,15 @@ colorMapping = {
         "title" : "#539bf5"
         },
 
+    # Contributor: cicirello (updated theme set)
+    "dark-high-contrast" : {
+        "bg" : "#010409",
+        "border" : "#409eff",
+        "icons" : "#409eff",
+        "text" : "#f0f3f6",
+        "title" : "#71b7ff"
+        },
+
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
