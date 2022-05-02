@@ -148,6 +148,15 @@ colorMapping = {
         "icons" : "#0349b4",
         "text" : "#0E1116",
         "title" : "#0349b4"
+        },
+
+    # Contributor: cicirello (updated theme set)
+    "light-tritanopia" : {
+        "bg" : "#f6f8fa",
+        "border" : "rgba(84,174,255,0.4)",
+        "icons" : "#0969da",
+        "text" : "#24292f",
+        "title" : "#0969da"
         }
     
     }
