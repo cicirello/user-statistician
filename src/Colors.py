@@ -114,6 +114,15 @@ colorMapping = {
         "title" : "#71b7ff"
         },
 
+    # Contributor: cicirello (updated theme set)
+    "dark-tritanopia" : {
+        "bg" : "#010409",
+        "border" : "rgba(56,139,253,0.4)",
+        "icons" : "#1f6feb",
+        "text" : "#c9d1d9",
+        "title" : "#58a6ff"
+        },
+
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",
