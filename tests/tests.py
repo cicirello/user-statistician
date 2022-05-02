@@ -160,7 +160,17 @@ class TestSomething(unittest.TestCase) :
         self._validateAllForks(stats)
 
     def test_color_themes(self) :
-        originalThemes = {"light", "dark", "dark-dimmed"}
+        originalThemes = {
+            "light",
+            "light-colorblind",
+            "light-high-contrast",
+            "light-tritanopia",
+            "dark",
+            "dark-colorblind",
+            "dark-dimmed",
+            "dark-high-contrast",
+            "dark-tritanopia"
+        }
         for theme in originalThemes :
             self._colorValidation(colorMapping[theme])
         for theme in colorMapping :
