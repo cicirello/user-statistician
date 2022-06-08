@@ -305,14 +305,15 @@ class StatsImageGenerator :
         """Generates, formats, and inserts title."""
         if self._includeTitle :
             scale = round(0.75 * self._titleSize / 110, 3)
+            titleTextLength = round(calculateTextLength110Weighted(self._title, 600))
             self._rows.append(
                 StatsImageGenerator.titleTemplate.format(
                     self._title,
                     self._colors["title"],
                     "{0:.3f}".format(scale),
-                    str(round(self._margin/scale)),
+                    round(self._firstColX/scale - titleTextLength/2), #str(round(self._margin/scale)),
                     str(round(37/scale)),
-                    round(calculateTextLength110Weighted(self._title, 600))
+                    titleTextLength
                     )
                 )
             self._height += 39
