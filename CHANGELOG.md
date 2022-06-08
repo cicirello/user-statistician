@@ -4,18 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-05-09
+## [Unreleased] - 2022-06-08
 
 ### Added
 
 ### Changed
-* Bumped base docker image cicirello/pyaction from 4.3.1 to 4.4.0.
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+
+## [1.13.1] - 2022-06-08
+
+### Changed
+* Bumped base docker image cicirello/pyaction from 4.3.1 to 4.4.0.
+
+### Fixed
+* Minor label edit.
 
 
 ## [1.13.0] - 2022-05-02
