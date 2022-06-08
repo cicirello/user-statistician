@@ -1,6 +1,6 @@
 # user-statistician
 
-[<img alt="user-statistician" src=".github/preview/user-statistician.png" width="640">](#user-statistician)
+[![user-statistician](https://actions.cicirello.org/images/user-statistician640.png)](#user-statistician)
 
 Check out all of our GitHub Actions: https://actions.cicirello.org/
 
