@@ -6,19 +6,12 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 
 ## About
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician)
-[![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fuser-statistician.json)](https://github.com/search?q=cicirello+user-statistician+path%3A.github%2Fworkflows+language%3AYAML&type=Code)
-[![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors)
-
-[![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml)
-[![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml)
-[![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml)
-[![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE)
-[![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician)
-
-[![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-[![GitHub open issues](https://img.shields.io/github/issues/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aclosed)
+| __GitHub Actions__ | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician) [![Count of Action Users](https://img.shields.io/endpoint?url=https%3A%2F%2Fwww.cicirello.org%2Fendpoints%2Fuser-statistician.json)](https://github.com/search?q=cicirello+user-statistician+path%3A.github%2Fworkflows+language%3AYAML&type=Code) |
+| :--- | :--- |
+| __Build Status__ | [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml) [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml) [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml) |
+| __Source Info__ | [![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE) [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician) |
+| __Contributors__ | [![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors) [![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) [![GitHub open issues](https://img.shields.io/github/issues/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen) [![GitHub closed issues](https://img.shields.io/github/issues-closed/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aclosed) |
+| __Support__ | [![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://github.com/sponsors/cicirello) [![Liberapay](https://img.shields.io/badge/Liberapay-F6C915?logo=liberapay&logoColor=black)](https://liberapay.com/cicirello) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?logo=ko-fi&logoColor=white)](https://ko-fi.com/cicirello) |
 
 The [cicirello/user-statistician](https://github.com/cicirello/user-statistician) GitHub 
 Action generates a detailed visual summary of your activity on GitHub in the form of an SVG, 
