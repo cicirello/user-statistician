@@ -73,6 +73,7 @@ The remainder of the documentation is organized into the following sections:
 * [All Possible Action Inputs](#all-possible-action-inputs): This section provides
   a workflow that summarizes all of the action's inputs along with their default values.
 * [Built With](#built-with): A list of the tools, etc used to develop this action.
+* [Blog Posts](#blog-posts): A selection of blog posts about the GitHub Action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 * [Contributors](#contributors): Information for potential contributors.
 
@@ -922,6 +923,13 @@ The `user-statistician` action uses the following:
 * [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
 * We started with our template repository for GitHub Actions implemented in 
   Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
+
+## Blog Posts
+
+Here is a selection of blog posts about the user-statistician on DEV.to:
+* [Progress and Lessons Learned Internationalizing the user-statistician GitHub Action](https://dev.to/cicirello/progress-and-lessons-learned-internationalizing-the-user-statistician-github-action-2he9), posted on DEV on October 13, 2021.
+* [Hacktoberfest Participants Help Us Internationalize the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-participants-help-us-internationalize-the-user-statistician-github-action-2bga), posted on DEV on September 29, 2021.
+* [Generate a GitHub stats SVG for your GitHub Profile README in GitHub Actions](https://dev.to/cicirello/generate-a-github-stats-svg-for-your-github-profile-readme-in-github-actions-1iaj), posted on DEV on July 29, 2021.
 
 ## Support the Project
 
