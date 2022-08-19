@@ -2,11 +2,14 @@ name: build
 
 on:
   push:
-    branches: [ main, dev ]
-    paths-ignore: [ '**.svg' ]
+    branches: [ main ]
+    paths-ignore: [ '**.svg', '**.md' ]
   pull_request:
-    branches: [ main, dev ]
-    paths-ignore: [ '**.svg' ]
+    branches: [ main ]
+    paths-ignore: [ '**.svg', '**.md' ]
+
+permissions:
+  contents: read
 
 jobs:
 
@@ -20,7 +23,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'
+        python-version: '3.10'
 
     - name: Run Python unit tests
       run: |
