@@ -6,9 +6,8 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 
 ## About user-statistician [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme)
 
-| __Featured In__ | [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme) |
-| :--- | :--- |
 | __GitHub Actions__ | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician) [![Count of Action Users](https://badgen.net/github/dependents-repo/cicirello/user-statistician?icon=github&label=used%20by)](https://github.com/cicirello/user-statistician/network/dependents) |
+| :--- | :--- |
 | __Build Status__ | [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml) [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml) [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml) |
 | __Source Info__ | [![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE) [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician) |
 | __Contributors__ | [![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors) [![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
