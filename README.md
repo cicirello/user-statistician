@@ -4,7 +4,7 @@
 
 Check out all of our GitHub Actions: https://actions.cicirello.org/
 
-## About
+## About user-statistician [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme)
 
 | __Featured In__ | [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme) |
 | :--- | :--- |
@@ -317,7 +317,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.9.0
+      uses: cicirello/user-statistician@v1.14.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -448,7 +448,7 @@ The statistics include the following.
 
 | Key | Statistic | Details |
 | --- | --- | ------ |
-| `public` | Repositories Owned | simple count |
+| `public` | My Repositories | simple count |
 | `starredBy` | Starred By | simple count |
 | `forkedBy` | Forked By  | simple count |
 | `watchedBy` | Watched By | number watching your repositories (excluding you) |
@@ -762,7 +762,7 @@ The default is: `category-order: general, repositories, contributions, languages
 You can change the order by passing the list in a different order. For example,
 perhaps you want the language chart right after the repositories stats section.
 You can do that with: `category-order: general, repositories, languages, contributions`.
-This input provide another way of controlling which sections appear on the
+This input provides another way of controlling which sections appear on the
 card. For example, if all you want are the repositories stats and the languages 
 chart, you can do that 
 with: `category-order: repositories, languages` without using the `hide-keys` 
@@ -927,7 +927,7 @@ The `user-statistician` action uses the following:
 
 ## Blog Posts
 
-Here is a selection of blog posts about the user-statistician on DEV.to:
+Here is a selection of [DEV.to](https://dev.to/) blog posts about the user-statistician:
 * [Progress and Lessons Learned Internationalizing the user-statistician GitHub Action](https://dev.to/cicirello/progress-and-lessons-learned-internationalizing-the-user-statistician-github-action-2he9), posted on DEV on October 13, 2021.
 * [Hacktoberfest Participants Help Us Internationalize the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-participants-help-us-internationalize-the-user-statistician-github-action-2bga), posted on DEV on September 29, 2021.
 * [Generate a GitHub stats SVG for your GitHub Profile README in GitHub Actions](https://dev.to/cicirello/generate-a-github-stats-svg-for-your-github-profile-readme-in-github-actions-1iaj), posted on DEV on July 29, 2021.
