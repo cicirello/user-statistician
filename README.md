@@ -670,7 +670,7 @@ default is `top-icon: default` (explained in table below).
 
 | `top-icon` | meaning |
 | --- | --- |
-| `default` | Uses the theme-defined icon (see documentation of `colors` below) or the GitHub Octocat if custom colors are used |
+| `default` | Use theme-defined icon (see `colors` docs below) or GitHub Octocat if custom colors are used |
 | `none` | Disables the icon altogether |
 | `github` | The GitHub Octocat, from [Octicons](https://primer.style/octicons/) |
 
