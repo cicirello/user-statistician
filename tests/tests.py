@@ -334,10 +334,13 @@ class TestSomething(unittest.TestCase) :
         self.assertTrue("title-icon" in theme)
         iconKey = theme["title-icon"]
         self.assertTrue(iconKey in iconTemplates)
-        formattedIconString = iconTemplates[iconKey].format(42, 53, "fake-color-to-confirm-inserted")
+        # deliberately used weird width, x, and y, to more easily verify they are inserted
+        formattedIconString = iconTemplates[iconKey].format(83, 42, 53, "fake-color-to-confirm-inserted")
+        self.assertTrue(formattedIconString.find('width="83"') >= 0)
+        self.assertTrue(formattedIconString.find('height="83"') >= 0)
         self.assertTrue(formattedIconString.find('x="42"') >= 0)
         self.assertTrue(formattedIconString.find('y="53"') >= 0)
-        self.assertTrue(iconTemplates[iconKey].find("{2}") < 0 or formattedIconString.find('fill="fake-color-to-confirm-inserted"') >= 0)
+        self.assertTrue(iconTemplates[iconKey].find("{3}") < 0 or formattedIconString.find('fill="fake-color-to-confirm-inserted"') >= 0)
             
     def _validate(self, stats, skip=False) :
         self.assertEqual("repo23", stats._user["mostStarred"][0])
