@@ -963,7 +963,7 @@ You can support the project in a number of ways:
 * __Reporting Issues__: If you find a bug or have a suggestion for a new feature, 
   please report it via the [Issue tracker](https://github.com/cicirello/user-statistician/issues).
 * __Contributing Code__: If there is an open issue that you think you can help with, 
-  submit a pull request. __Please target the dev branch.__
+  submit a pull request.
 * __Sponsoring__: You can also consider 
   [becoming a sponsor](https://github.com/sponsors/cicirello).
 
@@ -972,6 +972,8 @@ You can support the project in a number of ways:
 If you would like to contribute to the project, please start by reading
 our [Contributing Guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md)
 and our [Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md). 
+After reading the contributing guidelines and code of conduct, fork the repository, create
+a feature branch in your fork, make your changes, and submit a pull request.
 
 ## License
 
