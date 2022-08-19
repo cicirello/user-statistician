@@ -27,7 +27,7 @@
 #
 
 from Statistician import Statistician
-from Colors import colorMapping
+from Colors import colorMapping, iconTemplates
 from StatsImageGenerator import StatsImageGenerator
 from StatConfig import supportedLocales, categoryOrder
 import sys
@@ -124,12 +124,14 @@ if __name__ == "__main__" :
         # default to light theme if invalid number of colors passed
         colors = colorMapping["light"]
     else :
-        colors = { "bg" : colors[0],
-                "border" : colors[1],
-                "icons" : colors[2],
-                "title" : colors[3],
-                "text" : colors[4] if len(colors) > 4 else colors[3]
-            }
+        colors = {
+            "title-icon" : "github",
+            "bg" : colors[0],
+            "border" : colors[1],
+            "icons" : colors[2],
+            "title" : colors[3],
+            "text" : colors[4] if len(colors) > 4 else colors[3]
+        }
 
     exclude = set(sys.argv[5].strip().replace(",", " ").split())
 
@@ -177,6 +179,12 @@ if __name__ == "__main__" :
     animationSpeed = int(sys.argv[17].strip())
 
     width = int(sys.argv[18].strip())
+
+    topIcon = sys.argv[19].strip().lower()
+    if topIcon == "none" :
+        colors.pop("title-icon", None)
+    elif topIcon != "default" and topIcon in iconTemplates :
+        colors["title-icon"] = topIcon
         
     stats = Statistician(
         failOnError,

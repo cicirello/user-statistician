@@ -1,6 +1,6 @@
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2022 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -101,6 +101,10 @@ inputs:
     description: 'The minimum width of the SVG in pixels'
     required: false
     default: 0
+  top-icon:
+    description: 'Icon displayed at top of SVG to left and right of title'
+    required: false
+    default: default
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -126,3 +130,4 @@ runs:
     - ${{ inputs.animated-language-chart }}
     - ${{ inputs.language-animation-speed }}
     - ${{ inputs.image-width }}
+    - ${{ inputs.top-icon }}

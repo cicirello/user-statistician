@@ -4,11 +4,10 @@
 
 Check out all of our GitHub Actions: https://actions.cicirello.org/
 
-## About
+## About user-statistician [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme)
 
-| __Featured In__ | [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme) |
-| :--- | :--- |
 | __GitHub Actions__ | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician) [![Count of Action Users](https://badgen.net/github/dependents-repo/cicirello/user-statistician?icon=github&label=used%20by)](https://github.com/cicirello/user-statistician/network/dependents) |
+| :--- | :--- |
 | __Build Status__ | [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml) [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml) [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml) |
 | __Source Info__ | [![License](https://img.shields.io/github/license/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/blob/main/LICENSE) [![GitHub top language](https://img.shields.io/github/languages/top/cicirello/user-statistician)](https://github.com/cicirello/user-statistician) |
 | __Contributors__ | [![GitHub contributors](https://img.shields.io/github/contributors/cicirello/user-statistician)](https://github.com/cicirello/user-statistician/graphs/contributors) [![good first issue](https://img.shields.io/github/issues/cicirello/user-statistician/good%20first%20issue)](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) |
@@ -317,7 +316,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.9.0
+      uses: cicirello/user-statistician@v1.15.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -448,7 +447,7 @@ The statistics include the following.
 
 | Key | Statistic | Details |
 | --- | --- | ------ |
-| `public` | Repositories Owned | simple count |
+| `public` | My Repositories | simple count |
 | `starredBy` | Starred By | simple count |
 | `forkedBy` | Forked By  | simple count |
 | `watchedBy` | Watched By | number watching your repositories (excluding you) |
@@ -582,7 +581,8 @@ favor of the `include-title: false`.
 This input controls the font size of the title. The default is `small-title: false`,
 which is a font size of 18px (the font size of the rest of the text in the SVG is 14px).
 The default should be a good choice in most cases. However, depending upon the
-length of a custom title, or if you use the default title but have a long name, then 
+length of a custom title, or if you use the default title but have a long name, or if
+your chosen locale leads to a lengthy title, then 
 you might consider using a smaller size for the title. If you pass
 `small-title: true`, then it will decrease the font size of the title to 16px.
 
@@ -659,6 +659,24 @@ a slower rotation, such as 20 seconds, then you can pass: `language-animation-sp
 Or perhaps you want a faster rotation, such as 5 seconds,
 then you can pass: `language-animation-speed: 5`.  The input must be an integer.
 
+### `top-icon`
+
+This input control whether an icon is displayed in the top left and top right corners
+surrounding the title. It also controls which icon is displayed. First, if you
+disable the title altogether with `include-title: false` (see earlier), that also
+disables the icon, regardless of how you set `top-icon`. The options for this input
+include `default`, `none`, or one of the named icons in the following table. The
+default is `top-icon: default` (explained in table below).
+
+| `top-icon` | meaning |
+| --- | --- |
+| `default` | Use theme-defined icon (see `colors` docs below) or GitHub Octocat if custom colors are used |
+| `none` | Disables the icon altogether |
+| `github` | The GitHub Octocat, from [Octicons](https://primer.style/octicons/) |
+
+Setting `top-icon` to a named icon from the list above overrides whatever icon is
+specified as the default by your chosen theme (see below).
+
 ### `colors`
 
 The `colors` input enables you to either select from a set of
@@ -672,19 +690,19 @@ section of this readme for a few samples.
 
 The default is `colors: light`. You can change to a different color theme
 by just passing its name (e.g., `colors: dark`). Here is a list of the 
-currently supported built-in themes:
+currently supported built-in themes, along with the default icon (see the documentation of `top-icon` above):
 
-| Theme Name |
-| --- |
-| `dark` |
-| `dark-colorblind` |
-| `dark-dimmed` |
-| `dark-high-contrast` |
-| `dark-tritanopia` |
-| `light` |
-| `light-colorblind` |
-| `light-high-contrast` |
-| `light-tritanopia` |
+| Theme Name | Default `top-icon` |
+| --- | --- |
+| `dark` | `github` |
+| `dark-colorblind` | `github` |
+| `dark-dimmed` | `github` |
+| `dark-high-contrast` | `github` |
+| `dark-tritanopia` | `github` |
+| `light` | `github` |
+| `light-colorblind` | `github` |
+| `light-high-contrast` | `github` |
+| `light-tritanopia` | `github` |
 
 Note that at the present time a couple of these are identical. For example,
 `light`, `light-colorblind`, and `light-tritanopia` are currently identical 
@@ -762,7 +780,7 @@ The default is: `category-order: general, repositories, contributions, languages
 You can change the order by passing the list in a different order. For example,
 perhaps you want the language chart right after the repositories stats section.
 You can do that with: `category-order: general, repositories, languages, contributions`.
-This input provide another way of controlling which sections appear on the
+This input provides another way of controlling which sections appear on the
 card. For example, if all you want are the repositories stats and the languages 
 chart, you can do that 
 with: `category-order: repositories, languages` without using the `hide-keys` 
@@ -891,6 +909,7 @@ jobs:
         language-repository-exclusions: '' # None excluded
         animated-language-chart: false
         language-animation-speed: 10
+        top-icon: default
         colors: light
         border-radius: 6
         show-border: true
@@ -927,7 +946,7 @@ The `user-statistician` action uses the following:
 
 ## Blog Posts
 
-Here is a selection of blog posts about the user-statistician on DEV.to:
+Here is a selection of [DEV.to](https://dev.to/) blog posts about the user-statistician:
 * [Progress and Lessons Learned Internationalizing the user-statistician GitHub Action](https://dev.to/cicirello/progress-and-lessons-learned-internationalizing-the-user-statistician-github-action-2he9), posted on DEV on October 13, 2021.
 * [Hacktoberfest Participants Help Us Internationalize the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-participants-help-us-internationalize-the-user-statistician-github-action-2bga), posted on DEV on September 29, 2021.
 * [Generate a GitHub stats SVG for your GitHub Profile README in GitHub Actions](https://dev.to/cicirello/generate-a-github-stats-svg-for-your-github-profile-readme-in-github-actions-1iaj), posted on DEV on July 29, 2021.

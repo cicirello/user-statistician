@@ -173,9 +173,11 @@ class TestSomething(unittest.TestCase) :
         }
         for theme in originalThemes :
             self._colorValidation(colorMapping[theme])
+            self._iconValidation(colorMapping[theme])
         for theme in colorMapping :
             if theme not in originalThemes :
                 self._colorValidation(colorMapping[theme])
+                self._iconValidation(colorMapping[theme])
 
     def test_color_contrast_text_vs_bg(self) :
         for theme, colors in colorMapping.items() :
@@ -327,6 +329,18 @@ class TestSomething(unittest.TestCase) :
         for p in props :
             color = theme[p]
             self.assertTrue(isValidColor(color))
+
+    def _iconValidation(self, theme) :
+        self.assertTrue("title-icon" in theme)
+        iconKey = theme["title-icon"]
+        self.assertTrue(iconKey in iconTemplates)
+        # deliberately used weird width, x, and y, to more easily verify they are inserted
+        formattedIconString = iconTemplates[iconKey].format(83, 42, 53, "fake-color-to-confirm-inserted")
+        self.assertTrue(formattedIconString.find('width="83"') >= 0)
+        self.assertTrue(formattedIconString.find('height="83"') >= 0)
+        self.assertTrue(formattedIconString.find('x="42"') >= 0)
+        self.assertTrue(formattedIconString.find('y="53"') >= 0)
+        self.assertTrue(iconTemplates[iconKey].find("{3}") < 0 or formattedIconString.find('fill="fake-color-to-confirm-inserted"') >= 0)
             
     def _validate(self, stats, skip=False) :
         self.assertEqual("repo23", stats._user["mostStarred"][0])

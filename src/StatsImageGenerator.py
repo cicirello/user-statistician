@@ -27,6 +27,7 @@
 
 from StatConfig import *
 from PieChart import svgPieChart
+from Colors import iconTemplates
 from ColorUtil import highContrastingColor
 from TextLength import calculateTextLength, calculateTextLength110Weighted
 import math
@@ -101,7 +102,8 @@ class StatsImageGenerator :
         '_secondColX',
         '_title',
         '_includeTitle',
-        '_exclude'
+        '_exclude',
+        '_topIconSize'
         ]
 
     def __init__(self,
@@ -145,6 +147,7 @@ class StatsImageGenerator :
         else :
             self._title = titleTemplates[self._locale].format(self._stats._name)
         self._includeTitle = includeTitle
+        self._topIconSize = 32
         self._categoryOrder = categories
         self._exclude = exclude
         self._animateLanguageChart = animateLanguageChart
@@ -174,6 +177,8 @@ class StatsImageGenerator :
         length = 0
         if self._includeTitle :
             length = calculateTextLength(self._title, self._titleSize, True, 600) + 2 * self._margin
+            if "title-icon" in self._colors :
+                length += 2 * (self._topIconSize + self._margin)
         for category in self._categoryOrder :
             if category not in self._exclude :
                 if category == "languages" :
@@ -314,6 +319,24 @@ class StatsImageGenerator :
                     round(self._firstColX/scale - titleTextLength/2), #str(round(self._margin/scale)),
                     str(round(37/scale)),
                     titleTextLength
+                )
+            )
+            if "title-icon" in self._colors :
+                icon = iconTemplates[self._colors["title-icon"]]
+                self._rows.append(
+                    icon.format(
+                        self._topIconSize,
+                        self._margin,
+                        self._margin,
+                        self._highContrast
+                    )
+                )
+                self._rows.append(
+                    icon.format(
+                        self._topIconSize,
+                        self._width - self._margin - self._topIconSize,
+                        self._margin,
+                        self._highContrast
                     )
                 )
             self._height += 39
