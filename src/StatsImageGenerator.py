@@ -147,7 +147,7 @@ class StatsImageGenerator :
         else :
             self._title = titleTemplates[self._locale].format(self._stats._name)
         self._includeTitle = includeTitle
-        self._topIconSize = 32
+        self._topIconSize = 25
         self._categoryOrder = categories
         self._exclude = exclude
         self._animateLanguageChart = animateLanguageChart
