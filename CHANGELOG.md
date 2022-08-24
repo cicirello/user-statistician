@@ -15,9 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Decreased the size of icon in top corners for better visual appearance.
 
 ### Dependencies
+
+
+## [1.15.1] - 2022-08-24
+
+### Fixed
+* Decreased the size of icon in top corners for better visual appearance.
 
 
 ## [1.15.0] - 2022-08-19
