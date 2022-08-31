@@ -947,6 +947,7 @@ The `user-statistician` action uses the following:
 ## Blog Posts
 
 Here is a selection of [DEV.to](https://dev.to/) blog posts about the user-statistician:
+* [Configuring GitHub's Linguist to Improve Repository Language Reporting](https://dev.to/cicirello/configuring-githubs-linguist-to-improve-repository-language-reporting-295b), posted on DEV on August 31, 2022.
 * [The user-statistician GitHub Action mentioned in Awesome-README](https://dev.to/cicirello/the-user-statistician-github-action-mentioned-in-awesome-readme-5g3o), posted on DEV on August 25, 2022.
 * [Progress and Lessons Learned Internationalizing the user-statistician GitHub Action](https://dev.to/cicirello/progress-and-lessons-learned-internationalizing-the-user-statistician-github-action-2he9), posted on DEV on October 13, 2021.
 * [Hacktoberfest Participants Help Us Internationalize the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-participants-help-us-internationalize-the-user-statistician-github-action-2bga), posted on DEV on September 29, 2021.
