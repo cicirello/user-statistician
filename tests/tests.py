@@ -161,6 +161,7 @@ class TestSomething(unittest.TestCase) :
 
     def test_color_themes(self) :
         originalThemes = {
+            "batty",
             "light",
             "light-colorblind",
             "light-high-contrast",
@@ -307,7 +308,7 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        colors = copy.deepcopy(colorMapping["halloween-light"])
+        colors = copy.deepcopy(colorMapping["batty"])
         #colors["title-icon"] = "pumpkin"
         svgGen = StatsImageGenerator(
             stats,
