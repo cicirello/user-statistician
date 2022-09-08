@@ -127,6 +127,16 @@ colorMapping = {
         "title-icon" : "github"
     },
 
+    # Contributor: cicirello (Halloween related themes)
+    "halloween" : {
+        "bg" : "#090B06",
+        "border" : "#F5D913",
+        "icons" : "#F46D0E",
+        "text" : "#EB912D",
+        "title" : "#F46D0E",
+        "title-icon" : "pumpkin"
+    },
+
     # Contributor: cicirello (part of initial theme set)
     "light" : {
         "bg" : "#f6f8fa",

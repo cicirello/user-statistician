@@ -169,7 +169,8 @@ class TestSomething(unittest.TestCase) :
             "dark-colorblind",
             "dark-dimmed",
             "dark-high-contrast",
-            "dark-tritanopia"
+            "dark-tritanopia",
+            "halloween"
         }
         for theme in originalThemes :
             self._colorValidation(colorMapping[theme])
@@ -305,7 +306,7 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        colors = copy.deepcopy(colorMapping["dark"])
+        colors = copy.deepcopy(colorMapping["halloween"])
         #colors["title-icon"] = "pumpkin"
         svgGen = StatsImageGenerator(
             stats,
