@@ -672,7 +672,9 @@ default is `top-icon: default` (explained in table below).
 | --- | --- |
 | `default` | Use theme-defined icon (see `colors` docs below) or GitHub Octocat if custom colors are used |
 | `none` | Disables the icon altogether |
+| `bat` | A bat, such as for use around Halloween |
 | `github` | The GitHub Octocat, from [Octicons](https://primer.style/octicons/) |
+| `pumpkin` | A pumpkin, such as for use around Halloween |
 
 Setting `top-icon` to a named icon from the list above overrides whatever icon is
 specified as the default by your chosen theme (see below).
