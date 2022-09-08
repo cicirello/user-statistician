@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-09-08
 
 ### Added
-* Pumpkin icon as an option for the icon in upper corners of SVG.
+* Additional icon options for the icon in top corners, including:
+  * pumpkin
+  * bat
 
 ### Changed
 
