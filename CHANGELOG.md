@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-09-08
 
 ### Added
+* New themes, including
+  * halloween - A dark theme for use around Halloween
 * Additional icon options for the icon in top corners, including:
   * pumpkin
   * bat
