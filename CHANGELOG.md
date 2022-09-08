@@ -7,13 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-09-08
 
 ### Added
-* New themes, including
-  * halloween - A dark theme for use around Halloween
-  * halloween-light - A light theme for use around Halloween
-  * batty - A light theme for use around Halloween
-* Additional icon options for the icon in top corners, including:
-  * pumpkin
-  * bat
 
 ### Changed
 
@@ -24,7 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.7.1 to 4.8.0
+
+
+## [1.16.0] - 2022-09-08
+
+### Added
+* New themes, including
+  * halloween - A dark theme for use around Halloween
+  * halloween-light - A light theme for use around Halloween
+  * batty - A light theme for use around Halloween
+* Additional icon options for the icon in top corners, including:
+  * pumpkin
+  * bat
+
+### Dependencies
+* Bump cicirello/pyaction from 4.7.1 to 4.8.1, including upgrading Python within the Docker container to 3.10.7 
 
 
 ## [1.15.1] - 2022-08-24
