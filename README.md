@@ -694,17 +694,20 @@ The default is `colors: light`. You can change to a different color theme
 by just passing its name (e.g., `colors: dark`). Here is a list of the 
 currently supported built-in themes, along with the default icon (see the documentation of `top-icon` above):
 
-| Theme Name | Default `top-icon` |
-| --- | --- |
-| `dark` | `github` |
-| `dark-colorblind` | `github` |
-| `dark-dimmed` | `github` |
-| `dark-high-contrast` | `github` |
-| `dark-tritanopia` | `github` |
-| `light` | `github` |
-| `light-colorblind` | `github` |
-| `light-high-contrast` | `github` |
-| `light-tritanopia` | `github` |
+| Theme Name | Default `top-icon` | Dark or Light? |
+| --- | --- | --- |
+| `batty` | `bat` | light |
+| `dark` | `github` | dark |
+| `dark-colorblind` | `github` | dark |
+| `dark-dimmed` | `github` | dark |
+| `dark-high-contrast` | `github` | dark |
+| `dark-tritanopia` | `github` | dark |
+| `halloween` | `pumpkin` | dark |
+| `halloween-light` | `pumpkin` | light |
+| `light` | `github` | light |
+| `light-colorblind` | `github` | light |
+| `light-high-contrast` | `github` | light |
+| `light-tritanopia` | `github` | light |
 
 Note that at the present time a couple of these are identical. For example,
 `light`, `light-colorblind`, and `light-tritanopia` are currently identical 
