@@ -77,6 +77,16 @@
 #     for list of named colors.
 
 colorMapping = {
+    # Contributor: cicirello (Halloween related themes)
+    "batty" : {
+        "bg" : "#F6FAFD",
+        "border" : "#C0C3C6",
+        "icons" : "#151515",
+        "text" : "#535353",
+        "title" : "#151515",
+        "title-icon" : "bat"
+    },
+    
     # Contributor: cicirello (part of initial theme set)
     "dark" : {
         "bg" : "#010409",

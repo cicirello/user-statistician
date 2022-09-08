@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * New themes, including
   * halloween - A dark theme for use around Halloween
   * halloween-light - A light theme for use around Halloween
+  * batty - A light theme for use around Halloween
 * Additional icon options for the icon in top corners, including:
   * pumpkin
   * bat
