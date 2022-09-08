@@ -77,6 +77,16 @@
 #     for list of named colors.
 
 colorMapping = {
+    # Contributor: cicirello (Halloween related themes)
+    "batty" : {
+        "bg" : "#F6FAFD",
+        "border" : "#C0C3C6",
+        "icons" : "#151515",
+        "text" : "#535353",
+        "title" : "#151515",
+        "title-icon" : "bat"
+    },
+    
     # Contributor: cicirello (part of initial theme set)
     "dark" : {
         "bg" : "#010409",
@@ -125,6 +135,26 @@ colorMapping = {
         "text" : "#c9d1d9",
         "title" : "#58a6ff",
         "title-icon" : "github"
+    },
+
+    # Contributor: cicirello (Halloween related themes)
+    "halloween" : {
+        "bg" : "#090B06",
+        "border" : "#F5D913",
+        "icons" : "#F46D0E",
+        "text" : "#EB912D",
+        "title" : "#F46D0E",
+        "title-icon" : "pumpkin"
+    },
+
+    # Contributor: cicirello (Halloween related themes)
+    "halloween-light" : {
+        "bg" : "#FFFDE9",
+        "border" : "#E1DF81",
+        "icons" : "#BA440B",
+        "text" : "#50391F",
+        "title" : "#BA440B",
+        "title-icon" : "pumpkin"
     },
 
     # Contributor: cicirello (part of initial theme set)
