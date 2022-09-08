@@ -305,9 +305,11 @@ class TestSomething(unittest.TestCase) :
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
+        colors = copy.deepcopy(colorMapping["dark"])
+        #colors["title-icon"] = "pumpkin"
         svgGen = StatsImageGenerator(
             stats,
-            copy.deepcopy(colorMapping["dark"]),
+            colors,
             localeCode,
             6,
             18,
