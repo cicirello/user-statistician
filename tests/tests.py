@@ -306,9 +306,10 @@ class TestSomething(unittest.TestCase) :
                     )
                 self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
+        #stats._name = "Firstname ReallyLongMiddleName Lastname"
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        colors = copy.deepcopy(colorMapping["batty"])
+        colors = copy.deepcopy(colorMapping["halloween"])
         #colors["title-icon"] = "pumpkin"
         svgGen = StatsImageGenerator(
             stats,
