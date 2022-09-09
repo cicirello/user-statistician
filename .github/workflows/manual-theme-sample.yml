@@ -1,0 +1,32 @@
+name: Generate Theme Sample
+
+on:
+  workflow_dispatch:
+    inputs:
+      THEME:
+        description: 'Theme Key'
+        required: true
+
+jobs:
+  theme-sample:
+
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: samples
+
+    - name: Theme sample
+      uses: cicirello/user-statistician@v1
+      with:
+        colors: ${{ github.event.inputs.THEME }}
+        image-file: images/${{ github.event.inputs.THEME }}.svg
+        # Using custom-title is not necessary here in general.
+        # I'm just using it so that the sample has a more generic name
+        # of user rather than my name. The format this uses is identical
+        # to if this input was not used, but with my name replaced by a
+        # generic name.
+        custom-title: Firstname Lastname's GitHub Activity
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
