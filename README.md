@@ -6,6 +6,8 @@ Check out all of our GitHub Actions: https://actions.cicirello.org/
 
 ## About user-statistician [![Mentioned in Awesome README](https://awesome.re/mentioned-badge.svg)](https://github.com/matiassingers/awesome-readme)
 
+**Attention Hacktoberfest Contributors:** Help further expand international support by contributing translations of the headings and labels, etc. Check out the [open issues](https://github.com/cicirello/user-statistician/issues?q=is%3Aissue+is%3Aopen+label%3A%22Hacktoberfest%22) for available languages, or [propose a different language translation](https://github.com/cicirello/user-statistician/issues). See my [post on DEV.to recruiting translation contributors](https://dev.to/cicirello/hacktoberfest-language-translation-contributors-wanted-for-the-user-statistician-github-action-2elg) for more information.
+
 | __GitHub Actions__ | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/cicirello/user-statistician?label=Marketplace&logo=GitHub)](https://github.com/marketplace/actions/user-statistician) [![Count of Action Users](https://badgen.net/github/dependents-repo/cicirello/user-statistician?icon=github&label=used%20by)](https://github.com/cicirello/user-statistician/network/dependents) |
 | :--- | :--- |
 | __Build Status__ | [![build](https://github.com/cicirello/user-statistician/actions/workflows/build.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/build.yml) [![samples](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/generate-samples.yml) [![CodeQL](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/cicirello/user-statistician/actions/workflows/codeql-analysis.yml) |
@@ -952,6 +954,7 @@ The `user-statistician` action uses the following:
 ## Blog Posts
 
 Here is a selection of [DEV.to](https://dev.to/) blog posts about the user-statistician:
+* [Hacktoberfest Language Translation Contributors Wanted for the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-language-translation-contributors-wanted-for-the-user-statistician-github-action-2elg), posted on DEV on September 30, 2022.
 * [Halloween Themes for the user-statistician GitHub Action](https://dev.to/cicirello/halloween-themes-for-the-user-statistician-github-action-4do6), posted on DEV on September 28, 2022.
 * [Configuring GitHub's Linguist to Improve Repository Language Reporting](https://dev.to/cicirello/configuring-githubs-linguist-to-improve-repository-language-reporting-295b), posted on DEV on August 31, 2022.
 * [The user-statistician GitHub Action mentioned in Awesome-README](https://dev.to/cicirello/the-user-statistician-github-action-mentioned-in-awesome-readme-5g3o), posted on DEV on August 25, 2022.
