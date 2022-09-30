@@ -119,10 +119,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # ko: 5d-jh
 # lt: mantasio
 # uk: therrance
+# ro: donheshanthaka
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", }
 
 
 # Dictionary of header rows for categories of statistics
@@ -495,7 +496,30 @@ categoryLabels = {
             "column-two": None
         }
     },
-  
+    
+    "ro" : {
+        "general" : {
+            "heading" : "Statistici generale și informații",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Depozitele",
+            "column-one" : "Non-bifurcatii",
+            "column-two" : "Toate"
+        },
+        "contributions" : {
+            "heading" : "Contribuții",
+            "column-one" : "Anul trecut",
+            "column-two" : "Total"
+        },
+        "languages" : {
+            "heading" : "Distribuția limbii în arhivele publice",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+
 }
 
 # Dictionary of default title templates.
@@ -520,6 +544,7 @@ titleTemplates = {
     "ko" : "{0}의 GitHub 활동",
     "lt" : "{0} aktyvumas GitHub",
     "uk": "{0} активностей на GitHub",
+    "ro": "Activitatea GitHub a lui {0}",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -544,6 +569,7 @@ statLabels = {
             "ko" : "가입 년도",
             "lt" : "Prisijungimo metai",
             "uk": "Рік приєднання",
+            "ro": "An alăturat",
         }
     },
 
@@ -566,6 +592,7 @@ statLabels = {
             "ko" : "추천 저장소",
             "lt" : "Siūloma repozitorija",
             "uk": "Вибрані ререпозиторії",
+            "ro": "Repo recomandate",
         }
     },
 
@@ -588,6 +615,7 @@ statLabels = {
             "ko" : "Star를 가장 많이 받은 저장소",
             "lt" : "Labiausiai pažymėta repozitorija",
             "uk": "Найпопулярніший репозиторій",
+            "ro": "Cel mai marcat Repo",
         }
     },
 
@@ -610,6 +638,7 @@ statLabels = {
             "ko" : "Fork가 가장 많이된 저장소",
             "lt" : "Labiausiai klonuota repozitorija",
             "uk": "Найбільш клонований репозиторій",
+            "ro": "Repo cel mai bifurcat",
         }
     },
 
@@ -632,6 +661,7 @@ statLabels = {
             "ko" : "팔로워",
             "lt" : "Sekėjai",
             "uk": "Підписники",
+            "ro": "Urmaritori",
         }
     },
 
@@ -654,6 +684,7 @@ statLabels = {
             "ko" : "팔로잉",
             "lt" : "Sekama",
             "uk": "Підписки",
+            "ro": "Ca urmare a",
         }
     },
 
@@ -676,6 +707,7 @@ statLabels = {
             "ko" : "후원받은",
             "lt" : "Remėjai",
             "uk": "Спонсори",
+            "ro": "Sponsori",
         }
     },
 
@@ -698,6 +730,7 @@ statLabels = {
             "ko" : "후원하는",
             "lt" : "Remiama",
             "uk": "Спонсорство",
+            "ro": "Sponsorizare",
         }
     },
 
@@ -720,6 +753,7 @@ statLabels = {
             "ko" : "보유한 저장소",
             "lt" : "Priklausančios repozitorijos",
             "uk": "Власні репозиторії",
+            "ro": "Arhivele mele",
         }
     },
 
@@ -742,6 +776,7 @@ statLabels = {
             "ko" : "받은 Star",
             "lt" : "Pažymėta",
             "uk": "Відмітили",
+            "ro": "Înscris de",
         }
     },
 
@@ -764,6 +799,7 @@ statLabels = {
             "ko" : "Fork된 횟수",
             "lt" : "Klonuota",
             "uk": "Клонували",
+            "ro": "Bifurcat de",
         }
     },
 
@@ -786,6 +822,7 @@ statLabels = {
             "ko" : "Watch된 횟수",
             "lt" : "Stebima",
             "uk": "Підписники",
+            "ro": "Vizionat de",
         }
     },
 
@@ -808,6 +845,7 @@ statLabels = {
             "ko" : "템플릿",
             "lt" : "Šablonai",
             "uk": "Шаблони",
+            "ro": "Șabloane",
         }
     },
 
@@ -830,6 +868,7 @@ statLabels = {
             "ko" : "보관 처리된(Archived) 저장소",
             "lt" : "Archyvuota",
             "uk": "Заархівовано",
+            "ro": "Arhivat",
         }
     },
 
@@ -852,6 +891,7 @@ statLabels = {
             "ko" : "커밋",
             "lt" : "Commits",
             "uk": "Комміти",
+            "ro": "Commits",
         }
     },
 
@@ -874,6 +914,7 @@ statLabels = {
             "ko" : "이슈",
             "lt" : "Problemos",
             "uk": "Проблеми",
+            "ro": "Probleme",
         }
     },
 
@@ -896,6 +937,7 @@ statLabels = {
             "ko" : "풀 리퀘스트",
             "lt" : "Pull Prašymai",
             "uk": "Пулл реквести",
+            "ro": "Solicitări de tragere",
         }
     },
 
@@ -918,6 +960,7 @@ statLabels = {
             "ko" : "리뷰",
             "lt" : "Pull prašymų peržiūros",
             "uk": "Огляди пулл реквестів",
+            "ro": "Recenzii Pull Request",
         }
     },
 
@@ -941,6 +984,7 @@ statLabels = {
             "ko" : "기여 횟수",
             "lt" : "Prisidėjo prie",
             "uk": "Участь в",
+            "ro": "Contribuit la",
         }
     },
 
@@ -963,6 +1007,7 @@ statLabels = {
             "ko" : "비공개",
             "lt" : "Privatūs įnašai",
             "uk": "Приватна участь",
+            "ro": "Contribuții private",
         }
     }
 }
