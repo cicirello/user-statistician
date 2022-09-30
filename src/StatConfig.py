@@ -544,7 +544,7 @@ titleTemplates = {
     "ko" : "{0}의 GitHub 활동",
     "lt" : "{0} aktyvumas GitHub",
     "uk": "{0} активностей на GitHub",
-    "ro": "{0} Activitatea GitHub a lui {0}",
+    "ro": "Activitatea GitHub a lui {0}",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
