@@ -870,7 +870,7 @@ statLabels = {
             "lt" : "Klonuota",
             "uk": "Клонували",
             "ro": "Bifurcat de",
-            "th": "มีการ Fork ทั้งหมด"
+            "th": "มีการ Fork ทั้งหมด",
             "nl" : "Geforkt door",
         }
     },
