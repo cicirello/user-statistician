@@ -120,11 +120,12 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # lt: mantasio
 # uk: therrance
 # ro: donheshanthaka
+# nl: lovelacecoding
 # th: Slowlife01
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "th", }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", }
 
 
 # Dictionary of header rows for categories of statistics
@@ -520,6 +521,29 @@ categoryLabels = {
             "column-two" : None
         }
     },
+    
+    "nl" : {
+        "general" : {
+            "heading" : "Algemene statistieken en info",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Repositories",
+            "column-one" : "Non-Forks",
+            "column-two" : "Alles"
+        },
+        "contributions" : {
+            "heading" : "Bijdragen",
+            "column-one" : "Dit jaar",
+            "column-two" : "Totaal"
+        },
+        "languages" : {
+            "heading" : "Talen distributies in Publieke Repositories",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
 
     "th" : {
         "general" : {
@@ -569,6 +593,7 @@ titleTemplates = {
     "lt" : "{0} aktyvumas GitHub",
     "uk": "{0} активностей на GitHub",
     "ro": "Activitatea GitHub a lui {0}",
+    "nl": "{0}'s GitHub activiteiten",
     "th": "กิจกรรมของ {0} บน GitHub",
 }
 
@@ -595,6 +620,7 @@ statLabels = {
             "lt" : "Prisijungimo metai",
             "uk": "Рік приєднання",
             "ro": "An alăturat",
+            "nl": "Jaar van aanmelding",
             "th": "ปีที่เข้าร่วม",
         }
     },
@@ -620,6 +646,7 @@ statLabels = {
             "uk": "Вибрані ререпозиторії",
             "ro": "Repo recomandate",
             "th": "Repo เด่น",
+            "nl" : "Uitgelichte repository",
         }
     },
 
@@ -644,6 +671,7 @@ statLabels = {
             "uk": "Найпопулярніший репозиторій",
             "ro": "Cel mai marcat Repo",
             "th": "Repo ที่ติดดาวมากที่สุด",
+            "nl" : "Repository met meeste sterren",
         }
     },
 
@@ -668,6 +696,7 @@ statLabels = {
             "uk": "Найбільш клонований репозиторій",
             "ro": "Repo cel mai bifurcat",
             "th": "Repo ที่มีการ Fork มากที่สุด",
+            "nl" : "Repository met meeste forks",
         }
     },
 
@@ -692,6 +721,7 @@ statLabels = {
             "uk": "Підписники",
             "ro": "Urmaritori",
             "th": "ผู้ติดตาม",
+            "nl" : "Volgers",
         }
     },
 
@@ -716,6 +746,7 @@ statLabels = {
             "uk": "Підписки",
             "ro": "Ca urmare a",
             "th": "กำลังติดตาม",
+            "nl" : "Volgend",
         }
     },
 
@@ -740,6 +771,7 @@ statLabels = {
             "uk": "Спонсори",
             "ro": "Sponsori",
             "th": "ผู้สนับสนุน",
+            "nl" : "Sponsoren",
         }
     },
 
@@ -764,6 +796,7 @@ statLabels = {
             "uk": "Спонсорство",
             "ro": "Sponsorizare",
             "th": "กำลังสนับสนุน",
+            "nl" : "Gesponsord",
         }
     },
 
@@ -788,6 +821,7 @@ statLabels = {
             "uk": "Власні репозиторії",
             "ro": "Arhivele mele",
             "th": "Repo ทั้งหมดของฉัน",
+            "nl" : "Mijn Repositories",
         }
     },
 
@@ -812,6 +846,7 @@ statLabels = {
             "uk": "Відмітили",
             "ro": "Înscris de",
             "th": "ติดดาวทั้งหมด",
+            "nl" : "Ster gegeven door",
         }
     },
 
@@ -836,6 +871,7 @@ statLabels = {
             "uk": "Клонували",
             "ro": "Bifurcat de",
             "th": "มีการ Fork ทั้งหมด"
+            "nl" : "Geforkt door",
         }
     },
 
@@ -860,6 +896,7 @@ statLabels = {
             "uk": "Підписники",
             "ro": "Vizionat de",
             "th": "ผู้ติดตาม",
+            "nl" : "Gevolgd door",
         }
     },
 
@@ -884,6 +921,7 @@ statLabels = {
             "uk": "Шаблони",
             "ro": "Șabloane",
             "th": "เทมเพลต",
+            "nl" : "Sjablonen",
         }
     },
 
@@ -908,6 +946,7 @@ statLabels = {
             "uk": "Заархівовано",
             "ro": "Arhivat",
             "th": "อาร์ไคฟ์",
+            "nl" : "Gearchiveerd",
         }
     },
 
@@ -932,6 +971,7 @@ statLabels = {
             "uk": "Комміти",
             "ro": "Commits",
             "th": "คอมมิท",
+            "nl" : "Commits",
         }
     },
 
@@ -956,6 +996,7 @@ statLabels = {
             "uk": "Проблеми",
             "ro": "Probleme",
             "th": "อิชชู",
+            "nl" : "Problemen",
         }
     },
 
@@ -980,6 +1021,7 @@ statLabels = {
             "uk": "Пулл реквести",
             "ro": "Solicitări de tragere",
             "th": "Pull Requests",
+            "nl" : "Pull Requests",
         }
     },
 
@@ -1004,6 +1046,7 @@ statLabels = {
             "uk": "Огляди пулл реквестів",
             "ro": "Recenzii Pull Request",
             "th": "รีวิว Pull Request",
+            "nl" : "Pull Request Recensies",
         }
     },
 
@@ -1029,6 +1072,7 @@ statLabels = {
             "uk": "Участь в",
             "ro": "Contribuit la",
             "th": "Contribute ไปแล้ว",
+            "nl" : "Bijgedragen aan",
         }
     },
 
@@ -1053,6 +1097,7 @@ statLabels = {
             "uk": "Приватна участь",
             "ro": "Contribuții private",
             "th": "Contributions ส่วนตัว",
+            "nl": "Prive Bijdragen",
         }
     }
 }
