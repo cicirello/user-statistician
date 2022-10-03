@@ -4,11 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-10-01
+## [Unreleased] - 2022-10-03
 
 ### Added
 * Increased internationalization support with the addition of new locales:
   * Dutch (`locale: nl`) in #166, contributed by @lovelacecoding.
+  * Norwegian (`locale: no`) in #167, contributed by @rubjo.
   * Romanian (`locale: ro`) in #164, contributed by @donheshanthaka.
   * Thai (`locale: th`) in #165, contributed by @Slowlife01.
 
