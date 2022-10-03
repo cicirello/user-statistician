@@ -645,7 +645,7 @@ statLabels = {
             "lt" : "Siūloma repozitorija",
             "uk": "Вибрані ререпозиторії",
             "ro": "Repo recomandate",
-            "th": "Repo เด่น",
+            "th": "Repo ที่โดดเด่น",
             "nl" : "Uitgelichte repository",
         }
     },
@@ -920,7 +920,7 @@ statLabels = {
             "lt" : "Šablonai",
             "uk": "Шаблони",
             "ro": "Șabloane",
-            "th": "เทมเพลต",
+            "th": "เทมเพลตแม่แบบ",
             "nl" : "Sjablonen",
         }
     },
@@ -945,7 +945,7 @@ statLabels = {
             "lt" : "Archyvuota",
             "uk": "Заархівовано",
             "ro": "Arhivat",
-            "th": "อาร์ไคฟ์",
+            "th": "เก็บถาวร",
             "nl" : "Gearchiveerd",
         }
     },
@@ -995,7 +995,7 @@ statLabels = {
             "lt" : "Problemos",
             "uk": "Проблеми",
             "ro": "Probleme",
-            "th": "อิชชู",
+            "th": "ปัญหา",
             "nl" : "Problemen",
         }
     },
@@ -1071,7 +1071,7 @@ statLabels = {
             "lt" : "Prisidėjo prie",
             "uk": "Участь в",
             "ro": "Contribuit la",
-            "th": "Contribute ไปแล้ว",
+            "th": "มีการช่วยไปแล้ว",
             "nl" : "Bijgedragen aan",
         }
     },
