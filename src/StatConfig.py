@@ -123,10 +123,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # nl: lovelacecoding
 # th: Slowlife01
 # no: rubjo
+# hu: jpacsai
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", }
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -591,6 +592,28 @@ categoryLabels = {
             "column-two" : None
         }
     },
+    "hu" : {
+        "general" : {
+            "heading" : "Általános statisztika és információ",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Repository-k",
+            "column-one" : "Non-Fork-ok",
+            "column-two" : "Mind"
+        },
+        "contributions" : {
+            "heading" : "Kontribúciók",
+            "column-one" : "Elmúlt év",
+            "column-two" : "Összesen"
+        },
+        "languages" : {
+            "heading" : "Nyelvek eloszlása nyilvános repository-kban",
+            "column-one" : None,
+            "column-two" : None
+        }
+    }
 
 }
 
@@ -620,6 +643,7 @@ titleTemplates = {
     "nl": "{0}'s GitHub activiteiten",
     "th": "กิจกรรมของ {0} บน GitHub",
     "no": "{0}s GitHub-aktivitet",
+    "hu" : "{0} GitHub aktivitása",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -648,6 +672,7 @@ statLabels = {
             "nl": "Jaar van aanmelding",
             "th": "ปีที่เข้าร่วม",
             "no" : "Ble med i år",
+            "hu": "Csatlakozás éve",
         }
     },
 
@@ -674,6 +699,7 @@ statLabels = {
             "th": "Repo ที่โดดเด่น",
             "nl" : "Uitgelichte repository",
             "no" : "Framhevet kodebase",
+            "hu": "Kiemelt repo",
         }
     },
 
@@ -700,6 +726,7 @@ statLabels = {
             "th": "Repo ที่ติดดาวมากที่สุด",
             "nl" : "Repository met meeste sterren",
             "no" : "Kodebase med flest stjerner",
+            "hu" : "Legtöbbet csillagozott repo",
         }
     },
 
@@ -726,6 +753,7 @@ statLabels = {
             "th": "Repo ที่มีการ Fork มากที่สุด",
             "nl" : "Repository met meeste forks",
             "no" : "Kodebase med flest forgreninger",
+            "hu" : "Legtöbbet fork-olt repo",
         }
     },
 
@@ -752,6 +780,7 @@ statLabels = {
             "th": "ผู้ติดตาม",
             "nl" : "Volgers",
             "no" : "Følgere",
+            "hu" : "Követői",
         }
     },
 
@@ -778,6 +807,7 @@ statLabels = {
             "th": "กำลังติดตาม",
             "nl" : "Volgend",
             "no" : "Følger",
+            "hu" : "Követi",
         }
     },
 
@@ -804,6 +834,7 @@ statLabels = {
             "th": "ผู้สนับสนุน",
             "nl" : "Sponsoren",
             "no" : "Sponsorer",
+            "hu" : "Szponzorok",
         }
     },
 
@@ -830,6 +861,7 @@ statLabels = {
             "th": "กำลังสนับสนุน",
             "nl" : "Gesponsord",
             "no" : "Sponser",
+            "hu" : "Szponzorál",
         }
     },
 
@@ -856,6 +888,7 @@ statLabels = {
             "th": "Repo ทั้งหมดของฉัน",
             "nl" : "Mijn Repositories",
             "no" : "Mine kodebaser",
+            "hu" : "Saját repository-k"
         }
     },
 
@@ -882,6 +915,7 @@ statLabels = {
             "th": "ติดดาวทั้งหมด",
             "nl" : "Ster gegeven door",
             "no" : "Stjernemerket av",
+            "hu" : "Csillagozta",
         }
     },
 
@@ -908,6 +942,7 @@ statLabels = {
             "th": "มีการ Fork ทั้งหมด",
             "nl" : "Geforkt door",
             "no" : "Forgrenet av",
+            "hu" : "Forkolta",
         }
     },
 
@@ -934,6 +969,7 @@ statLabels = {
             "th": "ผู้ติดตาม",
             "nl" : "Gevolgd door",
             "no" : "Overvåket av",
+            "hu" : "Figyeli",
         }
     },
 
@@ -960,6 +996,7 @@ statLabels = {
             "th": "เทมเพลตแม่แบบ",
             "nl" : "Sjablonen",
             "no" : "Maler",
+            "hu" : "Sablonok",
         }
     },
 
@@ -986,6 +1023,7 @@ statLabels = {
             "th": "เก็บถาวร",
             "nl" : "Gearchiveerd",
             "no" : "Arkivert",
+            "hu" : "Archiválva",
         }
     },
 
@@ -1012,6 +1050,7 @@ statLabels = {
             "th": "คอมมิท",
             "nl" : "Commits",
             "no" : "Commits",
+            "hu" : "Commitok",
         }
     },
 
@@ -1038,6 +1077,7 @@ statLabels = {
             "th": "ปัญหา",
             "nl" : "Problemen",
             "no" : "Saker",
+            "hu" : "Issue-k",
         }
     },
 
@@ -1064,6 +1104,7 @@ statLabels = {
             "th": "Pull Requests",
             "nl" : "Pull Requests",
             "no" : "Pull Requests",
+            "hu" : "Pull request-ek",
         }
     },
 
@@ -1090,6 +1131,7 @@ statLabels = {
             "th": "รีวิว Pull Request",
             "nl" : "Pull Request Recensies",
             "no" : "Pull Request-vurderinger",
+            "hu" : "Pull request review-k",
         }
     },
 
@@ -1117,6 +1159,7 @@ statLabels = {
             "th": "มีการช่วยไปแล้ว",
             "nl" : "Bijgedragen aan",
             "no" : "Bidro til",
+            "hu" : "Kontribútolt",
         }
     },
 
@@ -1143,6 +1186,7 @@ statLabels = {
             "th": "Contributions ส่วนตัว",
             "nl": "Prive Bijdragen",
             "no" : "Private bidrag",
+            "hu" : "Privát kontribúciók",
         }
     }
 }
