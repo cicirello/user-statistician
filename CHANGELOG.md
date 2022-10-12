@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-10-12
 
 ### Added
-* Increased internationalization with the addition of new locales:
-  * Hungarian (`locale: hu`) in #172, contributed by @jpacsai.
 
 ### Changed
 
@@ -17,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+### Dependencies
+
+
+## [1.18.0] - 2022-10-12
+
+### Added
+* Translation to Hungarian (`locale: hu`) in #172, contributed by @jpacsai.
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.9.0 to 4.10.0
