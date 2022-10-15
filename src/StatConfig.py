@@ -127,7 +127,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu"}
+supportedLocales = { "en", "it", "da", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -151,6 +151,29 @@ categoryLabels = {
         },
         "languages" : {
             "heading" : "Language Distribution in Public Repositories",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
+    
+    "da" : {
+        "general" : {
+            "heading" : "Generel Statistik og Information",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Repositories",
+            "column-one" : "Ikke-Forks",
+            "column-two" : "Alt"
+        },
+        "contributions" : {
+            "heading" : "Contributions",
+            "column-one" : "Seneste år",
+            "column-two" : "I Alt"
+        },
+        "languages" : {
+            "heading" : "Sprogfordeling I Offentlige Arkiver",
             "column-one" : None,
             "column-two" : None
         }
