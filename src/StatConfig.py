@@ -629,11 +629,11 @@ categoryLabels = {
         },
         "contributions" : {
             "heading" : "ᱮᱱᱮᱢᱤᱭᱟᱹᱠᱚ",
-            "column-one" : "ᱪᱷᱞᱟᱣᱮᱱ ᱥᱮᱨᱢᱟᱸ",
+            "column-one" : "ᱪᱟᱞᱟᱣᱮᱱ ᱥᱮᱨᱢᱟᱸ",
             "column-two" : "ᱢᱩᱴ"
         },
         "languages" : {
-            "heading" : "ᱥᱟᱱᱟᱢ ᱰᱩᱫᱟᱢ ᱨᱮ ᱯᱟᱹᱨᱥᱤ ᱠᱚᱣᱟᱜ ᱯᱟᱥᱱᱟᱣ",
+            "heading" : "ᱥᱟᱱᱟᱢ ᱜᱩᱫᱟᱢ ᱨᱮ ᱯᱟᱹᱨᱥᱤ ᱠᱚᱣᱟᱜ ᱯᱟᱥᱱᱟᱣ",
             "column-one" : None,
             "column-two" : None
         }
