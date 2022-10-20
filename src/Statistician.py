@@ -27,6 +27,18 @@
 
 import json
 import subprocess
+import os
+
+def set_outputs(names_values) :
+    """Sets the GitHub Action outputs.
+
+    Keyword arguments:
+    names_values - Dictionary of output names with values
+    """
+    if "GITHUB_OUTPUT" in os.environ :
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f :
+            for name, value in names_values.items() :
+                print("{0}={1}".format(name, value), file=f)
 
 class Statistician :
     """The Statistician class executes GitHub GraphQl queries,
@@ -128,7 +140,7 @@ class Statistician :
                 return file.read()
         except IOError:
             print("Error (1): Failed to open query file:", queryFilePath)
-            print("::set-output name=exit-code::1")
+            set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
     def parseStats(self, basicStats, repoStats, watchingStats, reposContributedToStats) :
@@ -427,12 +439,11 @@ class Statistician :
             if "errors" in result :
                 print("Error (2): GitHub api Query failed with error:")
                 print(result["errors"])
-                print("::set-output name=exit-code::2")
                 code = 2
             else :
                 print("Error (3): Something unexpected occurred during GitHub API query.")
-                print("::set-output name=exit-code::3")
                 code = 3
+            set_outputs({"exit-code" : code})
             exit(code if failOnError else 0)
         elif needsPagination :
             if (numPages > 1) :
@@ -453,7 +464,7 @@ class Statistician :
             print("Error (6): No data returned.")
             if errorMessage != None :
                 print(errorMessage)
-            print("::set-output name=exit-code::6")
+            set_outputs({"exit-code" : 6})
             exit(6 if failOnError else 0)
         return result
 
