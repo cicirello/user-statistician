@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-10-20
 
 ### Added
-* Translation to Santali (`locale: sat`) in #178, contributed by @Prasanta-Hembram.
-* Translation to Serbian (`locale: sr`) in #182, contributed by @keen003.
 
 ### Changed
 
@@ -17,8 +15,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Replaced the usage of GitHub Action's deprecated `set-output` with the new `$GITHUB_OUTPUT` env file.
 
+### Dependencies
+
+
+## [1.19.0] - 2022-10-20
+
+### Added
+* Translation to Santali (`locale: sat`) in #178, contributed by @Prasanta-Hembram.
+* Translation to Serbian (`locale: sr`) in #182, contributed by @keen003.
+
+### Fixed
+* Replaced use of GitHub Action's deprecated `set-output` with the new `$GITHUB_OUTPUT` env file,
+  in #184 (@cicirello).
+  
 ### Dependencies
 * Bump cicirello/pyaction from 4.10.0 to 4.11.0
 
