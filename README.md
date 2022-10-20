@@ -43,7 +43,7 @@ GitHub Action include the following:
 * Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
 * Highly customizable (color themes, custom colors, section ordering, custom title).
-* [International](#locale) with option to generate SVG in 21 [languages](#locale).
+* [International](#locale) with option to generate SVG in 23 [languages](#locale).
 * Runs entirely here on GitHub.
 * Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
@@ -318,7 +318,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.15.0
+      uses: cicirello/user-statistician@v1.19.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -797,12 +797,10 @@ will be hidden despite being in the `category-order`.
 
 ### `locale`
 
-This input is an ISO 639-1 two character language code for the
-language used in names of statistics, section and column headings,
-and default title on the user stats card. The default is `locale: en`,
-which is English. If an unsupported locale is passed, then the 
-action will use the default of "en". The following locales are
-currently supported:
+This input is an ISO 639-1 (two character) or ISO 639-2 (three character) language code for the
+language used in names of statistics, section and column headings, and default title on the user 
+stats card. The default is `locale: en`, which is English. If an unsupported locale is passed, then the 
+action will use the default of "en". The following locales are currently supported:
 
 | locale code | language |
 | :--- | :--- |
@@ -823,6 +821,8 @@ currently supported:
 | pt | Portuguese |
 | ro | Romanian | 
 | ru | Russian |
+| sat | Santali |
+| sr | Serbian |
 | es | Spanish |
 | th | Thai |
 | tr | Turkish |
