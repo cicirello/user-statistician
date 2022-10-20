@@ -26,7 +26,7 @@
 # SOFTWARE.
 #
 
-from Statistician import Statistician
+from Statistician import Statistician, set_outputs
 from Colors import colorMapping, iconTemplates
 from StatsImageGenerator import StatsImageGenerator
 from StatConfig import supportedLocales, categoryOrder
@@ -61,7 +61,7 @@ def writeImageToFile(filename, image, failOnError) :
             file.write(image)
     except IOError:
         print("Error (4): An error occurred while writing the image to a file.")
-        print("::set-output name=exit-code::4")
+        set_outputs({"exit-code" : 4})
         exit(4 if failOnError else 0)
 
 def executeCommand(arguments) :
@@ -102,7 +102,7 @@ def commitAndPush(filename, name, login, failOnError) :
             r = executeCommand(["git", "push"])
             if r[1] != 0 :
                 print("Error (5): push failed.")
-                print("::set-output name=exit-code::5")
+                set_outputs({"exit-code" : 5})
                 exit(5 if failOnError else 0)
     
 
@@ -213,5 +213,5 @@ if __name__ == "__main__" :
     if commit :
         commitAndPush(imageFilenameWithPath, "github-actions", "41898282+github-actions[bot]", failOnError)
     
-    print("::set-output name=exit-code::0")
+    set_outputs({"exit-code" : 0})
     
