@@ -125,10 +125,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # no: rubjo
 # hu: jpacsai
 # sat: Prasanta-Hembram
+# sr: keen003
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat"}
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -637,8 +638,30 @@ categoryLabels = {
             "column-one" : None,
             "column-two" : None
         }
-    }
+    },
 
+    "sr" : {
+        "general" : {
+            "heading" : "Opšta statistika i informacije",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "Repozitoriji",
+            "column-one" : "Ne-forkovani",
+            "column-two" : "Svi"
+        },
+        "contributions" : {
+            "heading" : "Doprinosi",
+            "column-one" : "Prošla godina",
+            "column-two" : "Ukupno"
+        },
+        "languages" : {
+            "heading" : "Zastupljenost jezika u javnim repozitorijima",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
 }
 
 # Dictionary of default title templates.
@@ -669,6 +692,12 @@ titleTemplates = {
     "no": "{0}s GitHub-aktivitet",
     "hu" : "{0} GitHub aktivitása",
     "sat" : "{0}ᱟᱜ ᱜᱤᱴᱦᱚᱵᱽ ᱠᱟᱹᱢᱤᱦᱚᱨᱟᱠᱚ",
+    # Serbian is the same as Russian in this regard
+    # but I decided to format it as:
+    # "Firstname Lastname - GitHub activity"
+    # similar could be applied to Russian and related languages
+    "sr" : "{0} - Aktivnost na Githabu"
+
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -699,6 +728,7 @@ statLabels = {
             "no" : "Ble med i år",
             "hu": "Csatlakozás éve",
             "sat": "ᱥᱮᱞᱮᱫ ᱥᱮᱨᱢᱟᱸ",
+            "sr" : "Godina pristupa"
         }
     },
 
@@ -727,6 +757,7 @@ statLabels = {
             "no" : "Framhevet kodebase",
             "hu": "Kiemelt repo",
             "sat": "ᱵᱤᱥᱮᱥ ᱜᱩᱫᱟᱢ",
+            "sr" : "Izabrani repozitorij",
         }
     },
 
@@ -755,6 +786,7 @@ statLabels = {
             "no" : "Kodebase med flest stjerner",
             "hu" : "Legtöbbet csillagozott repo",
             "sat": "ᱡᱷᱚᱛᱚ ᱠᱷᱚᱱ ᱰᱷᱮᱨ ᱪᱤᱱᱦᱟᱹ ᱦᱟᱜ ᱜᱩᱫᱟᱹᱢ",
+            "sr" : "Najviše zvezdica na repou",
         }
     },
 
@@ -783,6 +815,7 @@ statLabels = {
             "no" : "Kodebase med flest forgreninger",
             "hu" : "Legtöbbet fork-olt repo",
             "sat" : "ᱡᱟᱹᱥᱛᱤ ᱱᱚᱠᱚᱞ ᱠᱟᱱ ᱜᱚᱫᱟᱢ",
+            "sr" : "Najviše forkovan repo",
         }
     },
 
@@ -811,6 +844,7 @@ statLabels = {
             "no" : "Følgere",
             "hu" : "Követői",
             "sat" : "ᱯᱟᱧᱡᱟ ᱠᱩᱜ",
+            "sr" : "Pratilaca",
         }
     },
 
@@ -839,6 +873,7 @@ statLabels = {
             "no" : "Følger",
             "hu" : "Követi",
             "sat" : "ᱯᱟᱧᱡᱟ ᱮᱫᱟᱢ",
+            "sr" : "Prati",
         }
     },
 
@@ -867,6 +902,7 @@ statLabels = {
             "no" : "Sponsorer",
             "hu" : "Szponzorok",
             "sat" : "ᱨᱚᱠᱚᱢᱤᱭᱟᱹ",
+            "sr" : "Sponzori",
         }
     },
 
@@ -895,6 +931,7 @@ statLabels = {
             "no" : "Sponser",
             "hu" : "Szponzorál",
             "sat" : "ᱨᱚᱠᱚᱢᱚᱜ ᱠᱟᱱᱟ",
+            "sr" : "Sponzoriše",
         }
     },
 
@@ -923,6 +960,7 @@ statLabels = {
             "no" : "Mine kodebaser",
             "hu" : "Saját repository-k",
             "sat" : "ᱤᱧᱟᱜ ᱜᱩᱫᱟᱢ ᱠᱚ",
+            "sr" : "Lični repozitoriji",
         }
     },
 
@@ -951,6 +989,7 @@ statLabels = {
             "no" : "Stjernemerket av",
             "hu" : "Csillagozta",
             "sat" : "ᱪᱤᱱᱦᱟᱹᱤᱭᱟᱹ",
+            "sr" : "Dodeljenih zvezdica",
         }
     },
 
@@ -979,6 +1018,7 @@ statLabels = {
             "no" : "Forgrenet av",
             "hu" : "Forkolta",
             "sat" : "ᱱᱚᱠᱚᱞᱤᱭᱟᱹ",
+            "sr" : "Broj forkovanja",
         }
     },
 
@@ -1007,6 +1047,7 @@ statLabels = {
             "no" : "Overvåket av",
             "hu" : "Figyeli",
             "sat" : "ᱛᱤᱱᱹᱜ ᱠᱚ ᱧᱮᱞ ᱠᱟᱫᱟ",
+            "sr" : "Pregledi",
         }
     },
 
@@ -1035,6 +1076,7 @@ statLabels = {
             "no" : "Maler",
             "hu" : "Sablonok",
             "sat" : "ᱪᱷᱟᱸᱪᱠᱚ",
+            "sr" : "Šabloni",
         }
     },
 
@@ -1063,6 +1105,7 @@ statLabels = {
             "no" : "Arkivert",
             "hu" : "Archiválva",
             "sat" : "ᱜᱟᱵᱟᱱᱮᱱᱟ",
+            "sr" : "Arhive",
         }
     },
 
@@ -1091,6 +1134,7 @@ statLabels = {
             "no" : "Commits",
             "hu" : "Commitok",
             "sat" : "ᱰᱟᱞᱟᱣᱠᱚ",
+            "sr" : "Komiti",
         }
     },
 
@@ -1119,6 +1163,7 @@ statLabels = {
             "no" : "Saker",
             "hu" : "Issue-k",
             "sat" : "ᱯᱚᱞᱚᱡᱽᱠᱚ",
+            "sr" : "Problemi",
         }
     },
 
@@ -1147,6 +1192,7 @@ statLabels = {
             "no" : "Pull Requests",
             "hu" : "Pull request-ek",
             "sat" : "ᱚᱨ ᱱᱮᱦᱚᱨᱠᱚ",
+            "sr" : "Pul zahtevi",
         }
     },
 
@@ -1175,6 +1221,7 @@ statLabels = {
             "no" : "Pull Request-vurderinger",
             "hu" : "Pull request review-k",
             "sat" : "ᱚᱨ ᱱᱮᱦᱚᱨ ᱧᱮᱞᱯᱚᱨᱚᱠᱷ ᱠᱚ",
+            "sr" : "Revizije pul zahteva",
         }
     },
 
@@ -1204,6 +1251,7 @@ statLabels = {
             "no" : "Bidro til",
             "hu" : "Kontribútolt",
             "sat" : "ᱮᱱᱮᱢ",
+            "sr" : "Doprinosi",
         }
     },
 
@@ -1232,6 +1280,7 @@ statLabels = {
             "no" : "Private bidrag",
             "hu" : "Privát kontribúciók",
             "sat" : "ᱱᱤᱡᱚᱨᱟᱜ ᱩᱠᱩ ᱮᱱᱮᱢᱠᱚ",
+            "sr" : "Privatni doprinosi",
         }
     }
 }
