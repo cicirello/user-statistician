@@ -126,10 +126,11 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # hu: jpacsai
 # sat: Prasanta-Hembram
 # sr: keen003
+# or: Prasanta-Hembram
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr"}
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr", "or"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -662,6 +663,28 @@ categoryLabels = {
             "column-two" : None
         }
     },
+    "or" : {
+        "general" : {
+            "heading" : "ସାଧାରଣ ପରିସଂଖ୍ୟାନ ଏବଂ ସୂଚନା",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "ସଂଗ୍ରହାଳୟ",
+            "column-one" : "ଅଣ-ଫର୍କସ୍",
+            "column-two" : "ସମସ୍ତ"
+        },
+        "contributions" : {
+            "heading" : "ଅବଦାନ",
+            "column-one" : "ବିଗତ ବର୍ଷ",
+            "column-two" : "ମୋଟ"
+        },
+        "languages" : {
+            "heading" : "ସର୍ବସାଧାରଣ ସଂଗ୍ରହାଳୟରେ ଭାଷା ବଣ୍ଟନ",
+            "column-one" : None,
+            "column-two" : None
+        }
+    }
 }
 
 # Dictionary of default title templates.
@@ -696,8 +719,8 @@ titleTemplates = {
     # but I decided to format it as:
     # "Firstname Lastname - GitHub activity"
     # similar could be applied to Russian and related languages
-    "sr" : "{0} - Aktivnost na Githabu"
-
+    "sr" : "{0} - Aktivnost na Githabu",
+    "or" : "{0}ର GitHub କାର୍ଯ୍ୟକଳାପ",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -728,7 +751,8 @@ statLabels = {
             "no" : "Ble med i år",
             "hu": "Csatlakozás éve",
             "sat": "ᱥᱮᱞᱮᱫ ᱥᱮᱨᱢᱟᱸ",
-            "sr" : "Godina pristupa"
+            "sr" : "Godina pristupa",
+            "or" : "ବର୍ଷ ଯୋଗଦାନ",
         }
     },
 
@@ -758,6 +782,7 @@ statLabels = {
             "hu": "Kiemelt repo",
             "sat": "ᱵᱤᱥᱮᱥ ᱜᱩᱫᱟᱢ",
             "sr" : "Izabrani repozitorij",
+            "or" : "ବୈଶିଷ୍ଟ୍ୟ ରେପୋ",
         }
     },
 
@@ -787,6 +812,7 @@ statLabels = {
             "hu" : "Legtöbbet csillagozott repo",
             "sat": "ᱡᱷᱚᱛᱚ ᱠᱷᱚᱱ ᱰᱷᱮᱨ ᱪᱤᱱᱦᱟᱹ ᱦᱟᱜ ᱜᱩᱫᱟᱹᱢ",
             "sr" : "Najviše zvezdica na repou",
+            "or" : "ସର୍ବାଧିକ ତାରକା ରେପୋ",
         }
     },
 
@@ -816,6 +842,7 @@ statLabels = {
             "hu" : "Legtöbbet fork-olt repo",
             "sat" : "ᱡᱟᱹᱥᱛᱤ ᱱᱚᱠᱚᱞ ᱠᱟᱱ ᱜᱚᱫᱟᱢ",
             "sr" : "Najviše forkovan repo",
+            "or" : "ଅଧିକାଂଶ ଫୋର୍କଡ୍ ରେପୋ",
         }
     },
 
@@ -845,6 +872,7 @@ statLabels = {
             "hu" : "Követői",
             "sat" : "ᱯᱟᱧᱡᱟ ᱠᱩᱜ",
             "sr" : "Pratilaca",
+            "or" : "ଅନୁସରଣକାରୀ",
         }
     },
 
@@ -874,6 +902,7 @@ statLabels = {
             "hu" : "Követi",
             "sat" : "ᱯᱟᱧᱡᱟ ᱮᱫᱟᱢ",
             "sr" : "Prati",
+            "or" : "ନିମ୍ନଲିଖିତ",
         }
     },
 
@@ -903,6 +932,7 @@ statLabels = {
             "hu" : "Szponzorok",
             "sat" : "ᱨᱚᱠᱚᱢᱤᱭᱟᱹ",
             "sr" : "Sponzori",
+            "or" : "ପ୍ରଯୋଜକ",
         }
     },
 
@@ -932,6 +962,7 @@ statLabels = {
             "hu" : "Szponzorál",
             "sat" : "ᱨᱚᱠᱚᱢᱚᱜ ᱠᱟᱱᱟ",
             "sr" : "Sponzoriše",
+            "or" : "ପ୍ରାୟୋଜକ",
         }
     },
 
@@ -961,6 +992,7 @@ statLabels = {
             "hu" : "Saját repository-k",
             "sat" : "ᱤᱧᱟᱜ ᱜᱩᱫᱟᱢ ᱠᱚ",
             "sr" : "Lični repozitoriji",
+            "or" : "ମୋର ସଂଗ୍ରହାଳୟ",
         }
     },
 
@@ -990,6 +1022,7 @@ statLabels = {
             "hu" : "Csillagozta",
             "sat" : "ᱪᱤᱱᱦᱟᱹᱤᱭᱟᱹ",
             "sr" : "Dodeljenih zvezdica",
+            "or" : "ଷ୍ଟାର୍ ହୋଇଥିବା",
         }
     },
 
@@ -1019,6 +1052,7 @@ statLabels = {
             "hu" : "Forkolta",
             "sat" : "ᱱᱚᱠᱚᱞᱤᱭᱟᱹ",
             "sr" : "Broj forkovanja",
+            "or" : "ଦ୍ୱାରା କଣ୍ଟା ହୋଇଛି",
         }
     },
 
@@ -1048,6 +1082,7 @@ statLabels = {
             "hu" : "Figyeli",
             "sat" : "ᱛᱤᱱᱹᱜ ᱠᱚ ᱧᱮᱞ ᱠᱟᱫᱟ",
             "sr" : "Pregledi",
+            "or" : "ଦେଖିଲା",
         }
     },
 
@@ -1077,6 +1112,7 @@ statLabels = {
             "hu" : "Sablonok",
             "sat" : "ᱪᱷᱟᱸᱪᱠᱚ",
             "sr" : "Šabloni",
+            "or" : "ଟେମ୍ପଲେଟ୍",
         }
     },
 
@@ -1106,6 +1142,7 @@ statLabels = {
             "hu" : "Archiválva",
             "sat" : "ᱜᱟᱵᱟᱱᱮᱱᱟ",
             "sr" : "Arhive",
+            "or" : "ସଂଗୃହିତ",
         }
     },
 
@@ -1135,6 +1172,7 @@ statLabels = {
             "hu" : "Commitok",
             "sat" : "ᱰᱟᱞᱟᱣᱠᱚ",
             "sr" : "Komiti",
+            "or" : "ପ୍ରତିବଦ୍ଧତା",
         }
     },
 
@@ -1164,6 +1202,7 @@ statLabels = {
             "hu" : "Issue-k",
             "sat" : "ᱯᱚᱞᱚᱡᱽᱠᱚ",
             "sr" : "Problemi",
+            "or" : "ସମସ୍ୟାଗୁଡିକ",
         }
     },
 
@@ -1193,6 +1232,7 @@ statLabels = {
             "hu" : "Pull request-ek",
             "sat" : "ᱚᱨ ᱱᱮᱦᱚᱨᱠᱚ",
             "sr" : "Pul zahtevi",
+            "or" : "ଅନୁରୋଧ ଟାଣନ୍ତୁ",
         }
     },
 
@@ -1222,6 +1262,7 @@ statLabels = {
             "hu" : "Pull request review-k",
             "sat" : "ᱚᱨ ᱱᱮᱦᱚᱨ ᱧᱮᱞᱯᱚᱨᱚᱠᱷ ᱠᱚ",
             "sr" : "Revizije pul zahteva",
+            "or" : "ଅନୁରୋଧ ସମୀକ୍ଷାଗୁଡିକ ଟାଣନ୍ତୁ",
         }
     },
 
@@ -1252,6 +1293,7 @@ statLabels = {
             "hu" : "Kontribútolt",
             "sat" : "ᱮᱱᱮᱢ",
             "sr" : "Doprinosi",
+            "or" : "ଯୋଗଦାନ",
         }
     },
 
@@ -1281,6 +1323,7 @@ statLabels = {
             "hu" : "Privát kontribúciók",
             "sat" : "ᱱᱤᱡᱚᱨᱟᱜ ᱩᱠᱩ ᱮᱱᱮᱢᱠᱚ",
             "sr" : "Privatni doprinosi",
+            "or" : "ବ୍ୟକ୍ତିଗତ ଅବଦାନ",
         }
     }
 }
