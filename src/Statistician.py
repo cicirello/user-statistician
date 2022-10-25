@@ -39,6 +39,9 @@ def set_outputs(names_values) :
         with open(os.environ["GITHUB_OUTPUT"], "a") as f :
             for name, value in names_values.items() :
                 print("{0}={1}".format(name, value), file=f)
+    else : # Fall-back to deprecated set-output for self-hosted runners
+        for name, value in names_values.items() :
+            print("::set-output name={0}::{1}".format(name, value))
 
 class Statistician :
     """The Statistician class executes GitHub GraphQl queries,
