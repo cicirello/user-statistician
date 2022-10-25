@@ -7,13 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2022-10-25
 
 ### Added
-* Translation to Odia (`locale: or`) in #186, contributed by @Prasanta-Hembram.
 
 ### Changed
 
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Dependencies
+
+### CI/CD
+
+
+## [1.20.0] - 2022-10-25
+
+### Added
+* Translation to Odia (`locale: or`) in #186, contributed by @Prasanta-Hembram.
 
 ### Fixed
 * Some users may be using the action on a self-hosted runner not yet updated to a version supporting the
