@@ -21,7 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   falling back to the deprecated `set-output` if `GITHUB_OUTPUT` doesn't exist. #190 (@cicirello).
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.11.0 to 4.11.1
+* Bump cicirello/pyaction from 4.11.0 to 4.12.0, including upgrading Python within the Docker container to 3.11.
+
+### CI/CD
+* Bump Python to 3.11 in CI/CD workflows.
 
 
 ## [1.19.0] - 2022-10-20
