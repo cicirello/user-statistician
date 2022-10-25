@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2022-10-24
+## [Unreleased] - 2022-10-25
 
 ### Added
 * Translation to Odia (`locale: or`) in #186, contributed by @Prasanta-Hembram.
@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Some users may be using the action on a self-hosted runner not yet updated to a version supporting the
+  new GitHub Actions `GITHUB_OUTPUT` env file. This patch adds backwards compatibility for that case by 
+  falling back to the deprecated `set-output` if `GITHUB_OUTPUT` doesn't exist. #190 (@cicirello).
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.11.0 to 4.11.1
