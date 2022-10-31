@@ -130,7 +130,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr", "or"}
+supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr", "or","guj"}
 
 
 # Dictionary of header rows for categories of statistics
@@ -685,6 +685,28 @@ categoryLabels = {
             "column-two" : None
         }
     }
+    "guj" : {
+        "general" : {
+            "heading" : "સામાન્ય આંકડા અને માહિતી",
+            "column-one" : None,
+            "column-two" : None
+        },
+        "repositories" : {
+            "heading" : "રિપોઝીટરીઝ",
+            "column-one" : "નોન-ફોર્કસ",
+            "column-two" : "બધા"
+        },
+        "contributions" : {
+            "heading" : "યોગદાન",
+            "column-one" : "પાછલું વર્ષ",
+            "column-two" : "કુલ"
+        },
+        "languages" : {
+            "heading" : "સાર્વજનિક રિપોઝીટરીઝમાં ભાષા વિતરણ",
+            "column-one" : None,
+            "column-two" : None
+        }
+    },
 }
 
 # Dictionary of default title templates.
