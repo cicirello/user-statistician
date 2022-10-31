@@ -127,7 +127,7 @@ categoryOrder = ["general", "repositories", "contributions", "languages"]
 # sat: Prasanta-Hembram
 # sr: keen003
 # or: Prasanta-Hembram
-
+# guj: Tech2IT
 # The locale keys are ISO 639-1 two-character language codes
 # (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
 supportedLocales = { "en", "it", "de", "pt", "id", "hi", "fr", "ru", "es", "pl", "tr", "ja", "bn", "ko", "lt", "uk", "ro", "nl", "th", "no", "hu", "sat", "sr", "or"}
