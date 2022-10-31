@@ -721,6 +721,7 @@ titleTemplates = {
     # similar could be applied to Russian and related languages
     "sr" : "{0} - Aktivnost na Githabu",
     "or" : "{0}ର GitHub କାର୍ଯ୍ୟକଳାପ",
+    "guj" : "{0}ની GitHub પ્રવૃત્તિ",
 }
 
 # Dictionary of icon paths and labels for the supported statistics.
@@ -753,6 +754,7 @@ statLabels = {
             "sat": "ᱥᱮᱞᱮᱫ ᱥᱮᱨᱢᱟᱸ",
             "sr" : "Godina pristupa",
             "or" : "ବର୍ଷ ଯୋଗଦାନ",
+            "guj" : "વર્ષ જોડાયા",
         }
     },
 
