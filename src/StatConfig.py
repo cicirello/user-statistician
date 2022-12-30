@@ -304,14 +304,14 @@ categoryLabels = {
             "column-two" : None
         },
         "repositories" : {
-            "heading" : "Репозиториев",
+            "heading" : "Статистика репозиториев",
             "column-one" : "Без форков",
             "column-two" : "Все"
         },
         "contributions" : {
-            "heading" : "Участие",
-            "column-one" : "За последный год",
-            "column-two" : "Всего"
+            "heading" : "Работа в репозиториях",
+            "column-one" : "За последний год",
+            "column-two" : "За все время"
         },
         "languages" : {
             "heading" : "Использование языков в общедоступных репозиториях",
@@ -697,10 +697,7 @@ titleTemplates = {
     "id" : "Aktivitas Github {0}",
     "hi" : "{0} की गिटहब गतिविधि",
     "fr" : "Activité GitHub de {0}",
-    # Russian declension depends on many factors
-    # just adding 's wont help
-    # so it literally says "Activity on Github"
-    "ru" : "Активность на гитхабе",
+    "ru" : "Активность пользователя {0} на гитхабе",
     "es" : "Actividad en GitHub de {0}",
     "pl" : "Aktywność {0} na GitHubie",
     "tr" : "{0}'in GitHub Etkinliği",
@@ -736,7 +733,7 @@ statLabels = {
             "id" : "Tahun Bergabung",
             "hi" : "युक्त होने का वर्ष",
             "fr" : "Année d'adhésion",
-            "ru" : "Год начала работы на гитхабе",
+            "ru" : "Год регистрации на гитхабе",
             "es" : "Año de ingreso",
             "pl" : "Rok Dołączenia",
             "tr" : "Katıldığı Yıl",
@@ -796,7 +793,7 @@ statLabels = {
             "id" : "Repositori dengan Bintang Terbanyak",
             "hi" : "सर्वाधिक तारांकित भंडार",
             "fr" : "Dépôt le plus étoilé",
-            "ru" : "Самое замеченное репо",
+            "ru" : "Самое популярное репо",
             "es" : "Repositorio con más estrellas",
             "pl" : "Repozytoria z największą ilością gwiazdek",
             "tr" : "En Çok Yıldızlı Repo",
@@ -1006,7 +1003,7 @@ statLabels = {
             "id" : "Diberikan bintang oleh",
             "hi" : "किसके द्वारा तारांकित",
             "fr" : "Étoilé par",
-            "ru" : "Отметили",
+            "ru" : "Добавили в избранное",
             "es" : "Con estrella por",
             "pl" : "Polubione przez",
             "tr" : "Tarafından yıldız",
@@ -1126,7 +1123,7 @@ statLabels = {
             "id" : "Diarsipkan",
             "hi" : "संग्रहीत",
             "fr" : "Archivé",
-            "ru" : "Заархивированный",
+            "ru" : "Заархивировано",
             "es" : "Archivado",
             "pl" : "Zarchiwizowane",
             "tr" : "Arşivlenmiş",
@@ -1246,7 +1243,7 @@ statLabels = {
             "id" : "Ulasan Pull Request",
             "hi" : "अनुरोध समीक्षा",
             "fr" : "Révision de Pull Request",
-            "ru" : "Ревьювы пулл реквестов",
+            "ru" : "Ревью пулл реквестов",
             "es" : "Revisiones de Pull Requests",
             "pl" : "Recenzje Pull Requestów",
             "tr" : "İstek İncelemelerini Çekin",
@@ -1307,7 +1304,7 @@ statLabels = {
             "id" : "Kontribusi Pribadi",
             "hi" : "गुप्त योगदान",
             "fr" : "Contributions privées",
-            "ru" : "Частное участие",
+            "ru" : "Приватные изменения",
             "es" : "Contribuciones privadas",
             "pl" : "Prywatne Kontrybucje",
             "tr" : "Özel Katkılar",
