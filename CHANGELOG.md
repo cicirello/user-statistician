@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Better match background for GitHub-inspired themes, using GitHub's canvas.default instead of canvas.inset.
 
 ### Dependencies
 

@@ -309,7 +309,7 @@ class TestSomething(unittest.TestCase) :
         #stats._name = "Firstname ReallyLongMiddleName Lastname"
         #categories = ["general", "repositories", "languages", "contributions"]
         categories = categoryOrder[:]
-        colors = copy.deepcopy(colorMapping["halloween"])
+        colors = copy.deepcopy(colorMapping["dark"])
         #colors["title-icon"] = "pumpkin"
         svgGen = StatsImageGenerator(
             stats,
