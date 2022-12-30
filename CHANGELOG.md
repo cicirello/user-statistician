@@ -15,12 +15,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+
+### Dependencies
+
+### CI/CD
+
+
+## [1.20.1] - 2022-12-30
+
+### Fixed
 * Improved Russian Translation in #203, contributed by @mrtnvgr.
 
 ### Dependencies
 * Bump cicirello/pyaction from 4.12.0 to 4.14.0
-
-### CI/CD
 
 
 ## [1.20.0] - 2022-10-25
