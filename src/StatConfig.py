@@ -305,7 +305,7 @@ categoryLabels = {
         },
         "repositories" : {
             "heading" : "Статистика репозиториев",
-            "column-one" : "Не форки",
+            "column-one" : "Без форков",
             "column-two" : "Все"
         },
         "contributions" : {
