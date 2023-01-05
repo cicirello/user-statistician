@@ -1,9 +1,9 @@
-# Copyright (c) 2021-2022 Vincent A. Cicirello
+# Copyright (c) 2021-2023 Vincent A. Cicirello
 # https://www.cicirello.org/
 # Licensed under the MIT License
 
 # The base image is pyaction, which is python slim, plus the GitHub CLI (gh).
-FROM ghcr.io/cicirello/pyaction:4.14.0
+FROM ghcr.io/cicirello/pyaction:4.14.1
 
 # Copy the GraphQl queries and python source into the container.
 COPY src /
