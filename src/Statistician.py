@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2022 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -422,9 +422,15 @@ class Statistician :
             query; and if False, this action will quietly exit with no error code. In
             either case, an error message will be logged to the console.
         """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ :
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else :
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
         arguments = [
             'gh', 'api', 'graphql',
-            '-F', 'owner={owner}',
+            '-F', 'owner=' + owner,
             '--cache', '1h',
             '-f', 'query=' + query
             ]
