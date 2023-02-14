@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get repository owner (user for stats image) from GitHub Actions environment variables (fixes issue with latest GitHub CLI with current approach of leaving it to CLI to determine owner of repository). 
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.14.0 to 4.15.0
+* Bump cicirello/pyaction from 4.14.0 to 4.16.0
 
 ### CI/CD
 
