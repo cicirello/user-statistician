@@ -3,7 +3,7 @@
 # Licensed under the MIT License
 
 # The base image is pyaction, which is python slim, plus the GitHub CLI (gh).
-FROM ghcr.io/cicirello/pyaction:4.15.0
+FROM ghcr.io/cicirello/pyaction:4.16.0
 
 # Copy the GraphQl queries and python source into the container.
 COPY src /
