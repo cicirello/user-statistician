@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2023-03-18
+## [Unreleased] - 2023-04-13
 
 ### Added
 
@@ -15,10 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Get repository owner (user for stats image) from GitHub Actions environment variables (fixes issue with latest GitHub CLI with current approach of leaving it to CLI to determine owner of repository). 
+* Get repository owner (user for stats image) from GitHub Actions environment variables (fixes issue related to update to GitHub CLI determining owner of repository). 
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.14.0 to 4.17.0
+* Bump cicirello/pyaction from 4.14.0 to 4.18.0
 
 ### CI/CD
 
