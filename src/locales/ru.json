@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "Активность пользователя {0} на гитхабе",
+  "categoryLabels": {
+    "general": {
+      "heading": "Общая статистика и информация",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Статистика репозиториев",
+      "column-one": "Без форков",
+      "column-two": "Все"
+    },
+    "contributions": {
+      "heading": "Работа в репозиториях",
+      "column-one": "За последний год",
+      "column-two": "За все время"
+    },
+    "languages": {
+      "heading": "Использование языков в общедоступных репозиториях",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Год регистрации на гитхабе",
+    "featured": "Избранное репо",
+    "mostStarred": "Самое популярное репо",
+    "mostForked": "Самое клонированное репо",
+    "followers": "Подписчики",
+    "following": "Подписан",
+    "sponsors": "Спонсоры",
+    "sponsoring": "Спонсирует",
+    "public": "Собственные репозитории",
+    "starredBy": "Добавили в избранное",
+    "forkedBy": "Клонирован",
+    "watchedBy": "Наблюдатели",
+    "templates": "Шаблоны",
+    "archived": "Заархивировано",
+    "commits": "Коммиты",
+    "issues": "Проблемы",
+    "prs": "Пулл реквесты",
+    "reviews": "Ревью пулл реквестов",
+    "contribTo": "Участие в",
+    "private": "Приватные изменения"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} এর গিটহাব কার্যকলাপ",
+  "categoryLabels": {
+    "general": {
+      "heading": "সাধারণ পরিসংখ্যান এবং তথ্য",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "সংগ্রহস্থল",
+      "column-one": "অ-কাঁটা",
+      "column-two": "সব"
+    },
+    "contributions": {
+      "heading": "অবদানসমূহ",
+      "column-one": "বিগত বছর",
+      "column-two": "মোট"
+    },
+    "languages": {
+      "heading": "প্রকাশ্য ভান্ডারে ভাষা বিতরণ",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "যোগদানের বছর",
+    "featured": "বৈশিষ্ট্যযুক্ত রেপো",
+    "mostStarred": "সর্বাধিক তারকা প্রাপ্ত রেপো",
+    "mostForked": "সর্বাধিক ফর্কড রেপো",
+    "followers": "অনুসারী",
+    "following": "অনুসরণ করছে",
+    "sponsors": "পৃষ্ঠপোষক",
+    "sponsoring": "পৃষ্ঠপোষকতা",
+    "public": "ভাণ্ডার মালিকানাধীন",
+    "starredBy": "তারকা প্রদান করেছে",
+    "forkedBy": "ফোর্ক করেছে",
+    "watchedBy": "দেখেছেন",
+    "templates": "টেমপ্লেট সমুহ",
+    "archived": "সংরক্ষণাগারভুক্ত",
+    "commits": "কমিট করে",
+    "issues": "ইস্যু",
+    "prs": "অনুরোধগুলি টানুন",
+    "reviews": "অনুরোধ টানার পর্যালোচনাগুলি",
+    "contribTo": "অবদান",
+    "private": "ব্যক্তিগত অবদান"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} aktyvumas GitHub",
+  "categoryLabels": {
+    "general": {
+      "heading": "Bendra statistika ir informacija",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repozitorijos",
+      "column-one": "Neklonuotos",
+      "column-two": "Visos"
+    },
+    "contributions": {
+      "heading": "Įnašai",
+      "column-one": "Praeitais metais",
+      "column-two": "Viso"
+    },
+    "languages": {
+      "heading": "Kalbu pasiskirstymas viešosiose repozitorijose",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Prisijungimo metai",
+    "featured": "Siūloma repozitorija",
+    "mostStarred": "Labiausiai pažymėta repozitorija",
+    "mostForked": "Labiausiai klonuota repozitorija",
+    "followers": "Sekėjai",
+    "following": "Sekama",
+    "sponsors": "Remėjai",
+    "sponsoring": "Remiama",
+    "public": "Priklausančios repozitorijos",
+    "starredBy": "Pažymėta",
+    "forkedBy": "Klonuota",
+    "watchedBy": "Stebima",
+    "templates": "Šablonai",
+    "archived": "Archyvuota",
+    "commits": "Commits",
+    "issues": "Problemos",
+    "prs": "Pull Prašymai",
+    "reviews": "Pull prašymų peržiūros",
+    "contribTo": "Prisidėjo prie",
+    "private": "Privatūs įnašai"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "Aktywność {0} na GitHubie",
+  "categoryLabels": {
+    "general": {
+      "heading": "Ogólne statystyki i informacje",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repozytoria",
+      "column-one": "Non-Forks",
+      "column-two": "Wszystkie"
+    },
+    "contributions": {
+      "heading": "Kontrybucje",
+      "column-one": "Ostatni rok",
+      "column-two": "Wszystkie"
+    },
+    "languages": {
+      "heading": "Rozkład języków w Repozytoriach Publicznych",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Rok Dołączenia",
+    "featured": "Polecane repozytorium",
+    "mostStarred": "Repozytoria z największą ilością gwiazdek",
+    "mostForked": "Najczęściej Forkowane Repozytoria",
+    "followers": "Obserwujący",
+    "following": "Obserwowani",
+    "sponsors": "Sponsorzy",
+    "sponsoring": "Sponsoring",
+    "public": "Posiadane Repozytoria",
+    "starredBy": "Polubione przez",
+    "forkedBy": "Sforkowane przez",
+    "watchedBy": "Obserwowane przez",
+    "templates": "Szablony",
+    "archived": "Zarchiwizowane",
+    "commits": "Commity",
+    "issues": "Problemy",
+    "prs": "Pull Requesty",
+    "reviews": "Recenzje Pull Requestów",
+    "contribTo": "Kontrybuował Do",
+    "private": "Prywatne Kontrybucje"
+  }
+}

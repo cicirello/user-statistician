@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} GitHub aktivitása",
+  "categoryLabels": {
+    "general": {
+      "heading": "Általános statisztika és információ",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repository-k",
+      "column-one": "Non-Fork-ok",
+      "column-two": "Mind"
+    },
+    "contributions": {
+      "heading": "Kontribúciók",
+      "column-one": "Elmúlt év",
+      "column-two": "Összesen"
+    },
+    "languages": {
+      "heading": "Nyelvek eloszlása nyilvános repository-kban",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Csatlakozás éve",
+    "featured": "Kiemelt repo",
+    "mostStarred": "Legtöbbet csillagozott repo",
+    "mostForked": "Legtöbbet fork-olt repo",
+    "followers": "Követői",
+    "following": "Követi",
+    "sponsors": "Szponzorok",
+    "sponsoring": "Szponzorál",
+    "public": "Saját repository-k",
+    "starredBy": "Csillagozta",
+    "forkedBy": "Forkolta",
+    "watchedBy": "Figyeli",
+    "templates": "Sablonok",
+    "archived": "Archiválva",
+    "commits": "Commitok",
+    "issues": "Issue-k",
+    "prs": "Pull request-ek",
+    "reviews": "Pull request review-k",
+    "contribTo": "Kontribútolt",
+    "private": "Privát kontribúciók"
+  }
+}

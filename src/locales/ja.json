@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}のgithubアクティビティ",
+  "categoryLabels": {
+    "general": {
+      "heading": "一般的な統計と情報",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "リポジトリ",
+      "column-one": "非フォーク",
+      "column-two": "全て"
+    },
+    "contributions": {
+      "heading": "貢献",
+      "column-one": "昨年",
+      "column-two": "合計"
+    },
+    "languages": {
+      "heading": "公開リポジトリでの言語配布",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "入社年",
+    "featured": "注目のリポジトリ",
+    "mostStarred": "最もスター付きのリポジトリ",
+    "mostForked": "最もフォークされたリポジトリ",
+    "followers": "フォロワー",
+    "following": "続く",
+    "sponsors": "スポンサー",
+    "sponsoring": "主催",
+    "public": "所有リポジトリ",
+    "starredBy": "主演",
+    "forkedBy": "によるフォーク",
+    "watchedBy": "によって見られた",
+    "templates": "レンプレート",
+    "archived": "記録",
+    "commits": "専念",
+    "issues": "問題",
+    "prs": "プルリクエスト",
+    "reviews": "プルリクエストレビュー",
+    "contribTo": "に貢献しました",
+    "private": "個人的な貢献"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}'s GitHub activiteiten",
+  "categoryLabels": {
+    "general": {
+      "heading": "Algemene statistieken en info",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repositories",
+      "column-one": "Non-Forks",
+      "column-two": "Alles"
+    },
+    "contributions": {
+      "heading": "Bijdragen",
+      "column-one": "Dit jaar",
+      "column-two": "Totaal"
+    },
+    "languages": {
+      "heading": "Talen distributies in Publieke Repositories",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Jaar van aanmelding",
+    "featured": "Uitgelichte repository",
+    "mostStarred": "Repository met meeste sterren",
+    "mostForked": "Repository met meeste forks",
+    "followers": "Volgers",
+    "following": "Volgend",
+    "sponsors": "Sponsoren",
+    "sponsoring": "Gesponsord",
+    "public": "Mijn Repositories",
+    "starredBy": "Ster gegeven door",
+    "forkedBy": "Geforkt door",
+    "watchedBy": "Gevolgd door",
+    "templates": "Sjablonen",
+    "archived": "Gearchiveerd",
+    "commits": "Commits",
+    "issues": "Problemen",
+    "prs": "Pull Requests",
+    "reviews": "Pull Request Recensies",
+    "contribTo": "Bijgedragen aan",
+    "private": "Prive Bijdragen"
+  }
+}

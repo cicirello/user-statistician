@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}'s GitHub Activity",
+  "categoryLabels": {
+    "general": {
+      "heading": "General Stats and Info",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repositories",
+      "column-one": "Non-Forks",
+      "column-two": "All"
+    },
+    "contributions": {
+      "heading": "Contributions",
+      "column-one": "Past Year",
+      "column-two": "Total"
+    },
+    "languages": {
+      "heading": "Language Distribution in Public Repositories",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Year Joined",
+    "featured": "Featured Repo",
+    "mostStarred": "Most Starred Repo",
+    "mostForked": "Most Forked Repo",
+    "followers": "Followers",
+    "following": "Following",
+    "sponsors": "Sponsors",
+    "sponsoring": "Sponsoring",
+    "public": "My Repositories",
+    "starredBy": "Starred By",
+    "forkedBy": "Forked By",
+    "watchedBy": "Watched By",
+    "templates": "Templates",
+    "archived": "Archived",
+    "commits": "Commits",
+    "issues": "Issues",
+    "prs": "Pull Requests",
+    "reviews": "Pull Request Reviews",
+    "contribTo": "Contributed To",
+    "private": "Private Contributions"
+  }
+}

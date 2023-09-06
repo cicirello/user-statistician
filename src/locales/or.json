@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}ର GitHub କାର୍ଯ୍ୟକଳାପ",
+  "categoryLabels": {
+    "general": {
+      "heading": "ସାଧାରଣ ପରିସଂଖ୍ୟାନ ଏବଂ ସୂଚନା",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "ସଂଗ୍ରହାଳୟ",
+      "column-one": "ଅଣ-ଫର୍କସ୍",
+      "column-two": "ସମସ୍ତ"
+    },
+    "contributions": {
+      "heading": "ଅବଦାନ",
+      "column-one": "ବିଗତ ବର୍ଷ",
+      "column-two": "ମୋଟ"
+    },
+    "languages": {
+      "heading": "ସର୍ବସାଧାରଣ ସଂଗ୍ରହାଳୟରେ ଭାଷା ବଣ୍ଟନ",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "ବର୍ଷ ଯୋଗଦାନ",
+    "featured": "ବୈଶିଷ୍ଟ୍ୟ ରେପୋ",
+    "mostStarred": "ସର୍ବାଧିକ ତାରକା ରେପୋ",
+    "mostForked": "ଅଧିକାଂଶ ଫୋର୍କଡ୍ ରେପୋ",
+    "followers": "ଅନୁସରଣକାରୀ",
+    "following": "ନିମ୍ନଲିଖିତ",
+    "sponsors": "ପ୍ରଯୋଜକ",
+    "sponsoring": "ପ୍ରାୟୋଜକ",
+    "public": "ମୋର ସଂଗ୍ରହାଳୟ",
+    "starredBy": "ଷ୍ଟାର୍ ହୋଇଥିବା",
+    "forkedBy": "ଦ୍ୱାରା କଣ୍ଟା ହୋଇଛି",
+    "watchedBy": "ଦେଖିଲା",
+    "templates": "ଟେମ୍ପଲେଟ୍",
+    "archived": "ସଂଗୃହିତ",
+    "commits": "ପ୍ରତିବଦ୍ଧତା",
+    "issues": "ସମସ୍ୟାଗୁଡିକ",
+    "prs": "ଅନୁରୋଧ ଟାଣନ୍ତୁ",
+    "reviews": "ଅନୁରୋଧ ସମୀକ୍ଷାଗୁଡିକ ଟାଣନ୍ତୁ",
+    "contribTo": "ଯୋଗଦାନ",
+    "private": "ବ୍ୟକ୍ତିଗତ ଅବଦାନ"
+  }
+}
