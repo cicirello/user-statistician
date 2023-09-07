@@ -21,6 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### CI/CD
 
 
+## [1.20.5] - 2023-09-07
+
+### Fixed
+* Resolved issue with failing to commit and push, a bug introduced in v1.20.3.
+
+
 ## [1.20.4] - 2023-09-07
 
 ### Fixed
