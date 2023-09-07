@@ -33,7 +33,7 @@ from StatsImageGenerator import StatsImageGenerator
 from UserStatistician import writeImageToFile
 from Colors import *
 import StatConfig
-from StatConfig import loadLocale, supportedLocales, statLabels, categoryOrder, statsByCategory
+from StatConfig import loadLocale, supportedLocales, icons, categoryOrder, statsByCategory
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
 from TextLength import *
 import copy
@@ -269,9 +269,8 @@ class TestSomething(unittest.TestCase) :
             "issues", "prs", "reviews", "contribTo", "private"
             }        
         for k in keys :
-            self.assertTrue("icon" in statLabels[k])
-            self.assertTrue(statLabels[k]["icon"].startswith("<path "))
-            self.assertTrue(statLabels[k]["icon"].endswith("/>"))
+            self.assertTrue(icons[k].startswith("<path "))
+            self.assertTrue(icons[k].endswith("/>"))
 
     def test_isValidColor(self) :
         for colorName, colorHex in _namedColors.items() :

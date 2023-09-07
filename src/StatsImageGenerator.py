@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-from StatConfig import *
+from StatConfig import statsByCategory, loadLocale, icons
 from PieChart import svgPieChart
 from Colors import iconTemplates
 from ColorUtil import highContrastingColor
@@ -385,11 +385,9 @@ class StatsImageGenerator :
                 label = self._labels["statLabels"][k]
                 data1 = str(self.formatCount(data[k][0]))
                 data2 = str(self.formatCount(data[k][1])) if len(data[k]) > 1 else ""
-                if "totalIsLowerBound" in statLabels[k] and statLabels[k]["totalIsLowerBound"] :
-                    data2 = "≥" + data2
                 self._rows.append(template.format(
                     str(offset),
-                    statLabels[k]["icon"].format(self._colors["icons"]),
+                    icons[k].format(self._colors["icons"]),
                     "{0:.3f}".format(scale),
                     str(round(12.5/scale)),
                     label,
