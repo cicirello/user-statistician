@@ -1,6 +1,6 @@
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -24,24 +24,25 @@
 # SOFTWARE.
 #
 
-def isValidColor(color) :
+def isValidColor(color):
     """Checks if a color is a valid color.
 
     Keyword arguments:
-    color - The color to check, either in hex or as a named color or as an rgba().
+    color - The color to check, either in hex or as
+        a named color or as an rgba().
     """
     validHexDigits = set("0123456789abcdefABCDEF")
     color = color.strip()
-    if color.startswith("#") :
-        if len(color) != 4 and len(color) != 7 :
+    if color.startswith("#"):
+        if len(color) != 4 and len(color) != 7:
             return False
         return all(c in validHexDigits for c in color[1:])
-    elif color.startswith("rgba(") :
+    elif color.startswith("rgba("):
         return strToRGBA(color) != None
-    else :
+    else:
         return color in _namedColors
 
-def strToRGBA(color) :
+def strToRGBA(color):
     """Converts a str specifying rgba color to
     r, g, b, and a channels. Returns (r, g, b, a) is valid
     and otherwise returns None.
@@ -49,38 +50,30 @@ def strToRGBA(color) :
     Keyword arguments:
     color - a str of the form: rgba(r,g,b,a).
     """
-    if color.startswith("rgba(") :
+    if color.startswith("rgba("):
         last = color.find(")")
-        if last > 5 :
+        if last > 5:
             rgba = color[5:last].split(",")
-            if len(rgba) == 4 :
-                try :
+            if len(rgba) == 4:
+                try:
                     r = int(rgba[0])
                     g = int(rgba[1])
                     b = int(rgba[2])
                     a = float(rgba[3])
-                except ValueError :
+                except ValueError:
                     return None
-                if r >= 256 :
-                    r = 255
-                if g >= 256 :
-                    g = 255
-                if b >= 256 :
-                    b = 255
-                if r < 0 :
-                    r = 0
-                if g < 0 :
-                    g = 0
-                if b < 0 :
-                    b = 0
-                if a < 0.0 :
-                    a = 0.0
-                if a > 1.0 :
-                    a = 1.0
+                r = min(r, 255)
+                g = min(g, 255)
+                b = min(b, 255)
+                r = max(r, 0)
+                g = max(g, 0)
+                b = max(b, 0)
+                a = max(a, 0.0)
+                a = min(a, 1.0)
                 return r, g, b, a
     return None
 
-def highContrastingColor(color) :
+def highContrastingColor(color):
     """Computes a highly contrasting color.
     Specifically, maximizes the contrast ratio. Contrast ratio is
     (L1 + 0.05) / (L2 + 0.05), where L1 and L2 are the luminances
@@ -88,17 +81,17 @@ def highContrastingColor(color) :
     if color is not a valid hex color or named color.
 
     Keyword arguments:
-    color - The color to contrast with, either in hex or as a named color.
+    color - The color to contrast with, in hex or as a named color.
     """
     L = luminance(color)
-    if L == None :
+    if L == None:
         return None
-    if (L + 0.05) / 0.05 >= 1.05 / (L + 0.05) :
+    if (L + 0.05) / 0.05 >= 1.05 / (L + 0.05):
         return "#000000" # black
-    else :
+    else:
         return "#ffffff" # white
 
-def contrastRatio(c1, c2) :
+def contrastRatio(c1, c2):
     """Computes contrast ratio of a pair of colors.
     Returns the contrast ratio provided both colors are valid,
     and otherwise returns None.
@@ -109,13 +102,13 @@ def contrastRatio(c1, c2) :
     """
     L1 = luminance(c1)
     L2 = luminance(c2)
-    if L1 == None or L2 == None :
+    if L1 == None or L2 == None:
         return None
-    if L1 < L2 :
+    if L1 < L2:
         L1, L2 = L2, L1
     return (L1 + 0.05) / (L2 + 0.05)
 
-def luminance(color) :
+def luminance(color):
     """Calculates the luminance of a color. Returns None
     if color is not a valid hex color or named color.
 
@@ -123,22 +116,22 @@ def luminance(color) :
     color - The color, either in hex or as a named color.
     """
     color = color.strip()
-    if color.startswith("rgba(") :
+    if color.startswith("rgba("):
         rgba = strToRGBA(color)
-        if rgba != None :
+        if rgba != None:
             r, g, b, a = rgba
-        else :
+        else:
             return None
-    else :
-        if not color.startswith("#") :
-            if color not in _namedColors :
+    else:
+        if not color.startswith("#"):
+            if color not in _namedColors:
                 return None
             color = _namedColors[color]
-        if len(color) == 4 :
+        if len(color) == 4:
             r = color[1] + color[1]
             g = color[2] + color[2]
             b = color[3] + color[3]
-        elif len(color) == 7 :
+        elif len(color) == 7:
             r = color[1:3]
             g = color[3:5]
             b = color[5:7]
@@ -152,14 +145,14 @@ def luminance(color) :
     b = _sRGBtoLin(b / 255)
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
-def _sRGBtoLin(c) :
+def _sRGBtoLin(c):
     """Transformation from
     https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_Colors_and_Luminance
 
     Keyword arguments:
     c - A color channel (i.e., r, g, or b)
     """
-    if c <= 0.04045 :
+    if c <= 0.04045:
         return c / 12.92
     else :
         return ((c + 0.055)/1.055) ** 2.4
@@ -319,4 +312,4 @@ _namedColors = {
     "whitesmoke" : "#f5f5f5",
     "yellow" : "#ffff00",
     "yellowgreen" : "#9acd32"
-    }
+}
