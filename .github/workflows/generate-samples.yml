@@ -20,6 +20,12 @@ jobs:
       with:
         colors: light
         image-file: images/light.svg
+        # Using custom-title is not necessary here in general.
+        # I'm just using it so that the sample has a more generic name
+        # of user rather than my name. The format this uses is identical
+        # to if this input was not used, but with my name replaced by a
+        # generic name.
+        custom-title: Firstname Lastname's GitHub Activity
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
