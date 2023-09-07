@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2022 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -91,6 +91,7 @@ class StatsImageGenerator :
         '_lineHeight',
         '_margin',
         '_locale',
+        '_labels',
         '_radius',
         '_titleSize',
         '_pieRadius',
@@ -140,12 +141,13 @@ class StatsImageGenerator :
         self._colors = colors
         self._highContrast = highContrastingColor(self._colors["bg"])
         self._locale = locale
+        self._labels = loadLocale(self._locale)
         self._radius = radius
         self._titleSize = titleSize
         if customTitle != None :
             self._title = customTitle
         else :
-            self._title = titleTemplates[self._locale].format(self._stats._name)
+            self._title = self._labels["titleTemplate"].format(self._stats._name)
         self._includeTitle = includeTitle
         self._topIconSize = 25
         self._categoryOrder = categories
@@ -185,7 +187,7 @@ class StatsImageGenerator :
                     languageData = self._stats.getStatsByKey(category)
                     if languageData["totalSize"] > 0 :
                         headingRowLength = calculateTextLength(
-                            categoryLabels[self._locale][category]["heading"],
+                            self._labels["categoryLabels"][category]["heading"],
                             14,
                             True,
                             600)
@@ -212,7 +214,7 @@ class StatsImageGenerator :
                         statsByCategory[category]
                         )
                     if len(keys) > 0 :
-                        headerRow = categoryLabels[self._locale][category]
+                        headerRow = self._labels["categoryLabels"][category]
                         headingRowLength = calculateTextLength(
                             headerRow["heading"],
                             14,
@@ -243,7 +245,7 @@ class StatsImageGenerator :
                         data = self._stats.getStatsByKey(category)
                         for k in keys :
                             labelLength = calculateTextLength(
-                                statLabels[k]["label"][self._locale],
+                                self._labels["statLabels"][k],
                                 14,
                                 True,
                                 600)
@@ -271,12 +273,12 @@ class StatsImageGenerator :
                 if category == "languages" :
                     self.insertLanguagesChart(
                         self._stats.getStatsByKey(category),
-                        categoryLabels[self._locale][category]["heading"]
+                        self._labels["categoryLabels"][category]["heading"]
                         )
                 else :
                     self.insertGroup(
                         self._stats.getStatsByKey(category),
-                        categoryLabels[self._locale][category],
+                        self._labels["categoryLabels"][category],
                         self.filterKeys(
                             self._stats.getStatsByKey(category),
                             statsByCategory[category]
@@ -380,7 +382,7 @@ class StatsImageGenerator :
                 offset = 0
             for k in keys :
                 template = StatsImageGenerator.tableEntryTemplate if len(data[k]) > 1 else StatsImageGenerator.tableEntryTemplateOneColumn   
-                label = statLabels[k]["label"][self._locale]
+                label = self._labels["statLabels"][k]
                 data1 = str(self.formatCount(data[k][0]))
                 data2 = str(self.formatCount(data[k][1])) if len(data[k]) > 1 else ""
                 if "totalIsLowerBound" in statLabels[k] and statLabels[k]["totalIsLowerBound"] :

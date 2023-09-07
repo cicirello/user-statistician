@@ -1,6 +1,6 @@
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2022 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -32,14 +32,21 @@ from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
 from UserStatistician import writeImageToFile
 from Colors import *
-from StatConfig import *
+import StatConfig
+from StatConfig import loadLocale, supportedLocales, statLabels, categoryOrder, statsByCategory
 from ColorUtil import isValidColor, _namedColors, highContrastingColor, contrastRatio
 from TextLength import *
 import copy
 
 # Set to True to cause tests to generate a sample SVG, or False not to.
-outputSampleSVG = False
+outputSampleSVG = True #False
 localeCode = "en"
+
+# Adjust the location of the locales for running the tests
+# (when the action is running, the locales directory is a
+# root level directory in the Docker container, but within
+# src folder during unit testing outside of the container).
+StatConfig._locale_directory = "src" + StatConfig._locale_directory
 
 executedQueryResultsOriginal = [
     {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
@@ -190,11 +197,17 @@ class TestSomething(unittest.TestCase) :
             self.assertTrue(crTitle >= 4.5, msg=theme+" "+str(crTitle))
 
     def test_title_templates(self) :
+        # For the title template, {0} corresponds to repository
+        # owner's name. Some languages may not have the equivalent
+        # of English's apostrophe for possession. For those, use an
+        # approach like that used in locale sr. The test cases enforce
+        # having the user's name somewhere in the title template.
         unlikelyInTemplate = "qwertyuiop"
         try :
             for locale in supportedLocales :
-                title = titleTemplates[locale].format(unlikelyInTemplate)
-                self.assertTrue(titleTemplates[locale].find("{0}") < 0 or title.find(unlikelyInTemplate)>=0)
+                template = loadLocale(locale)["titleTemplate"]
+                title = template.format(unlikelyInTemplate)
+                self.assertTrue(template.find(unlikelyInTemplate) < 0 and title.find(unlikelyInTemplate)>=0)
         except IndexError :
             self.fail()
 
@@ -220,12 +233,18 @@ class TestSomething(unittest.TestCase) :
         categories = categoryOrder
         types = {"heading", "column-one", "column-two"}
         for locale in supportedLocales :
-            self.assertTrue(locale in categoryLabels)
-            labelMap = categoryLabels[locale]
+            labelMap = loadLocale(locale)["categoryLabels"]
             for cat in categories :
                 self.assertTrue(cat in labelMap)
                 for t in types :
                     self.assertTrue(t in labelMap[cat])
+                self.assertTrue(isinstance(labelMap[cat]["heading"], str))
+                if cat == "repositories" or cat == "contributions":
+                    self.assertTrue(isinstance(labelMap[cat]["column-one"], str))
+                    self.assertTrue(isinstance(labelMap[cat]["column-two"], str))
+                else:
+                    self.assertEqual(None, labelMap[cat]["column-one"])
+                    self.assertEqual(None, labelMap[cat]["column-two"])
                     
     def test_stat_labels(self) :
         keys = {
@@ -235,14 +254,24 @@ class TestSomething(unittest.TestCase) :
             "forkedBy", "watchedBy", "templates", "archived", "commits",
             "issues", "prs", "reviews", "contribTo", "private"
             }
-        self.assertTrue(all(k in statLabels for k in keys))
+        for locale in supportedLocales :
+            labelMap = loadLocale(locale)["statLabels"]    
+            self.assertTrue(all(k in labelMap for k in keys))
+            for k in keys :
+                self.assertTrue(isinstance(labelMap[k], str))
+
+    def test_icons(self):
+        keys = {
+            "joined", "featured", "mostStarred", "mostForked",
+            "followers", "following", "sponsors", "sponsoring",
+            "public", "starredBy",
+            "forkedBy", "watchedBy", "templates", "archived", "commits",
+            "issues", "prs", "reviews", "contribTo", "private"
+            }        
         for k in keys :
             self.assertTrue("icon" in statLabels[k])
             self.assertTrue(statLabels[k]["icon"].startswith("<path "))
             self.assertTrue(statLabels[k]["icon"].endswith("/>"))
-            labelsByLocale = statLabels[k]["label"]
-            for locale in supportedLocales :
-                self.assertTrue(locale in labelsByLocale)
 
     def test_isValidColor(self) :
         for colorName, colorHex in _namedColors.items() :
