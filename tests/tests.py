@@ -39,7 +39,7 @@ from TextLength import *
 import copy
 
 # Set to True to cause tests to generate a sample SVG, or False not to.
-outputSampleSVG = True #False
+outputSampleSVG = False
 localeCode = "en"
 
 # Adjust the location of the locales for running the tests
