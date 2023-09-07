@@ -85,6 +85,9 @@ def commitAndPush(filename, name, login, failOnError):
     name - The user's name.
     login - The user's login id.
     """
+    # Resolve issue related to user in Docker container vs owner of repository
+    executeCommand(
+        ["git", "config", "--global", "--add", "safe.directory", "/github/workspace"])
     # Make sure this isn't being run during a pull-request.
     result = executeCommand(
         ["git", "symbolic-ref", "-q", "HEAD"])
