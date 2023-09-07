@@ -25,10 +25,41 @@
 # SOFTWARE.
 #
 
-
-
-
 import json
+
+# The locale keys are ISO 639-1 two-character language codes
+# (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
+# If you are contributing a new locale, please add code in alphabetical
+# order below.
+supportedLocales = {
+    "bn",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "hi",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "lt",
+    "nl",
+    "no",
+    "or",
+    "pl",
+    "pt",
+    "ro",
+    "ru",
+    "sat",
+    "sr",
+    "th",
+    "tr",
+    "uk",
+}
+
+# The default order for the categories of stats on the SVG
+categoryOrder = ["general", "repositories", "contributions", "languages"]
 
 # Mapping from category key to list of stats keys in the
 # order they should appear.
@@ -62,73 +93,6 @@ statsByCategory = {
     "languages" : []
 }
 
-# The default order for the categories of stats on the SVG
-categoryOrder = ["general", "repositories", "contributions", "languages"]
-
-
-# Steps to Contributing a New Locale:
-# (0) Check if there are any open issues or pull requests
-#     related to the locale that you want to add. Begin by opening
-#     an issue indicating the locale that you want to add. Perhaps
-#     mention in the issue that you are planning to work on it, so
-#     we know the difference between a simple request with nobody to
-#     work on it vs a volunteer. Once you've submitted the issue,
-#     fork the repo, and create a branch for your feature.
-# (1) Add a string for the 2-character code to the set
-#     supportedLocales.
-# (2) In the Python dictionary, categoryLabels, create a
-#     mapping corresponding to that new 2-character string.
-#     You might start by copying and pasting the entirety of
-#     the entry for "en". Make sure you keep the dictionary keys
-#     as they are, and only translate the values.
-# (3) In the Python dictionary, titleTemplates, add a template for
-#     the default title by adding a mapping from the 2-character
-#     string for the new locale to a format string (see the comments
-#     where titleTemplates is declared.
-# (4) In the Python dictionary, statLabels, each key "label" maps to
-#     a Python dictionary with the locale code as key. Add a corresponding
-#     key value pair for the new locale.
-# (5) The existing test cases will verify that all of the above
-#     has been done for each 2 character locale code in the
-#     supportedLocales set. So no new test cases should be necessary when
-#     adding a locale, but existing tests must pass.
-# (6) If you contribute translations for a new locale,
-#     or if you correct any errors in one, then please
-#     credit yourself here by either adding a list below for
-#     the relevant locale if it is new, or adding your
-#     GitHub user id to the list below if you contributed a bug
-#     fix to an existing one.
-#
-
-# The locale keys are ISO 639-1 two-character language codes
-# (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-supportedLocales = {
-    "en",
-    "it",
-    "de",
-    "pt",
-    "id",
-    "hi",
-    "fr",
-    "ru",
-    "es",
-    "pl",
-    "tr",
-    "ja",
-    "bn",
-    "ko",
-    "lt",
-    "uk",
-    "ro",
-    "nl",
-    "th",
-    "no",
-    "hu",
-    "sat",
-    "sr",
-    "or"
-    }
-
 _locale_directory = "/locales/"
 
 def loadLocale(locale) :
@@ -139,16 +103,6 @@ def loadLocale(locale) :
     """
     with open(_locale_directory + locale + ".json", "r", encoding="utf8") as f:
         return json.load(f)
-
-
-# Dictionary of default title templates.
-
-# For the title template, {0} corresponds to repository
-# owner's name. Some languages may not have the equivalent
-# of English's apostrophe for possession. For those, use an
-# approach like that used in locale sr. The test cases enforce
-# having the user's name somewhere in the title template.
-
 
 # ADDITIONAL LICENSE NOTES
 #
