@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -32,7 +32,7 @@ _pathTemplate = '<path fill-rule="evenodd" fill="{0}" d="M {1},{2} A {3} {3} 0 {
 _circleTemplate = '<circle fill="{0}" cx="{1}" cy="{1}" r="{1}"/>'
 _animationTemplate = '<animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 {0} {0}" to="360 {0} {0}" dur="{1}s" repeatCount="indefinite"/>'
 
-def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
+def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False):
     """Generates an SVG of a pie chart. The intention is to include
     as part of a larger SVG (e.g., it does not insert xmlns into the
     opening svg tag). If wedges list is empty, it retrurns None.
@@ -42,20 +42,22 @@ def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
         containing fields color and percentage.
     radius - the radius, in pixels for the pie chart.
     animate - Pass True to animate the pie chart.
-    speed - If animate is True, then this input is the number of seconds for one full rotation.
+    speed - If animate is True, then this input is the number of
+        seconds for one full rotation.
     """
-    if includeSVGHeader :
+    if includeSVGHeader:
         components = [_headerTemplate.format(str(2*radius))]
-    else :
+    else:
         components = []
 
-    if len(wedges) == 0 :
+    if len(wedges) == 0:
         return None
-    elif len(wedges) == 1 :
-        components.append(_circleTemplate.format(wedges[0]["color"], str(radius)))
-    else :
+    elif len(wedges) == 1:
+        components.append(
+            _circleTemplate.format(wedges[0]["color"], str(radius)))
+    else:
         startPercentage = 0
-        for w in wedges :
+        for w in wedges:
             endPercentage = startPercentage + w["percentage"]
             w["start"] = startPercentage * 2 * math.pi
             w["end"] = endPercentage * 2 * math.pi
@@ -65,10 +67,10 @@ def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
         # (i.e., last edge should complete a full circle).
         wedges[-1]["end"] = 2 * math.pi
 
-        if animate :
+        if animate:
             components.append("<g>")
             
-        for w in wedges :
+        for w in wedges:
             components.append(
                 _pathTemplate.format(
                     w["color"],
@@ -82,7 +84,7 @@ def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
                     )
                 )
 
-        if animate :
+        if animate:
             components.append(
                 _animationTemplate.format(
                     radius,
@@ -91,6 +93,6 @@ def svgPieChart(wedges, radius, animate, speed, includeSVGHeader=False) :
                 )
             components.append("</g>")
 
-    if includeSVGHeader :
+    if includeSVGHeader:
         components.append("</svg>")
     return "".join(components)
