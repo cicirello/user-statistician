@@ -29,21 +29,21 @@ import json
 import subprocess
 import os
 
-def set_outputs(names_values) :
+def set_outputs(names_values):
     """Sets the GitHub Action outputs.
 
     Keyword arguments:
     names_values - Dictionary of output names with values
     """
-    if "GITHUB_OUTPUT" in os.environ :
-        with open(os.environ["GITHUB_OUTPUT"], "a") as f :
-            for name, value in names_values.items() :
+    if "GITHUB_OUTPUT" in os.environ:
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            for name, value in names_values.items():
                 print("{0}={1}".format(name, value), file=f)
-    else : # Fall-back to deprecated set-output for self-hosted runners
-        for name, value in names_values.items() :
+    else: # Fall-back to deprecated set-output for self-hosted runners
+        for name, value in names_values.items():
             print("::set-output name={0}::{1}".format(name, value))
 
-class Statistician :
+class Statistician:
     """The Statistician class executes GitHub GraphQl queries,
     and parses the query results.
     """
@@ -62,7 +62,13 @@ class Statistician :
         '_featuredRepo'
         ]
 
-    def __init__(self, fail, autoLanguages, maxLanguages, languageRepoExclusions, featuredRepo) :
+    def __init__(
+        self,
+        fail,
+        autoLanguages,
+        maxLanguages,
+        languageRepoExclusions,
+        featuredRepo):
         """The initializer executes the queries and parses the results.
         Upon completion of the intitializer, the user statistics will
         be available.
@@ -112,24 +118,24 @@ class Statistician :
                 )
             )
 
-    def getStatsByKey(self, key) :
+    def getStatsByKey(self, key):
         """Gets a category of stats by key.
 
         Keyword arguments:
         key - A category key.
         """
-        if key == "general" :
+        if key == "general":
             return self._user
-        elif key == "repositories" :
+        elif key == "repositories":
             return self._repo
-        elif key == "contributions" :
+        elif key == "contributions":
             return self._contrib
-        elif key == "languages" :
+        elif key == "languages":
             return self._languages
-        else :
+        else:
             return None # passed an invalid key 
         
-    def loadQuery(self, queryFilepath, failOnError=True) :
+    def loadQuery(self, queryFilepath, failOnError=True):
         """Loads a graphql query.
 
         Keyword arguments:
@@ -138,7 +144,7 @@ class Statistician :
             query; and if False, this action will quietly exit with no error code. In
             either case, an error message will be logged to the console.
         """
-        try :
+        try:
             with open(queryFilepath, 'r') as file:
                 return file.read()
         except IOError:
@@ -146,7 +152,7 @@ class Statistician :
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, watchingStats, reposContributedToStats) :
+    def parseStats(self, basicStats, repoStats, watchingStats, reposContributedToStats):
         """Parses the user statistics.
 
         Keyword arguments:
@@ -162,14 +168,16 @@ class Statistician :
 
         # The name field is nullable, so use the login id if
         # user's public name is null.
-        if self._name == None :
+        if self._name == None:
             self._name = self._login
         
         # Extract most recent year data from query results
         pastYearData = basicStats["data"]["user"]["contributionsCollection"]
         
         # Extract repositories contributes to (owned by others) in past year
-        pastYearData["repositoriesContributedTo"] = basicStats["data"]["user"]["repositoriesContributedTo"]["totalCount"]
+        pastYearData[
+            "repositoriesContributedTo"] = basicStats[
+                "data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
         # Extract list of contribution years
         self._contributionYears = pastYearData["contributionYears"]
@@ -178,16 +186,20 @@ class Statistician :
 
         # Extract followed and following counts
         self._user = {}
-        self._user["followers"] = [ basicStats["data"]["user"]["followers"]["totalCount"] ]
-        self._user["following"] = [ basicStats["data"]["user"]["following"]["totalCount"] ]
+        self._user["followers"] = [
+            basicStats["data"]["user"]["followers"]["totalCount"] ]
+        self._user["following"] = [
+            basicStats["data"]["user"]["following"]["totalCount"] ]
         self._user["joined"] = [ min(self._contributionYears) ]
 
         # Extract sponsors and sponsoring counts
-        self._user["sponsors"] = [ basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
-        self._user["sponsoring"] = [ basicStats["data"]["user"]["sponsorshipsAsSponsor"]["totalCount"] ]
+        self._user["sponsors"] = [
+            basicStats["data"]["user"]["sponsorshipsAsMaintainer"]["totalCount"] ]
+        self._user["sponsoring"] = [
+            basicStats["data"]["user"]["sponsorshipsAsSponsor"]["totalCount"] ]
 
         #
-        if self._featuredRepo != None :
+        if self._featuredRepo != None:
             self._user["featured"] = [ self._featuredRepo ]
 
         # Extract all time counts of issues and pull requests
@@ -197,7 +209,8 @@ class Statistician :
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
         watchingStats = list(map(lambda x : x["data"]["user"]["watching"], watchingStats))
-        reposContributedToStats = list(map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
+        reposContributedToStats = list(
+            map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
 
         # This is the count of owned repos, including all public,
         # but may or may not include all private depending upon token used to authenticate.
@@ -208,7 +221,10 @@ class Statistician :
         # or combination of queries to actually compute this other than for the most recent
         # year's data. Keeping the query in, but changing to leave that stat blank in
         # the SVG.
-        repositoriesContributedTo = sum(1 for page in reposContributedToStats if page["nodes"] != None for repo in page["nodes"] if repo["owner"]["login"] != self._login)
+        repositoriesContributedTo = sum(
+            1 for page in reposContributedToStats if page[
+                "nodes"] != None for repo in page[
+                    "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
             "commits" : [pastYearData["totalCommitContributions"], 0],
@@ -222,60 +238,104 @@ class Statistician :
             }
 
         # The "nodes" field is nullable so make sure the user owns at least 1 repo. 
-        if repoStats[0]["totalCount"] > 0 :
-            # Note that the explicit checks of, if page["nodes"] != None, are precautionary
-            # since the above check of totalCount should be sufficient to protect against a null list of repos.
+        if repoStats[0]["totalCount"] > 0:
+            # Note that the explicit checks of, if page["nodes"] != None, are 
+            # precautionary since the above check of totalCount should be sufficient
+            # to protect against a null list of repos.
             
             # Count stargazers, forks of my repos, and watchers excluding me
-            stargazers = sum(repo["stargazerCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-            forksOfMyRepos = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
-            stargazersAll = sum(repo["stargazerCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
-            forksOfMyReposAll = sum(repo["forkCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
+            stargazers = sum(
+                repo["stargazerCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page[
+                        "nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            forksOfMyRepos = sum(
+                repo["forkCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page[
+                        "nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            stargazersAll = sum(
+                repo["stargazerCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page[
+                        "nodes"] if not repo["isPrivate"])
+            forksOfMyReposAll = sum(
+                repo["forkCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page[
+                        "nodes"] if not repo["isPrivate"])
 
             # Find repos with most stars and most forks
-            try :
-                mostStars = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["stargazerCount"])["name"]
+            try:
+                mostStars = max(
+                    (repo for page in repoStats if page[
+                        "nodes"] != None for repo in page[
+                            "nodes"] if not repo["isPrivate"] and not repo["isFork"]),
+                    key=lambda x : x["stargazerCount"])["name"]
                 self._user["mostStarred"] = [ mostStars ]
             except ValueError:
                 pass
 
-            try :
-                mostForks = max( (repo for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"]), key=lambda x : x["forkCount"])["name"]
+            try:
+                mostForks = max(
+                    (repo for page in repoStats if page[
+                        "nodes"] != None for repo in page["nodes"] if not repo[
+                            "isPrivate"] and not repo["isFork"]),
+                    key=lambda x : x["forkCount"])["name"]
                 self._user["mostForked"] = [ mostForks ]
             except ValueError:
                 pass
             
             # Compute number of watchers excluding cases where user is watching their own repos.
-            watchers = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
+            watchers = sum(
+                repo["watchers"]["totalCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
             watchers -= watchingStats[0]["totalCount"]
 
-            if watchingStats[0]["totalCount"] > 0 :
-                watchingMyOwnNonForks = sum(1 for page in watchingStats if page["nodes"] != None for repo in page["nodes"] if not repo["isFork"])
-            else :
+            if watchingStats[0]["totalCount"] > 0:
+                watchingMyOwnNonForks = sum(
+                    1 for page in watchingStats if page[
+                        "nodes"] != None for repo in page["nodes"] if not repo["isFork"])
+            else:
                 watchingMyOwnNonForks = 0
-            watchersNonForks = sum(repo["watchers"]["totalCount"] for page in repoStats if page["nodes"] != None for repo in page["nodes"] if not repo["isPrivate"] and not repo["isFork"])
+            watchersNonForks = sum(
+                repo["watchers"]["totalCount"] for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if not repo[
+                        "isPrivate"] and not repo["isFork"])
             watchersNonForks -= watchingMyOwnNonForks
         
-            # Count of private repos (which is not accurate since depends on token used to authenticate query,
+            # Count of private repos (not accurate since depends on token used to authenticate query,
             # however, all those here are included in count of owned repos.
-            privateCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"])
+            privateCount = sum(
+                1 for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if repo["isPrivate"])
 
             publicAll = ownedRepositories - privateCount
 
             # Counts of archived repos
-            publicNonForksArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"] and not repo["isFork"])
-            publicArchivedCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isArchived"] and not repo["isPrivate"])
+            publicNonForksArchivedCount = sum(
+                1 for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if repo[
+                        "isArchived"] and not repo["isPrivate"] and not repo["isFork"])
+            publicArchivedCount = sum(
+                1 for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if repo[
+                        "isArchived"] and not repo["isPrivate"])
 
             # Counts of template repos
-            publicNonForksTemplatesCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isTemplate"] and not repo["isPrivate"] and not repo["isFork"])
-            publicTemplatesCount = sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isTemplate"] and not repo["isPrivate"])
+            publicNonForksTemplatesCount = sum(
+                1 for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if repo[
+                        "isTemplate"] and not repo["isPrivate"] and not repo["isFork"])
+            publicTemplatesCount = sum(
+                1 for page in repoStats if page[
+                    "nodes"] != None for repo in page["nodes"] if repo[
+                        "isTemplate"] and not repo["isPrivate"])
             
             # Count of public non forks owned by user
-            publicNonForksCount = ownedRepositories - sum(1 for page in repoStats if page["nodes"] != None for repo in page["nodes"] if repo["isPrivate"] or repo["isFork"])
+            publicNonForksCount = ownedRepositories - sum(
+                1 for page in repoStats if page["nodes"] != None for repo in page[
+                    "nodes"] if repo["isPrivate"] or repo["isFork"])
 
             # Compute language distribution
             totalSize, languageData = self.summarizeLanguageStats(repoStats)
-        else :
+        else:
             # if no owned repos then set all repo related stats to 0
             stargazers = 0
             forksOfMyRepos = 0
@@ -300,11 +360,11 @@ class Statistician :
             "watchedBy" : [watchersNonForks, watchers],
             "archived" : [publicNonForksArchivedCount, publicArchivedCount],
             "templates" : [publicNonForksTemplatesCount, publicTemplatesCount]
-            }
+        }
 
         self._languages = self.organizeLanguageStats(totalSize, languageData)
 
-    def organizeLanguageStats(self, totalSize, languageData) :
+    def organizeLanguageStats(self, totalSize, languageData):
         """Computes a list of languages and percentages in decreasing order
         by percentage.
 
@@ -312,29 +372,29 @@ class Statistician :
         totalSize - total size of all code with language detection data
         languageData - the summarized language totals, colors, etc
         """
-        if totalSize == 0 :
+        if totalSize == 0:
             return { "totalSize" : 0, "languages" : [] }
-        else :
+        else:
             languages = [ (name, data) for name, data in languageData.items() ]
             languages.sort(key = lambda L : L[1]["size"], reverse=True)
             if self._autoLanguages :
-                for i, L in enumerate(languages) :
-                    if L[1]["percentage"] < 0.01 :
+                for i, L in enumerate(languages):
+                    if L[1]["percentage"] < 0.01:
                         self._maxLanguages = i
                         break
-            if len(languages) > self._maxLanguages :
+            if len(languages) > self._maxLanguages:
                 self.combineLanguages(languages, self._maxLanguages, totalSize)
             self.checkColors(languages)
             return { "totalSize" : totalSize, "languages" : languages }
 
-    def combineLanguages(self, languages, maxLanguages, totalSize) :
+    def combineLanguages(self, languages, maxLanguages, totalSize):
         """Combines lowest percentage languages into an Other.
 
         Keyword arguments:
         languages - Sorted list of languages (sorted by size).
         maxLanguages - The maximum number of languages to keep as is.
         """
-        if len(languages) > self._maxLanguages :
+        if len(languages) > self._maxLanguages:
             combinedSize = sum(L[1]["size"] for L in languages[maxLanguages:])
             languages[maxLanguages] = (
                 "Other",
@@ -345,7 +405,7 @@ class Statistician :
                 )
             del languages[maxLanguages+1:]
         
-    def checkColors(self, languages) :
+    def checkColors(self, languages):
         """Make sure all languages have colors, and assign shades of gray to
         those that don't.
 
@@ -356,12 +416,12 @@ class Statistician :
         # In such cases, we alternate between these two shades of gray.
         colorsForLanguagesWithoutColors = [ "#959da5", "#d1d5da" ]
         index = 0
-        for L in languages :
-            if L[1]["color"] == None :
+        for L in languages:
+            if L[1]["color"] == None:
                 L[1]["color"] = colorsForLanguagesWithoutColors[index]
                 index = (index + 1) % 2
 
-    def summarizeLanguageStats(self, repoStats) :
+    def summarizeLanguageStats(self, repoStats):
         """Summarizes the language distibution of the user's owned repositories.
 
         Keyword arguments:
@@ -369,50 +429,56 @@ class Statistician :
         """
         totalSize = 0
         languageData = {}
-        for page in repoStats :
-            if page["nodes"] != None :
-                for repo in page["nodes"] :
-                    if not repo["isPrivate"] and not repo["isFork"] and (repo["name"].lower() not in self._languageRepoExclusions) :
+        for page in repoStats:
+            if page["nodes"] != None:
+                for repo in page["nodes"]:
+                    if (not repo["isPrivate"] and not repo["isFork"] and
+                        (repo["name"].lower() not in self._languageRepoExclusions)):
                         totalSize += repo["languages"]["totalSize"]
                         if repo["languages"]["edges"] != None :
-                            for L in repo["languages"]["edges"] :
+                            for L in repo["languages"]["edges"]:
                                 name = L["node"]["name"]
-                                if name in languageData :
+                                if name in languageData:
                                     languageData[name]["size"] += L["size"]
-                                else :
+                                else:
                                     languageData[name] = {
                                         "color" : L["node"]["color"],
                                         "size" : L["size"]
                                         }
-        for L in languageData :
+        for L in languageData:
             languageData[L]["percentage"] = languageData[L]["size"] / totalSize
         return totalSize, languageData
 
-    def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate) :
+    def createPriorYearStatsQuery(self, yearList, oneYearContribTemplate):
         """Generates the query for prior year stats.
 
         Keyword arguments:
-        yearList - a list of the years when the user had contributions, obtained by one of the other queries.
-        oneYearContribTemplate - a string template of the part of a query for one year
+        yearList - a list of the years when the user had contributions,
+            obtained by one of the other queries.
+        oneYearContribTemplate - a string template of the part of a query
+            for one year.
         """
         query = "query($owner: String!) {\n  user(login: $owner) {\n"
-        for y in yearList :
+        for y in yearList:
             query += oneYearContribTemplate.format(y)
         query += "  }\n}\n"
         return query
     
-    def parsePriorYearStats(self, queryResults) :
+    def parsePriorYearStats(self, queryResults):
         """Parses one year of commits, PR reviews, and restricted contributions.
 
         Keyword arguments:
         queryResults - The results of the query.
         """
         queryResults = queryResults["data"]["user"]
-        self._contrib["commits"][1] = sum(stats["totalCommitContributions"] for k, stats in queryResults.items())
-        self._contrib["reviews"][1] = sum(stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
-        self._contrib["private"][1] = sum(stats["restrictedContributionsCount"] for k, stats in queryResults.items())
+        self._contrib["commits"][1] = sum(
+            stats["totalCommitContributions"] for k, stats in queryResults.items())
+        self._contrib["reviews"][1] = sum(
+            stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
+        self._contrib["private"][1] = sum(
+            stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
-    def executeQuery(self, query, needsPagination=False, failOnError=True) :
+    def executeQuery(self, query, needsPagination=False, failOnError=True):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).
 
         Keyword arguments:
@@ -422,9 +488,9 @@ class Statistician :
             query; and if False, this action will quietly exit with no error code. In
             either case, an error message will be logged to the console.
         """
-        if "GITHUB_REPOSITORY_OWNER" in os.environ :
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
             owner = os.environ["GITHUB_REPOSITORY_OWNER"]
-        else :
+        else:
             print("Error (7): Could not determine the repository owner.")
             set_outputs({"exit-code" : 7})
             exit(7 if failOnError else 0)
@@ -434,7 +500,7 @@ class Statistician :
             '--cache', '1h',
             '-f', 'query=' + query
             ]
-        if needsPagination :
+        if needsPagination:
             arguments.insert(5, '--paginate')
         result = subprocess.run(
             arguments,
@@ -442,42 +508,43 @@ class Statistician :
             universal_newlines=True
             ).stdout.strip()
         numPages = result.count('"data"')
-        if numPages == 0 :
+        if numPages == 0:
             # Check if any error details
             result = json.loads(result) if len(result) > 0 else ""
-            if "errors" in result :
+            if "errors" in result:
                 print("Error (2): GitHub api Query failed with error:")
                 print(result["errors"])
                 code = 2
-            else :
+            else:
                 print("Error (3): Something unexpected occurred during GitHub API query.")
                 code = 3
             set_outputs({"exit-code" : code})
             exit(code if failOnError else 0)
-        elif needsPagination :
-            if (numPages > 1) :
+        elif needsPagination:
+            if (numPages > 1):
                 result = result.replace('}{"data"', '},{"data"')
             result = "[" + result + "]"
         result = json.loads(result)
         failed = False
         errorMessage = None
-        if (not needsPagination) and (("data" not in result) or result["data"] == None) :
+        if ((not needsPagination) and
+            (("data" not in result) or result["data"] == None)):
             failed = True
-            if "errors" in result :
+            if "errors" in result:
                 errorMessage = result["errors"]
         elif needsPagination and ("data" not in result[0] or result[0]["data"] == None):
             failed = True
             if "errors" in result[0] :
                 errorMessage = result[0]["errors"]
-        if failed :
+        if failed:
             print("Error (6): No data returned.")
-            if errorMessage != None :
+            if errorMessage != None:
                 print(errorMessage)
             set_outputs({"exit-code" : 6})
             exit(6 if failOnError else 0)
         return result
 
-    def ghDisableInteractivePrompts(self) :
+    def ghDisableInteractivePrompts(self):
         """Disable gh's interactive prompts. This is probably unnecessary,
         as all of our testing so far, the queries run fine and don't produce any
         prompts. Disabling as a precaution in case some unexpected condition occurs
