@@ -15,11 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Refactored everything locale related to extract definitions of locales from Python dictionaries to JSON files to ease the process of contributing additional language translations.
 
 ### Dependencies
 
 ### CI/CD
+
+
+## [1.20.4] - 2023-09-07
+
+### Fixed
+* Refactored everything locale related to extract definitions of locales from Python dictionaries into JSON files to make it easier to contribute additional language translations.
 
 
 ## [1.20.3] - 2023-09-06
