@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021 Vincent A Cicirello
+# Copyright (c) 2021-2023 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -25,7 +25,7 @@
 # SOFTWARE.
 #
 
-def calculateTextLength(s, size, pixels, fontWeight) :
+def calculateTextLength(s, size, pixels, fontWeight):
     """Calculates the length of a string in DejaVu Sans for
     a specified font size.
 
@@ -33,40 +33,45 @@ def calculateTextLength(s, size, pixels, fontWeight) :
     s - The string.
     size - The font size.
     pixels - If True, the size is in px, otherwise it is in pt.
-    fontWeight - The weight of the font (e.g., 400 for normal, 600 for bold, etc)
+    fontWeight - The weight of the font (e.g., 400 for normal,
+        600 for bold, etc)
     """
-    if pixels :
+    if pixels:
         size *= 0.75
     weightMultiplier = 1
-    if fontWeight != 400 :
+    if fontWeight != 400:
         weightMultiplier = fontWeight / 400
     return weightMultiplier * size * calculateTextLength110(s) / 110
 
-def calculateTextLength110Weighted(s, fontWeight) :
+def calculateTextLength110Weighted(s, fontWeight):
     """Calculates the length of a string in DejaVu Sans 110pt font,
     factoring in font weight.
 
     Keyword arguments:
     s - The string.
-    fontWeight - The weight of the font (e.g., 400 for normal, 600 for bold, etc)
+    fontWeight - The weight of the font (e.g., 400 for normal,
+        600 for bold, etc)
     """
     weightMultiplier = 1
-    if fontWeight != 400 :
+    if fontWeight != 400:
         weightMultiplier = fontWeight / 400
     return weightMultiplier * calculateTextLength110(s)
 
-def calculateTextLength110(s) :
+def calculateTextLength110(s):
     """Calculates the length of a string in DejaVu Sans 110pt font.
 
     Keyword arguments:
     s - The string.
     """
-    if s==None or len(s) == 0 :
+    if s==None or len(s) == 0:
         return 0
-    total = sum(defaultWidths["character-lengths"][c] if c in defaultWidths["character-lengths"] else defaultWidths["mean-character-length"] for c in s)
-    for i in range(1,len(s)) :
+    total = sum(
+        defaultWidths["character-lengths"][c] if (
+            c in defaultWidths["character-lengths"]
+            ) else defaultWidths["mean-character-length"] for c in s)
+    for i in range(1,len(s)):
         pair = s[i-1:i+1]
-        if pair in defaultWidths["kerning-pairs"] :
+        if pair in defaultWidths["kerning-pairs"]:
             total -= defaultWidths["kerning-pairs"][pair]
     return total
 

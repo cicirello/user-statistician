@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "Activitatea GitHub a lui {0}",
+  "categoryLabels": {
+    "general": {
+      "heading": "Statistici generale și informații",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Depozitele",
+      "column-one": "Non-bifurcatii",
+      "column-two": "Toate"
+    },
+    "contributions": {
+      "heading": "Contribuții",
+      "column-one": "Anul trecut",
+      "column-two": "Total"
+    },
+    "languages": {
+      "heading": "Distribuția limbii în arhivele publice",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "An alăturat",
+    "featured": "Repo recomandate",
+    "mostStarred": "Cel mai marcat Repo",
+    "mostForked": "Repo cel mai bifurcat",
+    "followers": "Urmaritori",
+    "following": "Ca urmare a",
+    "sponsors": "Sponsori",
+    "sponsoring": "Sponsorizare",
+    "public": "Arhivele mele",
+    "starredBy": "Înscris de",
+    "forkedBy": "Bifurcat de",
+    "watchedBy": "Vizionat de",
+    "templates": "Șabloane",
+    "archived": "Arhivat",
+    "commits": "Commits",
+    "issues": "Probleme",
+    "prs": "Solicitări de tragere",
+    "reviews": "Recenzii Pull Request",
+    "contribTo": "Contribuit la",
+    "private": "Contribuții private"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}'in GitHub Etkinliği",
+  "categoryLabels": {
+    "general": {
+      "heading": "Genel İstatistikler ve Bilgiler",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Depolar",
+      "column-one": "Çatalsız",
+      "column-two": "Tüm"
+    },
+    "contributions": {
+      "heading": "Katkılar",
+      "column-one": "Geçen sene",
+      "column-two": "Total"
+    },
+    "languages": {
+      "heading": "Genel Depolarda Dil Dağılımı",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Katıldığı Yıl",
+    "featured": "Öne Çıkan Repo",
+    "mostStarred": "En Çok Yıldızlı Repo",
+    "mostForked": "En Çatallı Repo",
+    "followers": "Takipçiler",
+    "following": "Takip etmek",
+    "sponsors": "Sponsorlar",
+    "sponsoring": "Sponsorluk",
+    "public": "Sahip Olunan Depolar",
+    "starredBy": "Tarafından yıldız",
+    "forkedBy": "Tarafından çatallandı",
+    "watchedBy": "İzleyen",
+    "templates": "Sablonlar",
+    "archived": "Arşivlenmiş",
+    "commits": "Taahhütler",
+    "issues": "Sorunlar",
+    "prs": "Çekme İstekleri",
+    "reviews": "İstek İncelemelerini Çekin",
+    "contribTo": "Katkıda Bulunanlar",
+    "private": "Özel Katkılar"
+  }
+}

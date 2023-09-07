@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "Aktivitas Github {0}",
+  "categoryLabels": {
+    "general": {
+      "heading": "Info dan Status Umum",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repositori",
+      "column-one": "Non Fork",
+      "column-two": "Semua"
+    },
+    "contributions": {
+      "heading": "Kontribusi",
+      "column-one": "Tahun Lalu",
+      "column-two": "Total"
+    },
+    "languages": {
+      "heading": "Distribusi Bahasa dalam Repositori Publik",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Tahun Bergabung",
+    "featured": "Repositori Unggulan",
+    "mostStarred": "Repositori dengan Bintang Terbanyak",
+    "mostForked": "Repositori dengan Fork Terbanyak",
+    "followers": "Pengikut",
+    "following": "Mengikuti",
+    "sponsors": "Sponsor",
+    "sponsoring": "Mensponsori",
+    "public": "Repositori yang Dimiliki",
+    "starredBy": "Diberikan bintang oleh",
+    "forkedBy": "Di-fork oleh",
+    "watchedBy": "Dilihat oleh",
+    "templates": "Template",
+    "archived": "Diarsipkan",
+    "commits": "Commits",
+    "issues": "Isu",
+    "prs": "Pull Requests",
+    "reviews": "Ulasan Pull Request",
+    "contribTo": "Berkontribusi Ke",
+    "private": "Kontribusi Pribadi"
+  }
+}

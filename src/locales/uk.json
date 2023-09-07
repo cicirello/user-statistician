@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} активностей на GitHub",
+  "categoryLabels": {
+    "general": {
+      "heading": "Загальна статистика та інформація",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Репозиторіїв",
+      "column-one": "Без форків",
+      "column-two": "Всі"
+    },
+    "contributions": {
+      "heading": "Внески",
+      "column-one": "За останній рік",
+      "column-two": "Всього"
+    },
+    "languages": {
+      "heading": "Використання мов у загальнодоступних репозиторіях",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Рік приєднання",
+    "featured": "Вибрані ререпозиторії",
+    "mostStarred": "Найпопулярніший репозиторій",
+    "mostForked": "Найбільш клонований репозиторій",
+    "followers": "Підписники",
+    "following": "Підписки",
+    "sponsors": "Спонсори",
+    "sponsoring": "Спонсорство",
+    "public": "Власні репозиторії",
+    "starredBy": "Відмітили",
+    "forkedBy": "Клонували",
+    "watchedBy": "Підписники",
+    "templates": "Шаблони",
+    "archived": "Заархівовано",
+    "commits": "Комміти",
+    "issues": "Проблеми",
+    "prs": "Пулл реквести",
+    "reviews": "Огляди пулл реквестів",
+    "contribTo": "Участь в",
+    "private": "Приватна участь"
+  }
+}

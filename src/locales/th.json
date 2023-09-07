@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "กิจกรรมของ {0} บน GitHub",
+  "categoryLabels": {
+    "general": {
+      "heading": "สถิติและข้อมูลทั่วไป",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repositories",
+      "column-one": "ที่ไม่ใช่ Fork",
+      "column-two": "รวมทั้งหมด"
+    },
+    "contributions": {
+      "heading": "Contributions",
+      "column-one": "ปีที่แล้ว",
+      "column-two": "รวมทั้งหมด"
+    },
+    "languages": {
+      "heading": "ภาษาที่ใช้ใน Repo สาธารณะ",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "ปีที่เข้าร่วม",
+    "featured": "Repo ที่โดดเด่น",
+    "mostStarred": "Repo ที่ติดดาวมากที่สุด",
+    "mostForked": "Repo ที่มีการ Fork มากที่สุด",
+    "followers": "ผู้ติดตาม",
+    "following": "กำลังติดตาม",
+    "sponsors": "ผู้สนับสนุน",
+    "sponsoring": "กำลังสนับสนุน",
+    "public": "Repo ทั้งหมดของฉัน",
+    "starredBy": "ติดดาวทั้งหมด",
+    "forkedBy": "มีการ Fork ทั้งหมด",
+    "watchedBy": "ผู้ติดตาม",
+    "templates": "เทมเพลตแม่แบบ",
+    "archived": "เก็บถาวร",
+    "commits": "คอมมิท",
+    "issues": "ปัญหา",
+    "prs": "Pull Requests",
+    "reviews": "รีวิว Pull Request",
+    "contribTo": "มีการช่วยไปแล้ว",
+    "private": "Contributions ส่วนตัว"
+  }
+}

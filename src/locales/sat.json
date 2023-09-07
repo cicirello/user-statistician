@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}ᱟᱜ ᱜᱤᱴᱦᱚᱵᱽ ᱠᱟᱹᱢᱤᱦᱚᱨᱟᱠᱚ",
+  "categoryLabels": {
+    "general": {
+      "heading": "ᱥᱟᱫᱷᱟᱨᱚᱬ ᱵᱟᱛᱟᱣ ᱟᱨ ᱵᱤᱵᱨᱚᱬ",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "ᱜᱩᱫᱟᱢ",
+      "column-one": "ᱵᱤᱱ ᱯᱷᱚᱨᱠ ᱠᱚ",
+      "column-two": "ᱢᱩᱴ"
+    },
+    "contributions": {
+      "heading": "ᱮᱱᱮᱢᱤᱭᱟᱹᱠᱚ",
+      "column-one": "ᱪᱟᱞᱟᱣᱮᱱ ᱥᱮᱨᱢᱟᱸ",
+      "column-two": "ᱢᱩᱴ"
+    },
+    "languages": {
+      "heading": "ᱥᱟᱱᱟᱢ ᱜᱩᱫᱟᱢ ᱨᱮ ᱯᱟᱹᱨᱥᱤ ᱠᱚᱣᱟᱜ ᱯᱟᱥᱱᱟᱣ",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "ᱥᱮᱞᱮᱫ ᱥᱮᱨᱢᱟᱸ",
+    "featured": "ᱵᱤᱥᱮᱥ ᱜᱩᱫᱟᱢ",
+    "mostStarred": "ᱡᱷᱚᱛᱚ ᱠᱷᱚᱱ ᱰᱷᱮᱨ ᱪᱤᱱᱦᱟᱹ ᱦᱟᱜ ᱜᱩᱫᱟᱹᱢ",
+    "mostForked": "ᱡᱟᱹᱥᱛᱤ ᱱᱚᱠᱚᱞ ᱠᱟᱱ ᱜᱚᱫᱟᱢ",
+    "followers": "ᱯᱟᱧᱡᱟ ᱠᱩᱜ",
+    "following": "ᱯᱟᱧᱡᱟ ᱮᱫᱟᱢ",
+    "sponsors": "ᱨᱚᱠᱚᱢᱤᱭᱟᱹ",
+    "sponsoring": "ᱨᱚᱠᱚᱢᱚᱜ ᱠᱟᱱᱟ",
+    "public": "ᱤᱧᱟᱜ ᱜᱩᱫᱟᱢ ᱠᱚ",
+    "starredBy": "ᱪᱤᱱᱦᱟᱹᱤᱭᱟᱹ",
+    "forkedBy": "ᱱᱚᱠᱚᱞᱤᱭᱟᱹ",
+    "watchedBy": "ᱛᱤᱱᱹᱜ ᱠᱚ ᱧᱮᱞ ᱠᱟᱫᱟ",
+    "templates": "ᱪᱷᱟᱸᱪᱠᱚ",
+    "archived": "ᱜᱟᱵᱟᱱᱮᱱᱟ",
+    "commits": "ᱰᱟᱞᱟᱣᱠᱚ",
+    "issues": "ᱯᱚᱞᱚᱡᱽᱠᱚ",
+    "prs": "ᱚᱨ ᱱᱮᱦᱚᱨᱠᱚ",
+    "reviews": "ᱚᱨ ᱱᱮᱦᱚᱨ ᱧᱮᱞᱯᱚᱨᱚᱠᱷ ᱠᱚ",
+    "contribTo": "ᱮᱱᱮᱢ",
+    "private": "ᱱᱤᱡᱚᱨᱟᱜ ᱩᱠᱩ ᱮᱱᱮᱢᱠᱚ"
+  }
+}

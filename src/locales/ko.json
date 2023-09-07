@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}의 GitHub 활동",
+  "categoryLabels": {
+    "general": {
+      "heading": "통계 및 정보",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "저장소",
+      "column-one": "직접 만든(Non-Forks)",
+      "column-two": "모두"
+    },
+    "contributions": {
+      "heading": "기여",
+      "column-one": "지난해",
+      "column-two": "총"
+    },
+    "languages": {
+      "heading": "공개 저장소 사용 언어 분포",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "가입 년도",
+    "featured": "추천 저장소",
+    "mostStarred": "Star를 가장 많이 받은 저장소",
+    "mostForked": "Fork가 가장 많이된 저장소",
+    "followers": "팔로워",
+    "following": "팔로잉",
+    "sponsors": "후원받은",
+    "sponsoring": "후원하는",
+    "public": "보유한 저장소",
+    "starredBy": "받은 Star",
+    "forkedBy": "Fork된 횟수",
+    "watchedBy": "Watch된 횟수",
+    "templates": "템플릿",
+    "archived": "보관 처리된(Archived) 저장소",
+    "commits": "커밋",
+    "issues": "이슈",
+    "prs": "풀 리퀘스트",
+    "reviews": "리뷰",
+    "contribTo": "기여 횟수",
+    "private": "비공개"
+  }
+}

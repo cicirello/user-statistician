@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} - Aktivnost na Githabu",
+  "categoryLabels": {
+    "general": {
+      "heading": "Opšta statistika i informacije",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Repozitoriji",
+      "column-one": "Ne-forkovani",
+      "column-two": "Svi"
+    },
+    "contributions": {
+      "heading": "Doprinosi",
+      "column-one": "Prošla godina",
+      "column-two": "Ukupno"
+    },
+    "languages": {
+      "heading": "Zastupljenost jezika u javnim repozitorijima",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Godina pristupa",
+    "featured": "Izabrani repozitorij",
+    "mostStarred": "Najviše zvezdica na repou",
+    "mostForked": "Najviše forkovan repo",
+    "followers": "Pratilaca",
+    "following": "Prati",
+    "sponsors": "Sponzori",
+    "sponsoring": "Sponzoriše",
+    "public": "Lični repozitoriji",
+    "starredBy": "Dodeljenih zvezdica",
+    "forkedBy": "Broj forkovanja",
+    "watchedBy": "Pregledi",
+    "templates": "Šabloni",
+    "archived": "Arhive",
+    "commits": "Komiti",
+    "issues": "Problemi",
+    "prs": "Pul zahtevi",
+    "reviews": "Revizije pul zahteva",
+    "contribTo": "Doprinosi",
+    "private": "Privatni doprinosi"
+  }
+}

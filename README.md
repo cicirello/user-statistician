@@ -76,6 +76,9 @@ The remainder of the documentation is organized into the following sections:
 * [Blog Posts](#blog-posts): A selection of blog posts about the GitHub Action.
 * [Support the Project](#support-the-project): Ways that you can support the project.
 * [Contributors](#contributors): Information for potential contributors.
+  * [Contributing a Translation](#contributing-a-translation): Detailed instructions
+    for contributing a language translation for a new locale, the most common type
+	of contribution to this project.
 
 ## Quickstart 
 See the [Quickstart](https://github.com/cicirello/user-statistician/blob/main/quickstart) directory 
@@ -827,9 +830,9 @@ action will use the default of "en". The following locales are currently support
 | tr | Turkish |
 | uk | Ukrainian |
 
-If you are interested in contributing a new locale, only the 
-[src/StatConfig.py](https://github.com/cicirello/user-statistician/blob/main/src/StatConfig.py) file must be updated. See the comments
-within that file for guidance in contributing a locale.
+If you are interested in contributing a new locale, see the 
+section [Contributing a Translation](#contributing-a-translation) 
+for detailed instructions for doing so.
 
 ### `fail-on-error`
 
@@ -989,7 +992,54 @@ If you would like to contribute to the project, please start by reading
 our [Contributing Guidelines](https://github.com/cicirello/.github/blob/main/CONTRIBUTING.md)
 and our [Code of Conduct](https://github.com/cicirello/.github/blob/main/CODE_OF_CONDUCT.md). 
 After reading the contributing guidelines and code of conduct, fork the repository, create
-a feature branch in your fork, make your changes, and submit a pull request.
+a feature branch in your fork, make your changes, and submit a pull request. Please note that
+every pull request must be associated with an issue that it addresses. If there is a change 
+that you would like to propose that doesn't already have an issue, please submit an issue 
+first.
+
+### Contributing a Translation
+
+The most common type of contribution to this project has been language translations. Here is
+step-by-step guidance on how to contribute a translation.
+* Is there an [open issue](https://github.com/cicirello/user-statistician/issues?q=is%3Aopen) 
+  for the language you want to contribute? If so, and if nobody is assigned to it, comment on
+  the issue expressing interest, and I will assign you to it (e.g., so we don't have multiple
+  people working on the same thing). If there isn't an open issue for it, then submit an issue
+  for a feature request for the language. Then comment on your new issue indicating if you are
+  interested in contributing the translation (e.g., so I know the difference between just a 
+  request for a language vs a request with offer to contribute it). I'll then assign you to it.
+* Fork the repository, and create a branch in your fork for your proposed translation.
+* Find the [ISO 639-1 two-character language 
+  code](https://www.loc.gov/standards/iso639-2/php/English_list.php) for the language. Some 
+  languages have both a two-character code and a three-character code in the table at that link.
+  In those cases, we are going with the two-character code. But there are some languages that
+  only have a three-character ISO-639-2 code, and in those cases we'll use the three-character
+  code. For example, one of the currently supported languages is Santali, whose code is `sat`.
+* In the [src/StatConfig.py](src/StatConfig.py) file, look for the set `supportedLocales` and 
+  add a string for the locale code alphabetically.
+* Next, within the directory [src/locales](src/locales), create a JSON file named with the locale
+  code (in all lowercase) and file extension `.json`. For example, the English version is in
+  `en.json`. You might consider starting with a copy of the file for a different language that 
+  you also know, and then editing the various strings.
+* Don't change any of the key fields, since those are used internally.
+* Translate the `"titleTemplate"`, the first mapping you see in each of the JSON files. The `{0}`
+  that you see in a title template string is a placeholder for where the user's name will go. The
+  `"titleTemplate"` is required to have that someplace, or else the test cases will fail.
+* Translate the `"categoryLabels"`, which are the headings of each of the sections of the SVG, as 
+  well as the column headings within those sections. The categories that don't have columns should 
+  just have `null` for the column headings as you will see in any of the existing JSON files.
+* Translate the `"statLabels"`, which are the labels for each individual statistic on the SVG.
+* Run the unit tests locally. The test cases will verify that there are strings associated with
+  all required keys for all locale codes, although they obviously won't verify that the translations
+  are correct. To run the unit tests locally, from the root of the repository, 
+  execute: `python -B -m unittest tests/tests.py`.  Note that for the tests to include your locale,
+  as well as for the Action itself to include your locale, the code for it must be in the 
+  `supportedLocales` set within [src/StatConfig.py](src/StatConfig.py). See the earlier step on this.
+* Despite what the pull request template indicates, you do not need to update the README to document
+  the new locale code. We'll do that later at the time a new release is made that includes your new
+  locale. The reason not to document it at the time of your PR is that all changes to the README from 
+  the default branch go live immediately on GitHub's Marketplace, which may confuse users into 
+  believing the new locale is available before it actually is.
 
 ## License
 
