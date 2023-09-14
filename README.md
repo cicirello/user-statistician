@@ -949,12 +949,14 @@ jobs:
 ## Built With
 
 The `user-statistician` action uses the following:
-* Python 3 (implemented almost entirely in Python);
-* The [cicirello/pyaction:4](https://github.com/cicirello/pyaction) Docker 
-  image, which includes the GitHub CLI installed on a python:3-slim base image;
+* Python (implemented almost entirely in Python);
+* The [cicirello/pyaction](https://actions.cicirello.org/pyaction/) Docker container image, 
+  which includes the GitHub CLI installed on a python:3-slim base image (see
+  [pyaction's GitHub repository](https://github.com/cicirello/pyaction));
 * [The GitHub CLI](https://cli.github.com/);
 * [GitHub GraphQL API](https://docs.github.com/en/graphql);
-* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; and
+* [GitHub Octicons](https://github.com/primer/octicons) for the icons in the stats image; 
+* [JSON](https://www.json.org/) for managing the various language translations; and
 * We started with our template repository for GitHub Actions implemented in 
   Python: [cicirello/python-github-action-template](https://github.com/cicirello/python-github-action-template).
 
