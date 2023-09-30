@@ -54,6 +54,7 @@ supportedLocales = {
     "sat",
     "sr",
     "th",
+    "tl",
     "tr",
     "uk",
 }

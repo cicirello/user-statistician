@@ -1,0 +1,47 @@
+{
+    "titleTemplate": "Aktibidad sa GitHub ni {0}",
+    "categoryLabels": {
+      "general": {
+        "heading": "Pangkalahatang Statistika at Impormasyon",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Mga Repositoryo",
+        "column-one": "Mga Non-Fork",
+        "column-two": "Lahat"
+      },
+      "contributions": {
+        "heading": "Mga Kontribusyon",
+        "column-one": "Nakaraang Taon",
+        "column-two": "Kabuuan"
+      },
+      "languages": {
+        "heading": "Pamamahagi ng Wika sa Pangkabuuang Repositoryo",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "Taon ng Pagsali",
+      "featured": "Mga Naitampok na Repositoryo",
+      "mostStarred": "Repositoryong may Pinakamaraming Bituin",
+      "mostForked": "Repositoryong may Pinakamaraming Fork",
+      "followers": "Mga Taga-subaybay",
+      "following": "Mga Sinusubaybayan",
+      "sponsors": "Mga Taga-suporta",
+      "sponsoring": "Mga Sinusuportahan",
+      "public": "Aking mga Repositoryo",
+      "starredBy": "Binigyan ng Bituin Ni",
+      "forkedBy": "Ni-Fork Ni",
+      "watchedBy": "Inaabangan Ni",
+      "templates": "Mga Template",
+      "archived": "Tinabi",
+      "commits": "Mga Commit",
+      "issues": "Mga Isyu",
+      "prs": "Mga Pull Request",
+      "reviews": "Mga Naisuring Pull Request",
+      "contribTo": "Nag-ambag Sa",
+      "private": "Mga Pribadong Ambag"
+    }
+  }
