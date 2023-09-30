@@ -963,6 +963,7 @@ The `user-statistician` action uses the following:
 ## Blog Posts
 
 Here is a selection of [DEV.to](https://dev.to/) blog posts about the user-statistician:
+* [Hacktoberfest 2023 Contributors Wanted: Additional Translations for the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-2023-contributors-wanted-additional-translations-for-the-user-statistician-github-action-3bb5), posted on DEV on September 30, 2023.
 * [Hacktoberfest Progress Update: Translation Contributions Still Welcome](https://dev.to/cicirello/hacktoberfest-progress-update-translation-contributions-still-welcome-4aof), posted on DEV on October 12, 2022.
 * [Hacktoberfest Language Translation Contributors Wanted for the user-statistician GitHub Action](https://dev.to/cicirello/hacktoberfest-language-translation-contributors-wanted-for-the-user-statistician-github-action-2elg), posted on DEV on September 30, 2022.
 * [Halloween Themes for the user-statistician GitHub Action](https://dev.to/cicirello/halloween-themes-for-the-user-statistician-github-action-4do6), posted on DEV on September 28, 2022.
