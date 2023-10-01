@@ -53,6 +53,7 @@ supportedLocales = {
     "ru",
     "sat",
     "sr",
+    "sv",
     "th",
     "tl",
     "tr",
