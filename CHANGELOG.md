@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### CI/CD
 
+### Other
+* Updated the quickstart / sample workflows to the latest version of actions/checkout.
+
 
 ## [1.20.5] - 2023-09-07
 
