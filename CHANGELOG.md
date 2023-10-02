@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Translation to Swedish (`locale: sv`) in #230 (@Viveksati5143).
 * Translation to Persian (`locale: fa`) in #232 (@AshkanArabim).
 * Translation to Malayalam (`locale: ml`) in #235 (@Sarthak027).
+* Translation to Finnish (`locale: fi`) in #236 (@Sadeedpv).
 
 ### Changed
 
