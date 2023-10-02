@@ -44,6 +44,7 @@ supportedLocales = {
     "ja",
     "ko",
     "lt",
+    "ml",
     "nl",
     "no",
     "or",
