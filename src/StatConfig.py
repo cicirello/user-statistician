@@ -36,6 +36,7 @@ supportedLocales = {
     "de",
     "en",
     "es",
+    "fa",
     "fr",
     "hi",
     "hu",
