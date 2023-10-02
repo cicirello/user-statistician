@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "عملکرد گیت‌هاب {0}",
+  "categoryLabels": {
+    "general": {
+      "heading": "آمار و اطلاعات کلی",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "ریپازیتوری ها",
+      "column-one": "فورک نشده",
+      "column-two": "همه"
+    },
+    "contributions": {
+      "heading": "همکاری ها",
+      "column-one": "سال گذشته",
+      "column-two": "مجموع"
+    },
+    "languages": {
+      "heading": "پراکندگی زبان ها در ریپو های عمومی",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "سال عضویت",
+    "featured": "ریپازیتوری برجسته",
+    "mostStarred": "ریپو با بیشترین ستاره",
+    "mostForked": "ریپو با بیشترین فورک",
+    "followers": "دنبال کنندگان",
+    "following": "دنبال می‌کند",
+    "sponsors": "اسپانسر ها",
+    "sponsoring": "اسپانسر می‌کند",
+    "public": "ریپازیتوری ها",
+    "starredBy": "ستاره کنندگان",
+    "forkedBy": "فورک کنندگان",
+    "watchedBy": "بینندگان",
+    "templates": "قالب ها",
+    "archived": "آرشیو ها",
+    "commits": "کامیت ها",
+    "issues": "موضوعات",
+    "prs": "درخواست های کشش",
+    "reviews": "مرور درخواست های کشش",
+    "contribTo": "همکاری کرده با",
+    "private": "همکاری های خصوصی"
+  }
+}
