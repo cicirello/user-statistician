@@ -1,0 +1,47 @@
+{
+    "titleTemplate": "{0}-ന്റെ GitHub പ്രവർത്തനം",
+    "categoryLabels": {
+      "general": {
+        "heading": "പൊതുവായ സ്ഥിതിവിവരക്കണക്കുകളും വിവരങ്ങളും",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "ശേഖരങ്ങൾ",
+        "column-one": "നോൺ ഫോർക്കുകൾ",
+        "column-two": "എല്ലാം"
+      },
+      "contributions": {
+        "heading": "സംഭാവനകൾ",
+        "column-one": "കഴിഞ്ഞ വർഷം",
+        "column-two": "ആകെ"
+      },
+      "languages": {
+        "heading": "പൊതു സംഭരണികളിലെ ഭാഷാ വിതരണം",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "ചേർന്ന വർഷം",
+      "featured": "ഫീച്ചർ ചെയ്ത റിപ്പോ",
+      "mostStarred": "ഏറ്റവും കൂടുതൽ നക്ഷത്രമിട്ട റിപ്പോ",
+      "mostForked": "മോസ്റ്റ് ഫോർക്ക്ഡ് റിപ്പോ",
+      "followers": "അനുയായികൾ",
+      "following": "പിന്തുടരുന്നു",
+      "sponsors": "സ്പോൺസർമാർ",
+      "sponsoring": "സ്പോൺസർ ചെയ്യുന്നു",
+      "public": "എന്റെ ശേഖരങ്ങൾ",
+      "starredBy": "അഭിനയിച്ചത്",
+      "forkedBy": "ഫോർക്ക്ഡ് ബൈ",
+      "watchedBy": "വീക്ഷിച്ചത്",
+      "templates": "ടെംപ്ലേറ്റുകൾ",
+      "archived": "ആർക്കൈവ് ചെയ്തു",
+      "commits": "കമ്മിറ്റ് ചെയ്യുന്നു",
+      "issues": "പ്രശ്നങ്ങൾ",
+      "prs": "അഭ്യർത്ഥനകൾ വലിക്കുക",
+      "reviews": "റിക്വസ്റ്റ് റിവ്യൂകൾ വലിക്കുക",
+      "contribTo": "സമർപ്പിച്ചിരിക്കുന്നത്",
+      "private": "സ്വകാര്യ സംഭാവനകൾ"
+    }
+  }
