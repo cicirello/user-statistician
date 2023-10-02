@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "Käyttäjän {0} GitHub-toiminto",
+  "categoryLabels": {
+    "general": {
+      "heading": "Yleiset tilastot ja tiedot",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Tietovarastot",
+      "column-one": "Ei-haarukat",
+      "column-two": "Kaikki"
+    },
+    "contributions": {
+      "heading": "Avustukset",
+      "column-one": "Viime vuosi",
+      "column-two": "Kaikki yhteensä"
+    },
+    "languages": {
+      "heading": "Kielten jakelu julkisissa arkistoissa",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Vuosi liittyi",
+    "featured": "Suositeltu Repo",
+    "mostStarred": "Tähdellä merkityin Repo",
+    "mostForked": "Useimmat Forked Repo",
+    "followers": "Seuraajat",
+    "following": "Seurata",
+    "sponsors": "Sponsorit",
+    "sponsoring": "Sponsorointi",
+    "public": "Omat arkistot",
+    "starredBy": "tähdellä",
+    "forkedBy": "Haaroittunut",
+    "watchedBy": "Katsonut",
+    "templates": "Mallit",
+    "archived": "Arkistoitu",
+    "commits": "Sitoutuu",
+    "issues": "ongelmia",
+    "prs": "Vedä pyyntöjä",
+    "reviews": "Pyydä arvosteluja",
+    "contribTo": "Osallistunut",
+    "private": "Yksityiset lahjoitukset"
+  }
+}
