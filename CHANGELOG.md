@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Translation to Tagalog (`locale: tl`) in #227 (@digracesion).
 * Translation to Swedish (`locale: sv`) in #230 (@Viveksati5143).
 * Translation to Persian (`locale: fa`) in #232 (@AshkanArabim).
+* Translation to Malayalam (`locale: ml`) in #235 (@Sarthak027).
 
 ### Changed
 
