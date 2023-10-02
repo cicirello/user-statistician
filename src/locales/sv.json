@@ -1,0 +1,47 @@
+{
+    "titleTemplate": "{0}'s GitHub -aktivitet",
+    "categoryLabels": {
+      "general": {
+        "heading": "Allmän statistik och information",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Förråd",
+        "column-one": "Icke-gafflar",
+        "column-two": "Allt"
+      },
+      "contributions": {
+        "heading": "Bidrag",
+        "column-one": "Förra året",
+        "column-two": "totala"
+      },
+      "languages": {
+        "heading": "Språkdistribution i offentliga arkiv",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "År ansluten",
+      "featured": "Utvalda Repo",
+      "mostStarred": "Mest stjärnklippta Repo",
+      "mostForked": "Mest gaffelförsedda lagringsplatsen",
+      "followers": "Anhängare",
+      "following": "Följande",
+      "sponsors": "Sponsorer",
+      "sponsoring": "Sponsring",
+      "public": "Förråd ägs",
+      "starredBy": "Medverkat av",
+      "forkedBy": "Gafflade av",
+      "watchedBy": "Bevakad av",
+      "templates": "Mallar",
+      "archived": "Arkiverad",
+      "commits": "Begår",
+      "issues": "Frågor",
+      "prs": "Pull-begäranden",
+      "reviews": "Granskningar av pull-begäran",
+      "contribTo": "Bidrog till",
+      "private": "Privata bidrag"
+    }
+  }

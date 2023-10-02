@@ -4,10 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2023-09-30
+## [Unreleased] - 2023-10-02
 
 ### Added
-* Translation to Tagalog (`locale: tl`) in #227, contributed by @digracesion.
+* Translation to Tagalog (`locale: tl`) in #227 (@digracesion).
+* Translation to Swedish (`locale: sv`) in #230 (@Viveksati5143).
+* Translation to Persian (`locale: fa`) in #232 (@AshkanArabim).
+* Translation to Malayalam (`locale: ml`) in #235 (@Sarthak027).
 
 ### Changed
 
@@ -21,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Bump cicirello/pyaction from 4.22.0 to 4.24.0
 
 ### CI/CD
+
+### Other
+* Updated the quickstart / sample workflows to the latest version of actions/checkout.
 
 
 ## [1.20.5] - 2023-09-07
