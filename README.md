@@ -41,7 +41,7 @@ GitHub Action include the following:
 * Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
 * Highly customizable (color themes, custom colors, section ordering, custom title).
-* [International](#locale) with option to generate SVG in 24 [languages](#locale).
+* [International](#locale) with option to generate SVG in 29 [languages](#locale).
 * Runs entirely here on GitHub.
 * Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
@@ -319,7 +319,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.19.0
+      uses: cicirello/user-statistician@v1.21.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -809,6 +809,7 @@ action will use the default of "en". The following locales are currently support
 | bn | Bengali |
 | nl | Dutch |
 | en | English |
+| fi | Finnish |
 | fr | French |
 | de | German |
 | hi | Hindi |
@@ -817,8 +818,10 @@ action will use the default of "en". The following locales are currently support
 | ja | Japanese |
 | ko | Korean |
 | lt | Lithuanian |
+| ml | Malayalam |
 | no | Norwegian |
 | or | Odia |
+| fa | Persian |
 | pl | Polish |
 | pt | Portuguese |
 | ro | Romanian | 
@@ -826,6 +829,8 @@ action will use the default of "en". The following locales are currently support
 | sat | Santali |
 | sr | Serbian |
 | es | Spanish |
+| sv | Swedish |
+| tl | Tagalog |
 | th | Thai |
 | tr | Turkish |
 | uk | Ukrainian |
