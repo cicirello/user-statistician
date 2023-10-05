@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
+* Bump cicirello/pyaction from 4.24.0 to 4.25.0 (which includes bumping Python to 3.12).
 
 ### CI/CD
 * Bump Python to 3.12 in CI/CD workflows when running unit tests.
