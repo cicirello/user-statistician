@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0}-ի GitHub գործունեությունը",
+  "categoryLabels": {
+    "general": {
+      "heading": "Ընդհանուր Տեղեկություն և Տվյալներ",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "Ռեպոզիտորիաներ",
+      "column-one": "Ոչ պատառաքաղներ",
+      "column-two": "Բոլորը"
+    },
+    "contributions": {
+      "heading": "Ներդրումներ",
+      "column-one": "Վերջին տարի",
+      "column-two": "Ընդամենը"
+    },
+    "languages": {
+      "heading": "Լեզուների բաշխում հանրային շտեմարաններում",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "Գրանցվել է Տարին",
+    "featured": "Առաջարկվող ռեպո",
+    "mostStarred": "Ամենաաստղային ռեպո",
+    "mostForked": "Առավել ճեղքված պահոց",
+    "followers": "Հետևորդներ",
+    "following": "Հետևելով",
+    "sponsors": "Հովանավորներ",
+    "sponsoring": "Հովանավորություն",
+    "public": "Իմ Ռեպոզիտորիաներ",
+    "starredBy": "Աստղանշված է",
+    "forkedBy": "Արտադրված է կողմից",
+    "watchedBy": "Դիտել է",
+    "templates": "Կաղապարներ",
+    "archived": "Արխիվացված",
+    "commits": "Պարտավորվում է",
+    "issues": "Հարցեր",
+    "prs": "Քաշեք հարցումներ",
+    "reviews": "Քաշեք հարցումների վերանայումները",
+    "contribTo": "Նպաստել է.",
+    "private": "Մասնավոր ներդրումներ."
+  }
+}

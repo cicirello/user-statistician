@@ -41,6 +41,7 @@ supportedLocales = {
     "fr",
     "hi",
     "hu",
+    "hy",
     "id",
     "it",
     "ja",
