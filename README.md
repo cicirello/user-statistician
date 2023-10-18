@@ -41,7 +41,7 @@ GitHub Action include the following:
 * Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
 * Highly customizable (color themes, custom colors, section ordering, custom title).
-* [International](#locale) with option to generate SVG in 29 [languages](#locale).
+* [International](#locale) with option to generate SVG in 30 [languages](#locale).
 * Runs entirely here on GitHub.
 * Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
@@ -319,7 +319,7 @@ release that you wish to use, such as with the following:
 
 ```yml
     - name: Generate the user stats image
-      uses: cicirello/user-statistician@v1.21.0
+      uses: cicirello/user-statistician@v1.22.0
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 ```
@@ -805,6 +805,7 @@ action will use the default of "en". The following locales are currently support
 
 | locale code | language |
 | :--- | :--- |
+| hy | Armenian |
 | id | Bahasa Indonesia |
 | bn | Bengali |
 | nl | Dutch |
