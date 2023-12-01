@@ -92,9 +92,6 @@ class Statistician:
                                                   fail)
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
                                                 fail)
-        watchingAdjustmentQuery = self.loadQuery("/queries/watchingAdjustment.graphql",
-                                                 fail)
-
         reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
                                                  fail)
         
@@ -102,9 +99,6 @@ class Statistician:
             self.executeQuery(basicStatsQuery,
                               failOnError=fail),
             self.executeQuery(additionalRepoStatsQuery,
-                              needsPagination=True,
-                              failOnError=fail),
-            self.executeQuery(watchingAdjustmentQuery,
                               needsPagination=True,
                               failOnError=fail),
             self.executeQuery(reposContributedTo,
@@ -152,13 +146,12 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, watchingStats, reposContributedToStats):
+    def parseStats(self, basicStats, repoStats, reposContributedToStats):
         """Parses the user statistics.
 
         Keyword arguments:
         basicStats - The results of the basic stats query.
         repoStats - The results of the repo stats query.
-        watchingStats - The results of the query of repositories the user is watching.
         """
         # Extract username (i.e., login) and fullname.
         # Name needed for title of statistics card, and username
@@ -208,7 +201,6 @@ class Statistician:
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
-        watchingStats = list(map(lambda x : x["data"]["user"]["watching"], watchingStats))
         reposContributedToStats = list(
             map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
 
@@ -286,20 +278,12 @@ class Statistician:
             watchers = sum(
                 repo["watchers"]["totalCount"] for page in repoStats if page[
                     "nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
-            watchers -= watchingStats[0]["totalCount"]
-
-            if watchingStats[0]["totalCount"] > 0:
-                watchingMyOwnNonForks = sum(
-                    1 for page in watchingStats if page[
-                        "nodes"] != None for repo in page["nodes"] if not repo["isFork"])
-            else:
-                watchingMyOwnNonForks = 0
+            
             watchersNonForks = sum(
                 repo["watchers"]["totalCount"] for page in repoStats if page[
                     "nodes"] != None for repo in page["nodes"] if not repo[
                         "isPrivate"] and not repo["isFork"])
-            watchersNonForks -= watchingMyOwnNonForks
-        
+            
             # Count of private repos (not accurate since depends on token used to authenticate query,
             # however, all those here are included in count of owned repos.
             privateCount = sum(
