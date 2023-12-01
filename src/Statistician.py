@@ -235,7 +235,7 @@ class Statistician:
             # precautionary since the above check of totalCount should be sufficient
             # to protect against a null list of repos.
             
-            # Count stargazers, forks of my repos, and watchers excluding me
+            # Count stargazers, forks of my repos, and watchers 
             stargazers = sum(
                 repo["stargazerCount"] for page in repoStats if page[
                     "nodes"] != None for repo in page[
@@ -274,7 +274,7 @@ class Statistician:
             except ValueError:
                 pass
             
-            # Compute number of watchers excluding cases where user is watching their own repos.
+            # Compute number of watchers 
             watchers = sum(
                 repo["watchers"]["totalCount"] for page in repoStats if page[
                     "nodes"] != None for repo in page["nodes"] if not repo["isPrivate"])
