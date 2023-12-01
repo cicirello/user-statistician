@@ -453,7 +453,7 @@ The statistics include the following.
 | `public` | My Repositories | simple count |
 | `starredBy` | Starred By | simple count |
 | `forkedBy` | Forked By  | simple count |
-| `watchedBy` | Watched By | number watching your repositories (excluding you) |
+| `watchedBy` | Watched By | number watching your repositories |
 | `templates` | Templates | number of your repositories that are templates |
 | `archived` | Archived | number of your repositories that you have archived |
 
