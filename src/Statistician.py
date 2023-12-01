@@ -326,7 +326,6 @@ class Statistician:
             stargazersAll = 0
             forksOfMyReposAll = 0
             watchers = 0
-            watchingMyOwnNonForks = 0
             watchersNonForks = 0
             privateCount = 0
             publicAll = 0
