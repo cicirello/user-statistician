@@ -15,14 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Eliminated adjustment for watching own repositories from the "Watched By" stat for consistency with other stats that don't make such an adjustment such as the star count.
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.25.0 to 4.27.0
 
 ### CI/CD
 
 ### Other
+
+
+## [1.22.1] - 2023-12-08
+
+### Fixed
+* Eliminated adjustment for watching own repositories from the "Watched By" stat for consistency with other stats that don't make such an adjustment such as the star count.
+
+### Dependencies
+* Bump cicirello/pyaction from 4.25.0 to 4.27.0
 
 
 ## [1.22.0] - 2023-10-18
