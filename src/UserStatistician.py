@@ -2,7 +2,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2023 Vincent A Cicirello
+# Copyright (c) 2021-2024 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -77,13 +77,15 @@ def executeCommand(arguments):
         )
     return result.stdout.strip(), result.returncode
 
-def commitAndPush(filename, name, login, failOnError):
+def commitAndPush(filename, name, login, failOnError, commit_message):
     """Commits and pushes the image.
 
     Keyword arguments:
     filename - The path to the image.
     name - The user's name.
     login - The user's login id.
+    failOnError - Boolean controlling whether or not to fail the run if an error occurs.
+    commit_message - Message for the commit
     """
     # Resolve issue related to user in Docker container vs owner of repository
     executeCommand(
@@ -104,7 +106,7 @@ def commitAndPush(filename, name, login, failOnError):
                  login + '@users.noreply.github.com'])
             executeCommand(["git", "add", filename])
             executeCommand(["git", "commit", "-m",
-                            "Automated change by https://github.com/cicirello/user-statistician",
+                            commit_message,
                            filename])
             r = executeCommand(["git", "push"])
             if r[1] != 0:
@@ -193,6 +195,8 @@ if __name__ == "__main__":
         colors.pop("title-icon", None)
     elif topIcon != "default" and topIcon in iconTemplates:
         colors["title-icon"] = topIcon
+
+    commit_message = sys.argv[20].strip()
         
     stats = Statistician(
         failOnError,
@@ -223,7 +227,8 @@ if __name__ == "__main__":
             imageFilenameWithPath,
             "github-actions",
             "41898282+github-actions[bot]",
-            failOnError)
+            failOnError,
+            commit_message)
     
     set_outputs({"exit-code" : 0})
     

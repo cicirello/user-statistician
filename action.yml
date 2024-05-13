@@ -1,6 +1,6 @@
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2022 Vincent A Cicirello
+# Copyright (c) 2021-2024 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -58,7 +58,7 @@ inputs:
     required: false
     default: true
   locale:
-    description: 'ISO 639-1 two character language code'
+    description: 'One of the supported ISO 639-1 (two character) or ISO 639-2 (three character) language codes'
     required: false
     default: en
   border-radius:
@@ -105,6 +105,10 @@ inputs:
     description: 'Icon displayed at top of SVG to left and right of title'
     required: false
     default: default
+  commit-message: 
+    description: 'The commit message'
+    required: false
+    default: 'Automated change by https://github.com/cicirello/user-statistician'
 outputs:
   exit-code:
     description: '0 if successful or non-zero if unsuccessful'
@@ -131,3 +135,4 @@ runs:
     - ${{ inputs.language-animation-speed }}
     - ${{ inputs.image-width }}
     - ${{ inputs.top-icon }}
+    - ${{ commit-message }}
