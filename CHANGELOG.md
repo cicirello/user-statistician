@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2024-05-13
 
 ### Added
-* An action input, `commit-message`, to enable customizing the commit message
 
 ### Changed
 
@@ -18,11 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.27.0 to 4.29.0
 
 ### CI/CD
 
 ### Other
+
+
+## [1.23.0] - 2024-05-13
+
+### Added
+* An action input, `commit-message`, to enable customizing the commit message
+
+### Dependencies
+* Bump cicirello/pyaction from 4.27.0 to 4.29.0
 
 
 ## [1.22.1] - 2023-12-08
