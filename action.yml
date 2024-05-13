@@ -135,4 +135,4 @@ runs:
     - ${{ inputs.language-animation-speed }}
     - ${{ inputs.image-width }}
     - ${{ inputs.top-icon }}
-    - ${{ commit-message }}
+    - ${{ inputs.commit-message }}
