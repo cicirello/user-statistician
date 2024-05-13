@@ -879,6 +879,11 @@ that has configured required reviews or required checks:
 
 The author of the commit is set to the github-actions bot.
 
+### `commit-message`
+
+The `commit-message` input enables customizing the commit message. The
+default is `commit-message: 'Automated change by https://github.com/cicirello/user-statistician'`.
+
 ## Outputs
 
 The action has only the following action output variable.
@@ -939,6 +944,7 @@ jobs:
         locale: en
         fail-on-error: true
         commit-and-push: true
+        commit-message: 'Automated change by https://github.com/cicirello/user-statistician'
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
