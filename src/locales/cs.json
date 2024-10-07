@@ -1,0 +1,48 @@
+{
+    "titleTemplate": "{0}ova GitHub aktivita",
+    "categoryLabels": {
+      "general": {
+        "heading": "Obecné statistiky a informace",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Repozitáře",
+        "column-one": "Neodvozené",
+        "column-two": "Vše"
+      },
+      "contributions": {
+        "heading": "Příspěvky",
+        "column-one": "Minulý rok",
+        "column-two": "Celkem"
+      },
+      "languages": {
+        "heading": "Distribuce jazyků ve veřejných repozitářích",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "Rok připojení",
+      "featured": "Vyznačený repozitář",
+      "mostStarred": "Nejvíce hvězdičkový repozitář",
+      "mostForked": "Nejvíce odvozený repozitář",
+      "followers": "Následovníci",
+      "following": "Sleduji",
+      "sponsors": "Sponzoři",
+      "sponsoring": "Sponzorování",
+      "public": "Mé repozitáře",
+      "starredBy": "Hvězdičkované od",
+      "forkedBy": "Odvozené od",
+      "watchedBy": "Sledované od",
+      "templates": "Šablony",
+      "archived": "Archivované",
+      "commits": "Závazky",
+      "issues": "Problémy",
+      "prs": "Žádosti o sloučení",
+      "reviews": "Recenze žádostí o sloučení",
+      "contribTo": "Přispěno do",
+      "private": "Soukromé příspěvky"
+    }
+  }
+  

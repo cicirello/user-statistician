@@ -33,6 +33,7 @@ import json
 # order below.
 supportedLocales = {
     "bn",
+    "cs",
     "de",
     "en",
     "es",
