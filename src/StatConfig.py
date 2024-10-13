@@ -35,6 +35,7 @@ supportedLocales = {
     "bn",
     "cs",
     "de",
+    "el",
     "en",
     "es",
     "fa",
