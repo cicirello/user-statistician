@@ -1,0 +1,48 @@
+{
+    "titleTemplate": "Δραστηριότητα GitHub του {0}",
+    "categoryLabels": {
+      "general": {
+        "heading": "Γενικά Στατιστικά και Πληροφορίες",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Αποθετήρια",
+        "column-one": "Μη Forks",
+        "column-two": "Όλα"
+      },
+      "contributions": {
+        "heading": "Συνεισφορές",
+        "column-one": "Τελευταίος Χρόνος",
+        "column-two": "Σύνολο"
+      },
+      "languages": {
+        "heading": "Κατανομή Γλωσσών στα Δημόσια Αποθετήρια",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "Έτος Εγγραφής",
+      "featured": "Προτεινόμενο Αποθετήριο",
+      "mostStarred": "Αποθετήριο με τα Περισσότερα Αστέρια",
+      "mostForked": "Αποθετήριο με τα Περισσότερα Forks",
+      "followers": "Ακόλουθοι",
+      "following": "Ακολουθεί",
+      "sponsors": "Χορηγοί",
+      "sponsoring": "Χορηγεί",
+      "public": "Τα Αποθετήρια Μου",
+      "starredBy": "Προτιμήθηκε Από",
+      "forkedBy": "Fork Από",
+      "watchedBy": "Παρακολουθήθηκε Από",
+      "templates": "Πρότυπα",
+      "archived": "Αρχειοθετημένα",
+      "commits": "Commits",
+      "issues": "Θέματα",
+      "prs": "Αιτήματα Έλξης",
+      "reviews": "Αξιολογήσεις Αιτημάτων Έλξης",
+      "contribTo": "Συνεισφορά Σε",
+      "private": "Ιδιωτικές Συνεισφορές"
+    }
+  }
+  
