@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2024-10-14
 
 ### Added
-* Translation to Czech (`locale: cs`) in #259 (@Sarthak027)
-* Translation to Greek (`locale: el`) in #260 (@Debasmita54)
 
 ### Changed
 
@@ -19,11 +17,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.29.0 to 4.32.0
 
 ### CI/CD
 
 ### Other
+
+
+## [1.24.0] - 2024-10-14
+
+### Added
+* Translation to Czech (`locale: cs`) in #259 (@Sarthak027)
+* Translation to Greek (`locale: el`) in #260 (@Debasmita54)
+
+### Dependencies
+* Bump cicirello/pyaction from 4.29.0 to 4.32.0
 
 
 ## [1.23.0] - 2024-05-13
