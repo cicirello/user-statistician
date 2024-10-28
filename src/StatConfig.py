@@ -65,6 +65,7 @@ supportedLocales = {
     "tl",
     "tr",
     "uk",
+    "vi",
 }
 
 # The default order for the categories of stats on the SVG
