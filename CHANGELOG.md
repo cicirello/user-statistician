@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2024-10-7
+## [Unreleased] - 2024-10-14
 
 ### Added
-* Translation to Czech (`locale: cs`) in #259 (@Sarthak027)
 
 ### Changed
 
@@ -18,11 +17,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump cicirello/pyaction from 4.29.0 to 4.32.0
 
 ### CI/CD
 
 ### Other
+
+
+## [1.24.0] - 2024-10-14
+
+### Added
+* Translation to Czech (`locale: cs`) in #259 (@Sarthak027)
+* Translation to Greek (`locale: el`) in #260 (@Debasmita54)
+
+### Dependencies
+* Bump cicirello/pyaction from 4.29.0 to 4.32.0
 
 
 ## [1.23.0] - 2024-05-13
