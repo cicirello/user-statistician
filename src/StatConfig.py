@@ -34,6 +34,7 @@ import json
 supportedLocales = {
     "bn",
     "cs",
+    "da",
     "de",
     "el",
     "en",
