@@ -1,0 +1,48 @@
+{
+    "titleTemplate": "Hoạt động GitHub của {0}",
+    "categoryLabels": {
+      "general": {
+        "heading": "Thống Kê Chung và Thông Tin",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Kho Lưu Trữ",
+        "column-one": "Không Fork",
+        "column-two": "Tất Cả"
+      },
+      "contributions": {
+        "heading": "Đóng Góp",
+        "column-one": "Năm Qua",
+        "column-two": "Tổng Cộng"
+      },
+      "languages": {
+        "heading": "Phân Bổ Ngôn Ngữ Trong Kho Công Khai",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "Năm Tham Gia",
+      "featured": "Kho Nổi Bật",
+      "mostStarred": "Kho Được Gắn Sao Nhiều Nhất",
+      "mostForked": "Kho Được Fork Nhiều Nhất",
+      "followers": "Người Theo Dõi",
+      "following": "Đang Theo Dõi",
+      "sponsors": "Nhà Tài Trợ",
+      "sponsoring": "Đang Tài Trợ",
+      "public": "Kho Của Tôi",
+      "starredBy": "Được Gắn Sao Bởi",
+      "forkedBy": "Được Fork Bởi",
+      "watchedBy": "Được Theo Dõi Bởi",
+      "templates": "Mẫu",
+      "archived": "Đã Lưu Trữ",
+      "commits": "Lần Cam Kết",
+      "issues": "Vấn Đề",
+      "prs": "Yêu Cầu Kéo",
+      "reviews": "Đánh Giá Yêu Cầu Kéo",
+      "contribTo": "Đã Đóng Góp Cho",
+      "private": "Đóng Góp Riêng Tư"
+    }
+  }
+  
