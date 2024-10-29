@@ -1,0 +1,48 @@
+{
+    "titleTemplate": "{0}'s GitHub-aktivitet",
+    "categoryLabels": {
+      "general": {
+        "heading": "Generelle Statistikker og Info",
+        "column-one": null,
+        "column-two": null
+      },
+      "repositories": {
+        "heading": "Depoter",
+        "column-one": "Ikke-forkede",
+        "column-two": "Alle"
+      },
+      "contributions": {
+        "heading": "Bidrag",
+        "column-one": "Sidste År",
+        "column-two": "Total"
+      },
+      "languages": {
+        "heading": "Sprogfordeling i Offentlige Depoter",
+        "column-one": null,
+        "column-two": null
+      }
+    },
+    "statLabels": {
+      "joined": "År Tilsluttet",
+      "featured": "Udvalgt Depot",
+      "mostStarred": "Mest Stjernemarkerede Depot",
+      "mostForked": "Mest Forkede Depot",
+      "followers": "Følgere",
+      "following": "Følger",
+      "sponsors": "Sponsorer",
+      "sponsoring": "Sponsorerer",
+      "public": "Mine Depoter",
+      "starredBy": "Stjernemarkeret Af",
+      "forkedBy": "Forket Af",
+      "watchedBy": "Overvåget Af",
+      "templates": "Skabeloner",
+      "archived": "Arkiveret",
+      "commits": "Commits",
+      "issues": "Emner",
+      "prs": "Pull Requests",
+      "reviews": "Pull Request Anmeldelser",
+      "contribTo": "Bidraget Til",
+      "private": "Private Bidrag"
+    }
+  }
+  
