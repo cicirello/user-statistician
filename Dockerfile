@@ -1,4 +1,4 @@
-# Copyright (c) 2021-2024 Vincent A. Cicirello
+# Copyright (c) 2021-2025 Vincent A. Cicirello
 # https://www.cicirello.org/
 # Licensed under the MIT License
 
