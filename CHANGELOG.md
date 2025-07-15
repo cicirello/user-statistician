@@ -17,12 +17,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Switch to the new tag scheme of cicirello/pyaction
-* Bump cicirello/pyaction to 3.13.5-gh-2.75.1
 
 ### CI/CD
 
 ### Other
+
+
+## [1.24.1] - 2025-07-15
+
+### Dependencies
+* Switch to the new tag scheme of cicirello/pyaction
+* Bump cicirello/pyaction to 3.13.5-gh-2.75.1
 
 
 ## [1.24.0] - 2024-10-14
