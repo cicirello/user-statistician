@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
+* Fixed authentication problem due to changes in actions/checkout@v6
 
 ### Dependencies
 * Bump cicirello/pyaction to 3.14.0-gh-2.83.1

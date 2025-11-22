@@ -2,7 +2,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2024 Vincent A Cicirello
+# Copyright (c) 2021-2025 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -108,6 +108,14 @@ def commitAndPush(filename, name, login, failOnError, commit_message):
             executeCommand(["git", "commit", "-m",
                             commit_message,
                            filename])
+            # START FIX for checkout@v6
+            r = executeCommand(["git",
+                                "remote",
+                                "set-url",
+                                "origin",
+                                "https://x-access-token:"+os.environ["GITHUB_TOKEN"]+"@github.com/"+os.environ["GITHUB_REPOSITORY"]+".git"
+                                ])
+            # END FIX for checkout@v6
             r = executeCommand(["git", "push"])
             if r[1] != 0:
                 print("Error (5): push failed.")
