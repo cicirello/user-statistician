@@ -16,7 +16,7 @@ jobs:
         ref: samples
 
     - name: Sample light
-      uses: cicirello/user-statistician@v1
+      uses: cicirello/user-statistician@debugging
       with:
         colors: light
         image-file: images/light.svg
