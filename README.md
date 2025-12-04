@@ -120,6 +120,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
@@ -187,6 +189,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
@@ -229,6 +233,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
@@ -269,6 +275,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
@@ -381,6 +389,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
@@ -919,6 +929,8 @@ on:
 jobs:
   stats:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
       
     steps:
     - uses: actions/checkout@v4
