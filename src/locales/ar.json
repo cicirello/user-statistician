@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "نشاط {0} على GitHub",
+  "categoryLabels": {
+    "general": {
+      "heading": "إحصائيات ومعلومات عامة",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "المستودعات",
+      "column-one": "غير المُفرّعة",
+      "column-two": "الكل"
+    },
+    "contributions": {
+      "heading": "المساهمات",
+      "column-one": "السنة الماضية",
+      "column-two": "الإجمالي"
+    },
+    "languages": {
+      "heading": "توزيع اللغات في المستودعات العامة",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "سنة الانضمام",
+    "featured": "المستودع المميز",
+    "mostStarred": "الأكثر نجوماً",
+    "mostForked": "الأكثر تفريعاً",
+    "followers": "المتابعون",
+    "following": "يتابع",
+    "sponsors": "الرعاة",
+    "sponsoring": "يرعى",
+    "public": "مستودعاتي",
+    "starredBy": "نجوم من",
+    "forkedBy": "تفريعات من",
+    "watchedBy": "مراقبون من",
+    "templates": "القوالب",
+    "archived": "المؤرشفة",
+    "commits": "الإيداعات",
+    "issues": "المشكلات",
+    "prs": "طلبات السحب",
+    "reviews": "مراجعات طلبات السحب",
+    "contribTo": "ساهم في",
+    "private": "المساهمات الخاصة"
+  }
+}
