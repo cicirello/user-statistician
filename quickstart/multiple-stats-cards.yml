@@ -22,7 +22,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the languages distribution
       uses: cicirello/user-statistician@v1
