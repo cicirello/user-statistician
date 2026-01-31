@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 #
-# Copyright (c) 2021-2023 Vincent A Cicirello
+# Copyright (c) 2021-2026 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -32,6 +32,7 @@ import json
 # If you are contributing a new locale, please add code in alphabetical
 # order below.
 supportedLocales = {
+    "ar",
     "bn",
     "cs",
     "de",
