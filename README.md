@@ -124,7 +124,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the user stats image
       uses: cicirello/user-statistician@v1
@@ -137,7 +137,7 @@ the `workflow_dispatch` event so that you can run it manually if desired.
 See GitHub's documentation for details 
 on [schedule syntax](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule)
 and [workflow_dispatch](https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_dispatch).
-The `actions/checkout@v4` step is required because the action generates the stats image
+The `actions/checkout@v6` step is required because the action generates the stats image
 for the owner of the checked out repository, and it is also for the commit and push
 functionality. Additionally, the `GITHUB_TOKEN` must be passed via an environment
 variable to `cicirello/user-statistician` (see 
@@ -193,7 +193,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the user stats image
       uses: cicirello/user-statistician@v1
@@ -237,7 +237,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the user stats image
       uses: cicirello/user-statistician@v1
@@ -279,7 +279,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the languages distribution
       uses: cicirello/user-statistician@v1
@@ -393,7 +393,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: stats   # Or whatever you named your dedicated branch
 
@@ -934,7 +934,7 @@ jobs:
       contents: write
       
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Generate the user stats image
       id: statsStep # Only needed if you want to check the exit-code
