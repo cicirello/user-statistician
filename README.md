@@ -815,6 +815,7 @@ action will use the default of "en". The following locales are currently support
 
 | locale code | language |
 | :--- | :--- |
+| ar | Arabic |
 | hy | Armenian |
 | id | Bahasa Indonesia |
 | bn | Bengali |
