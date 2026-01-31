@@ -510,9 +510,9 @@ The key to hide the language distribution section of the card is: `languages`.
 
 The default behavior of the language distribution chart is to explicitly
 list all languages that individually make up at least 1% of the code in your
-public repositories, with low percentage languages combined into an "Other".
-The language distribution chart is intended to be equivalent to the
-language charts that GitHub generates for each repository, but by combining
+public repositories (excluding forks), with low percentage languages combined 
+into an "Other". The language distribution chart is intended to be equivalent 
+to the language charts that GitHub generates for each repository, but by combining
 all of the repositories that you own. The percentages are based on file sizes. 
 You can also configure the number of languages to explicitly list
 (see the [Inputs](#inputs) section).
