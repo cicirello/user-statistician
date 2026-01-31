@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2026-01-31
 
 ### Added
-* Translation to Arabic (`locale: ar`) in #295 (@salehA13)
 
 ### Changed
 
@@ -18,11 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump `cicirello/pyaction` to `3.14.2-gh-2.86.0`
 
 ### CI/CD
 
 ### Other
+
+
+## [1.25.0] - 2026-01-31
+
+### Added
+* Translation to Arabic (`locale: ar`) in #295 (@salehA13)
+
+### Dependencies
+* Bump `cicirello/pyaction` to `3.14.2-gh-2.86.0`
 
 
 ## [1.24.2] - 2025-11-22
