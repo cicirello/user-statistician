@@ -41,7 +41,7 @@ GitHub Action include the following:
 * Ability to generate separate SVGs for the individual categories of stats
   if you prefer.
 * Highly customizable (color themes, custom colors, section ordering, custom title).
-* [International](#locale) with option to generate SVG in 32 [languages](#locale).
+* [International](#locale) with option to generate SVG in 33 [languages](#locale).
 * Runs entirely here on GitHub.
 * Updates the SVG on a schedule of your choice (e.g., daily), rather than 
   on-demand when someone views your profile, which has the following advantages:
