@@ -52,7 +52,7 @@ jobs:
         echo "exit-code = ${{ steps.integration.outputs.exit-code }}"
 
     - name: Upload generated SVG as a workflow artifact for inspection if necessary
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: generated-image
         path: images/userstats.svg
