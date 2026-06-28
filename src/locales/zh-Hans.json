@@ -1,0 +1,47 @@
+{
+  "titleTemplate": "{0} 的 GitHub 活动",
+  "categoryLabels": {
+    "general": {
+      "heading": "综合统计与信息",
+      "column-one": null,
+      "column-two": null
+    },
+    "repositories": {
+      "heading": "仓库",
+      "column-one": "非 Fork",
+      "column-two": "全部"
+    },
+    "contributions": {
+      "heading": "贡献",
+      "column-one": "过去一年",
+      "column-two": "总计"
+    },
+    "languages": {
+      "heading": "公共仓库语言分布",
+      "column-one": null,
+      "column-two": null
+    }
+  },
+  "statLabels": {
+    "joined": "加入年份",
+    "featured": "精选仓库",
+    "mostStarred": "Star 最多的仓库",
+    "mostForked": "Fork 最多的仓库",
+    "followers": "关注者",
+    "following": "关注中",
+    "sponsors": "赞助者",
+    "sponsoring": "赞助中",
+    "public": "我的仓库",
+    "starredBy": "获得 Star",
+    "forkedBy": "被 Fork",
+    "watchedBy": "被关注",
+    "templates": "模板",
+    "archived": "已归档",
+    "commits": "提交",
+    "issues": "Issues",
+    "prs": "PR",
+    "reviews": "PR 审核",
+    "contribTo": "贡献至",
+    "private": "私有贡献"
+  }
+}

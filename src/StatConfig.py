@@ -27,10 +27,13 @@
 
 import json
 
-# The locale keys are ISO 639-1 two-character language codes
-# (see: https://www.loc.gov/standards/iso639-2/php/English_list.php).
-# If you are contributing a new locale, please add code in alphabetical
-# order below.
+# When possible, the locale keys are ISO 639-1 two-character language codes
+# (see: https://www.loc.gov/standards/iso639-2/php/English_list.php). Second
+# preferred are ISO 639-2 three-character language codes. Otherwise, if there
+# doesn't exist an ISO 639-1 or ISO 639-2 code that adequately represents the
+# locale you are adding, then use an IETF BCP 47 language tag, such as the case
+# with "zh-Hans" for Simplified Chinese. If you are contributing a new locale,
+# please add code in alphabetical order below.
 supportedLocales = {
     "ar",
     "bn",
@@ -64,6 +67,7 @@ supportedLocales = {
     "th",
     "tl",
     "tr",
+    "zh-Hans",
     "uk",
 }
 

@@ -808,9 +808,12 @@ will be hidden despite being in the `category-order`.
 
 ### `locale`
 
-This input is an ISO 639-1 (two character) or ISO 639-2 (three character) language code for the
-language used in names of statistics, section and column headings, and default title on the user 
-stats card. The default is `locale: en`, which is English. If an unsupported locale is passed, then the 
+In most cases, this input is an ISO 639-1 (two character) or ISO 639-2 (three character) 
+language code for the language used in names of statistics, section and column headings, 
+and default title on the user stats card. The ISO 639-1 and ISO 639-2 standards cannot
+handle some cases properly (e.g., Simplified Chinese). So, in such cases, the locale code
+may be an [IETF BCP 47 language tag](https://developer.mozilla.org/en-US/docs/Glossary/BCP_47_language_tag). 
+The default is `locale: en`, which is English. If an unsupported locale is passed, then the 
 action will use the default of "en". The following locales are currently supported:
 
 | locale code | language |
@@ -1040,17 +1043,18 @@ step-by-step guidance on how to contribute a translation.
   request for a language vs a request with offer to contribute it). I'll then assign you to it.
 * Fork the repository, and create a branch in your fork for your proposed translation.
 * Find the [ISO 639-1 two-character language 
-  code](https://www.loc.gov/standards/iso639-2/php/English_list.php) for the language. Some 
-  languages have both a two-character code and a three-character code in the table at that link.
-  In those cases, we are going with the two-character code. But there are some languages that
-  only have a three-character ISO-639-2 code, and in those cases we'll use the three-character
-  code. For example, one of the currently supported languages is Santali, whose code is `sat`.
-* In the [src/StatConfig.py](src/StatConfig.py) file, look for the set `supportedLocales` and 
-  add a string for the locale code alphabetically.
-* Next, within the directory [src/locales](src/locales), create a JSON file named with the locale
-  code (in all lowercase) and file extension `.json`. For example, the English version is in
-  `en.json`. You might consider starting with a copy of the file for a different language that 
-  you also know, and then editing the various strings.
+  code](https://www.loc.gov/standards/iso639-2/php/English_list.php) for the language when
+  possible. If the language doesn't have an appropriate two-character code, then use a
+  three-character ISO-639-2 code as a backup. For example, one of the currently supported
+  languages is Santali, whose code is `sat`. There are languages where the ISO-639-1 and
+  ISO-639-2 standards lack appropriate options. In such cases, use the IETF BCP 47 
+  language tag for the locale (e.g., `zh-Hans` is the locale code for Simplified Chinese).
+* In the [src/StatConfig.py](src/StatConfig.py) file, look for the set 
+  `supportedLocales` and add a string for the locale code alphabetically.
+* Next, within the directory [src/locales](src/locales), create a JSON file named with 
+  the locale code (in all lowercase) and file extension `.json`. For example, the English 
+  version is in `en.json`. You might consider starting with a copy of the file for a 
+  different language that you also know, and then editing the various strings.
 * Don't change any of the key fields, since those are used internally.
 * Translate the `"titleTemplate"`, the first mapping you see in each of the JSON files. The `{0}`
   that you see in a title template string is a placeholder for where the user's name will go. The
