@@ -121,7 +121,21 @@ def commitAndPush(filename, name, login, failOnError, commit_message):
                 print("Error (5): push failed.")
                 set_outputs({"exit-code" : 5})
                 exit(5 if failOnError else 0)
-    
+
+def canonicalize_locale(locale):
+    """Canonicalizes the user's chosen locale code to the casing used
+    internally, enabling case insensitivity. In most cases, the canonicalized
+    locale is all lowercase, but there are some exceptions, such as zh-Hans.
+    Returns the canonicalized locale code or "en" if the specified locale code
+    doesn't exist.
+
+    Keyword arguments:
+    locale - the locale code to canonicalize
+    """
+    for x in supportedLocales:
+        if locale.lower() == x.lower():
+            return x
+    return "en"
 
 if __name__ == "__main__":
 
@@ -156,9 +170,7 @@ if __name__ == "__main__":
 
     commit = sys.argv[7].strip().lower() == "true"
 
-    locale = sys.argv[8].strip().lower()
-    if locale not in supportedLocales:
-        locale = "en"
+    locale = canonicalize_locale(sys.argv[8].strip())
 
     radius = int(sys.argv[9])
 

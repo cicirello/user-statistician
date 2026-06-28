@@ -30,7 +30,7 @@ import sys
 sys.path.insert(0,'src')
 from Statistician import *
 from StatsImageGenerator import StatsImageGenerator
-from UserStatistician import writeImageToFile
+from UserStatistician import writeImageToFile, canonicalize_locale
 from Colors import *
 import StatConfig
 from StatConfig import loadLocale, supportedLocales, icons, categoryOrder, statsByCategory
@@ -346,6 +346,13 @@ class TestSomething(unittest.TestCase) :
         image = svgGen.generateImage()
         if outputSampleSVG :
             writeImageToFile("testing.svg", image, False)
+
+    def test_canonicalize_locale(self):
+        for locale in supportedLocales:
+            self.assertEqual(locale, canonicalize_locale(locale))
+            self.assertEqual(locale, canonicalize_locale(locale.lower()))
+            self.assertEqual(locale, canonicalize_locale(locale.upper()))
+        self.assertEqual("en", canonicalize_locale("invalid"))
         
     def _colorValidation(self, theme) :
         props = {"bg", "border", "icons", "text", "title"}
