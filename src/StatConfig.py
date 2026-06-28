@@ -64,6 +64,7 @@ supportedLocales = {
     "th",
     "tl",
     "tr",
+    "zh-Hans",
     "uk",
 }
 
