@@ -4,13 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-06-28
+## [Unreleased] - 2026-07-01
 
 ### Added
-* Translation to Simplified Chinese (`locale: zh-Hans`) in #312 (@molihuan)
 
 ### Changed
-* Enabled use of IETF BCP 47 language tags for languages where ISO 639-1 and ISO 639-2 lack appropriate codes, such as Simplified Chinese (partially an update to contributor documentation, but also partially an update to locale code validation): #312 (@cicirello).
 
 ### Deprecated
 
@@ -19,11 +17,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ### Dependencies
-* Bump `cicirello/pyaction` to `3.14.5-gh-2.94.0`
 
 ### CI/CD
 
 ### Other
+
+
+## [1.26.0] - 2026-07-01
+
+### Added
+* Translation to Simplified Chinese (`locale: zh-Hans`) in #312 (@molihuan)
+
+### Changed
+* Enabled use of IETF BCP 47 language tags for languages where ISO 639-1 and ISO 639-2 lack appropriate codes, such as Simplified Chinese (partially an update to contributor documentation, but also partially an update to locale code validation): #312 (@cicirello).
+
+### Dependencies
+* Bump `cicirello/pyaction` to `3.14.5-gh-2.94.0`
 
 
 ## [1.25.0] - 2026-01-31
