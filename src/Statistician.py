@@ -119,7 +119,7 @@ class Statistician:
         for year in self._contributionYears:
             yearlyStatsQueryResults.append(
                 self.executeQuery(
-                    oneYearContribTemplate.format(year),
+                    oneYearContribTemplate.replace("{YEAR}",str(year)),
                     failOnError=fail,
                     queryName="Year:"+str(year)
                 )
