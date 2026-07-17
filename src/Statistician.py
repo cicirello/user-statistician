@@ -490,6 +490,13 @@ class Statistician:
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
+        if "errors" in result:
+            print("❌ GitHub API Returned GraphQL Errors:", file=sys.stderr)
+            for error in result["errors"]:
+                print(f"  - Message: {error.get('message')}", file=sys.stderr)
+                print(f"  - Locations: {error.get('locations')}", file=sys.stderr)
+                print(f"  - Type: {error.get('type')}", file=sys.stderr)
+            sys.exit(1)
         numPages = result.count('"data"')
         if numPages == 0:
             # Check if any error details
