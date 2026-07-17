@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Fix rate-limit issue related to nested query for language statistics (GitHub's GraphQL API assumes maximum possible cost based on query and not based on actual data returned): reduced first 100 languages per repository to first 6 per repository, which should still completely cover full language data for most repositories, and the rare edge cases would just miss low-percentage languages that are summarized as "other" anyway
+* Fix rate-limit issue due to cost of queries
 
 ### Dependencies
 
