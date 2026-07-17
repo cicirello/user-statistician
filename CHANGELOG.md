@@ -15,7 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Fix rate-limit issue due to cost of queries
+* Fix rate-limit issue due to cost of queries by:
+  * Split complex queries involving concurrent execution into multiple simpler queries.
+  * Eliminating year-by-year queries to get total count of all commits, all pull request reviews, and all private contributions. These three stats are now only available in the "past year" column. We'll explore alternatives to getting these statistics. For now, to keep the Action functional they've been removed. The GraphQL API doesn't track totals for these three directly.
+  * Limiting the number of languages within a single repository to 6 when calculating the language stats. GitHub calculates the point-based cost of a query before executing it. We previously requested the top 100 languages in a repository, so whether a repository had 1 or 100 languages, it was costing 100 points. Reducing to 6 is high enough to not miss any languages in most repositories. In cases where there are more than 6, it will just miss the lowest percentage languages for that specific repository.
 
 ### Dependencies
 
