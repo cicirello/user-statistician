@@ -1,6 +1,6 @@
 query($owner: String!, $endCursor: String) {
   user(login: $owner) {
-    repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
+    repositories(first: 20, after: $endCursor, ownerAffiliations: OWNER) {
       totalCount
       nodes {
         stargazerCount 
@@ -13,7 +13,7 @@ query($owner: String!, $endCursor: String) {
         watchers {
           totalCount
         }
-        languages(first: 3, orderBy: {direction: DESC, field: SIZE}) {
+        languages(first: 6, orderBy: {direction: DESC, field: SIZE}) {
           totalCount
           totalSize
           edges {
