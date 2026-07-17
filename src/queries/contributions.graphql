@@ -1,0 +1,13 @@
+query($owner: String!) {
+  user(login: $owner) {
+    contributionsCollection {
+      totalCommitContributions 
+      totalIssueContributions 
+      totalPullRequestContributions
+      totalPullRequestReviewContributions
+      totalRepositoryContributions
+      restrictedContributionsCount
+      contributionYears
+    }
+  }
+}

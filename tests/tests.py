@@ -1,6 +1,6 @@
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2023 Vincent A Cicirello
+# Copyright (c) 2021-2026 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -49,7 +49,9 @@ localeCode = "en"
 StatConfig._locale_directory = "src" + StatConfig._locale_directory
 
 executedQueryResultsOriginal = [
-    {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
+    {'data': {'user': {'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
+    
+    {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}}}},
 
     [{'data': {'user': {'repositories': {'totalCount': 31, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo1', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 7139, 'edges': [{'size': 7139, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo2', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 4, 'totalSize': 1479512, 'edges': [{'size': 1309108, 'node': {'color': '#e34c26', 'name': 'HTML'}}, {'size': 168479, 'node': {'color': '#3D6117', 'name': 'TeX'}}, {'size': 1721, 'node': {'color': '#563d7c', 'name': 'CSS'}}, {'size': 204, 'node': {'color': '#f1e05a', 'name': 'JavaScript'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo3', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 5842, 'edges': [{'size': 5842, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo4', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 45961, 'edges': [{'size': 44035, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1926, 'node': {'color': '#89e051', 'name': 'Shell'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo5', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 7717, 'edges': [{'size': 7717, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo6', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 8491, 'edges': [{'size': 8491, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 3, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo7', 'watchers': {'totalCount': 2}, 'languages': {'totalCount': 1, 'totalSize': 74003, 'edges': [{'size': 74003, 'node': {'color': '#3572A5', 'name': 'Python'}}]}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo8', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 739339, 'edges': [{'size': 739339, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo9', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 52285, 'edges': [{'size': 52285, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 7, 'forkCount': 4, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo10', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 2100055, 'edges': [{'size': 2100055, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo11', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 3, 'totalSize': 266774, 'edges': [{'size': 198236, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 34345, 'node': {'color': '#3D6117', 'name': 'TeX'}}, {'size': 34193, 'node': {'color': '#e34c26', 'name': 'HTML'}}]}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo12', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 39091, 'edges': [{'size': 38882, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 209, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo13', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 1, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo14', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 852, 'edges': [{'size': 852, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo15', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 787, 'edges': [{'size': 787, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 1, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo16', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 1412, 'edges': [{'size': 1412, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo17', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo18', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 31866, 'edges': [{'size': 31656, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 210, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo19', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 692, 'edges': [{'size': 692, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo20', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 4, 'totalSize': 36101, 'edges': [{'size': 26436, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 7807, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 1758, 'node': {'color': '#427819', 'name': 'Makefile'}}, {'size': 100, 'node': {'color': '#C1F12E', 'name': 'Batchfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo21', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 107241, 'edges': [{'size': 106048, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1193, 'node': {'color': '#427819', 'name': 'Makefile'}}]}}, {'stargazerCount': 1, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': True, 'name': 'repo22', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 1943, 'edges': [{'size': 1469, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 474, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 9, 'forkCount': 14, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo23', 'watchers': {'totalCount': 2}, 'languages': {'totalCount': 2, 'totalSize': 46228, 'edges': [{'size': 45994, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 234, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo24', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 91844, 'edges': [{'size': 90353, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1491, 'node': {'color': '#427819', 'name': 'Makefile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo25', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo26', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 1984, 'edges': [{'size': 1763, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 221, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo27', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo28', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo29', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 3, 'totalSize': 75220, 'edges': [{'size': 72961, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 1902, 'node': {'color': '#e10098', 'name': 'GraphQL'}}, {'size': 357, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': True, 'isPrivate': False, 'isTemplate': False, 'name': 'repo30', 'watchers': {'totalCount': 0}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': True, 'isPrivate': False, 'isTemplate': False, 'name': 'repo31', 'watchers': {'totalCount': 0}, 'languages': {'totalCount': 7, 'totalSize': 1415534, 'edges': [{'size': 998990, 'node': {'color': '#f1e05a', 'name': 'JavaScript'}}, {'size': 247728, 'node': {'color': '#2b7489', 'name': 'TypeScript'}}, {'size': 127643, 'node': {'color': '#e34c26', 'name': 'HTML'}}, {'size': 26509, 'node': {'color': '#c6538c', 'name': 'SCSS'}}, {'size': 5854, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 5303, 'node': {'color': '#89e051', 'name': 'Shell'}}, {'size': 3507, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}], 'pageInfo': {'hasNextPage': False, 'endCursor': 'Y3Vyc29yOnYyOpHOFwfoDg=='}}}}}],
 
@@ -59,7 +61,9 @@ executedQueryResultsOriginal = [
     ]
 
 executedQueryResultsMultiPage = [
-    {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}, 'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
+    {'data': {'user': {'followers': {'totalCount': 9}, 'following': {'totalCount': 7}, 'issues': {'totalCount': 81}, 'login': 'someuser', 'name': 'Firstname M. Lastname', 'pullRequests': {'totalCount': 289}, 'repositoriesContributedTo': {'totalCount': 3}, 'sponsorshipsAsMaintainer': {'totalCount': 7}, 'sponsorshipsAsSponsor': {'totalCount': 5}}}},
+    
+    {'data': {'user': {'contributionsCollection': {'totalCommitContributions': 3602, 'totalIssueContributions': 79, 'totalPullRequestContributions': 289, 'totalPullRequestReviewContributions': 315, 'totalRepositoryContributions': 18, 'restrictedContributionsCount': 105, 'contributionYears': [2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011]}}}},
 
     [{'data': {'user': {'repositories': {'totalCount': 31, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo1', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 7139, 'edges': [{'size': 7139, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo2', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 4, 'totalSize': 1479512, 'edges': [{'size': 1309108, 'node': {'color': '#e34c26', 'name': 'HTML'}}, {'size': 168479, 'node': {'color': '#3D6117', 'name': 'TeX'}}, {'size': 1721, 'node': {'color': '#563d7c', 'name': 'CSS'}}, {'size': 204, 'node': {'color': '#f1e05a', 'name': 'JavaScript'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo3', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 5842, 'edges': [{'size': 5842, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo4', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 45961, 'edges': [{'size': 44035, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1926, 'node': {'color': '#89e051', 'name': 'Shell'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': True, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo5', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 7717, 'edges': [{'size': 7717, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo6', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 8491, 'edges': [{'size': 8491, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 0, 'forkCount': 3, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo7', 'watchers': {'totalCount': 2}, 'languages': {'totalCount': 1, 'totalSize': 74003, 'edges': [{'size': 74003, 'node': {'color': '#3572A5', 'name': 'Python'}}]}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo8', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 739339, 'edges': [{'size': 739339, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo9', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 52285, 'edges': [{'size': 52285, 'node': {'color': '#b07219', 'name': 'Java'}}]}}, {'stargazerCount': 7, 'forkCount': 4, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo10', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 2100055, 'edges': [{'size': 2100055, 'node': {'color': '#b07219', 'name': 'Java'}}]}}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'Y3Vyc29yOnYyOpHOEEbJCQ=='}}}}}, {'data': {'user': {'repositories': {'totalCount': 31, 'nodes': [{'stargazerCount': 3, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo11', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 3, 'totalSize': 266774, 'edges': [{'size': 198236, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 34345, 'node': {'color': '#3D6117', 'name': 'TeX'}}, {'size': 34193, 'node': {'color': '#e34c26', 'name': 'HTML'}}]}}, {'stargazerCount': 3, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo12', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 39091, 'edges': [{'size': 38882, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 209, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo13', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 1, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo14', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 852, 'edges': [{'size': 852, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo15', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 787, 'edges': [{'size': 787, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 1, 'forkCount': 2, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo16', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 1412, 'edges': [{'size': 1412, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo17', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo18', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 31866, 'edges': [{'size': 31656, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 210, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo19', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 1, 'totalSize': 692, 'edges': [{'size': 692, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 2, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo20', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 4, 'totalSize': 36101, 'edges': [{'size': 26436, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 7807, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 1758, 'node': {'color': '#427819', 'name': 'Makefile'}}, {'size': 100, 'node': {'color': '#C1F12E', 'name': 'Batchfile'}}]}}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'Y3Vyc29yOnYyOpHOEcjkCw=='}}}}}, {'data': {'user': {'repositories': {'totalCount': 31, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo21', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 107241, 'edges': [{'size': 106048, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1193, 'node': {'color': '#427819', 'name': 'Makefile'}}]}}, {'stargazerCount': 1, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': True, 'name': 'repo22', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 1943, 'edges': [{'size': 1469, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 474, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 9, 'forkCount': 14, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo23', 'watchers': {'totalCount': 2}, 'languages': {'totalCount': 2, 'totalSize': 46228, 'edges': [{'size': 45994, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 234, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo24', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 91844, 'edges': [{'size': 90353, 'node': {'color': '#b07219', 'name': 'Java'}}, {'size': 1491, 'node': {'color': '#427819', 'name': 'Makefile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo25', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo26', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 2, 'totalSize': 1984, 'edges': [{'size': 1763, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 221, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo27', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo28', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': False, 'isPrivate': False, 'isTemplate': False, 'name': 'repo29', 'watchers': {'totalCount': 1}, 'languages': {'totalCount': 3, 'totalSize': 75220, 'edges': [{'size': 72961, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 1902, 'node': {'color': '#e10098', 'name': 'GraphQL'}}, {'size': 357, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}, {'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': True, 'isPrivate': False, 'isTemplate': False, 'name': 'repo30', 'watchers': {'totalCount': 0}, 'languages': {'totalCount': 0, 'totalSize': 0, 'edges': []}}], 'pageInfo': {'hasNextPage': True, 'endCursor': 'Y3Vyc29yOnYyOpHOFvwXeA=='}}}}}, {'data': {'user': {'repositories': {'totalCount': 31, 'nodes': [{'stargazerCount': 0, 'forkCount': 0, 'isArchived': False, 'isFork': True, 'isPrivate': False, 'isTemplate': False, 'name': 'repo31', 'watchers': {'totalCount': 0}, 'languages': {'totalCount': 7, 'totalSize': 1415534, 'edges': [{'size': 998990, 'node': {'color': '#f1e05a', 'name': 'JavaScript'}}, {'size': 247728, 'node': {'color': '#2b7489', 'name': 'TypeScript'}}, {'size': 127643, 'node': {'color': '#e34c26', 'name': 'HTML'}}, {'size': 26509, 'node': {'color': '#c6538c', 'name': 'SCSS'}}, {'size': 5854, 'node': {'color': '#3572A5', 'name': 'Python'}}, {'size': 5303, 'node': {'color': '#89e051', 'name': 'Shell'}}, {'size': 3507, 'node': {'color': '#384d54', 'name': 'Dockerfile'}}]}}], 'pageInfo': {'hasNextPage': False, 'endCursor': 'Y3Vyc29yOnYyOpHOFwfoDg=='}}}}}],
 
@@ -81,9 +85,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
@@ -98,9 +103,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
@@ -115,9 +121,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
     
@@ -132,9 +139,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
 
@@ -151,9 +159,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validateAllForks(stats)
 
@@ -320,9 +329,10 @@ class TestSomething(unittest.TestCase) :
                 self.parseStats(
                     executedQueryResults[0],
                     executedQueryResults[1],
-                    executedQueryResults[3]
+                    executedQueryResults[2],
+                    executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[2])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #stats._name = "Firstname ReallyLongMiddleName Lastname"
         #categories = ["general", "repositories", "languages", "contributions"]
@@ -394,17 +404,17 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(1, stats._repo["templates"][0])
         self.assertEqual(1, stats._repo["templates"][1])
         self.assertEqual(3602, stats._contrib["commits"][0])
-        self.assertEqual(4402, stats._contrib["commits"][1])
+        #self.assertEqual(4402, stats._contrib["commits"][1])
         self.assertEqual(79, stats._contrib["issues"][0])
         self.assertEqual(81, stats._contrib["issues"][1])
         self.assertEqual(289, stats._contrib["prs"][0])
         self.assertEqual(289, stats._contrib["prs"][1])
         self.assertEqual(315, stats._contrib["reviews"][0])
-        self.assertEqual(315, stats._contrib["reviews"][1])
+        #self.assertEqual(315, stats._contrib["reviews"][1])
         self.assertEqual(3, stats._contrib["contribTo"][0])
         #self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
-        self.assertEqual(105, stats._contrib["private"][1])
+        #self.assertEqual(105, stats._contrib["private"][1])
 
         if skip :
             self._validateLanguagesSkip(stats)
@@ -432,17 +442,17 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(0, stats._repo["templates"][0])
         self.assertEqual(1, stats._repo["templates"][1])
         self.assertEqual(3602, stats._contrib["commits"][0])
-        self.assertEqual(4402, stats._contrib["commits"][1])
+        #self.assertEqual(4402, stats._contrib["commits"][1])
         self.assertEqual(79, stats._contrib["issues"][0])
         self.assertEqual(81, stats._contrib["issues"][1])
         self.assertEqual(289, stats._contrib["prs"][0])
         self.assertEqual(289, stats._contrib["prs"][1])
         self.assertEqual(315, stats._contrib["reviews"][0])
-        self.assertEqual(315, stats._contrib["reviews"][1])
+        #self.assertEqual(315, stats._contrib["reviews"][1])
         self.assertEqual(3, stats._contrib["contribTo"][0])
         #self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
-        self.assertEqual(105, stats._contrib["private"][1])
+        #self.assertEqual(105, stats._contrib["private"][1])
         self.assertEqual(0, stats._languages["totalSize"])
         self.assertEqual(0, len(stats._languages["languages"]))
 
@@ -521,7 +531,7 @@ class TestSomething(unittest.TestCase) :
             self.assertAlmostEqual(expectedSize[i]/total, L[1]["percentage"], places=5)
 
     def _changeToAllForks(self, queryResults) :
-        for repo in queryResults[1][0]["data"]["user"]["repositories"]["nodes"] :
+        for repo in queryResults[2][0]["data"]["user"]["repositories"]["nodes"] :
             repo["isFork"] = True
-        for repo in queryResults[3][0]["data"]["user"]["topRepositories"]["nodes"] :
+        for repo in queryResults[4][0]["data"]["user"]["topRepositories"]["nodes"] :
             repo["isFork"] = True

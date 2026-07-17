@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2023 Vincent A Cicirello
+# Copyright (c) 2021-2026 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -28,6 +28,7 @@
 import json
 import subprocess
 import os
+import sys
 
 def set_outputs(names_values):
     """Sets the GitHub Action outputs.
@@ -88,29 +89,49 @@ class Statistician:
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
+        contributionsQuery = self.loadQuery("/queries/contributions.graphql",
+                                         fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
-        oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
-                                                fail)
-        reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
-                                                 fail)
+        #oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
+        #                                        fail)
+        #oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
+        #                                        fail)
+        #reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
+        #                                         fail)
         
         self.parseStats(
             self.executeQuery(basicStatsQuery,
-                              failOnError=fail),
+                              failOnError=fail,
+                              queryName="basicstats"),
+            self.executeQuery(contributionsQuery,
+                              failOnError=fail,
+                              queryName="contributions"),
             self.executeQuery(additionalRepoStatsQuery,
                               needsPagination=True,
-                              failOnError=fail),
-            self.executeQuery(reposContributedTo,
-                              needsPagination=True,
-                              failOnError=fail)
+                              failOnError=fail,
+                              queryName="repostats"),
+            #self.executeQuery(reposContributedTo,
+            #                  needsPagination=True,
+            #                  failOnError=fail)
             )
-        self.parsePriorYearStats(
-            self.executeQuery(
-                self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
-                failOnError=fail
-                )
-            )
+        #yearlyStatsQueryResults = []
+        #for year in self._contributionYears:
+        #    yearlyStatsQueryResults.append(
+        #        self.executeQuery(
+        #            oneYearContribTemplate.replace("{YEAR}",str(year)),
+        #            failOnError=fail,
+        #            queryName="Year:"+str(year)
+        #        )
+        #    )                
+        #self.combineYears(yearlyStatsQueryResults)
+        #self.parsePriorYearStats(
+        #    self.executeQuery(
+        #        self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
+        #        failOnError=fail,
+        #        queryName="priorYearStats"
+        #        )
+        #    )
 
     def getStatsByKey(self, key):
         """Gets a category of stats by key.
@@ -146,13 +167,18 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, reposContributedToStats):
+    def parseStats(self, basicStats, contributionStats, repoStats, reposContributedToStats = None):
         """Parses the user statistics.
 
         Keyword arguments:
         basicStats - The results of the basic stats query.
+        contributionStats - The results of the contributions stats query.
         repoStats - The results of the repo stats query.
         """
+        
+        # Merge split query
+        basicStats["data"]["user"]["contributionsCollection"] = contributionStats["data"]["user"]["contributionsCollection"]
+        
         # Extract username (i.e., login) and fullname.
         # Name needed for title of statistics card, and username
         # needed if we support committing stats card.
@@ -201,8 +227,8 @@ class Statistician:
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
-        reposContributedToStats = list(
-            map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
+        #reposContributedToStats = list(
+        #    map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
 
         # This is the count of owned repos, including all public,
         # but may or may not include all private depending upon token used to authenticate.
@@ -213,20 +239,23 @@ class Statistician:
         # or combination of queries to actually compute this other than for the most recent
         # year's data. Keeping the query in, but changing to leave that stat blank in
         # the SVG.
-        repositoriesContributedTo = sum(
-            1 for page in reposContributedToStats if page[
-                "nodes"] != None for repo in page[
-                    "nodes"] if repo["owner"]["login"] != self._login)
+        #repositoriesContributedTo = sum(
+        #    1 for page in reposContributedToStats if page[
+        #        "nodes"] != None for repo in page[
+        #            "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
-            "commits" : [pastYearData["totalCommitContributions"], 0],
+            #"commits" : [pastYearData["totalCommitContributions"], 0],
+            "commits" : [pastYearData["totalCommitContributions"]],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
-            "reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            #"reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            "reviews" : [pastYearData["totalPullRequestReviewContributions"]],
             # See comment above for reason for this change.
             #"contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
             "contribTo" : [pastYearData["repositoriesContributedTo"]],
-            "private" : [pastYearData["restrictedContributionsCount"], 0]
+            #"private" : [pastYearData["restrictedContributionsCount"], 0]
+            "private" : [pastYearData["restrictedContributionsCount"]]
             }
 
         # The "nodes" field is nullable so make sure the user owns at least 1 repo. 
@@ -460,8 +489,22 @@ class Statistician:
             stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
         self._contrib["private"][1] = sum(
             stats["restrictedContributionsCount"] for k, stats in queryResults.items())
+    
+    def combineYears(self, yearlyQueryResults):
+        """Combines the individual yearly query results into the original query format.
+        Previously sending all as single query but had to split up due to rate limiting resource issues."""
+        yearlyQueryResults = [yr["data"]["user"] for yr in yearlyQueryResults]
+        self._contrib["commits"][1] = sum(
+            yr["contributionsCollection"]["totalCommitContributions"] for yr in yearlyQueryResults
+        )
+        self._contrib["reviews"][1] = sum(
+            yr["contributionsCollection"]["totalPullRequestReviewContributions"] for yr in yearlyQueryResults
+        )
+        self._contrib["private"][1] = sum(
+            yr["contributionsCollection"]["restrictedContributionsCount"] for yr in yearlyQueryResults
+        )
         
-    def executeQuery(self, query, needsPagination=False, failOnError=True):
+    def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).
 
         Keyword arguments:
@@ -490,6 +533,14 @@ class Statistician:
             stdout=subprocess.PIPE,
             universal_newlines=True
             ).stdout.strip()
+        if "errors" in result:
+            print(f"❌ GitHub API Returned GraphQL Errors for query {queryName}:")
+            result = json.loads(result)
+            for error in result["errors"]:
+                print(f"  - Message: {error.get('message')}")
+                print(f"  - Locations: {error.get('locations')}")
+                print(f"  - Type: {error.get('type')}")
+            sys.exit(1)
         numPages = result.count('"data"')
         if numPages == 0:
             # Check if any error details
