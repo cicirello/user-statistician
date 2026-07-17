@@ -491,11 +491,11 @@ class Statistician:
             universal_newlines=True
             ).stdout.strip()
         if "errors" in result:
-            print("❌ GitHub API Returned GraphQL Errors:", file=sys.stderr)
+            print("❌ GitHub API Returned GraphQL Errors:")
             for error in result["errors"]:
-                print(f"  - Message: {error.get('message')}", file=sys.stderr)
-                print(f"  - Locations: {error.get('locations')}", file=sys.stderr)
-                print(f"  - Type: {error.get('type')}", file=sys.stderr)
+                print(f"  - Message: {error.get('message')}")
+                print(f"  - Locations: {error.get('locations')}")
+                print(f"  - Type: {error.get('type')}")
             sys.exit(1)
         numPages = result.count('"data"')
         if numPages == 0:
