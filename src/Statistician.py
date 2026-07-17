@@ -28,6 +28,7 @@
 import json
 import subprocess
 import os
+import sys
 
 def set_outputs(names_values):
     """Sets the GitHub Action outputs.
@@ -492,6 +493,7 @@ class Statistician:
             ).stdout.strip()
         if "errors" in result:
             print("❌ GitHub API Returned GraphQL Errors:")
+            result = json.loads(result)
             for error in result["errors"]:
                 print(f"  - Message: {error.get('message')}")
                 print(f"  - Locations: {error.get('locations')}")
