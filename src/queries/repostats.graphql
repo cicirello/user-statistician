@@ -13,7 +13,7 @@ query($owner: String!, $endCursor: String) {
         watchers {
           totalCount
         }
-        languages(first: 6, orderBy: {direction: DESC, field: SIZE}) {
+        languages(first: 3, orderBy: {direction: DESC, field: SIZE}) {
           totalCount
           totalSize
           edges {
