@@ -115,13 +115,16 @@ class Statistician:
             #                  needsPagination=True,
             #                  failOnError=fail)
             )
-        yearlyStatsQueryResults = [
-            self.executeQuery(
-                oneYearContribTemplate.format(year),
-                failOnError=fail,
-                queryName="priorYearStats"
-                ) for year in self._contributionYears
-        ]
+        yearlyStatsQueryResults = []
+        for year in self._contributionYears:
+            yearlyStatsQueryResults.add(
+                self.executeQuery(
+                    oneYearContribTemplate.format(year),
+                    failOnError=fail,
+                    queryName="Year:"+str(year)
+                )
+            )                
+        
         self.combineYears(yearlyStatsQueryResults)
         #self.parsePriorYearStats(
         #    self.executeQuery(
