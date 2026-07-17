@@ -1,6 +1,6 @@
 query($owner: String!) {
   user(login: $owner) {
-    contributionsCollection(from: "{0}-01-01T00:00:00.001Z") {
+    contributionsCollection(from: "{YEAR}-01-01T00:00:00.001Z") {
       totalCommitContributions
       totalPullRequestReviewContributions
       restrictedContributionsCount
