@@ -1,7 +1,7 @@
 #
 # user-statistician: Github action for generating a user stats card
 # 
-# Copyright (c) 2021-2023 Vincent A Cicirello
+# Copyright (c) 2021-2026 Vincent A Cicirello
 # https://www.cicirello.org/
 #
 # MIT License
@@ -89,6 +89,8 @@ class Statistician:
         self.ghDisableInteractivePrompts()
         basicStatsQuery = self.loadQuery("/queries/basicstats.graphql",
                                          fail)
+        contributionsQuery = self.loadQuery("/queries/contributions.graphql",
+                                         fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
@@ -98,6 +100,8 @@ class Statistician:
         
         self.parseStats(
             self.executeQuery(basicStatsQuery,
+                              failOnError=fail),
+            self.executeQuery(contributionsQuery,
                               failOnError=fail),
             self.executeQuery(additionalRepoStatsQuery,
                               needsPagination=True,
@@ -147,13 +151,18 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, reposContributedToStats = None):
+    def parseStats(self, basicStats, contributionStats, repoStats, reposContributedToStats = None):
         """Parses the user statistics.
 
         Keyword arguments:
         basicStats - The results of the basic stats query.
+        contributionStats - The results of the contributions stats query.
         repoStats - The results of the repo stats query.
         """
+        
+        # Merge split query
+        basicStats["data"]["user"]["contributionsCollection"] = contributionStats["data"]["user"]["contributionsCollection"]
+        
         # Extract username (i.e., login) and fullname.
         # Name needed for title of statistics card, and username
         # needed if we support committing stats card.
