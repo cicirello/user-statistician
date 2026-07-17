@@ -92,8 +92,8 @@ class Statistician:
                                                   fail)
         oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
                                                 fail)
-        reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
-                                                 fail)
+        #reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
+        #                                         fail)
         
         self.parseStats(
             self.executeQuery(basicStatsQuery,
@@ -101,9 +101,9 @@ class Statistician:
             self.executeQuery(additionalRepoStatsQuery,
                               needsPagination=True,
                               failOnError=fail),
-            self.executeQuery(reposContributedTo,
-                              needsPagination=True,
-                              failOnError=fail)
+            #self.executeQuery(reposContributedTo,
+            #                  needsPagination=True,
+            #                  failOnError=fail)
             )
         self.parsePriorYearStats(
             self.executeQuery(
@@ -146,7 +146,7 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, repoStats, reposContributedToStats):
+    def parseStats(self, basicStats, repoStats, reposContributedToStats = None):
         """Parses the user statistics.
 
         Keyword arguments:
@@ -201,8 +201,8 @@ class Statistician:
 
         # Reorganize for simplicity
         repoStats = list(map(lambda x : x["data"]["user"]["repositories"], repoStats))
-        reposContributedToStats = list(
-            map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
+        #reposContributedToStats = list(
+        #    map(lambda x : x["data"]["user"]["topRepositories"], reposContributedToStats))
 
         # This is the count of owned repos, including all public,
         # but may or may not include all private depending upon token used to authenticate.
@@ -213,10 +213,10 @@ class Statistician:
         # or combination of queries to actually compute this other than for the most recent
         # year's data. Keeping the query in, but changing to leave that stat blank in
         # the SVG.
-        repositoriesContributedTo = sum(
-            1 for page in reposContributedToStats if page[
-                "nodes"] != None for repo in page[
-                    "nodes"] if repo["owner"]["login"] != self._login)
+        #repositoriesContributedTo = sum(
+        #    1 for page in reposContributedToStats if page[
+        #        "nodes"] != None for repo in page[
+        #            "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
             "commits" : [pastYearData["totalCommitContributions"], 0],
