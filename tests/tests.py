@@ -88,7 +88,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
@@ -106,7 +106,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validate(stats)
 
@@ -124,7 +124,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
     
@@ -142,7 +142,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueriesMultipage(True, False, 1000, {"repo29", "repoDoesntExist"}, None)
         self._validate(stats, True)
 
@@ -162,7 +162,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 1000, set(), None)
         self._validateAllForks(stats)
 
@@ -332,7 +332,7 @@ class TestSomething(unittest.TestCase) :
                     executedQueryResults[2],
                     executedQueryResults[4]
                     )
-                self.parsePriorYearStats(executedQueryResults[3])
+                #self.parsePriorYearStats(executedQueryResults[3])
         stats = NoQueries(True, False, 100, set(), "FavoriteRepo")
         #stats._name = "Firstname ReallyLongMiddleName Lastname"
         #categories = ["general", "repositories", "languages", "contributions"]
@@ -404,17 +404,17 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(1, stats._repo["templates"][0])
         self.assertEqual(1, stats._repo["templates"][1])
         self.assertEqual(3602, stats._contrib["commits"][0])
-        self.assertEqual(4402, stats._contrib["commits"][1])
+        #self.assertEqual(4402, stats._contrib["commits"][1])
         self.assertEqual(79, stats._contrib["issues"][0])
         self.assertEqual(81, stats._contrib["issues"][1])
         self.assertEqual(289, stats._contrib["prs"][0])
         self.assertEqual(289, stats._contrib["prs"][1])
         self.assertEqual(315, stats._contrib["reviews"][0])
-        self.assertEqual(315, stats._contrib["reviews"][1])
+        #self.assertEqual(315, stats._contrib["reviews"][1])
         self.assertEqual(3, stats._contrib["contribTo"][0])
         #self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
-        self.assertEqual(105, stats._contrib["private"][1])
+        #self.assertEqual(105, stats._contrib["private"][1])
 
         if skip :
             self._validateLanguagesSkip(stats)
@@ -442,17 +442,17 @@ class TestSomething(unittest.TestCase) :
         self.assertEqual(0, stats._repo["templates"][0])
         self.assertEqual(1, stats._repo["templates"][1])
         self.assertEqual(3602, stats._contrib["commits"][0])
-        self.assertEqual(4402, stats._contrib["commits"][1])
+        #self.assertEqual(4402, stats._contrib["commits"][1])
         self.assertEqual(79, stats._contrib["issues"][0])
         self.assertEqual(81, stats._contrib["issues"][1])
         self.assertEqual(289, stats._contrib["prs"][0])
         self.assertEqual(289, stats._contrib["prs"][1])
         self.assertEqual(315, stats._contrib["reviews"][0])
-        self.assertEqual(315, stats._contrib["reviews"][1])
+        #self.assertEqual(315, stats._contrib["reviews"][1])
         self.assertEqual(3, stats._contrib["contribTo"][0])
         #self.assertEqual(8, stats._contrib["contribTo"][1])
         self.assertEqual(105, stats._contrib["private"][0])
-        self.assertEqual(105, stats._contrib["private"][1])
+        #self.assertEqual(105, stats._contrib["private"][1])
         self.assertEqual(0, stats._languages["totalSize"])
         self.assertEqual(0, len(stats._languages["languages"]))
 

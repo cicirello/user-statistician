@@ -93,8 +93,8 @@ class Statistician:
                                          fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
-        oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
-                                                fail)
+        #oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
+        #                                        fail)
         #oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
         #                                        fail)
         #reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
@@ -115,17 +115,16 @@ class Statistician:
             #                  needsPagination=True,
             #                  failOnError=fail)
             )
-        yearlyStatsQueryResults = []
-        for year in self._contributionYears:
-            yearlyStatsQueryResults.append(
-                self.executeQuery(
-                    oneYearContribTemplate.replace("{YEAR}",str(year)),
-                    failOnError=fail,
-                    queryName="Year:"+str(year)
-                )
-            )                
-        
-        self.combineYears(yearlyStatsQueryResults)
+        #yearlyStatsQueryResults = []
+        #for year in self._contributionYears:
+        #    yearlyStatsQueryResults.append(
+        #        self.executeQuery(
+        #            oneYearContribTemplate.replace("{YEAR}",str(year)),
+        #            failOnError=fail,
+        #            queryName="Year:"+str(year)
+        #        )
+        #    )                
+        #self.combineYears(yearlyStatsQueryResults)
         #self.parsePriorYearStats(
         #    self.executeQuery(
         #        self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
@@ -246,14 +245,17 @@ class Statistician:
         #            "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
-            "commits" : [pastYearData["totalCommitContributions"], 0],
+            #"commits" : [pastYearData["totalCommitContributions"], 0],
+            "commits" : [pastYearData["totalCommitContributions"]],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
-            "reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            #"reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
+            "reviews" : [pastYearData["totalPullRequestReviewContributions"]],
             # See comment above for reason for this change.
             #"contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
             "contribTo" : [pastYearData["repositoriesContributedTo"]],
-            "private" : [pastYearData["restrictedContributionsCount"], 0]
+            #"private" : [pastYearData["restrictedContributionsCount"], 0]
+            "private" : [pastYearData["restrictedContributionsCount"]]
             }
 
         # The "nodes" field is nullable so make sure the user owns at least 1 repo. 
