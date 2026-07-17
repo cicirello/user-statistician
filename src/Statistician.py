@@ -93,8 +93,10 @@ class Statistician:
                                          fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
-        oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
+        oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
                                                 fail)
+        #oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
+        #                                        fail)
         #reposContributedTo = self.loadQuery("/queries/reposContributedTo.graphql",
         #                                         fail)
         
@@ -113,13 +115,21 @@ class Statistician:
             #                  needsPagination=True,
             #                  failOnError=fail)
             )
-        self.parsePriorYearStats(
+        yearlyStatsQueryResults = [
             self.executeQuery(
-                self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
+                oneYearContribTemplate.format(year),
                 failOnError=fail,
                 queryName="priorYearStats"
-                )
-            )
+                ) for year in self._contributionYears
+        ]
+        self.combineYears(yearlyStatsQueryResults)
+        #self.parsePriorYearStats(
+        #    self.executeQuery(
+        #        self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
+        #        failOnError=fail,
+        #        queryName="priorYearStats"
+        #        )
+        #    )
 
     def getStatsByKey(self, key):
         """Gets a category of stats by key.
@@ -474,6 +484,20 @@ class Statistician:
             stats["totalPullRequestReviewContributions"] for k, stats in queryResults.items())
         self._contrib["private"][1] = sum(
             stats["restrictedContributionsCount"] for k, stats in queryResults.items())
+    
+    def combineYears(self, yearlyQueryResults):
+        """Combines the individual yearly query results into the original query format.
+        Previously sending all as single query but had to split up due to rate limiting resource issues."""
+        yearlyQueryResults = [yr["data"]["user"] for yr in yearlyQueryResults]
+        self._contrib["commits"][1] = sum(
+            yr["contributionsCollection"]["totalCommitContributions"] for yr in yearlyQueryResults
+        )
+        self._contrib["reviews"][1] = sum(
+            yr["contributionsCollection"]["totalPullRequestReviewContributions"] for yr in yearlyQueryResults
+        )
+        self._contrib["private"][1] = sum(
+            yr["contributionsCollection"]["restrictedContributionsCount"] for yr in yearlyQueryResults
+        )
         
     def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).
