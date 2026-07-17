@@ -100,12 +100,15 @@ class Statistician:
         
         self.parseStats(
             self.executeQuery(basicStatsQuery,
-                              failOnError=fail),
+                              failOnError=fail,
+                              queryName="basicstats"),
             self.executeQuery(contributionsQuery,
-                              failOnError=fail),
+                              failOnError=fail,
+                              queryName="contributions"),
             self.executeQuery(additionalRepoStatsQuery,
                               needsPagination=True,
-                              failOnError=fail),
+                              failOnError=fail,
+                              queryName="repostats"),
             #self.executeQuery(reposContributedTo,
             #                  needsPagination=True,
             #                  failOnError=fail)
@@ -113,7 +116,8 @@ class Statistician:
         self.parsePriorYearStats(
             self.executeQuery(
                 self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
-                failOnError=fail
+                failOnError=fail,
+                queryName="priorYearStats"
                 )
             )
 
@@ -471,7 +475,7 @@ class Statistician:
         self._contrib["private"][1] = sum(
             stats["restrictedContributionsCount"] for k, stats in queryResults.items())
         
-    def executeQuery(self, query, needsPagination=False, failOnError=True):
+    def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).
 
         Keyword arguments:
@@ -501,7 +505,7 @@ class Statistician:
             universal_newlines=True
             ).stdout.strip()
         if "errors" in result:
-            print("❌ GitHub API Returned GraphQL Errors:")
+            print(f"❌ GitHub API Returned GraphQL Errors for query {queryName}:")
             result = json.loads(result)
             for error in result["errors"]:
                 print(f"  - Message: {error.get('message')}")
