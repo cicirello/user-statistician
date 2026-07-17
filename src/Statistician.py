@@ -117,7 +117,7 @@ class Statistician:
             )
         yearlyStatsQueryResults = []
         for year in self._contributionYears:
-            yearlyStatsQueryResults.add(
+            yearlyStatsQueryResults.append(
                 self.executeQuery(
                     oneYearContribTemplate.format(year),
                     failOnError=fail,
