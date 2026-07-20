@@ -92,6 +92,11 @@ class Statistician:
                                          fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
+        # GitHub changed something on or around July 16, 2026 that causes
+        # queries for repositoriesContributedTo to fail for some users but
+        # not others. Query it separately, but don't fail the action on errors.
+        reposContributedToQuery = self.loadQuery("/queries/basicstats2.graphql",
+                                         fail)
         #oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
         #                                        fail)
         #oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
@@ -110,7 +115,9 @@ class Statistician:
                               needsPagination=True,
                               failOnError=fail,
                               queryName="repostats"),
-            totalCommits = self.fetchTotalCommits()
+            totalCommits = self.fetchTotalCommits(),
+            contribToData = self.executeOptionalQuery(reposContributedToQuery, 
+                            queryName="basicstats2")
         )
 
     def getStatsByKey(self, key):
@@ -153,7 +160,8 @@ class Statistician:
         contributionStats, 
         repoStats, 
         reposContributedToStats = None,
-        totalCommits = None):
+        totalCommits = None,
+        contribToData = None):
         """Parses the user statistics.
 
         Keyword arguments:
@@ -162,9 +170,13 @@ class Statistician:
         repoStats - The results of the repo stats query.
         """
         
-        # Merge split query
+        # Merge split queries
         basicStats["data"]["user"]["contributionsCollection"] = contributionStats["data"]["user"]["contributionsCollection"]
-        
+        if contribToData != None:
+            basicStats["data"]["user"]["repositoriesContributedTo"] = contribToData["data"]["user"]["repositoriesContributedTo"]
+        else: # the optional query failed, just set to 0, which will auto-exclude the row
+            basicStats["data"]["user"]["repositoriesContributedTo"] = { "totalCount" : 0 }
+            
         # Extract username (i.e., login) and fullname.
         # Name needed for title of statistics card, and username
         # needed if we support committing stats card.
@@ -513,6 +525,44 @@ class Statistician:
         except ValueError:
             print(f"❌ For total commits, REST API returned: {result}.")
             return None
+    
+    def executeOptionalQuery(self, query, queryName="Unnamed"):
+        """Executes a GitHub GraphQl query using the GitHub CLI (gh).
+        Does not fail the action if query fails.
+
+        Keyword arguments:
+        query - The query as a string.
+        queryName - String for logging output if it fails.
+        """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else:
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
+        arguments = [
+            'gh', 'api', 'graphql',
+            '-F', 'owner=' + owner,
+            '--cache', '1h',
+            '-f', 'query=' + query
+            ]
+        result = subprocess.run(
+            arguments,
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            ).stdout.strip()
+        if "errors" in result:
+            print(f"WARNING GitHub API Returned GraphQL Errors for query {queryName}:")
+            result = json.loads(result)
+            for error in result["errors"]:
+                print(f"  - Message: {error.get('message')}")
+                print(f"  - Locations: {error.get('locations')}")
+                print(f"  - Type: {error.get('type')}")
+            return None
+        result = json.loads(result)
+        if ("data" not in result) or (result["data"] == None):
+            return None
+        return result
         
     def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).

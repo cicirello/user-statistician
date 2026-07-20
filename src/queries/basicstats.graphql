@@ -21,8 +21,5 @@ query($owner: String!) {
     sponsorshipsAsSponsor(first: 1)  {
       totalCount
     }
-    repositoriesContributedTo(first: 1) {
-      totalCount
-    }
   }
 }
