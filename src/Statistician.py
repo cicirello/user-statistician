@@ -50,7 +50,6 @@ class Statistician:
     """
 
     __slots__ = [
-        '_contributionYears',
         '_user',
         '_contrib',
         '_repo',
@@ -93,6 +92,11 @@ class Statistician:
                                          fail)
         additionalRepoStatsQuery = self.loadQuery("/queries/repostats.graphql",
                                                   fail)
+        # GitHub changed something on or around July 16, 2026 that causes
+        # queries for repositoriesContributedTo to fail for some users but
+        # not others. Query it separately, but don't fail the action on errors.
+        reposContributedToQuery = self.loadQuery("/queries/basicstats2.graphql",
+                                         fail)
         #oneYearContribTemplate = self.loadQuery("/queries/oneYear.graphql",
         #                                        fail)
         #oneYearContribTemplate = self.loadQuery("/queries/singleYearQueryFragment.graphql",
@@ -111,27 +115,10 @@ class Statistician:
                               needsPagination=True,
                               failOnError=fail,
                               queryName="repostats"),
-            #self.executeQuery(reposContributedTo,
-            #                  needsPagination=True,
-            #                  failOnError=fail)
-            )
-        #yearlyStatsQueryResults = []
-        #for year in self._contributionYears:
-        #    yearlyStatsQueryResults.append(
-        #        self.executeQuery(
-        #            oneYearContribTemplate.replace("{YEAR}",str(year)),
-        #            failOnError=fail,
-        #            queryName="Year:"+str(year)
-        #        )
-        #    )                
-        #self.combineYears(yearlyStatsQueryResults)
-        #self.parsePriorYearStats(
-        #    self.executeQuery(
-        #        self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
-        #        failOnError=fail,
-        #        queryName="priorYearStats"
-        #        )
-        #    )
+            totalCommits = self.fetchTotalCommits(),
+            contribToData = self.executeOptionalQuery(reposContributedToQuery, 
+                            queryName="basicstats2")
+        )
 
     def getStatsByKey(self, key):
         """Gets a category of stats by key.
@@ -167,7 +154,14 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, contributionStats, repoStats, reposContributedToStats = None):
+    def parseStats(
+        self, 
+        basicStats, 
+        contributionStats, 
+        repoStats, 
+        reposContributedToStats = None,
+        totalCommits = None,
+        contribToData = None):
         """Parses the user statistics.
 
         Keyword arguments:
@@ -176,9 +170,13 @@ class Statistician:
         repoStats - The results of the repo stats query.
         """
         
-        # Merge split query
+        # Merge split queries
         basicStats["data"]["user"]["contributionsCollection"] = contributionStats["data"]["user"]["contributionsCollection"]
-        
+        if contribToData != None:
+            basicStats["data"]["user"]["repositoriesContributedTo"] = contribToData["data"]["user"]["repositoriesContributedTo"]
+        else: # the optional query failed, just set to 0, which will auto-exclude the row
+            basicStats["data"]["user"]["repositoriesContributedTo"] = { "totalCount" : 0 }
+            
         # Extract username (i.e., login) and fullname.
         # Name needed for title of statistics card, and username
         # needed if we support committing stats card.
@@ -198,18 +196,14 @@ class Statistician:
             "repositoriesContributedTo"] = basicStats[
                 "data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
-        # Extract list of contribution years
-        self._contributionYears = pastYearData["contributionYears"]
-        # Just reorganizing data for clarity
-        del pastYearData["contributionYears"]
-
         # Extract followed and following counts
         self._user = {}
         self._user["followers"] = [
             basicStats["data"]["user"]["followers"]["totalCount"] ]
         self._user["following"] = [
             basicStats["data"]["user"]["following"]["totalCount"] ]
-        self._user["joined"] = [ min(self._contributionYears) ]
+        self._user["joined"] = [ 
+            int(basicStats["data"]["user"]["createdAt"][:4]) ]
 
         # Extract sponsors and sponsoring counts
         self._user["sponsors"] = [
@@ -245,8 +239,8 @@ class Statistician:
         #            "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
-            #"commits" : [pastYearData["totalCommitContributions"], 0],
-            "commits" : [pastYearData["totalCommitContributions"]],
+            "commits" : [pastYearData["totalCommitContributions"]] if (
+                totalCommits == None) else [pastYearData["totalCommitContributions"], totalCommits],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
             #"reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
@@ -503,6 +497,72 @@ class Statistician:
         self._contrib["private"][1] = sum(
             yr["contributionsCollection"]["restrictedContributionsCount"] for yr in yearlyQueryResults
         )
+    
+    def fetchTotalCommits(self):
+        """Queries te REST API for the total number of commits.
+        """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else:
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
+        arguments = [
+            'gh', 'api', '-X', 'GET', 'search/commits', 
+            '-f', f"q=author:{owner}", 
+            '-f', "per_page=1", 
+            '--cache', '1h', 
+            '--jq', '.total_count'
+        ]
+        result = subprocess.run(
+            arguments,
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            ).stdout.strip()
+        try:
+            num_commits = int(result)
+            return num_commits if num_commits > 0 else None
+        except ValueError:
+            print(f"❌ For total commits, REST API returned: {result}.")
+            return None
+    
+    def executeOptionalQuery(self, query, queryName="Unnamed"):
+        """Executes a GitHub GraphQl query using the GitHub CLI (gh).
+        Does not fail the action if query fails.
+
+        Keyword arguments:
+        query - The query as a string.
+        queryName - String for logging output if it fails.
+        """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else:
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
+        arguments = [
+            'gh', 'api', 'graphql',
+            '-F', 'owner=' + owner,
+            '--cache', '1h',
+            '-f', 'query=' + query
+            ]
+        result = subprocess.run(
+            arguments,
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            ).stdout.strip()
+        if "errors" in result:
+            print(f"WARNING GitHub API Returned GraphQL Errors for query {queryName}:")
+            result = json.loads(result)
+            for error in result["errors"]:
+                print(f"  - Message: {error.get('message')}")
+                print(f"  - Locations: {error.get('locations')}")
+                print(f"  - Type: {error.get('type')}")
+            return None
+        result = json.loads(result)
+        if ("data" not in result) or (result["data"] == None):
+            return None
+        return result
         
     def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).

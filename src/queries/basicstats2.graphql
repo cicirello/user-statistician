@@ -1,0 +1,7 @@
+query($owner: String!) {
+  user(login: $owner) {
+    repositoriesContributedTo(first: 1) {
+      totalCount
+    }
+  }
+}
