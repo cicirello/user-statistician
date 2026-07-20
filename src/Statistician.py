@@ -523,7 +523,7 @@ class Statistician:
             exit(7 if failOnError else 0)
         arguments = [
             'gh', 'api', '-X', 'GET', 'search/commits', 
-            '-f', f"q='author:{owner}'", 
+            '-f', f"q=author:{owner}", 
             '-f', "per_page='1'", 
             '--cache', '1h', 
             '--jq', '.total_count'
