@@ -111,10 +111,12 @@ class Statistician:
                               needsPagination=True,
                               failOnError=fail,
                               queryName="repostats"),
+            totalCommits = self.fetchTotalCommits()
+        )
             #self.executeQuery(reposContributedTo,
             #                  needsPagination=True,
             #                  failOnError=fail)
-            )
+            #)
         #yearlyStatsQueryResults = []
         #for year in self._contributionYears:
         #    yearlyStatsQueryResults.append(
@@ -167,7 +169,13 @@ class Statistician:
             set_outputs({"exit-code" : 1})
             exit(1 if failOnError else 0)
 
-    def parseStats(self, basicStats, contributionStats, repoStats, reposContributedToStats = None):
+    def parseStats(
+        self, 
+        basicStats, 
+        contributionStats, 
+        repoStats, 
+        reposContributedToStats = None,
+        totalCommits = None):
         """Parses the user statistics.
 
         Keyword arguments:
@@ -245,8 +253,8 @@ class Statistician:
         #            "nodes"] if repo["owner"]["login"] != self._login)
         
         self._contrib = {
-            #"commits" : [pastYearData["totalCommitContributions"], 0],
-            "commits" : [pastYearData["totalCommitContributions"]],
+            "commits" : [pastYearData["totalCommitContributions"]] if (
+                totalCommits == None) else [pastYearData["totalCommitContributions"], totalCommits],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
             #"reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
@@ -503,6 +511,34 @@ class Statistician:
         self._contrib["private"][1] = sum(
             yr["contributionsCollection"]["restrictedContributionsCount"] for yr in yearlyQueryResults
         )
+    
+    def fetchTotalCommits(self):
+        """Queries te REST API for the total number of commits.
+        """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else:
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
+        arguments = [
+            'gh', 'api', '-X', 'GET', 'search/commits', 
+            '-f', f"q='author:{owner}'", 
+            '-f', "per_page='1'", 
+            '--cache', '1h', 
+            '--jq', '.total_count'
+        ]
+        result = subprocess.run(
+            arguments,
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            ).stdout.strip()
+        try:
+            num_commits = int(result)
+            return num_commits if num_commits > 0 else None
+        except ValueError:
+            print(f"❌ REST API returned: {result}.")
+            return None
         
     def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
         """Executes a GitHub GraphQl query using the GitHub CLI (gh).
