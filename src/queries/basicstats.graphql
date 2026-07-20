@@ -1,5 +1,7 @@
 query($owner: String!) {
   user(login: $owner) {
+    login
+    name
     followers(first: 1) {
       totalCount
     }
@@ -9,18 +11,16 @@ query($owner: String!) {
     issues(first: 1) {
       totalCount
     }
-    login
-    name
     pullRequests(first: 1) {
-      totalCount
-    }
-    repositoriesContributedTo(first: 1) {
       totalCount
     }
     sponsorshipsAsMaintainer(first: 1) {
       totalCount
     }
     sponsorshipsAsSponsor(first: 1)  {
+      totalCount
+    }
+    repositoriesContributedTo(first: 1) {
       totalCount
     }
   }
