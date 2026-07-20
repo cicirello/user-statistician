@@ -6,7 +6,6 @@ query($owner: String!) {
       totalPullRequestContributions
       totalPullRequestReviewContributions
       restrictedContributionsCount
-      contributionYears
     }
   }
 }

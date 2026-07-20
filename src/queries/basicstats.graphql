@@ -2,6 +2,7 @@ query($owner: String!) {
   user(login: $owner) {
     login
     name
+    createdAt
     followers(first: 1) {
       totalCount
     }

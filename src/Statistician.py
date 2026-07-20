@@ -50,7 +50,6 @@ class Statistician:
     """
 
     __slots__ = [
-        '_contributionYears',
         '_user',
         '_contrib',
         '_repo',
@@ -113,27 +112,6 @@ class Statistician:
                               queryName="repostats"),
             totalCommits = self.fetchTotalCommits()
         )
-            #self.executeQuery(reposContributedTo,
-            #                  needsPagination=True,
-            #                  failOnError=fail)
-            #)
-        #yearlyStatsQueryResults = []
-        #for year in self._contributionYears:
-        #    yearlyStatsQueryResults.append(
-        #        self.executeQuery(
-        #            oneYearContribTemplate.replace("{YEAR}",str(year)),
-        #            failOnError=fail,
-        #            queryName="Year:"+str(year)
-        #        )
-        #    )                
-        #self.combineYears(yearlyStatsQueryResults)
-        #self.parsePriorYearStats(
-        #    self.executeQuery(
-        #        self.createPriorYearStatsQuery(self._contributionYears, oneYearContribTemplate),
-        #        failOnError=fail,
-        #        queryName="priorYearStats"
-        #        )
-        #    )
 
     def getStatsByKey(self, key):
         """Gets a category of stats by key.
@@ -206,18 +184,14 @@ class Statistician:
             "repositoriesContributedTo"] = basicStats[
                 "data"]["user"]["repositoriesContributedTo"]["totalCount"]
 
-        # Extract list of contribution years
-        self._contributionYears = pastYearData["contributionYears"]
-        # Just reorganizing data for clarity
-        del pastYearData["contributionYears"]
-
         # Extract followed and following counts
         self._user = {}
         self._user["followers"] = [
             basicStats["data"]["user"]["followers"]["totalCount"] ]
         self._user["following"] = [
             basicStats["data"]["user"]["following"]["totalCount"] ]
-        self._user["joined"] = [ min(self._contributionYears) ]
+        self._user["joined"] = [ 
+            int(basicStats["data"]["user"]["createdAt"][:4]) ]
 
         # Extract sponsors and sponsoring counts
         self._user["sponsors"] = [
