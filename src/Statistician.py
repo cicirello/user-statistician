@@ -524,7 +524,7 @@ class Statistician:
         arguments = [
             'gh', 'api', '-X', 'GET', 'search/commits', 
             '-f', f"q=author:{owner}", 
-            '-f', "per_page='1'", 
+            '-f', "per_page=1", 
             '--cache', '1h', 
             '--jq', '.total_count'
         ]
