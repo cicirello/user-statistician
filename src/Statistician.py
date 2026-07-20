@@ -537,7 +537,7 @@ class Statistician:
             num_commits = int(result)
             return num_commits if num_commits > 0 else None
         except ValueError:
-            print(f"❌ REST API returned: {result}.")
+            print(f"❌ For total commits, REST API returned: {result}.")
             return None
         
     def executeQuery(self, query, needsPagination=False, failOnError=True, queryName="Unnamed"):
