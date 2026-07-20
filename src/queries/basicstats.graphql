@@ -1,9 +1,9 @@
 query($owner: String!) {
   user(login: $owner) {
-    followers {
+    followers(first: 1) {
       totalCount
     }
-    following {
+    following(first: 1) {
       totalCount
     }
     issues(first: 1) {
@@ -17,10 +17,10 @@ query($owner: String!) {
     repositoriesContributedTo(first: 1) {
       totalCount
     }
-    sponsorshipsAsMaintainer {
+    sponsorshipsAsMaintainer(first: 1) {
       totalCount
     }
-    sponsorshipsAsSponsor  {
+    sponsorshipsAsSponsor(first: 1)  {
       totalCount
     }
   }
