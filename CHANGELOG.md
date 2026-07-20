@@ -15,15 +15,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Fetch total number of commits from REST API
-* Split repositoriesContributedTo as separate query and treat as optional (i.e., just drop row if it fails)
-* Additional optimizations to GraphQL queries
 
 ### Dependencies
 
 ### CI/CD
 
 ### Other
+
+
+## [1.26.2] - 2026-07-20
+
+### Fixed
+* Fetch total number of commits from REST API
+* Split repositoriesContributedTo as separate query and treat as optional (i.e., just drop row if it fails)
+* Additional optimizations to GraphQL queries
 
 
 ## [1.26.1] - 2026-07-17
