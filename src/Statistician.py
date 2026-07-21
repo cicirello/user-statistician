@@ -116,6 +116,7 @@ class Statistician:
                               failOnError=fail,
                               queryName="repostats"),
             totalCommits = self.fetchTotalCommits(),
+            totalReviews = self.fetchTotalPullRequestReviews(),
             contribToData = self.executeOptionalQuery(reposContributedToQuery, 
                             queryName="basicstats2")
         )
@@ -161,6 +162,7 @@ class Statistician:
         repoStats, 
         reposContributedToStats = None,
         totalCommits = None,
+        totalReviews = None,
         contribToData = None):
         """Parses the user statistics.
 
@@ -243,8 +245,8 @@ class Statistician:
                 totalCommits == None) else [pastYearData["totalCommitContributions"], totalCommits],
             "issues" : [pastYearData["totalIssueContributions"], issues],
             "prs" : [pastYearData["totalPullRequestContributions"], pullRequests],
-            #"reviews" : [pastYearData["totalPullRequestReviewContributions"], 0],
-            "reviews" : [pastYearData["totalPullRequestReviewContributions"]],
+            "reviews" : [pastYearData["totalPullRequestReviewContributions"]] if (
+                totalReviews == None) else [pastYearData["totalPullRequestReviewContributions"], totalReviews],
             # See comment above for reason for this change.
             #"contribTo" : [pastYearData["repositoriesContributedTo"], repositoriesContributedTo],
             "contribTo" : [pastYearData["repositoriesContributedTo"]],
@@ -498,8 +500,36 @@ class Statistician:
             yr["contributionsCollection"]["restrictedContributionsCount"] for yr in yearlyQueryResults
         )
     
+    def fetchTotalPullRequestReviews(self):
+        """Queries the REST API for the total number of pull request reviews.
+        """
+        if "GITHUB_REPOSITORY_OWNER" in os.environ:
+            owner = os.environ["GITHUB_REPOSITORY_OWNER"]
+        else:
+            print("Error (7): Could not determine the repository owner.")
+            set_outputs({"exit-code" : 7})
+            exit(7 if failOnError else 0)
+        arguments = [
+            'gh', 'api', '-X', 'GET', 'search/issues',
+            '-f', f"q=is:pr reviewed-by:{owner}",
+            '-f', "per_page=1", 
+            '--cache', '1h', 
+            '--jq', '.total_count'
+        ]
+        result = subprocess.run(
+            arguments,
+            stdout=subprocess.PIPE,
+            universal_newlines=True
+            ).stdout.strip()
+        try:
+            num_reviews = int(result)
+            return num_reviews if num_reviews > 0 else None
+        except ValueError:
+            print(f"❌ For total PR Reviews, REST API returned: {result}.")
+            return None
+    
     def fetchTotalCommits(self):
-        """Queries te REST API for the total number of commits.
+        """Queries the REST API for the total number of commits.
         """
         if "GITHUB_REPOSITORY_OWNER" in os.environ:
             owner = os.environ["GITHUB_REPOSITORY_OWNER"]
