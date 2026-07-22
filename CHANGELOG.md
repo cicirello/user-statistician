@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2026-07-21
+## [Unreleased] - 2026-07-22
 
 ### Added
 
@@ -15,13 +15,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* Fetch total number of pull request reviews from the REST API
 
 ### Dependencies
 
 ### CI/CD
 
 ### Other
+
+
+## [1.26.3] - 2026-07-22
+
+### Fixed
+* Fetch total number of pull request reviews from the REST API
 
 
 ## [1.26.2] - 2026-07-20
@@ -38,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fix rate-limit issue due to cost of queries by:
   * Split complex queries involving concurrent execution into multiple simpler queries.
   * Eliminating year-by-year queries to get total count of all commits, all pull request reviews, and all private contributions. These three stats are now only available in the "past year" column. We'll explore alternatives to getting these statistics for all-time. The GraphQL API doesn't track totals for these three directly.
-  * Limiting the number of languages within a single repository to 6 when calculating the language stats. GitHub calculates the point-based cost of a query before executing it. We previously requested the top 100 languages in a repository requesting repositories in batches of 100, so whether a repository had 1 or 100 languages, it was costing 100 points per reopsitory or 10000 points total. Reducing to 6 is high enough to not miss any languages in most repositories. In cases where there are more than 6 languages in a single repository, it will just miss the lowest percentage languages for that specific repository. The original approach was working up until July 16, 2026.
+  * Limiting the number of languages within a single repository to 6 when calculating the language stats. GitHub calculates the point-based cost of a query before executing it. We previously requested the top 100 languages in a repository requesting repositories in batches of 100, so whether a repository had 1 or 100 languages, it was costing 100 points per repository or 10000 points total. Reducing to 6 is high enough to not miss any languages in most repositories. In cases where there are more than 6 languages in a single repository, it will just miss the lowest percentage languages for that specific repository. The original approach was working up until July 16, 2026.
 
 
 ## [1.26.0] - 2026-07-01
